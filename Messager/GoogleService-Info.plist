@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>81700299815-os1segu8b8ldd5rvg0rrnarqr18sn5hs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.81700299815-os1segu8b8ldd5rvg0rrnarqr18sn5hs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD_jKLzxT6EfF6mmINqWmKcU5azyfrg6iQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>81700299815</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Minshen.Messager</string>
+	<key>PROJECT_ID</key>
+	<string>comp90018-19be3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>comp90018-19be3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:81700299815:ios:38ae6b5c67f353b89b1a02</string>
+	<key>DATABASE_URL</key>
+	<string>https://comp90018-19be3.firebaseio.com</string>
+</dict>
+</plist>
