@@ -11,7 +11,8 @@ import Firebase
 class FeedViewController: UIViewController {
     let storage = Storage.storage()
     let db = Firestore.firestore()
-
+    
+    let dbSeed = DBSeeding(true)
     
     @IBOutlet weak var imageView: UIImageView!
     
