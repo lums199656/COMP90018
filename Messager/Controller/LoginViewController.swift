@@ -68,6 +68,8 @@ class LoginViewController: UIViewController {
         print("_x LoginView")
         setupTestFieldDelegates()
         setupBackgroundTap()
+        
+        
     }
 
     //MARK: - Setup
