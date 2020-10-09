@@ -23,6 +23,13 @@ pod 'RealmSwift'
 pod 'ProgressHUD'
 pod 'SKPhotoBrowser'
 
+# 特效和滑动
+pod 'Just'
+pod 'Kingfisher'
+pod 'NVActivityIndicatorView'
+pod 'ChainableAnimations'
+pod 'SnapKit'
+
 # 通讯框架
 pod 'MessageKit'
 pod 'InputBarAccessoryView'

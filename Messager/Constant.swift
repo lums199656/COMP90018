@@ -21,4 +21,12 @@ struct K {
         static let app = "Applications"
     }
     
+    struct Activity {
+        static let detail = "actDetail"
+        static let title = "actTitle"
+        static let image = "imageId"
+        static let uid = "uid"
+        static let user = "userId"
+    }
+    
 }
