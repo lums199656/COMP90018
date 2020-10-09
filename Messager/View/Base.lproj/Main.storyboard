@@ -284,6 +284,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="feedImage" destination="QxV-oJ-tvi" id="58x-RK-Lzh"/>
                                             <outlet property="labelD" destination="gkf-IX-1dA" id="TOi-Ys-PGD"/>
                                             <outlet property="labelT" destination="KI0-ff-wsf" id="mY7-L9-OrR"/>
                                         </connections>

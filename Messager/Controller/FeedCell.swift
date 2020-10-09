@@ -6,18 +6,32 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedCell: UITableViewCell {
 
     
     @IBOutlet weak var labelD: UILabel!
     @IBOutlet weak var labelT: UILabel!
+    @IBOutlet weak var feedImage: UIImageView!
     
-        var cellData : FeedData!{
-        //监视器，判断是否发生变化
+    let storage = Storage.storage()
+    let db = Firestore.firestore()
+    
+    var cellData : FeedData!{
+    //监视器，判断是否发生变化
         didSet{
             labelT.text = cellData.title
             labelD.text = cellData.detail
+            let imageId = cellData.image
+            let cloudFileRef = storage.reference(withPath: "activity-images/\(imageId)")
+            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else {
+                    self.feedImage.image = UIImage(data: data!)
+                }
+            }
         }
     }
     
