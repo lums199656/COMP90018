@@ -23,8 +23,14 @@ class FeedCell: UITableViewCell {
         didSet{
             labelT.text = cellData.title
             labelD.text = cellData.detail
-            let imageId = cellData.image
-            let cloudFileRef = storage.reference(withPath: "activity-images/\(imageId)")
+            labelD.numberOfLines=0 // 行数设置为0
+
+            // 换行的模式我们选择文本自适应
+            labelD.lineBreakMode = NSLineBreakMode.byWordWrapping
+
+            let imageId : String! = cellData!.image
+            let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
+            print("activity-images/"+imageId)
             cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
                 if let error = error {
                     print(error.localizedDescription)

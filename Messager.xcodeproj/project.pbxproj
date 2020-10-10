@@ -12,6 +12,7 @@
 		6659A895252E191B009F39DA /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6659A894252E191B009F39DA /* Constant.swift */; };
 		9B277BAC252FFB2200CA229E /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B277BAB252FFB2200CA229E /* FeedCell.swift */; };
 		9B277BB1252FFB5500CA229E /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B277BB0252FFB5500CA229E /* FeedData.swift */; };
+		9B7D7B512532139400E79109 /* PatientInfoCustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D7B502532139400E79109 /* PatientInfoCustomLabel.swift */; };
 		A03CD3B43A4B77DC8CB21815 /* Pods_MessagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */; };
 		A517F8BD2514E89F00621A26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517F8BC2514E89F00621A26 /* AppDelegate.swift */; };
 		A517F8BF2514E89F00621A26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517F8BE2514E89F00621A26 /* SceneDelegate.swift */; };
@@ -61,6 +62,7 @@
 		92B1298873614C79BB233554 /* Pods-MessagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.debug.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9B277BAB252FFB2200CA229E /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		9B277BB0252FFB5500CA229E /* FeedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
+		9B7D7B502532139400E79109 /* PatientInfoCustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoCustomLabel.swift; sourceTree = "<group>"; };
 		A517F8B92514E89F00621A26 /* Messager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A517F8BC2514E89F00621A26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A517F8BE2514E89F00621A26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */,
 				BBE474E3252CA343005AE820 /* FeedViewController.swift */,
 				9B277BAB252FFB2200CA229E /* FeedCell.swift */,
+				9B7D7B502532139400E79109 /* PatientInfoCustomLabel.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				BBEE4343252DE20E00D3B305 /* ActivityManager.swift in Sources */,
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,
 				9B277BB1252FFB5500CA229E /* FeedData.swift in Sources */,
+				9B7D7B512532139400E79109 /* PatientInfoCustomLabel.swift in Sources */,
 				A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */,
 				A517F8BF2514E89F00621A26 /* SceneDelegate.swift in Sources */,
 			);

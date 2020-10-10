@@ -11,10 +11,13 @@ import Firebase
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var lists : [FeedData] = []
     //var cur_count = 0 //用来判断当前处在哪一个位置
-    
+     
     @IBOutlet weak var tableView: UITableView!
+
     //显示cell个数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("list数量是")
+        print(lists.count)
         return lists.count
     }
     
@@ -22,6 +25,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         //cell.textLabel?.text = lists[indexPath.row]
+        print("indexPath.row=\(indexPath.row)")
         cell.cellData = lists[indexPath.row]
         return cell
     }
@@ -30,7 +34,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //let storage = Storage.storage()
     let db = Firestore.firestore()
     
-    let dbSeed = DBSeeding(true)
+    //let dbSeed = DBSeeding(true)
     
     
 
@@ -42,9 +46,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         //ImageV.image = UIImage(named: "port1")
         getData()
-        print("用户数量：")
-        print(lists.count)
-        
+        print("数量是：")
+        print(self.lists.count)
 //        imageView.image = UIImage(named: "port1")
 //        activityDetail.sizeToFit()
         
@@ -68,17 +71,20 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image)
                             //print(feedData)
                             self.lists.append(feedData)
-                            self.tableView.reloadData()
+                            
                         }
                     }
+                    self.tableView.reloadData()
+                    //print(self.lists.count)
                 }
             }
             
         }
+        
     }
     //下滑拖动结束时候会触发事件的方法
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.tableView.reloadData()
+        //self.tableView.reloadData()
     }
     
     
