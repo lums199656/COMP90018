@@ -278,7 +278,7 @@
         <!--Me-->
         <scene sceneID="NPG-Dh-djZ">
             <objects>
-                <viewController storyboardIdentifier="Me" id="K2k-Nr-Qaw" userLabel="Me" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Me" id="K2k-Nr-Qaw" userLabel="Me" customClass="MeViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Y5k-Y2-zrE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -387,7 +387,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="117" id="dst-fS-I9T" customClass="JoinedCell" customModule="UserInfo" customModuleProvider="target">
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="117" id="dst-fS-I9T" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="397" height="117"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dst-fS-I9T" id="1zM-hw-FpM">
@@ -431,7 +431,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="chA-1O-oWv" customClass="CreatedCell" customModule="UserInfo" customModuleProvider="target">
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="chA-1O-oWv" customClass="CreatedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="397" height="118"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="chA-1O-oWv" id="aJl-r4-UyQ">
@@ -470,6 +470,9 @@
                                                                                 </connections>
                                                                             </tableViewCell>
                                                                         </prototypes>
+                                                                        <connections>
+                                                                            <outlet property="dataSource" destination="K2k-Nr-Qaw" id="DVf-zf-iFz"/>
+                                                                        </connections>
                                                                     </tableView>
                                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="u4O-55-LME" userLabel="CreatedControl">
                                                                         <rect key="frame" x="77" y="0.0" width="259" height="32"/>
@@ -543,6 +546,12 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="person.crop.circle.fill" catalog="system" id="2oD-DX-n7K" userLabel="Me"/>
                     <navigationItem key="navigationItem" id="nw9-JL-dsm"/>
+                    <connections>
+                        <outlet property="PhotoContainer" destination="5CG-Ur-2dM" id="MHx-4D-gGt"/>
+                        <outlet property="firstView" destination="hNX-Rh-I81" id="Iow-1J-GpS"/>
+                        <outlet property="secondView" destination="d5n-x4-yGt" id="FFn-RJ-MZF"/>
+                        <outlet property="segmentedControl" destination="u4O-55-LME" id="FgX-5S-qRr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVI-Ak-6CD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
