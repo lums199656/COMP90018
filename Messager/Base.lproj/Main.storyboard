@@ -304,6 +304,9 @@
                                             <constraint firstAttribute="width" constant="35" id="dYf-Cs-UPi"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="config"/>
+                                        <connections>
+                                            <action selector="configClicked:" destination="K2k-Nr-Qaw" eventType="touchUpInside" id="MwU-9m-BfQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.46666666670000001" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -319,8 +322,8 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5CG-Ur-2dM" userLabel="PhotoContainer">
                                 <rect key="frame" x="19" y="49" width="102" height="102"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JHl-q9-adX">
-                                        <rect key="frame" x="1" y="1.5" width="100" height="99"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_empty_view_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="JHl-q9-adX">
+                                        <rect key="frame" x="1" y="1" width="100" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="hKz-Cd-73J"/>
                                             <constraint firstAttribute="height" constant="100" id="x2V-n9-1Rd"/>
@@ -374,8 +377,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xnY-dJ-hdU" userLabel="ActivitiesBorder">
                                         <rect key="frame" x="0.0" y="100.5" width="414" height="555.5"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O7C-Nd-ErS" userLabel="Activities">
-                                                <rect key="frame" x="0.0" y="0.5" width="414" height="553.5"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O7C-Nd-ErS" userLabel="Activities">
+                                                <rect key="frame" x="0.0" y="2" width="414" height="553.5"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" id="92f-m7-PYa">
                                                         <rect key="frame" x="0.0" y="-4" width="414" height="561"/>
@@ -449,7 +452,7 @@
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rectangle.and.pencil.and.ellipsis" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XLM-zq-fCF">
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gallery_empty_view_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="XLM-zq-fCF">
                                                                                             <rect key="frame" x="13" y="11" width="103" height="105"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                         </imageView>
@@ -557,6 +560,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVI-Ak-6CD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="o3R-Wy-ov7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1616" y="856"/>
         </scene>
@@ -663,10 +667,77 @@
             </objects>
             <point key="canvasLocation" x="2625" y="856"/>
         </scene>
+        <!--Config-->
+        <scene sceneID="aYE-g8-WZv">
+            <objects>
+                <viewController storyboardIdentifier="SecondViewController" id="aMq-mc-FCo" userLabel="Config" customClass="MeViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ciH-9Y-ecX" userLabel="Config">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jiK-Ql-Hc1" userLabel="Top Bar">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bm-96-1NE" userLabel="Back">
+                                        <rect key="frame" x="15" y="42" width="20" height="26.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="gMp-Ys-saD"/>
+                                            <constraint firstAttribute="width" constant="20" id="xnp-kp-MQM"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" backgroundImage="chevron.backward" catalog="system">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="o3R-Wy-ov7" kind="unwind" unwindAction="exitToHereWithSender:" id="TLA-pE-jR3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.46666666670000001" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="5bm-96-1NE" firstAttribute="top" secondItem="jiK-Ql-Hc1" secondAttribute="top" constant="40" id="5ln-xO-Ygt"/>
+                                    <constraint firstAttribute="height" constant="150" id="aoN-jo-3w4"/>
+                                    <constraint firstItem="5bm-96-1NE" firstAttribute="top" secondItem="jiK-Ql-Hc1" secondAttribute="top" constant="40" id="ra8-r0-Ppu"/>
+                                    <constraint firstItem="5bm-96-1NE" firstAttribute="leading" secondItem="jiK-Ql-Hc1" secondAttribute="leading" constant="15" id="s1z-ww-hKZ"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Msz-h4-1Tu">
+                                <rect key="frame" x="122" y="423" width="170" height="50"/>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.46666666670000001" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BD7-o4-7LU"/>
+                                    <constraint firstAttribute="width" constant="170" id="Zuw-2r-eQS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="21"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Log Out">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" red="0.91372549020000005" green="0.46666666670000001" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="logOut:" destination="aMq-mc-FCo" eventType="touchUpInside" id="GxP-Kw-iQp"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QiQ-IB-Wsq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jiK-Ql-Hc1" firstAttribute="top" secondItem="ciH-9Y-ecX" secondAttribute="top" id="Uu1-5N-O0B"/>
+                            <constraint firstItem="Msz-h4-1Tu" firstAttribute="centerX" secondItem="ciH-9Y-ecX" secondAttribute="centerX" id="eoJ-VB-vjj"/>
+                            <constraint firstItem="Msz-h4-1Tu" firstAttribute="centerY" secondItem="ciH-9Y-ecX" secondAttribute="centerY" id="gRh-xp-S8P"/>
+                            <constraint firstItem="QiQ-IB-Wsq" firstAttribute="trailing" secondItem="jiK-Ql-Hc1" secondAttribute="trailing" id="lvS-LZ-IM6"/>
+                            <constraint firstItem="jiK-Ql-Hc1" firstAttribute="leading" secondItem="QiQ-IB-Wsq" secondAttribute="leading" id="yU9-jH-Bn8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mqT-j3-duk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2624.6376811594205" y="1521.4285714285713"/>
+        </scene>
         <!--EDIT-->
         <scene sceneID="DOf-aa-4nY">
             <objects>
-                <viewController id="7Jc-g4-BRO" sceneMemberID="viewController">
+                <viewController id="7Jc-g4-BRO" customClass="MeViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ttM-kr-s3w">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -674,7 +745,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEh-sX-f2X" userLabel="PhotoContainer">
                                 <rect key="frame" x="106" y="121" width="202" height="202"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WechatIMG1" translatesAutoresizingMaskIntoConstraints="NO" id="gDt-wX-riN">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_empty_view_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="gDt-wX-riN">
                                         <rect key="frame" x="1" y="1" width="200" height="200"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="conerRadius">
@@ -778,6 +849,9 @@
                                 <rect key="frame" x="20" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="cancel"/>
+                                <connections>
+                                    <segue destination="o3R-Wy-ov7" kind="unwind" unwindAction="exitToHereWithSender:" id="EmM-Aq-KRH"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="MAo-M4-xT3">
@@ -785,6 +859,9 @@
                                 <rect key="frame" x="302" y="13" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="save"/>
+                                <connections>
+                                    <segue destination="o3R-Wy-ov7" kind="unwind" unwindAction="saveAndExitWithSender:" id="jUf-x0-lKs"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -796,14 +873,14 @@
     </scenes>
     <resources>
         <image name="WechatIMG1" width="160" height="105"/>
+        <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="config" width="200" height="200"/>
         <image name="edit" width="200" height="200"/>
+        <image name="gallery_empty_view_image.png" width="72" height="49"/>
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
-        <image name="person.crop.circle" catalog="system" width="128" height="121"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
-        <image name="rectangle.and.pencil.and.ellipsis" catalog="system" width="128" height="81"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
         <namedColor name="typingIndicatorDot">
             <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -56,16 +56,16 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
            }
        }
     @IBOutlet weak var PhotoContainer: UIView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
-        PhotoContainer.clipsToBounds = true
-        firstView.layer.cornerRadius = 20
-        firstView.clipsToBounds = true
-        secondView.layer.cornerRadius = 20
-        secondView.clipsToBounds = true
-        // Do any additional setup after loading the view.
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
+//        PhotoContainer.clipsToBounds = true
+//        firstView.layer.cornerRadius = 20
+//        firstView.clipsToBounds = true
+//        secondView.layer.cornerRadius = 20
+//        secondView.clipsToBounds = true
+//        // Do any additional setup after loading the view.
+//    }
 
     @IBAction func exitToHere(sender: UIStoryboardSegue){
         //
@@ -74,5 +74,24 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     @IBAction func saveAndExit(sender: UIStoryboardSegue){
         // save
 
+    }
+    
+    @IBAction func configClicked(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle:nil)
+        let vc = sb.instantiateViewController(withIdentifier: "SecondViewController")
+        self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func logOut(_ sender: Any) {
+        FirebaseUserListener.shared.logOutCurrentUser{ (error) in
+            if error == nil {
+                let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                
+                DispatchQueue.main.async {
+                    loginView.modalPresentationStyle = .fullScreen
+                    self.present(loginView, animated: true, completion: nil)
+                }
+            }
+        }
     }
 }
