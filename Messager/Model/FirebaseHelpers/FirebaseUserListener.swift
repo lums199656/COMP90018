@@ -122,20 +122,18 @@ class FirebaseUserListener {
         
         FirebaseReference(.User).limit(to: 500).getDocuments { (querySnapshot, error) in
             guard let docment = querySnapshot?.documents else {
-                print("No documents!")
+                print("_x No documents!")
                 return
             }
             // 下载 all users
             let allUsers = docment.compactMap{ (queryDocumentSnapshot) -> User? in
                 return try? queryDocumentSnapshot.data(as: User.self)
             }
-            
             for user in allUsers {
                 if User.currentId != user.id {
                     users.append(user)
                 }
             }
-            
             completion(users)
         }
     }

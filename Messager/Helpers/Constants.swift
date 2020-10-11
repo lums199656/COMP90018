@@ -10,3 +10,7 @@ import Foundation
 public let userDefaults = UserDefaults.standard
 
 public let kCURRENTUSER = "currentUser"
+
+public let kCHATROOMID = "chatRoomId"
+
+public let kSENDERID = "senderId"

@@ -8,38 +8,60 @@
 import UIKit
 
 class ChatsTableViewController: UITableViewController {
+    
+    
+    var allRecents: [RecentChat] = []
+    var filteredRecents: [RecentChat] = []
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        // 底板是 tableview
+        print("_x ChatView")
+        tableView.tableFooterView = UIView()
+        downloadRecentChats()
+        // 增加下拉更新的功能
+        self.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = self.refreshControl
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return allRecents.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecentTableViewCell
 
         // Configure the cell...
+        cell.configure(recent: allRecents[indexPath.row])
 
         return cell
     }
-    */
+    
+    private func downloadRecentChats() {
+        FirebaseRecentListener.shared.downloadRecentChatFromFireStore { (allChats) in
+            self.allRecents = allChats
+            print("_x 下载了 \(self.allRecents.count) 条数据")
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        print("_x Refreshing")
+        if self.refreshControl!.isRefreshing {
+            self.downloadRecentChats()
+            self.refreshControl!.endRefreshing()
+        }
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

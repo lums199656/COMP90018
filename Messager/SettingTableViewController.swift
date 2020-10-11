@@ -22,7 +22,7 @@ class SettingTableViewController: UITableViewController {
         print("_x MeView")
     }
 
-    @IBAction func logOut(_ sender: UIButton) {
+    @IBAction func logoutButtonPressed(_ sender: Any) {
         FirebaseUserListener.shared.logOutCurrentUser{ (error) in
             if error == nil {
                 let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
@@ -34,7 +34,6 @@ class SettingTableViewController: UITableViewController {
             }
         }
     }
-
     // MARK: - Table view data source
 //
 //    override func numberOfSections(in tableView: UITableView) -> Int {
