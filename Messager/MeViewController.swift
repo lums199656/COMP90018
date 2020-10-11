@@ -10,6 +10,7 @@ import Firebase
 
 
 class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+    let db = Firestore.firestore()
     
   // data source of created activities
     var activities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7","活动8"]
@@ -64,11 +65,40 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         secondView.layer.cornerRadius = 20
         secondView.clipsToBounds = true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //setUI()
         //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
+        loadInfo()
+    }
+    
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userLocation: UILabel!
+    @IBOutlet weak var userIntro: UILabel!
+    func loadInfo() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            let userInfo = db.collection("UserInfo")
+            let query = userInfo.whereField("userID", isEqualTo: uid)
+                    query.getDocuments { (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let image = data["userImage"] as! String
+                                let intro = data["userIntro"] as! String
+                                let location = data["userLocation"] as! String
+                                self.userIntro.text = intro
+                                self.userLocation.text = location
+                            }
+                        }
+                    }
+        }
     }
 
     @IBAction func exitToHere(sender: UIStoryboardSegue){
