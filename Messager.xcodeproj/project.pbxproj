@@ -27,6 +27,8 @@
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
 		A5DFB0EF252AC1D400471C1A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */; };
+		BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4B996A2532B5B60065128B /* PostViewController.swift */; };
+		BB6D0FA3252FF86700E8DE19 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6D0FA2252FF86700E8DE19 /* ActivityViewController.swift */; };
 		BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE474E3252CA343005AE820 /* FeedViewController.swift */; };
 		BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4335252DDF2400D3B305 /* Activity.swift */; };
 		BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */; };
@@ -81,6 +83,8 @@
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB4B996A2532B5B60065128B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		BB6D0FA2252FF86700E8DE19 /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		BBE474E3252CA343005AE820 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BBEE4335252DDF2400D3B305 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplication.swift; sourceTree = "<group>"; };
@@ -175,7 +179,6 @@
 				BBE474E2252CA28D005AE820 /* View */,
 				BBE474E1252CA26C005AE820 /* Controller */,
 				A517F8C52514E89F00621A26 /* Assets.xcassets */,
-				A517F8C72514E89F00621A26 /* LaunchScreen.storyboard */,
 				A517F8CA2514E89F00621A26 /* Info.plist */,
 				A527DEBD251734A30097D419 /* GoogleService-Info.plist */,
 				6659A894252E191B009F39DA /* Constant.swift */,
@@ -235,6 +238,8 @@
 				A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */,
 				A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */,
 				BBE474E3252CA343005AE820 /* FeedViewController.swift */,
+				BB6D0FA2252FF86700E8DE19 /* ActivityViewController.swift */,
+				BB4B996A2532B5B60065128B /* PostViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -242,6 +247,7 @@
 		BBE474E2252CA28D005AE820 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A517F8C72514E89F00621A26 /* LaunchScreen.storyboard */,
 				A517F8C22514E89F00621A26 /* Main.storyboard */,
 			);
 			path = View;
@@ -497,9 +503,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */,
 				A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */,
 				6659A895252E191B009F39DA /* Constant.swift in Sources */,
 				A5790B2B252077E1009E1347 /* Constants.swift in Sources */,
+				BB6D0FA3252FF86700E8DE19 /* ActivityViewController.swift in Sources */,
 				A5790B26251B90BC009E1347 /* User.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
 				A5DFB0EF252AC1D400471C1A /* UserTableViewCell.swift in Sources */,

@@ -12,7 +12,7 @@ class FeedViewController: UIViewController {
     let storage = Storage.storage()
     let db = Firestore.firestore()
     
-    let dbSeed = DBSeeding(true)
+    let dbSeed = DBSeeding(false)
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -21,10 +21,19 @@ class FeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("🔥FeedView Did Load")
         imageView.image = UIImage(named: "port1")
         activityDetail.sizeToFit()
         
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("🔥FeedView Did Disappear")
+    }
+    
+    
+    // MARK:-
     
     
     @IBAction func uploadButtonPressed(_ sender: UIButton) {
@@ -70,6 +79,10 @@ class FeedViewController: UIViewController {
         
     }
     
+    @IBAction func createActivityButtonTapped(_ sender: UIButton) {
+        
+        
+    }
     
     
     

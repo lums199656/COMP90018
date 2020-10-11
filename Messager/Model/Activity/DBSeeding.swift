@@ -82,6 +82,7 @@ struct DBSeeding {
         ]
         
         for i in 0...9 {
+            
             let imageName = "port" + String(i)
             let userRef = db.collection(K.FStore.user).document()
             let actRef = db.collection(K.FStore.act).document()
