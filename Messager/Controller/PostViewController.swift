@@ -76,7 +76,7 @@ class PostViewController: UIViewController {
         
         func uploadActivity() {
             let act = Activity(uid: actRef.documentID, userId: userId,
-                               actTitle: titleText, actDetail: detailText,
+                               createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,
                                imageId: actRef.documentID)
             do {
                 try actRef.setData(from: act)

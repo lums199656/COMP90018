@@ -6,12 +6,15 @@
 //
 
 import Foundation
+import CoreLocation
 
 public struct Activity: Codable {
     let uid: String?      // uid of the application
     let userId: String?   // uid of the activity initiator
     let likeCount: Int? = nil  // number of likes
     let shareCount: Int? = nil // number of share to others..
+    
+    let createDate: Double?
     
 //    var pendingApp: [String]? = nil // array of uid of activity_application
 //    var approvedApp: [String]? = nil // array of uid of activity_application
@@ -26,6 +29,8 @@ public struct Activity: Codable {
         case likeCount
         case shareCount
         
+        case createDate
+        
 //        case pendingApp
 //        case approvedApp
         
@@ -38,7 +43,7 @@ public struct Activity: Codable {
 
 
 
-
+// example
 public struct City: Codable {
 
     let name: String
