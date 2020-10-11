@@ -142,16 +142,4 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func logOut(_ sender: Any) {
-        FirebaseUserListener.shared.logOutCurrentUser{ (error) in
-            if error == nil {
-                let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
-                
-                DispatchQueue.main.async {
-                    loginView.modalPresentationStyle = .fullScreen
-                    self.present(loginView, animated: true, completion: nil)
-                }
-            }
-        }
-    }
 }
