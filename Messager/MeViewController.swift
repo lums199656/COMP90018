@@ -56,16 +56,16 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
            }
        }
     @IBOutlet weak var PhotoContainer: UIView!
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
-//        PhotoContainer.clipsToBounds = true
-//        firstView.layer.cornerRadius = 20
-//        firstView.clipsToBounds = true
-//        secondView.layer.cornerRadius = 20
-//        secondView.clipsToBounds = true
-//        // Do any additional setup after loading the view.
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
+        PhotoContainer.clipsToBounds = true
+        firstView.layer.cornerRadius = 20
+        firstView.clipsToBounds = true
+        secondView.layer.cornerRadius = 20
+        secondView.clipsToBounds = true
+        // Do any additional setup after loading the view.
+    }
 
     @IBAction func exitToHere(sender: UIStoryboardSegue){
         //
