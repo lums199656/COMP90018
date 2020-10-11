@@ -110,6 +110,20 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
                             }
                         }
                     }
+            let userAuth = db.collection("User")
+            let queryUser = userAuth.whereField("id", isEqualTo: uid)
+            queryUser.getDocuments { [self] (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let name = data["username"] as! String
+                                self.userName.text = name
+                            }
+                        }
+                    }
+
         }
     }
 
