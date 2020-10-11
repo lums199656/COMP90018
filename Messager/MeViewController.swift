@@ -56,14 +56,18 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
            }
        }
     @IBOutlet weak var PhotoContainer: UIView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func setUI(){
         PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
         PhotoContainer.clipsToBounds = true
         firstView.layer.cornerRadius = 20
         firstView.clipsToBounds = true
         secondView.layer.cornerRadius = 20
         secondView.clipsToBounds = true
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //setUI()
+        //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
     }
 
