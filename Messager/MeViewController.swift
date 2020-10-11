@@ -11,6 +11,7 @@ import Firebase
 
 class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     
   // data source of created activities
     var activities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7","活动8"]
@@ -74,6 +75,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         loadInfo()
     }
     
+
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userLocation: UILabel!
@@ -84,7 +86,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
             let uid = user.uid
             let userInfo = db.collection("UserInfo")
             let query = userInfo.whereField("userID", isEqualTo: uid)
-                    query.getDocuments { (querySnapshot, error) in
+            query.getDocuments { [self] (querySnapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
                         } else {
@@ -95,6 +97,16 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
                                 let location = data["userLocation"] as! String
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
+                                let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
+                                            print("user-photoes/"+image)
+                                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+                                                if let error = error {
+                                                    print(error.localizedDescription)
+                                                } else {
+                                                    self.userImage.image = UIImage(data: data!)
+                                                }
+                                            }
+
                             }
                         }
                     }

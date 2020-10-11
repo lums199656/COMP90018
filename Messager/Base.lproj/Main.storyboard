@@ -560,6 +560,10 @@
                         <outlet property="firstView" destination="hNX-Rh-I81" id="Iow-1J-GpS"/>
                         <outlet property="secondView" destination="d5n-x4-yGt" id="FFn-RJ-MZF"/>
                         <outlet property="segmentedControl" destination="u4O-55-LME" id="FgX-5S-qRr"/>
+                        <outlet property="userImage" destination="JHl-q9-adX" id="bWB-mM-IRr"/>
+                        <outlet property="userIntro" destination="8Vw-xx-aLj" id="xvn-SC-X2C"/>
+                        <outlet property="userLocation" destination="Ka8-bJ-h0Y" id="gFk-Rb-FB6"/>
+                        <outlet property="userName" destination="7Al-Rd-Opy" id="syf-sL-WKr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VVI-Ak-6CD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
