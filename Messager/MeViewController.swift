@@ -10,6 +10,8 @@ import Firebase
 
 
 class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
     
   // data source of created activities
     var activities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7","活动8"]
@@ -56,15 +58,73 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
            }
        }
     @IBOutlet weak var PhotoContainer: UIView!
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private func setUI(){
         PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
         PhotoContainer.clipsToBounds = true
         firstView.layer.cornerRadius = 20
         firstView.clipsToBounds = true
         secondView.layer.cornerRadius = 20
         secondView.clipsToBounds = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //setUI()
+        //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
+        loadInfo()
+    }
+    
+
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var userLocation: UILabel!
+    @IBOutlet weak var userIntro: UILabel!
+    func loadInfo() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            let userInfo = db.collection("UserInfo")
+            let query = userInfo.whereField("userID", isEqualTo: uid)
+            query.getDocuments { [self] (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let image = data["userImage"] as! String
+                                let intro = data["userIntro"] as! String
+                                let location = data["userLocation"] as! String
+                                self.userIntro.text = intro
+                                self.userLocation.text = location
+                                let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
+                                            print("user-photoes/"+image)
+                                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+                                                if let error = error {
+                                                    print(error.localizedDescription)
+                                                } else {
+                                                    self.userImage.image = UIImage(data: data!)
+                                                }
+                                            }
+
+                            }
+                        }
+                    }
+            let userAuth = db.collection("User")
+            let queryUser = userAuth.whereField("id", isEqualTo: uid)
+            queryUser.getDocuments { [self] (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let name = data["username"] as! String
+                                self.userName.text = name
+                            }
+                        }
+                    }
+
+        }
     }
 
     @IBAction func exitToHere(sender: UIStoryboardSegue){
@@ -75,4 +135,11 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         // save
 
     }
+    
+    @IBAction func configClicked(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle:nil)
+        let vc = sb.instantiateViewController(withIdentifier: "SecondViewController")
+        self.present(vc, animated: true, completion: nil)
+    }
+    
 }
