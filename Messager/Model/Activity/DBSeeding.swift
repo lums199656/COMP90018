@@ -82,6 +82,7 @@ struct DBSeeding {
         ]
         
         for i in 0...9 {
+            
             let imageName = "port" + String(i)
             let userRef = db.collection(K.FStore.user).document()
             let actRef = db.collection(K.FStore.act).document()
@@ -102,7 +103,7 @@ struct DBSeeding {
             let actName = actNames.randomElement()! + String(Int.random(in: 1000...2000))
             let actDetail = actDetails.randomElement()! + String(Int.random(in: 1000...2000))
             let act = Activity(uid: actRef.documentID, userId:
-                                userRef.documentID,
+                                userRef.documentID, createDate: Date().timeIntervalSince1970,
                                actTitle: actName, actDetail: actDetail,
                                imageId: actRef.documentID)
             

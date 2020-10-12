@@ -34,6 +34,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //let storage = Storage.storage()
     let db = Firestore.firestore()
     
+    let dbSeed = DBSeeding(false)
     //let dbSeed = DBSeeding(true)
     
     
@@ -44,15 +45,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //ImageV.image = UIImage(named: "port1")
+        print("🔥FeedView Did Load")
         getData()
-        print("数量是：")
-        print(self.lists.count)
-//        imageView.image = UIImage(named: "port1")
-//        activityDetail.sizeToFit()
         
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("🔥FeedView Did Disappear")
+    }
+    
+  
     //调用下一个数据库数据
     func getData(){
         //获取数据
@@ -131,6 +134,10 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //
 //    }
     
+    @IBAction func createActivityButtonTapped(_ sender: UIButton) {
+        
+        
+    }
     
     
     
