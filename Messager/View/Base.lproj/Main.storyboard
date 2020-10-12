@@ -450,7 +450,6 @@
                                     <outlet property="dataSource" destination="pxa-Mr-joE" id="ciq-sC-Db0"/>
                                     <outlet property="delegate" destination="pxa-Mr-joE" id="ZBW-Vl-5zG"/>
                                 </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X99-RI-Z3d">
                                 <rect key="frame" x="159" y="104" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

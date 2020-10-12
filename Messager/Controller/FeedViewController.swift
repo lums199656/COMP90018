@@ -46,8 +46,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         print("🔥FeedView Did Load")
-        imageView.image = UIImage(named: "port1")
-        activityDetail.sizeToFit()
+        getData()
         
     }
     
@@ -56,26 +55,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("🔥FeedView Did Disappear")
     }
     
-    
-    // MARK:-
-    
-    
-    @IBAction func uploadButtonPressed(_ sender: UIButton) {
-        print("----------------------")
-        uploadImage(from: "port1", to: "Again19")
-    }
-    
-    @IBAction func downloadButtonPressed(_ sender: UIButton) {
-        print("----------------------")
-        //ImageV.image = UIImage(named: "port1")
-        getData()
-        print("数量是：")
-        print(self.lists.count)
-//        imageView.image = UIImage(named: "port1")
-//        activityDetail.sizeToFit()
-        
-    }
-    
+  
     //调用下一个数据库数据
     func getData(){
         //获取数据

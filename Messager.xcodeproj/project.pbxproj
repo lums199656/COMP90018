@@ -27,6 +27,8 @@
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
 		A5DFB0EF252AC1D400471C1A /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */; };
+		BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D0C253408C400DCF2D5 /* FeedData.swift */; };
+		BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */; };
 		BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4B996A2532B5B60065128B /* PostViewController.swift */; };
 		BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */; };
 		BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */; };
@@ -84,6 +86,8 @@
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB1C1D0C253408C400DCF2D5 /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
+		BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		BB4B996A2532B5B60065128B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTabViewController.swift; sourceTree = "<group>"; };
 		BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				A5DFB0CC25282CC100471C1A /* FirebaseHelpers */,
 				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
+				BB1C1D0C253408C400DCF2D5 /* FeedData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				BB4B996A2532B5B60065128B /* PostViewController.swift */,
 				BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */,
 				BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */,
+				BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -517,8 +523,10 @@
 				A517F8BD2514E89F00621A26 /* AppDelegate.swift in Sources */,
 				BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */,
 				BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */,
+				BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */,
 				A5DFB0BC2528293200471C1A /* FCollectionReferences.swift in Sources */,
 				BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */,
+				BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */,
 				BBEE4343252DE20E00D3B305 /* ActivityManager.swift in Sources */,
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,
 				BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */,
