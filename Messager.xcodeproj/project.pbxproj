@@ -43,6 +43,7 @@
 		BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */; };
 		BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4B996A2532B5B60065128B /* PostViewController.swift */; };
 		BB5175192534554C0078F78B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5175182534554C0078F78B /* Main.storyboard */; };
+		BB51764425347FFD0078F78B /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51764325347FFD0078F78B /* TabViewController.swift */; };
 		BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */; };
 		BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */; };
 		BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE474E3252CA343005AE820 /* FeedViewController.swift */; };
@@ -115,6 +116,7 @@
 		BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		BB4B996A2532B5B60065128B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BB5175182534554C0078F78B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		BB51764325347FFD0078F78B /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTabViewController.swift; sourceTree = "<group>"; };
 		BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		BBE474E3252CA343005AE820 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		A517F8BB2514E89F00621A26 /* Messager */ = {
 			isa = PBXGroup;
 			children = (
+				BB51759025346EEE0078F78B /* CustomViewController */,
 				BBE474E1252CA26C005AE820 /* Controller */,
 				A5D8163525341E3E006E8DE4 /* Login */,
 				A5D8163125341DF5006E8DE4 /* People */,
@@ -311,6 +314,14 @@
 				A50327AE2532E15700CEE6E7 /* Extensions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BB51759025346EEE0078F78B /* CustomViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BB51764325347FFD0078F78B /* TabViewController.swift */,
+			);
+			path = CustomViewController;
 			sourceTree = "<group>";
 		};
 		BBE474E1252CA26C005AE820 /* Controller */ = {
@@ -608,6 +619,7 @@
 				A50327AA253202C000CEE6E7 /* GlobalFunctions.swift in Sources */,
 				A50327AF2532E15700CEE6E7 /* Extensions.swift in Sources */,
 				A50327B92532E64A00CEE6E7 /* FirebaseRecentListener.swift in Sources */,
+				BB51764425347FFD0078F78B /* TabViewController.swift in Sources */,
 				8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
