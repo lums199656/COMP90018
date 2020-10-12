@@ -9,8 +9,6 @@ import UIKit
 
 class UserTableViewCell: UITableViewCell {
 
-    
-    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -18,6 +16,8 @@ class UserTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width/2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,7 +26,7 @@ class UserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func  configure(user: User) -> Void {
+    func configure(user: User) -> Void {
         usernameLabel.text = user.username
         statusLabel.text = user.status
         setAvatar(avatarLink: user.avatarLink)
@@ -38,9 +38,9 @@ class UserTableViewCell: UITableViewCell {
 //            FileStorage.downloadImage(imageUrl: avatarLink) { (avatarImage) in
 //                self.avatarImageView.image = avatarImage?.circleMasked
 //            }
-            self.avatarImageView.image = UIImage(named: "person.fill")
+            self.avatarImageView.image = UIImage(named: "avatar")
         }else{
-            self.avatarImageView.image = UIImage(named: "person.fill")
+            self.avatarImageView.image = UIImage(named: "avatar")
         }
     }
 
