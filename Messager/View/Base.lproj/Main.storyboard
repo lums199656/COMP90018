@@ -221,6 +221,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="-1772" y="-279"/>
         </scene>
         <!--Chart-->
@@ -338,7 +339,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEA-uK-Ltz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2852" y="2171"/>
+=======
             <point key="canvasLocation" x="-1316" y="138"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
         </scene>
         <!--Feed-->
         <scene sceneID="yZT-Mf-DAh">
@@ -470,8 +473,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHo-8I-rP9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="-2107" y="725"/>
+=======
             <point key="canvasLocation" x="-262" y="856"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="e5x-h2-HNw">
@@ -486,17 +492,23 @@
                     </tabBar>
                     <connections>
                         <segue destination="pxa-Mr-joE" kind="relationship" relationship="viewControllers" id="BvN-NM-pHu"/>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
                         <segue destination="mkq-23-mLC" kind="relationship" relationship="viewControllers" id="jeR-A1-8Uc"/>
                         <segue destination="29w-oS-vvM" kind="relationship" relationship="viewControllers" id="O7a-Jj-TF5"/>
+=======
                         <segue destination="HEo-G4-5Df" kind="relationship" relationship="viewControllers" id="jeR-A1-8Uc"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
                         <segue destination="vRk-qP-NqX" kind="relationship" relationship="viewControllers" id="sSe-a5-BF2"/>
                         <segue destination="t5h-QR-LeN" kind="relationship" relationship="viewControllers" id="c01-Kh-uLY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xra-W7-DGQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="-775" y="-279"/>
+=======
             <point key="canvasLocation" x="-262" y="138"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
         </scene>
         <!--People-->
         <scene sceneID="cmp-sZ-346">
@@ -623,6 +635,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M4B-QF-OqN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="3540.579710144928" y="675"/>
         </scene>
         <!--Me-->
@@ -649,6 +662,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vRk-qP-NqX" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" tag="2" title="People" image="person.2.fill" catalog="system" id="wOW-xn-8xp"/>
+=======
             <point key="canvasLocation" x="1754" y="1539"/>
         </scene>
         <!--Chart-->
@@ -656,6 +670,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HEo-G4-5Df" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chart" image="message.fill" catalog="system" id="7YV-36-TKv"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="euG-W0-KFU">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -668,8 +683,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="usV-La-oHo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="1673.913043478261" y="675"/>
+=======
             <point key="canvasLocation" x="734.78260869565224" y="137.94642857142856"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
         </scene>
         <!--Chats-->
         <scene sceneID="V0H-eH-4O7">
@@ -1565,6 +1583,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pm7-pG-auV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
             <point key="canvasLocation" x="-146" y="1448"/>
         </scene>
         <!--Activity-->
@@ -1684,6 +1703,7 @@
         <image name="car.2" catalog="system" width="128" height="72"/>
         <image name="lls" width="989" height="1000"/>
         <image name="luminshen" width="948" height="1000"/>
+=======
             <point key="canvasLocation" x="2528" y="905"/>
         </scene>
     </scenes>
@@ -1695,16 +1715,20 @@
         <image name="config" width="200" height="200"/>
         <image name="edit" width="200" height="200"/>
         <image name="gallery_empty_view_image.png" width="72" height="49"/>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
         <image name="message.fill" catalog="system" width="128" height="113"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="121"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
+<<<<<<< HEAD:Messager/View/Base.lproj/Main.storyboard
         <image name="喜欢" width="200" height="200"/>
+=======
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
+>>>>>>> e453d1e0332fe504264a994260c705fdcf8595b8:Messager/Base.lproj/Main.storyboard
         <namedColor name="typingIndicatorDot">
             <color red="0.68199998140335083" green="0.68199998140335083" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
