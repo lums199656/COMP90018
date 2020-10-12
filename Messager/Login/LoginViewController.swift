@@ -69,7 +69,9 @@ class LoginViewController: UIViewController {
         setupTestFieldDelegates()
         setupBackgroundTap()
         
-        
+        // Auto fill email for dev
+        emailTextField.text = "chocolodos@hotmail.com"
+        passwordTextField.text = "19840844"
     }
 
     //MARK: - Setup
@@ -189,7 +191,9 @@ class LoginViewController: UIViewController {
     private func goToApp() {
         
         // 获取 mainView 控制
-        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainView") as! UITabBarController
+//        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainView") as! UITabBarController
+        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "rootTabVC")
+
         
         mainView.modalPresentationStyle = .fullScreen
         self.present(mainView, animated: true, completion: nil)
