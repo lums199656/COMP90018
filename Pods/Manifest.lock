@@ -218,6 +218,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
+  - ChainableAnimations (3.0.1)
   - CLTypingLabel (0.4.0)
   - Firebase/Analytics (6.32.2):
     - Firebase/Core
@@ -352,6 +353,10 @@ PODS:
   - InputBarAccessoryView (5.2.0):
     - InputBarAccessoryView/Core (= 5.2.0)
   - InputBarAccessoryView/Core (5.2.0)
+  - Just (0.8.0)
+  - Kingfisher (5.15.6):
+    - Kingfisher/Core (= 5.15.6)
+  - Kingfisher/Core (5.15.6)
   - leveldb-library (1.22)
   - MessageKit (3.4.1):
     - InputBarAccessoryView (~> 5.2.0)
@@ -360,6 +365,9 @@ PODS:
     - nanopb/encode (= 1.30906.0)
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
+  - NVActivityIndicatorView (5.1.1):
+    - NVActivityIndicatorView/Base (= 5.1.1)
+  - NVActivityIndicatorView/Base (5.1.1)
   - Pageboy (3.6.1)
   - ProgressHUD (13.4)
   - PromisesObjC (1.2.10)
@@ -370,10 +378,12 @@ PODS:
   - RealmSwift (5.4.2):
     - Realm (= 5.4.2)
   - SKPhotoBrowser (6.1.0)
+  - SnapKit (5.0.1)
   - Tabman (2.9.1):
     - Pageboy (~> 3.6.0)
 
 DEPENDENCIES:
+  - ChainableAnimations
   - CLTypingLabel (~> 0.4.0)
   - Firebase/Analytics
   - Firebase/Auth
@@ -384,16 +394,21 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - Gallery
   - InputBarAccessoryView
+  - Just
+  - Kingfisher
   - MessageKit
+  - NVActivityIndicatorView
   - ProgressHUD
   - RealmSwift
   - SKPhotoBrowser
+  - SnapKit
   - Tabman (~> 2.9)
 
 SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - ChainableAnimations
     - CLTypingLabel
     - Firebase
     - FirebaseAnalytics
@@ -414,9 +429,12 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - InputBarAccessoryView
+    - Just
+    - Kingfisher
     - leveldb-library
     - MessageKit
     - nanopb
+    - NVActivityIndicatorView
     - Pageboy
     - ProgressHUD
     - PromisesObjC
@@ -424,11 +442,13 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SKPhotoBrowser
+    - SnapKit
     - Tabman
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
+  ChainableAnimations: 12e0a88e72fb554ad4cda38c40474e4d65c972a2
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
   Firebase: 47176280bfba198e531f909cfb1612dad216cb96
   FirebaseAnalytics: 3c2fee6a922023ccfda7af87e4e641bad1fc11ba
@@ -449,9 +469,12 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   InputBarAccessoryView: ac1bc2a11508fc2490c2322beb1d4c9f05c8e634
+  Just: aef5105fb2c7069b65aa6f21aec8f429057f9c19
+  Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MessageKit: aa047ad093f022189ed5a0d1cea04fc59f064c93
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
+  NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   Pageboy: 29a2d474ad99404b4d77f325e0ab6d705930a4fb
   ProgressHUD: 137a7fc677487c5581668f4490563124fb35c232
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
@@ -459,8 +482,9 @@ SPEC CHECKSUMS:
   Realm: ced868eb0254f8d33a21c06981355e5aa33bc005
   RealmSwift: aedc4363150f3c61f91ae0537ed116d2d080a4dd
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Tabman: 085d89c65be9e883629bdaf5b1453a6397e57846
 
-PODFILE CHECKSUM: 7212787554d30644a8d773d6c0f2aca16a3aba7c
+PODFILE CHECKSUM: cd00fc104c03b1b37971d359ea198ef0aee4371e
 
 COCOAPODS: 1.9.3
