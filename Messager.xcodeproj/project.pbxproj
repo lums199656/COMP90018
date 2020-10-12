@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1E000A2A6E4ECFFA2251C97C /* Pods_Messager_MessagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64F84663CC662B7DA715AF45 /* Pods_Messager_MessagerUITests.framework */; };
 		367B85560A55DBD19BBC4B52 /* Pods_Messager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */; };
+		8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9EF253416B700909AEE /* ConfigViewController.swift */; };
+		8214C9F2253416B700909AEE /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F0253416B700909AEE /* EditViewController.swift */; };
+		8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F6253416D700909AEE /* JoinedCell.swift */; };
+		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
+		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
+		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
 		A03CD3B43A4B77DC8CB21815 /* Pods_MessagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */; };
 		A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503279C2531A04F00CEE6E7 /* RecentChat.swift */; };
 		A50327A52531FA5300CEE6E7 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */; };
@@ -56,6 +62,12 @@
 		0028F096A3C435D4D455C5D0 /* Pods-Messager-MessagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager-MessagerUITests.release.xcconfig"; path = "Target Support Files/Pods-Messager-MessagerUITests/Pods-Messager-MessagerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		509E4CE9F6CA3D30056A920B /* Pods-MessagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.release.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		64F84663CC662B7DA715AF45 /* Pods_Messager_MessagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager_MessagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8214C9EF253416B700909AEE /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
+		8214C9F0253416B700909AEE /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		8214C9F6253416D700909AEE /* JoinedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedCell.swift; sourceTree = "<group>"; };
+		8214C9F7253416D700909AEE /* CreatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedCell.swift; sourceTree = "<group>"; };
+		8214C9F8253416D700909AEE /* UIViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
+		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1298873614C79BB233554 /* Pods-MessagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.debug.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A503279C2531A04F00CEE6E7 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
@@ -179,6 +191,10 @@
 		A517F8BB2514E89F00621A26 /* Messager */ = {
 			isa = PBXGroup;
 			children = (
+				8214C9F7253416D700909AEE /* CreatedCell.swift */,
+				8214C9F6253416D700909AEE /* JoinedCell.swift */,
+				8214C9F9253416D700909AEE /* MeViewController.swift */,
+				8214C9F8253416D700909AEE /* UIViewHelper.swift */,
 				A50327BD2532E77F00CEE6E7 /* Recent */,
 				A5DFB0D52529D83100471C1A /* Helpers */,
 				A5DFB0C8252829C500471C1A /* Model */,
@@ -218,6 +234,8 @@
 		A5DFB0C8252829C500471C1A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
+				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A5790B25251B90BC009E1347 /* User.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
 				A5DFB0CC25282CC100471C1A /* FirebaseHelpers */,
@@ -488,12 +506,17 @@
 				A50327B42532E2AE00CEE6E7 /* StartChat.swift in Sources */,
 				A5790B2B252077E1009E1347 /* Constants.swift in Sources */,
 				A5790B26251B90BC009E1347 /* User.swift in Sources */,
+				8214C9F2253416B700909AEE /* EditViewController.swift in Sources */,
 				A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */,
 				A50327A52531FA5300CEE6E7 /* RecentTableViewCell.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
 				A5DFB0EF252AC1D400471C1A /* UserTableViewCell.swift in Sources */,
+				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
+				8214C9FD253416D700909AEE /* MeViewController.swift in Sources */,
 				A517F8BD2514E89F00621A26 /* AppDelegate.swift in Sources */,
 				A5DFB0BC2528293200471C1A /* FCollectionReferences.swift in Sources */,
+				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
+				8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */,
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,
 				A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */,
 				A50624982533014B00A7FE9F /* ChatsTableViewController.swift in Sources */,
@@ -501,6 +524,7 @@
 				A50327AA253202C000CEE6E7 /* GlobalFunctions.swift in Sources */,
 				A50327AF2532E15700CEE6E7 /* Extensions.swift in Sources */,
 				A50327B92532E64A00CEE6E7 /* FirebaseRecentListener.swift in Sources */,
+				8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
