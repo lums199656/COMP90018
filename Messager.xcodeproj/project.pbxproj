@@ -191,19 +191,14 @@
 		A517F8BB2514E89F00621A26 /* Messager */ = {
 			isa = PBXGroup;
 			children = (
-				8214C9F7253416D700909AEE /* CreatedCell.swift */,
-				8214C9F6253416D700909AEE /* JoinedCell.swift */,
-				8214C9F9253416D700909AEE /* MeViewController.swift */,
-				8214C9F8253416D700909AEE /* UIViewHelper.swift */,
+				A5D8163525341E3E006E8DE4 /* Login */,
+				A5D8163125341DF5006E8DE4 /* People */,
+				A5D8163025341DCB006E8DE4 /* Me */,
 				A50327BD2532E77F00CEE6E7 /* Recent */,
 				A5DFB0D52529D83100471C1A /* Helpers */,
 				A5DFB0C8252829C500471C1A /* Model */,
 				A517F8BC2514E89F00621A26 /* AppDelegate.swift */,
 				A517F8BE2514E89F00621A26 /* SceneDelegate.swift */,
-				A517F8C02514E89F00621A26 /* LoginViewController.swift */,
-				A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */,
-				A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */,
-				A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */,
 				A517F8C22514E89F00621A26 /* Main.storyboard */,
 				A517F8C52514E89F00621A26 /* Assets.xcassets */,
 				A517F8C72514E89F00621A26 /* LaunchScreen.storyboard */,
@@ -229,6 +224,35 @@
 				A517F8E02514E8A000621A26 /* Info.plist */,
 			);
 			path = MessagerUITests;
+			sourceTree = "<group>";
+		};
+		A5D8163025341DCB006E8DE4 /* Me */ = {
+			isa = PBXGroup;
+			children = (
+				8214C9F7253416D700909AEE /* CreatedCell.swift */,
+				8214C9F9253416D700909AEE /* MeViewController.swift */,
+				8214C9F6253416D700909AEE /* JoinedCell.swift */,
+				8214C9F8253416D700909AEE /* UIViewHelper.swift */,
+				A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */,
+			);
+			path = Me;
+			sourceTree = "<group>";
+		};
+		A5D8163125341DF5006E8DE4 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */,
+				A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		A5D8163525341E3E006E8DE4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A517F8C02514E89F00621A26 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		A5DFB0C8252829C500471C1A /* Model */ = {
