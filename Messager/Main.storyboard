@@ -1117,16 +1117,29 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-Ok-9MU" userLabel="Activities">
                                                 <rect key="frame" x="0.0" y="2" width="414" height="555"/>
                                                 <subviews>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-9I-4Rf" userLabel="SegmentControl">
+                                                        <rect key="frame" x="85" y="10" width="243" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <gestureRecognizers/>
+                                                        <segments>
+                                                            <segment title="Created Control"/>
+                                                            <segment title="Joined Activities"/>
+                                                        </segments>
+                                                        <color key="selectedSegmentTintColor" red="0.84527134900000001" green="0.49867933990000002" blue="0.47449791429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <connections>
+                                                            <action selector="changePage:" destination="t5h-QR-LeN" eventType="valueChanged" id="VQg-yf-0e3"/>
+                                                        </connections>
+                                                    </segmentedControl>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" id="agC-qv-Q7b">
-                                                        <rect key="frame" x="0.0" y="-4" width="414" height="561"/>
+                                                        <rect key="frame" x="0.0" y="50" width="414" height="507"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" id="yXa-Eh-Fbv" userLabel="TableContainer">
-                                                                <rect key="frame" x="0.0" y="22" width="827" height="516"/>
+                                                                <rect key="frame" x="0.0" y="25" width="827" height="513"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="acq-Lq-NMV" userLabel="Second View">
-                                                                        <rect key="frame" x="414" y="33" width="397" height="460"/>
+                                                                        <rect key="frame" x="414" y="0.0" width="397" height="493"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <prototypes>
@@ -1176,9 +1189,9 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </tableView>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Zu-Ro-xof" userLabel="First View">
-                                                                        <rect key="frame" x="8" y="33" width="397" height="460"/>
+                                                                        <rect key="frame" x="8" y="0.0" width="397" height="493"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <color key="backgroundColor" red="0.84527134900000001" green="0.49867933990000002" blue="0.47449791429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <prototypes>
                                                                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="qWg-DI-Rq9" customClass="CreatedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="397" height="118"/>
@@ -1243,24 +1256,6 @@
                                                                             <outlet property="dataSource" destination="t5h-QR-LeN" id="Irz-9x-UZ5"/>
                                                                         </connections>
                                                                     </tableView>
-                                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-9I-4Rf" userLabel="CreatedControl">
-                                                                        <rect key="frame" x="77" y="0.0" width="259" height="32"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <gestureRecognizers/>
-                                                                        <segments>
-                                                                            <segment title="Created Activities"/>
-                                                                            <segment title="Joined Activities"/>
-                                                                        </segments>
-                                                                    </segmentedControl>
-                                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Qcx-yW-YnL" userLabel="JoinedControl">
-                                                                        <rect key="frame" x="491" y="0.0" width="259" height="32"/>
-                                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <gestureRecognizers/>
-                                                                        <segments>
-                                                                            <segment title="Created Activities"/>
-                                                                            <segment title="Joined Activities"/>
-                                                                        </segments>
-                                                                    </segmentedControl>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
@@ -1316,8 +1311,9 @@
                     <connections>
                         <outlet property="PhotoContainer" destination="gZF-jV-HQ6" id="Fgm-2q-sra"/>
                         <outlet property="firstView" destination="2Zu-Ro-xof" id="fIE-sq-daN"/>
+                        <outlet property="scrollView" destination="agC-qv-Q7b" id="5Wi-qS-tME"/>
                         <outlet property="secondView" destination="acq-Lq-NMV" id="092-xR-TIw"/>
-                        <outlet property="segmentedControl" destination="Jrd-9I-4Rf" id="DU2-Po-6dc"/>
+                        <outlet property="segmentedControl" destination="Jrd-9I-4Rf" id="w06-0C-Ocr"/>
                         <outlet property="userImage" destination="CYk-AW-2zn" id="7Ls-fq-0cg"/>
                         <outlet property="userIntro" destination="b9Z-QP-J2l" id="LFz-f7-pfJ"/>
                         <outlet property="userLocation" destination="DQp-sh-72K" id="S87-Xa-Laz"/>
@@ -1327,7 +1323,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a2P-2c-LIU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="ojn-sw-0B3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1732" y="1116"/>
+            <point key="canvasLocation" x="1731.8840579710147" y="1115.625"/>
         </scene>
         <!--EDIT-->
         <scene sceneID="a99-CI-Kgc">

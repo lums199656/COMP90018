@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
@@ -44,19 +44,23 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var firstView: UITableView!
     @IBOutlet weak var secondView: UITableView!
-    @IBAction func indexChanged(sender: UISegmentedControl) {
-           switch segmentedControl.selectedSegmentIndex
-           {
-           case 0:
-            firstView.isHidden = false
-            secondView.isHidden = false
-           case 1:
-            firstView.isHidden = false
-            secondView.isHidden = false
-           default:
-               break;
-           }
-       }
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBAction func changePage(_ sender: UISegmentedControl) {
+        
+        let x = CGFloat(sender.selectedSegmentIndex) * scrollView.bounds.width
+        let offset = CGPoint(x: x, y: 0)
+        scrollView.setContentOffset(offset, animated: true)
+    }
+
+
+    func segmentIndexChange(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x >= scrollView.bounds.width {
+                segmentedControl.selectedSegmentIndex = 1
+            }else{
+                segmentedControl.selectedSegmentIndex = 0
+            }
+        }
+    
     @IBOutlet weak var PhotoContainer: UIView!
     private func setUI(){
         PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
