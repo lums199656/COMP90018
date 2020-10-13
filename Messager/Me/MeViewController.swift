@@ -52,23 +52,25 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         scrollView.setContentOffset(offset, animated: true)
     }
 
+    //automatically update segment index
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            let index = Int(scrollView.contentOffset.x / firstView.bounds.width)
+            print(segmentedControl.selectedSegmentIndex)
+            print(scrollView.contentOffset.x)
+            segmentedControl.selectedSegmentIndex = index
+            print(segmentedControl.selectedSegmentIndex)
+            print(scrollView.contentOffset.x)
 
-    func segmentIndexChange(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.x >= scrollView.bounds.width {
-                segmentedControl.selectedSegmentIndex = 1
-            }else{
-                segmentedControl.selectedSegmentIndex = 0
-            }
-        }
+    }
     
     @IBOutlet weak var PhotoContainer: UIView!
     private func setUI(){
-        PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
-        PhotoContainer.clipsToBounds = true
-        firstView.layer.cornerRadius = 20
-        firstView.clipsToBounds = true
-        secondView.layer.cornerRadius = 20
-        secondView.clipsToBounds = true
+    //    PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
+    //    PhotoContainer.clipsToBounds = true
+    //    firstView.layer.cornerRadius = 20
+    //    firstView.clipsToBounds = true
+    //    secondView.layer.cornerRadius = 20
+    //    secondView.clipsToBounds = true
     }
     
     override func viewDidLoad() {

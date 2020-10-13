@@ -1117,7 +1117,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-Ok-9MU" userLabel="Activities">
                                                 <rect key="frame" x="0.0" y="2" width="414" height="555"/>
                                                 <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-9I-4Rf" userLabel="SegmentControl">
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-9I-4Rf" userLabel="SegmentControl">
                                                         <rect key="frame" x="85" y="10" width="243" height="32"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <gestureRecognizers/>
@@ -1266,6 +1266,9 @@
                                                                 <size key="value" width="818" height="0.0"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="t5h-QR-LeN" id="vJe-cc-z8E"/>
+                                                        </connections>
                                                     </scrollView>
                                                 </subviews>
                                                 <gestureRecognizers/>
@@ -1313,7 +1316,7 @@
                         <outlet property="firstView" destination="2Zu-Ro-xof" id="fIE-sq-daN"/>
                         <outlet property="scrollView" destination="agC-qv-Q7b" id="5Wi-qS-tME"/>
                         <outlet property="secondView" destination="acq-Lq-NMV" id="092-xR-TIw"/>
-                        <outlet property="segmentedControl" destination="Jrd-9I-4Rf" id="w06-0C-Ocr"/>
+                        <outlet property="segmentedControl" destination="Jrd-9I-4Rf" id="UI4-KS-zte"/>
                         <outlet property="userImage" destination="CYk-AW-2zn" id="7Ls-fq-0cg"/>
                         <outlet property="userIntro" destination="b9Z-QP-J2l" id="LFz-f7-pfJ"/>
                         <outlet property="userLocation" destination="DQp-sh-72K" id="S87-Xa-Laz"/>
