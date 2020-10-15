@@ -1291,7 +1291,7 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UK6-fK-13O" userLabel="PhotoContainerInConfig">
                                 <rect key="frame" x="106" y="153" width="202" height="202"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_empty_view_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="mYK-8k-m0q">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="mYK-8k-m0q">
                                         <rect key="frame" x="1" y="1" width="200" height="200"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <userDefinedRuntimeAttributes>
@@ -1327,6 +1327,9 @@
                                 <state key="normal" title="Change Photo">
                                     <color key="titleColor" red="0.84527134900000001" green="0.49867933990000002" blue="0.47449791429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="changePhoto:" destination="7vE-48-qCi" eventType="touchUpInside" id="hH7-oE-Yl0"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="vzl-xA-SSV">
                                 <rect key="frame" x="30" y="438" width="354" height="394"/>
@@ -1390,7 +1393,19 @@
                             <constraint firstItem="XEO-Sc-Oih" firstAttribute="trailing" secondItem="vzl-xA-SSV" secondAttribute="trailing" constant="30" id="o4P-Kr-IyJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Edit" id="zP1-uF-LBP"/>
+                    <navigationItem key="navigationItem" title="Edit" id="zP1-uF-LBP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="rcV-20-xkK">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="4ml-BQ-3je">
+                                <rect key="frame" x="302" y="6" width="92" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="updateUserInfo:" destination="7vE-48-qCi" eventType="touchUpInside" id="L5f-Gg-rQn"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="userImage" destination="mYK-8k-m0q" id="yGG-oo-g50"/>
                         <outlet property="userIntro" destination="yeT-xR-6qS" id="Mes-C8-1wP"/>
@@ -1765,7 +1780,6 @@
         <image name="car.2" catalog="system" width="128" height="72"/>
         <image name="config" width="200" height="200"/>
         <image name="edit" width="200" height="200"/>
-        <image name="gallery_empty_view_image.png" width="72" height="49"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>

@@ -69,6 +69,61 @@ class EditViewController: UIViewController {
 
         }
     }
+    
+    // select image
+    @IBAction func changePhoto(_ sender: Any) {
+    }
+    
+    // save -> update userInfo
+    @IBAction func updateUserInfo(_ sender: Any) {
+        guard let image = userImage.image else { print("no image selected"); return }
+        guard let id = Auth.auth().currentUser?.uid else { return }
+        guard let name = userName.text else { return }
+        guard let location = userLocation.text else { return }
+        guard let intro = userIntro.text else {return }
+        
+            
+        let infoRef = db.collection("UserInfo").document()  // Activity Document reference
+        let storageRef = storage.reference()
+        let activityImageRef = storageRef.child("user-photoes")
+        
+        func uploadImage(from image: UIImage, to cloudName: String) {
+            
+            let cloudFileRef = activityImageRef.child(cloudName)
+            
+            guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
+            
+            let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
+                guard let _ = metadata else { return }  // if metadata is nil, return
+                
+                print("Success upload image \(cloudName)")
+            }
+        }
+        
+        func uploadInfo() {
+            infoRef.setData([
+                "userID": id,
+                "userName": name,
+                "userLocation": location,
+                "userIntro": intro
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(infoRef.documentID)")
+                }
+            }
+
+        }
+        
+        uploadInfo()
+        uploadImage(from: image, to: infoRef.documentID)
+        
+        
+        // Segue back to Activity View
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 
     
     /*
