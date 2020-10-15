@@ -89,9 +89,8 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     func loadInfo() {
         let user = Auth.auth().currentUser
         if let user = user {
-            let uid = user.uid
             let userInfo = db.collection("UserInfo")
-            let query = userInfo.whereField("userID", isEqualTo: uid)
+            let query = userInfo.whereField("userID", isEqualTo: user.uid)
             query.getDocuments { [self] (querySnapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
@@ -104,7 +103,6 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
                                 let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
-                                            print("user-photoes/"+image)
                                             cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
                                                 if let error = error {
                                                     print(error.localizedDescription)
@@ -117,7 +115,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
                         }
                     }
             let userAuth = db.collection("User")
-            let queryUser = userAuth.whereField("id", isEqualTo: uid)
+            let queryUser = userAuth.whereField("id", isEqualTo: user.uid)
             queryUser.getDocuments { [self] (querySnapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")

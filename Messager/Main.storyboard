@@ -1464,6 +1464,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="userImage" destination="mYK-8k-m0q" id="yGG-oo-g50"/>
+                        <outlet property="userIntro" destination="yeT-xR-6qS" id="Mes-C8-1wP"/>
+                        <outlet property="userLocation" destination="5jp-xD-PEC" id="J6u-7x-OtH"/>
+                        <outlet property="userName" destination="nXE-Xd-NDg" id="fyS-TY-fNt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fc2-bQ-V3j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
