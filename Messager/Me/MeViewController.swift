@@ -72,6 +72,15 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     //    secondView.layer.cornerRadius = 20
     //    secondView.clipsToBounds = true
     }
+    //  Hide First Page NavigationBar
+    override func viewWillAppear(_ animated: Bool) {
+          navigationController?.setNavigationBarHidden(true, animated: true)
+          super.viewWillAppear(animated)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+          navigationController?.setNavigationBarHidden(false, animated: true)
+          super.viewWillDisappear(animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

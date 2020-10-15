@@ -34,6 +34,7 @@ class TabViewController: UIViewController {
     var peopleViewController: UIViewController!
     var meViewController: UIViewController!
     var viewControllers: [UIViewController]!
+    var meNavigationController: UIViewController!
     
     private var selectedIndex: Int = 0
 
@@ -48,7 +49,8 @@ class TabViewController: UIViewController {
         addViewController = storyboard.instantiateViewController(withIdentifier: "addVC")// special Tab VC
         peopleViewController = storyboard.instantiateViewController(withIdentifier: "peopleNavVC")
         meViewController = storyboard.instantiateViewController(withIdentifier: "meVC")
-        viewControllers = [feedViewController, chatViewController, peopleViewController, meViewController]
+        meNavigationController = storyboard.instantiateViewController(withIdentifier: "meNC")
+        viewControllers = [feedViewController, chatViewController, peopleViewController, meNavigationController]
         
         buttons = [feedBttn, chatBttn, peopleBttn, meBttn]
         buttonImages = [feedImage, chatImage, peopleImage, meImage]

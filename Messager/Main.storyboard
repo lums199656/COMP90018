@@ -726,25 +726,6 @@
                                     <action selector="logOut:" destination="vqH-gv-3aX" eventType="touchUpInside" id="3mx-ii-2Th"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zG4-E6-g1C" userLabel="Top Bar">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Configurations" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="none" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16U-VV-9Kr">
-                                        <rect key="frame" x="132" y="40" width="151" height="20"/>
-                                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.91372549020000005" green="0.46666666670000001" blue="0.45098039220000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="16U-VV-9Kr" firstAttribute="leading" secondItem="zG4-E6-g1C" secondAttribute="leading" constant="132" id="4Fc-XN-S4Y"/>
-                                    <constraint firstAttribute="bottom" secondItem="16U-VV-9Kr" secondAttribute="bottom" constant="40" id="X6g-Ta-gHz"/>
-                                    <constraint firstAttribute="height" constant="100" id="k9W-8C-kha"/>
-                                    <constraint firstAttribute="trailing" secondItem="16U-VV-9Kr" secondAttribute="trailing" constant="131" id="lbV-mr-dGU"/>
-                                    <constraint firstItem="16U-VV-9Kr" firstAttribute="top" secondItem="zG4-E6-g1C" secondAttribute="top" constant="40" id="nEo-GV-pnE"/>
-                                </constraints>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Tb3-EO-ZTF" userLabel="Advanced Configs">
                                 <rect key="frame" x="0.0" y="389" width="406" height="172"/>
                                 <subviews>
@@ -851,7 +832,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="KGh-Zh-57H" userLabel="Basic Configs">
-                                <rect key="frame" x="4" y="140" width="406" height="206"/>
+                                <rect key="frame" x="4" y="150" width="406" height="206"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KlW-Kr-mUj" userLabel="item1">
                                         <rect key="frame" x="0.0" y="0.0" width="406" height="50"/>
@@ -968,18 +949,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="0js-GV-P5w" secondAttribute="trailing" constant="102" id="4Vz-8G-Arb"/>
-                            <constraint firstItem="zG4-E6-g1C" firstAttribute="top" secondItem="9hN-au-eN1" secondAttribute="top" id="H9L-r3-l4j"/>
                             <constraint firstItem="Tb3-EO-ZTF" firstAttribute="top" secondItem="KGh-Zh-57H" secondAttribute="bottom" constant="43" id="HgO-vz-kJX"/>
                             <constraint firstItem="0js-GV-P5w" firstAttribute="leading" secondItem="9hN-au-eN1" secondAttribute="leadingMargin" constant="124" id="JcO-Ma-ubL"/>
-                            <constraint firstItem="Bvn-nu-dCa" firstAttribute="trailing" secondItem="zG4-E6-g1C" secondAttribute="trailing" id="P0p-gB-CZh"/>
                             <constraint firstItem="KGh-Zh-57H" firstAttribute="leading" secondItem="9hN-au-eN1" secondAttribute="leading" id="UWO-qk-LZD"/>
-                            <constraint firstItem="zG4-E6-g1C" firstAttribute="leading" secondItem="Bvn-nu-dCa" secondAttribute="leading" id="b9I-w5-jBd"/>
                             <constraint firstItem="0js-GV-P5w" firstAttribute="top" secondItem="Tb3-EO-ZTF" secondAttribute="bottom" constant="60" id="bfR-YP-uTJ"/>
-                            <constraint firstItem="KGh-Zh-57H" firstAttribute="top" secondItem="zG4-E6-g1C" secondAttribute="bottom" constant="40" id="m6F-jx-EU5"/>
+                            <constraint firstItem="KGh-Zh-57H" firstAttribute="top" secondItem="9hN-au-eN1" secondAttribute="top" constant="150" id="oNh-va-v4N"/>
                             <constraint firstItem="Tb3-EO-ZTF" firstAttribute="leading" secondItem="9hN-au-eN1" secondAttribute="leading" id="xnQ-65-NsD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="fN9-pP-j3C"/>
+                    <navigationItem key="navigationItem" title="Configuration" id="fN9-pP-j3C"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v5R-Pq-bK5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1302,7 +1280,7 @@
             </objects>
             <point key="canvasLocation" x="2642.0289855072465" y="1115.625"/>
         </scene>
-        <!--Edit View Controller-->
+        <!--Edit-->
         <scene sceneID="a99-CI-Kgc">
             <objects>
                 <viewController id="7vE-48-qCi" customClass="EditViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
@@ -1412,7 +1390,7 @@
                             <constraint firstItem="XEO-Sc-Oih" firstAttribute="trailing" secondItem="vzl-xA-SSV" secondAttribute="trailing" constant="30" id="o4P-Kr-IyJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zP1-uF-LBP"/>
+                    <navigationItem key="navigationItem" title="Edit" id="zP1-uF-LBP"/>
                     <connections>
                         <outlet property="userImage" destination="mYK-8k-m0q" id="yGG-oo-g50"/>
                         <outlet property="userIntro" destination="yeT-xR-6qS" id="Mes-C8-1wP"/>
@@ -1760,7 +1738,7 @@
         <!--Me-->
         <scene sceneID="aWJ-Bh-oqW">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="duw-hk-BnN" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="meNC" automaticallyAdjustsScrollViewInsets="NO" id="duw-hk-BnN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Me" image="person.crop.circle.fill" catalog="system" id="gny-uX-eKP" userLabel="Me"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xn9-rd-JnN">
