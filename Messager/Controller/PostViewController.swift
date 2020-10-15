@@ -38,6 +38,11 @@ class PostViewController: UIViewController {
     
     
     // IBActions
+    @IBAction func backBttnTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     @IBAction func chooseBttnTapped(_ sender: Any) {
         
         imagePicker.delegate = self
@@ -91,7 +96,8 @@ class PostViewController: UIViewController {
         
         
         // Segue back to Activity View
-        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
