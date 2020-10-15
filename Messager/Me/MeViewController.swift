@@ -131,19 +131,5 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         }
     }
 
-    @IBAction func exitToHere(sender: UIStoryboardSegue){
-        //
-    }
-    
-    @IBAction func saveAndExit(sender: UIStoryboardSegue){
-        // save
 
-    }
-    
-    @IBAction func configClicked(_ sender: Any) {
-        let sb = UIStoryboard(name: "Main", bundle:nil)
-        let vc = sb.instantiateViewController(withIdentifier: "SecondViewController")
-        self.present(vc, animated: true, completion: nil)
-    }
-    
 }
