@@ -79,6 +79,7 @@ class PostViewController: UIViewController {
             }
         }
         
+        
         func uploadActivity() {
             let act = Activity(uid: actRef.documentID, userId: userId,
                                createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,

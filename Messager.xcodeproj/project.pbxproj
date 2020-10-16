@@ -51,6 +51,7 @@
 		BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */; };
 		BBEE4343252DE20E00D3B305 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4342252DE20E00D3B305 /* ActivityManager.swift */; };
 		BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4366252DEAB900D3B305 /* DBSeeding.swift */; };
+		BBF8101025388755004C61B2 /* PostViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF8100F25388755004C61B2 /* PostViewController2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplication.swift; sourceTree = "<group>"; };
 		BBEE4342252DE20E00D3B305 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		BBEE4366252DEAB900D3B305 /* DBSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSeeding.swift; sourceTree = "<group>"; };
+		BBF8100F25388755004C61B2 /* PostViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController2.swift; sourceTree = "<group>"; };
 		C0650BFA4ACCEE4BC1E10F01 /* Pods-Messager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager.release.xcconfig"; path = "Target Support Files/Pods-Messager/Pods-Messager.release.xcconfig"; sourceTree = "<group>"; };
 		C97A6E747219FC4702ABEE55 /* Pods-Messager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager.debug.xcconfig"; path = "Target Support Files/Pods-Messager/Pods-Messager.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6BBF235F4F309FD440FBAF /* Pods-Messager-MessagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager-MessagerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Messager-MessagerUITests/Pods-Messager-MessagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */,
 				BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */,
 				BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */,
+				BBF8100F25388755004C61B2 /* PostViewController2.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,
 				BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */,
 				BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */,
+				BBF8101025388755004C61B2 /* PostViewController2.swift in Sources */,
 				A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */,
 				A50624982533014B00A7FE9F /* ChatsTableViewController.swift in Sources */,
 				A517F8BF2514E89F00621A26 /* SceneDelegate.swift in Sources */,
