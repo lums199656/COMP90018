@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class EditViewController: UIViewController {
+class EditViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     let db = Firestore.firestore()
     let storage = Storage.storage()
 
@@ -41,7 +41,6 @@ class EditViewController: UIViewController {
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
                                 let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
-                                            print("user-photoes/"+image)
                                             cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
                                                 if let error = error {
                                                     print(error.localizedDescription)
@@ -72,6 +71,13 @@ class EditViewController: UIViewController {
     
     // select image
     @IBAction func changePhoto(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        
+        self.present(imagePicker, animated: true, completion: nil)
+        
     }
     
     // save -> update userInfo
@@ -82,14 +88,38 @@ class EditViewController: UIViewController {
         guard let location = userLocation.text else { return }
         guard let intro = userIntro.text else {return }
         
-            
-        let infoRef = db.collection("UserInfo").document()  // Activity Document reference
+        
+
         let storageRef = storage.reference()
-        let activityImageRef = storageRef.child("user-photoes")
+        let infoImageRef = storageRef.child("user-photoes")
+        let query = db.collection("UserInfo").whereField("userID", isEqualTo: id)
+        query.getDocuments { [self] (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        let docID = querySnapshot!.documents[0].documentID
+                        let infoRef = db.collection("UserInfo").document(docID)
+                        infoRef.setData([
+                            "userID": id,
+                            "userLocation": location,
+                            "userIntro": intro,
+                            "userImage": infoRef.documentID
+                        ]) { err in
+                            if let err = err {
+                                print("Error adding document: \(err)")
+                            } else {
+                                print("Document added with ID: \(infoRef.documentID)")
+                                uploadImage(from: image, to: docID)
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        }
+                    }
+        }
+        
         
         func uploadImage(from image: UIImage, to cloudName: String) {
             
-            let cloudFileRef = activityImageRef.child(cloudName)
+            let cloudFileRef = infoImageRef.child(cloudName)
             
             guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
             
@@ -100,78 +130,12 @@ class EditViewController: UIViewController {
             }
         }
         
-        func uploadInfo() {
-            infoRef.setData([
-                "userID": id,
-                "userName": name,
-                "userLocation": location,
-                "userIntro": intro
-            ]) { err in
-                if let err = err {
-                    print("Error adding document: \(err)")
-                } else {
-                    print("Document added with ID: \(infoRef.documentID)")
-                }
-            }
-
-        }
-        
-        uploadInfo()
-        uploadImage(from: image, to: infoRef.documentID)
+        // uploadInfo()
+        // uploadImage(from: image, to: infoDocID)
         
         
         // Segue back to Activity View
-        self.navigationController?.popViewController(animated: true)
+        
     }
-    
-
-    
-    /*
-    @IBAction func postBttnTapped(_ sender: Any) {
-        print("postBttnTapped")
-        
-        guard let image = activityImageView.image else { print("no image selected"); return }
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        guard let titleText = titleTextField.text else {return }
-        guard let detailText = detailTextView.text else {return }
-        
-            
-        let actRef = db.collection(K.FStore.act).document()  // Activity Document reference
-        let storageRef = storage.reference()
-        let activityImageRef = storageRef.child("activity-images")
-        
-        func uploadImage(from image: UIImage, to cloudName: String) {
-            
-            let cloudFileRef = activityImageRef.child(cloudName)
-            
-            guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
-            
-            let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
-                guard let _ = metadata else { return }  // if metadata is nil, return
-                
-                print("Success upload image \(cloudName)")
-            }
-        }
-        
-        func uploadActivity() {
-            let act = Activity(uid: actRef.documentID, userId: userId,
-                               createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,
-                               imageId: actRef.documentID)
-            do {
-                try actRef.setData(from: act)
-                print("Activity Document added with ID: \(actRef.documentID)")
-            } catch let error {
-                print("Error writing city to Firestore: \(error)")
-            }
-        }
-        
-        uploadActivity()
-        uploadImage(from: image, to: actRef.documentID)
-        
-        
-        // Segue back to Activity View
-        self.navigationController?.popViewController(animated: true)
-    }
-     */
 
 }

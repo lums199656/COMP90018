@@ -74,8 +74,9 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     }
     //  Hide First Page NavigationBar
     override func viewWillAppear(_ animated: Bool) {
-          navigationController?.setNavigationBarHidden(true, animated: true)
-          super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        super.viewWillAppear(animated)
+        self.loadInfo()
     }
     override func viewWillDisappear(_ animated: Bool) {
           navigationController?.setNavigationBarHidden(false, animated: true)
@@ -87,8 +88,9 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         //setUI()
         //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
-        loadInfo()
+        self.loadInfo()
     }
+    
     
 
     @IBOutlet weak var userImage: UIImageView!
