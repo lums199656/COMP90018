@@ -11,6 +11,7 @@ import Firebase
 class EditViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,14 +71,13 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate & UI
     }
     
     // select image
-    @IBAction func changePhoto(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
+    @IBAction func changePhoto(_ sender: UIButton) {
+        // self.imagePicker.present(from: sender)
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
         
         self.present(imagePicker, animated: true, completion: nil)
-        
     }
     
     // save -> update userInfo
@@ -110,7 +110,27 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate & UI
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
                                 uploadImage(from: image, to: docID)
-                                self.navigationController?.popViewController(animated: true)
+                                let userQuery = db.collection("User").whereField("id", isEqualTo: id)
+                                userQuery.getDocuments { [self] (userQuerySnapshot, error) in
+                                            if let error = error {
+                                                print("Error getting documents: \(error)")
+                                            } else {
+                                                //
+                                                let userDocID = userQuerySnapshot!.documents[0].documentID
+                                                let userRef = db.collection("User").document(userDocID)
+                                                userRef.updateData([
+                                                    "username": name
+                                                ]) { err in
+                                                    if let err = err {
+                                                        print("Error adding document: \(err)")
+                                                    } else {
+                                                        print("Document added with ID: \(userRef.documentID)")
+                                                        self.navigationController?.popViewController(animated: true)
+                                                    }
+                                                }
+                                            }
+                                }
+                                
                             }
                         }
                     }
@@ -137,5 +157,7 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate & UI
         // Segue back to Activity View
         
     }
+    
+    
 
 }
