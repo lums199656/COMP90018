@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class EditViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class EditViewController: UIViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     let imagePicker = UIImagePickerController()
@@ -160,4 +160,25 @@ class EditViewController: UIViewController, UIImagePickerControllerDelegate & UI
     
     
 
+}
+
+
+// MARK:- Delegate for Image Picker
+extension EditViewController:  UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.editedImage] as? UIImage  {
+            self.userImage.image = image
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+}
+
+
+extension EditViewController: UINavigationControllerDelegate {
+    
 }
