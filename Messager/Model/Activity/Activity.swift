@@ -37,7 +37,23 @@ public struct Activity: Codable {
         case actTitle
         case actDetail
         case imageId
-        
+    }
+    
+    enum Catogory: String, CaseIterable {
+        case Sports
+        case ESports
+        case Recreation
+        case Movie
+        case OutdoorsAdventure
+        case Learning
+        case Phtography
+        case FoodNDrink
+        case Music
+        case Games
+        case Pet
+        case Shopping
+        case Dance
+        case Social
     }
 }
 

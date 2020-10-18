@@ -45,7 +45,7 @@ class TabViewController: UIViewController {
         
         feedViewController = storyboard.instantiateViewController(withIdentifier: "feedVC")
         chatViewController = storyboard.instantiateViewController(withIdentifier: "chatNavVC")
-        addViewController = storyboard.instantiateViewController(withIdentifier: "addVC")// special Tab VC
+//        addViewController = storyboard.instantiateViewController(withIdentifier: "addVC")// special Tab VC
         peopleViewController = storyboard.instantiateViewController(withIdentifier: "peopleNavVC")
         meViewController = storyboard.instantiateViewController(withIdentifier: "meVC")
         viewControllers = [feedViewController, chatViewController, peopleViewController, meViewController]

@@ -38,6 +38,8 @@
 		A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0CD2528430E00471C1A /* FirebaseUserListener.swift */; };
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
+		BB097016253B3EBF00A381A5 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */; };
+		BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */; };
 		BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D0C253408C400DCF2D5 /* FeedData.swift */; };
 		BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */; };
 		BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */; };
@@ -49,7 +51,6 @@
 		BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE474E3252CA343005AE820 /* FeedViewController.swift */; };
 		BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4335252DDF2400D3B305 /* Activity.swift */; };
 		BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */; };
-		BBEE4343252DE20E00D3B305 /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4342252DE20E00D3B305 /* ActivityManager.swift */; };
 		BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4366252DEAB900D3B305 /* DBSeeding.swift */; };
 		BBF8101025388755004C61B2 /* PostViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF8100F25388755004C61B2 /* PostViewController2.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,8 @@
 		A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
+		BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCatogory.swift; sourceTree = "<group>"; };
 		BB1C1D0C253408C400DCF2D5 /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +126,6 @@
 		BBE474E3252CA343005AE820 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		BBEE4335252DDF2400D3B305 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplication.swift; sourceTree = "<group>"; };
-		BBEE4342252DE20E00D3B305 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		BBEE4366252DEAB900D3B305 /* DBSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSeeding.swift; sourceTree = "<group>"; };
 		BBF8100F25388755004C61B2 /* PostViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController2.swift; sourceTree = "<group>"; };
 		C0650BFA4ACCEE4BC1E10F01 /* Pods-Messager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager.release.xcconfig"; path = "Target Support Files/Pods-Messager/Pods-Messager.release.xcconfig"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
 				BB1C1D0C253408C400DCF2D5 /* FeedData.swift */,
+				BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */,
 				BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */,
 				BBF8100F25388755004C61B2 /* PostViewController2.swift */,
+				BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -344,7 +348,6 @@
 			children = (
 				BBEE4335252DDF2400D3B305 /* Activity.swift */,
 				BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */,
-				BBEE4342252DE20E00D3B305 /* ActivityManager.swift */,
 				BBEE4366252DEAB900D3B305 /* DBSeeding.swift */,
 			);
 			path = Activity;
@@ -594,6 +597,7 @@
 				6659A895252E191B009F39DA /* Constant.swift in Sources */,
 				A50327B42532E2AE00CEE6E7 /* StartChat.swift in Sources */,
 				A5790B2B252077E1009E1347 /* Constants.swift in Sources */,
+				BB097016253B3EBF00A381A5 /* SelectLocationViewController.swift in Sources */,
 				A5790B26251B90BC009E1347 /* User.swift in Sources */,
 				8214C9F2253416B700909AEE /* EditViewController.swift in Sources */,
 				A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */,
@@ -604,13 +608,13 @@
 				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
 				8214C9FD253416D700909AEE /* MeViewController.swift in Sources */,
 				A517F8BD2514E89F00621A26 /* AppDelegate.swift in Sources */,
+				BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */,
 				BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */,
 				BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */,
 				BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */,
 				A5DFB0BC2528293200471C1A /* FCollectionReferences.swift in Sources */,
 				BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */,
 				BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */,
-				BBEE4343252DE20E00D3B305 /* ActivityManager.swift in Sources */,
 				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
 				8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */,
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,

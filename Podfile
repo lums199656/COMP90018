@@ -31,36 +31,41 @@ target 'Messager' do
   pod 'CLTypingLabel', '~> 0.4.0'
   pod 'Tabman', '~> 2.9'  # another UI Page View Controller
   
+  # Keyboard
+  pod 'IQKeyboardManagerSwift'
   
-
-# google 的 组件
-pod 'Firebase/Core'
-pod 'Firebase/Auth'
-pod 'Firebase/Firestore'
-pod 'Firebase/Storage'
-pod 'Firebase/Analytics'
-pod 'Firebase/Messaging'
-pod 'FirebaseFirestoreSwift'
-
-# 素材
-pod 'Gallery'
-pod 'RealmSwift'
-
-pod 'ProgressHUD'
-pod 'SKPhotoBrowser'
-
-# 特效和滑动
-pod 'Just'
-pod 'Kingfisher'
-pod 'NVActivityIndicatorView'
-pod 'ChainableAnimations'
-pod 'SnapKit'
-
-# 通讯框架
-pod 'MessageKit'
-pod 'InputBarAccessoryView'
-
-
+  # TextView with Placeholder
+  pod 'UITextView+Placeholder'
+  
+  
+  # google 的 组件
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
+  pod 'FirebaseFirestoreSwift'
+  
+  # 素材
+  pod 'Gallery'
+  pod 'RealmSwift'
+  
+  pod 'ProgressHUD'
+  pod 'SKPhotoBrowser'
+  
+  # 特效和滑动
+  pod 'Just'
+  pod 'Kingfisher'
+  pod 'NVActivityIndicatorView'
+  pod 'ChainableAnimations'
+  pod 'SnapKit'
+  
+  # 通讯框架
+  pod 'MessageKit'
+  pod 'InputBarAccessoryView'
+  
+  
   target 'MessagerTests' do
     inherit! :search_paths
     # Pods for testing
@@ -70,6 +75,6 @@ pod 'InputBarAccessoryView'
     # Pods for testing
   end
   
-
+  
   
 end

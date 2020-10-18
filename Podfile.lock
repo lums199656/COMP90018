@@ -353,6 +353,7 @@ PODS:
   - InputBarAccessoryView (5.2.0):
     - InputBarAccessoryView/Core (= 5.2.0)
   - InputBarAccessoryView/Core (5.2.0)
+  - IQKeyboardManagerSwift (6.5.6)
   - Just (0.8.0)
   - Kingfisher (5.15.6):
     - Kingfisher/Core (= 5.15.6)
@@ -381,6 +382,7 @@ PODS:
   - SnapKit (5.0.1)
   - Tabman (2.9.1):
     - Pageboy (~> 3.6.0)
+  - "UITextView+Placeholder (1.4.0)"
 
 DEPENDENCIES:
   - ChainableAnimations
@@ -394,6 +396,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - Gallery
   - InputBarAccessoryView
+  - IQKeyboardManagerSwift
   - Just
   - Kingfisher
   - MessageKit
@@ -403,6 +406,7 @@ DEPENDENCIES:
   - SKPhotoBrowser
   - SnapKit
   - Tabman (~> 2.9)
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   trunk:
@@ -429,6 +433,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - InputBarAccessoryView
+    - IQKeyboardManagerSwift
     - Just
     - Kingfisher
     - leveldb-library
@@ -444,6 +449,7 @@ SPEC REPOS:
     - SKPhotoBrowser
     - SnapKit
     - Tabman
+    - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -469,6 +475,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   InputBarAccessoryView: ac1bc2a11508fc2490c2322beb1d4c9f05c8e634
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   Just: aef5105fb2c7069b65aa6f21aec8f429057f9c19
   Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
@@ -484,7 +491,8 @@ SPEC CHECKSUMS:
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Tabman: 085d89c65be9e883629bdaf5b1453a6397e57846
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: d99285cdbbd45d78f8f7e337903611da7ed0956b
+PODFILE CHECKSUM: 20f71664419d2d919528eb5239dd49f169c62877
 
 COCOAPODS: 1.9.3
