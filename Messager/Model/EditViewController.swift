@@ -25,6 +25,13 @@ class EditViewController: UIViewController {
     @IBOutlet weak var userLocation: UITextField!
     @IBOutlet weak var userIntro: UITextField!
     
+    //dismiss keyboard when touch blank area
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+     
+            self.view?.endEditing(true)
+     
+     }
+
     func loadInfo() {
         let user = Auth.auth().currentUser
         if let user = user {
