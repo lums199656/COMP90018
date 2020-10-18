@@ -16,6 +16,7 @@
 		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
 		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
 		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
+		93927169253C570500F0CF1F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93927168253C570500F0CF1F /* NotificationsViewController.swift */; };
 		A03CD3B43A4B77DC8CB21815 /* Pods_MessagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */; };
 		A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503279C2531A04F00CEE6E7 /* RecentChat.swift */; };
 		A50327A52531FA5300CEE6E7 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */; };
@@ -83,6 +84,7 @@
 		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1298873614C79BB233554 /* Pods-MessagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.debug.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		93927168253C570500F0CF1F /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		A503279C2531A04F00CEE6E7 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		A50327A9253202C000CEE6E7 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 		A5DFB0C8252829C500471C1A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				93927168253C570500F0CF1F /* NotificationsViewController.swift */,
 				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
 				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
@@ -613,6 +616,7 @@
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,
 				BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */,
 				BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */,
+				93927169253C570500F0CF1F /* NotificationsViewController.swift in Sources */,
 				A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */,
 				A50624982533014B00A7FE9F /* ChatsTableViewController.swift in Sources */,
 				A517F8BF2514E89F00621A26 /* SceneDelegate.swift in Sources */,
