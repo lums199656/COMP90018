@@ -14,7 +14,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     let storage = Storage.storage()
     
   // data source of activities
-    var activities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7","活动8"]
+    var activities = ["Swimming","Video Games","KTV","Hiking","Cycling","Movies","Skiing","Eating"]
     var imageofactivities = UIImage(named:"WechatIMG1.jpg")
     var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7"]
     var joinedimageofactivities = UIImage(named:"avatar")
@@ -41,7 +41,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         if tableView == self.secondView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "JoinedCell", for: indexPath) as! JoinedCell
             cell.joinedActivity.text = joinedactivities[indexPath.row]
-            cell.joinedDate.text = "2020-11-09"
+            cell.joinedDate.text = "2088-11-22"
             cell.joinedImage.image = joinedimageofactivities
             tableCell = cell
         }
