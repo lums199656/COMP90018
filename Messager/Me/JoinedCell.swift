@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class JoinedCell: UITableViewCell {
-    @IBOutlet var imageLabel: UIImageView!
-    @IBOutlet var activityLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var joinedImage: UIImageView!
+    @IBOutlet var joinedActivity: UILabel!
+    @IBOutlet var joinedDate: UILabel!
     
     
 }

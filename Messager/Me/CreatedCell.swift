@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 class CreatedCell: UITableViewCell {
-    @IBOutlet var imageLabel: UIImageView!
-    @IBOutlet var activityLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var createdImage: UIImageView!
+    @IBOutlet var createdActivity: UILabel!
+    @IBOutlet var createdDate: UILabel!
     
     
 }

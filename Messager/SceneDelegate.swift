@@ -71,7 +71,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func goToApp(){
-        let mainView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "MainView") as! UITabBarController
+//        let mainView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "MainView") as! UITabBarController
+        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "rootTabVC")
         
         self.window?.rootViewController = mainView
     }
