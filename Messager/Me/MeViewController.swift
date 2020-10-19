@@ -13,32 +13,41 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
-  // data source of created activities
+  // data source of activities
     var activities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7","活动8"]
     var imageofactivities = UIImage(named:"WechatIMG1.jpg")
+    var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7"]
+    var joinedimageofactivities = UIImage(named:"avatar")
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        var count: Int?
+        if tableView == self.firstView{
+            count = activities.count
+        }
+        if tableView == self.secondView{
+            count = joinedactivities.count
+        }
+        return count!
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CreatedCell", for: indexPath) as! CreatedCell
-        cell.activityLabel.text = activities[indexPath.row]
-        cell.dateLabel.text = "everyday is sunday"
-        cell.imageLabel.image = imageofactivities
-        return cell
+        var tableCell: UITableViewCell?
+        if tableView == self.firstView{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CreatedCell", for: indexPath) as! CreatedCell
+            cell.createdActivity.text = activities[indexPath.row]
+            cell.createdDate.text = "2020-11-09"
+            cell.createdImage.image = imageofactivities
+            tableCell = cell
+        }
+        if tableView == self.secondView{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "JoinedCell", for: indexPath) as! JoinedCell
+            cell.joinedActivity.text = joinedactivities[indexPath.row]
+            cell.joinedDate.text = "2020-11-09"
+            cell.joinedImage.image = joinedimageofactivities
+            tableCell = cell
+        }
+        return tableCell ?? UITableViewCell()
     }
-    // data source of joined activities  BUG!!!
-    var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7","活动8"]
-    var joinedimageofactivities = UIImage(named:"WechatIMG2.jpg")
-    func joinedtableView(_ joinedtableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return joinedactivities.count
-    }
-    func joinedtableView(_ joinedtableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let joinedcell = joinedtableView.dequeueReusableCell(withIdentifier: "JoinedCell", for: indexPath) as! JoinedCell
-        joinedcell.activityLabel.text = joinedactivities[indexPath.row]
-        joinedcell.dateLabel.text = "everyday is sunday"
-        joinedcell.imageLabel.image = joinedimageofactivities
-        return joinedcell
-    }
+
     
     // change table views in personal page
     @IBOutlet weak var segmentedControl: UISegmentedControl!

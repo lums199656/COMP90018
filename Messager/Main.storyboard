@@ -1025,8 +1025,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHf-yz-9hx" userLabel="Body">
                                 <rect key="frame" x="0.0" y="150" width="414" height="746"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="tEm-HU-jQQ" userLabel="Info">
-                                        <rect key="frame" x="20" y="5" width="374" height="84"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="tEm-HU-jQQ" userLabel="Info">
+                                        <rect key="frame" x="20" y="5" width="374" height="77"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName12345" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TvD-0j-emS" userLabel="UserName">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="22.5"/>
@@ -1035,75 +1035,67 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carlton, Melbourn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQp-sh-72K" userLabel="Location">
-                                                <rect key="frame" x="0.0" y="25.5" width="374" height="17"/>
+                                                <rect key="frame" x="0.0" y="31.5" width="374" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro Intro " lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9Z-QP-J2l" userLabel="Details">
-                                                <rect key="frame" x="0.0" y="45.5" width="374" height="38.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lms ztm shuai" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b9Z-QP-J2l" userLabel="Details">
+                                                <rect key="frame" x="0.0" y="57.5" width="374" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qzn-Tq-fJY" userLabel="ActivitiesBorder">
-                                        <rect key="frame" x="0.0" y="99" width="414" height="557"/>
+                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzn-Tq-fJY" userLabel="ActivitiesBorder">
+                                        <rect key="frame" x="0.0" y="132" width="414" height="524"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-Ok-9MU" userLabel="Activities">
-                                                <rect key="frame" x="0.0" y="2" width="414" height="555"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-Ok-9MU" userLabel="Activities">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="564"/>
                                                 <subviews>
-                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-9I-4Rf" userLabel="SegmentControl">
-                                                        <rect key="frame" x="85" y="10" width="243" height="32"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <gestureRecognizers/>
-                                                        <segments>
-                                                            <segment title="Created Control"/>
-                                                            <segment title="Joined Activities"/>
-                                                        </segments>
-                                                        <color key="selectedSegmentTintColor" red="0.84527134900000001" green="0.49867933990000002" blue="0.47449791429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <connections>
-                                                            <action selector="changePage:" destination="t5h-QR-LeN" eventType="valueChanged" id="VQg-yf-0e3"/>
-                                                        </connections>
-                                                    </segmentedControl>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" id="agC-qv-Q7b">
-                                                        <rect key="frame" x="0.0" y="50" width="414" height="507"/>
+                                                        <rect key="frame" x="0.0" y="106" width="414" height="451"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" id="yXa-Eh-Fbv" userLabel="TableContainer">
-                                                                <rect key="frame" x="0.0" y="25" width="827" height="513"/>
+                                                                <rect key="frame" x="0.0" y="8" width="827" height="443"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
-                                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="acq-Lq-NMV" userLabel="Second View">
-                                                                        <rect key="frame" x="414" y="0.0" width="397" height="493"/>
+                                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="acq-Lq-NMV" userLabel="Second View">
+                                                                        <rect key="frame" x="413" y="8" width="398" height="466"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="117" id="gc7-49-Lek" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="28" width="397" height="117"/>
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="118" id="gc7-49-Lek" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
+                                                                                <rect key="frame" x="0.0" y="28" width="398" height="118"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gc7-49-Lek" id="K3a-zB-bWW">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="397" height="117"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="398" height="118"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ii-Oa-jdp">
-                                                                                            <rect key="frame" x="124" y="64" width="270" height="31"/>
+                                                                                            <rect key="frame" x="245" y="11" width="144" height="31"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                            <color key="backgroundColor" red="0.84135252240000002" green="0.49873769280000002" blue="0.47057586909999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                                            <nil key="textColor"/>
+                                                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="WechatIMG1" translatesAutoresizingMaskIntoConstraints="NO" id="1qy-Bl-BIC">
-                                                                                            <rect key="frame" x="13" y="11" width="103" height="105"/>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="1qy-Bl-BIC">
+                                                                                            <rect key="frame" x="13" y="11" width="80" height="80"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                    <real key="value" value="40"/>
+                                                                                                </userDefinedRuntimeAttribute>
+                                                                                            </userDefinedRuntimeAttributes>
                                                                                         </imageView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oRK-5f-S3c">
-                                                                                            <rect key="frame" x="124" y="25" width="270" height="31"/>
+                                                                                            <rect key="frame" x="118" y="36" width="119" height="31"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                            <color key="backgroundColor" red="0.84135252240000002" green="0.49873769280000002" blue="0.47057586909999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
@@ -1113,9 +1105,9 @@
                                                                                 <accessibility key="accessibilityConfiguration" identifier="JoinedCell"/>
                                                                                 <gestureRecognizers/>
                                                                                 <connections>
-                                                                                    <outlet property="activityLabel" destination="oRK-5f-S3c" id="y5t-Ml-gsJ"/>
-                                                                                    <outlet property="dateLabel" destination="3ii-Oa-jdp" id="W7S-J8-ntI"/>
-                                                                                    <outlet property="imageLabel" destination="1qy-Bl-BIC" id="2Gb-k6-Eng"/>
+                                                                                    <outlet property="joinedActivity" destination="oRK-5f-S3c" id="JCU-YO-a9D"/>
+                                                                                    <outlet property="joinedDate" destination="3ii-Oa-jdp" id="TXb-TT-kIy"/>
+                                                                                    <outlet property="joinedImage" destination="1qy-Bl-BIC" id="oKr-1L-lsR"/>
                                                                                 </connections>
                                                                             </tableViewCell>
                                                                         </prototypes>
@@ -1124,9 +1116,12 @@
                                                                                 <real key="value" value="20"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
+                                                                        <connections>
+                                                                            <outlet property="dataSource" destination="t5h-QR-LeN" id="C3f-fU-b2z"/>
+                                                                        </connections>
                                                                     </tableView>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Zu-Ro-xof" userLabel="First View">
-                                                                        <rect key="frame" x="8" y="0.0" width="397" height="493"/>
+                                                                        <rect key="frame" x="8" y="8" width="397" height="466"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <prototypes>
@@ -1137,8 +1132,17 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="397" height="118"/>
                                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKi-ge-HvL">
-                                                                                            <rect key="frame" x="124" y="64" width="253" height="31"/>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="DiS-9A-lCS">
+                                                                                            <rect key="frame" x="19" y="19" width="80" height="80"/>
+                                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                            <userDefinedRuntimeAttributes>
+                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                                    <real key="value" value="40"/>
+                                                                                                </userDefinedRuntimeAttribute>
+                                                                                            </userDefinedRuntimeAttributes>
+                                                                                        </imageView>
+                                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHg-Ts-KpA">
+                                                                                            <rect key="frame" x="124" y="25" width="126" height="31"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
@@ -1150,21 +1154,12 @@
                                                                                                 </userDefinedRuntimeAttribute>
                                                                                             </userDefinedRuntimeAttributes>
                                                                                         </label>
-                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="DiS-9A-lCS">
-                                                                                            <rect key="frame" x="19" y="19" width="80" height="80"/>
-                                                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                            <userDefinedRuntimeAttributes>
-                                                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                                                    <real key="value" value="10"/>
-                                                                                                </userDefinedRuntimeAttribute>
-                                                                                            </userDefinedRuntimeAttributes>
-                                                                                        </imageView>
-                                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHg-Ts-KpA">
-                                                                                            <rect key="frame" x="124" y="25" width="253" height="31"/>
+                                                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKi-ge-HvL">
+                                                                                            <rect key="frame" x="258" y="25" width="119" height="31"/>
                                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                                                            <nil key="textColor"/>
+                                                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                             <userDefinedRuntimeAttributes>
                                                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1178,9 +1173,9 @@
                                                                                 <accessibility key="accessibilityConfiguration" identifier="CreatedCell"/>
                                                                                 <gestureRecognizers/>
                                                                                 <connections>
-                                                                                    <outlet property="activityLabel" destination="KHg-Ts-KpA" id="1w8-zz-ibg"/>
-                                                                                    <outlet property="dateLabel" destination="CKi-ge-HvL" id="KlZ-vw-at8"/>
-                                                                                    <outlet property="imageLabel" destination="DiS-9A-lCS" id="pIs-oh-yxR"/>
+                                                                                    <outlet property="createdActivity" destination="KHg-Ts-KpA" id="JcO-Iq-aIR"/>
+                                                                                    <outlet property="createdDate" destination="CKi-ge-HvL" id="3X6-vH-Rux"/>
+                                                                                    <outlet property="createdImage" destination="DiS-9A-lCS" id="hMC-jf-f6B"/>
                                                                                 </connections>
                                                                             </tableViewCell>
                                                                         </prototypes>
@@ -1197,7 +1192,6 @@
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="0.84527134900000001" green="0.49867933990000002" blue="0.47449791429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
                                                                 <size key="value" width="818" height="0.0"/>
@@ -1207,6 +1201,19 @@
                                                             <outlet property="delegate" destination="t5h-QR-LeN" id="vJe-cc-z8E"/>
                                                         </connections>
                                                     </scrollView>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Jrd-9I-4Rf" userLabel="SegmentControl">
+                                                        <rect key="frame" x="86" y="51" width="243" height="32"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <gestureRecognizers/>
+                                                        <segments>
+                                                            <segment title="Created Control"/>
+                                                            <segment title="Joined Activities"/>
+                                                        </segments>
+                                                        <color key="selectedSegmentTintColor" red="0.84527134900000001" green="0.49867933990000002" blue="0.47449791429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <connections>
+                                                            <action selector="changePage:" destination="t5h-QR-LeN" eventType="valueChanged" id="VQg-yf-0e3"/>
+                                                        </connections>
+                                                    </segmentedControl>
                                                 </subviews>
                                                 <gestureRecognizers/>
                                             </view>
