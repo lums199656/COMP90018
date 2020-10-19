@@ -1496,7 +1496,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kXD-3m-yxB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3794" y="956"/>
+            <point key="canvasLocation" x="-3758" y="1116"/>
         </scene>
         <!--Feed-->
         <scene sceneID="JZT-NH-jy8">
@@ -2053,7 +2053,7 @@
     <resources>
         <image name="WechatIMG1" width="160" height="105"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="avatar" width="876" height="952"/>
+        <image name="avatar" width="1744" height="1516"/>
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="bubble_outlined" width="58" height="37"/>
