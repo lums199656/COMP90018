@@ -15,9 +15,12 @@
 		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
 		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
 		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
+<<<<<<< HEAD
+=======
 		93927169253C570500F0CF1F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93927168253C570500F0CF1F /* NotificationsViewController.swift */; };
 		939C932E253D924A00D77F0B /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C932D253D924A00D77F0B /* OtherUserViewController.swift */; };
 		A03CD3B43A4B77DC8CB21815 /* Pods_MessagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */; };
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 		A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503279C2531A04F00CEE6E7 /* RecentChat.swift */; };
 		A50327A52531FA5300CEE6E7 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */; };
 		A50327AA253202C000CEE6E7 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50327A9253202C000CEE6E7 /* GlobalFunctions.swift */; };
@@ -85,10 +88,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
+=======
 		0028F096A3C435D4D455C5D0 /* Pods-Messager-MessagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager-MessagerUITests.release.xcconfig"; path = "Target Support Files/Pods-Messager-MessagerUITests/Pods-Messager-MessagerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		509E4CE9F6CA3D30056A920B /* Pods-MessagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.release.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		64F84663CC662B7DA715AF45 /* Pods_Messager_MessagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager_MessagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6659A894252E191B009F39DA /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 		8214C9EF253416B700909AEE /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		8214C9F0253416B700909AEE /* EditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8214C9F6253416D700909AEE /* JoinedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedCell.swift; sourceTree = "<group>"; };
@@ -96,9 +102,12 @@
 		8214C9F8253416D700909AEE /* UIViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+<<<<<<< HEAD
+=======
 		92B1298873614C79BB233554 /* Pods-MessagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.debug.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		93927168253C570500F0CF1F /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		939C932D253D924A00D77F0B /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 		A503279C2531A04F00CEE6E7 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		A50327A9253202C000CEE6E7 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
@@ -139,7 +148,9 @@
 		A5DFB0CD2528430E00471C1A /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		A5DFB0EE252AC1D400471C1A /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+=======
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB1C1D0C253408C400DCF2D5 /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -154,6 +165,7 @@
 		BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplication.swift; sourceTree = "<group>"; };
 		BBEE4342252DE20E00D3B305 /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		BBEE4366252DEAB900D3B305 /* DBSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSeeding.swift; sourceTree = "<group>"; };
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 		C0650BFA4ACCEE4BC1E10F01 /* Pods-Messager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager.release.xcconfig"; path = "Target Support Files/Pods-Messager/Pods-Messager.release.xcconfig"; sourceTree = "<group>"; };
 		C97A6E747219FC4702ABEE55 /* Pods-Messager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager.debug.xcconfig"; path = "Target Support Files/Pods-Messager/Pods-Messager.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -335,14 +347,17 @@
 				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
 				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
+<<<<<<< HEAD
 				A58B7AD1253AC472004E5090 /* MKMessage.swift */,
 				A58B7ADB253AC727004E5090 /* RealmMessage */,
 				A5944D44253BE52C0004C528 /* OutgoingMessage.swift */,
 				A51D7434253C81F50033A78C /* IncomingMessage.swift */,
+=======
 				A5DFB0CC25282CC100471C1A /* FirebaseHelpers */,
 				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
 				BB1C1D0C253408C400DCF2D5 /* FeedData.swift */,
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -575,12 +590,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				A58B7AC3253AB5C9004E5090 /* MessageLayoutDelegate.swift in Sources */,
 				A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */,
 				A5944D40253BDD380004C528 /* RealmManager.swift in Sources */,
+=======
 				BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */,
 				A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */,
 				6659A895252E191B009F39DA /* Constant.swift in Sources */,
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 				A50327B42532E2AE00CEE6E7 /* StartChat.swift in Sources */,
 				A5790B2B252077E1009E1347 /* Constants.swift in Sources */,
 				A5790B26251B90BC009E1347 /* User.swift in Sources */,
@@ -589,14 +607,17 @@
 				939C932E253D924A00D77F0B /* OtherUserViewController.swift in Sources */,
 				A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */,
 				A50327A52531FA5300CEE6E7 /* RecentTableViewCell.swift in Sources */,
+<<<<<<< HEAD
 				A58B7AC8253AB5E8004E5090 /* InputBarAccessory.swift in Sources */,
 				A58B7AD2253AC472004E5090 /* MKMessage.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
 				A5DFB0EF252AC1D400471C1A /* UserTableViewCell.swift in Sources */,
 				A58B7AB3253AB4E7004E5090 /* MessageDataSource.swift in Sources */,
+=======
 				BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
 				BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */,
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
 				A5333F35253C1B6A007CF0ED /* FirebaseMessageListener.swift in Sources */,
 				A5D8163A2534362E006E8DE4 /* ChatViewController.swift in Sources */,
@@ -606,11 +627,14 @@
 				BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */,
 				BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */,
 				A5DFB0BC2528293200471C1A /* FCollectionReferences.swift in Sources */,
+<<<<<<< HEAD
 				A58B7ACD253AB992004E5090 /* MessgaeKitDefaults.swift in Sources */,
 				A5944D45253BE52C0004C528 /* OutgoingMessage.swift in Sources */,
+=======
 				BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */,
 				BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */,
 				BBEE4343252DE20E00D3B305 /* ActivityManager.swift in Sources */,
+>>>>>>> 73f8c0eeee658f808945bfcd08adc0de0b6b2ad7
 				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
 				8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */,
 				A5DFB0CE2528430E00471C1A /* FirebaseUserListener.swift in Sources */,
