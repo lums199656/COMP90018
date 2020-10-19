@@ -1306,7 +1306,7 @@
     <resources>
         <image name="WechatIMG1" width="160" height="105"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="avatar" width="876" height="952"/>
+        <image name="avatar" width="1744" height="1516"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>
         <image name="config" width="200" height="200"/>
         <image name="edit" width="200" height="200"/>

@@ -18,12 +18,12 @@ func startChat(user1: User, user2: User) -> String {
 func createRecentItems(chatRoomId: String, users: [User]) {
     
     var memberIdsToCreateRecent = [users.first!.id, users.last!.id]
-    
+    print("_x bbb")
+
     // 用户是否已经有 recent chat
     FirebaseReference(.Recent).whereField(kCHATROOMID, isEqualTo: chatRoomId).getDocuments{ (snapshot, error) in
         
         guard let snapshot = snapshot else {return}
-        
         if !snapshot.isEmpty {
             memberIdsToCreateRecent = removeMemberWhoHasRecent(snapshot: snapshot, memberIds: memberIdsToCreateRecent)
         }
@@ -36,7 +36,7 @@ func createRecentItems(chatRoomId: String, users: [User]) {
             
             let recentObject = RecentChat(id: UUID().uuidString, chatRoomId: chatRoomId, senderId: senderUser.id, senderName: senderUser.username, receiverId: receiverUser.id, receiverName: receiverUser.username, date: Date(), memberIds: [senderUser.id, receiverUser.id], lastMessage: "", unreadCounter: 0, avatarLink: receiverUser.avatarLink)
         
-            FirebaseRecentListener.shared.addRecent(recentObject)
+            FirebaseRecentListener.shared.saveRecent(recentObject)
         }
     }
 }
@@ -70,4 +70,13 @@ func chatRoomIdFrom(user1Id: String, user2Id: String) -> String {
     chatRoomId = value < 0 ? (user1Id + user2Id) : (user2Id + user1Id)
     
     return chatRoomId
+}
+
+// 当另一方把 recent 删除时，我方点击对话框时，在数据库会为对方新创建一个 recent
+func restartChat(chatRoomId: String, memberIds: [String]) {
+    FirebaseUserListener.shared.downloadUsersFromFirebase(withIds: memberIds) { (users) in
+        if users.count > 0 {
+            createRecentItems(chatRoomId: chatRoomId, users: users)
+        }
+    }
 }

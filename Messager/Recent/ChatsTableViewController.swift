@@ -46,6 +46,34 @@ class ChatsTableViewController: UITableViewController {
         return cell
     }
     
+    // 给每一行增加 修改功能
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 选中一行 cell
+        tableView.deselectRow(at: indexPath, animated: true)
+        let recent = searchController.isActive ? filteredRecents[indexPath.row] : allRecents[indexPath.row]
+        // go to chatroom
+        FirebaseRecentListener.shared.clearUnreadCounter(recent: recent)
+        
+        goToChat(recent: recent)
+    }
+
+    
+    // 判定功能
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let recent = searchController.isActive ? filteredRecents[indexPath.row] : allRecents[indexPath.row]
+            FirebaseRecentListener.shared.deleteRecent(recent)
+            
+            searchController.isActive ? self.filteredRecents.remove(at: indexPath.row) : allRecents.remove(at: indexPath.row)
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
     private func downloadRecentChats() {
         FirebaseRecentListener.shared.downloadRecentChatFromFireStore { (allChats) in
             self.allRecents = allChats
@@ -78,6 +106,21 @@ class ChatsTableViewController: UITableViewController {
         filteredRecents = allRecents.filter({ (recent) -> Bool in
             return recent.receiverName.lowercased().contains(searchText.lowercased())
         })
+        
+        tableView.reloadData()
+    }
+    
+    private func goToChat(recent: RecentChat) {
+        
+        // 当另一方把 recent 删除时，我方点击对话框时，在数据库会为对方新创建一个 recent
+        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds)
+        
+        let privateChatView = ChatViewController(chatId: recent.chatRoomId, recipientId: recent.receiverId, recipientName: recent.receiverName)
+        
+        // 底部 bar 被隐藏
+        privateChatView.hidesBottomBarWhenPushed = true
+        // 底部的 bar 转化成输入bar
+        navigationController?.pushViewController(privateChatView, animated: true)
     }
 
 }

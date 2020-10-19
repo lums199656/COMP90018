@@ -61,6 +61,11 @@ class UsersTableViewController: UITableViewController {
         let chatId = startChat(user1: User.currentUser!, user2: user)
         print("_x start chat", chatId)
         
+        // 打开一个 chat room 界面
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: user.id, recipientName: user.username)
+        privateChatView.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(privateChatView, animated: true)
+        
     }
         
     private func downloadUsers() {
