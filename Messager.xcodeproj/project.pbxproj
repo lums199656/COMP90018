@@ -169,6 +169,7 @@
 		A50327BD2532E77F00CEE6E7 /* Recent */ = {
 			isa = PBXGroup;
 			children = (
+				A5DFB0CC25282CC100471C1A /* FirebaseHelpers */,
 				A58B7AB7253AB505004E5090 /* ChatViewExtensions */,
 				A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */,
 				A50624972533014B00A7FE9F /* ChatsTableViewController.swift */,
@@ -203,7 +204,6 @@
 		A517F8BB2514E89F00621A26 /* Messager */ = {
 			isa = PBXGroup;
 			children = (
-				A5DFB0CC25282CC100471C1A /* FirebaseHelpers */,
 				A5D8163525341E3E006E8DE4 /* Login */,
 				A5D8163125341DF5006E8DE4 /* People */,
 				A5D8163025341DCB006E8DE4 /* Me */,
