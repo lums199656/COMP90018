@@ -13,16 +13,16 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
-  // data source of activities
-    var activities = ["Swimming","Video Games","KTV","Hiking","Cycling","Movies","Skiing","Eating"]
-    var imageofactivities = UIImage(named:"WechatIMG1.jpg")
+    // data source of activities
+    var createdLists : [ActivityData] = []
     var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7"]
     var joinedimageofactivities = UIImage(named:"avatar")
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count: Int?
         if tableView == self.firstView{
-            count = activities.count
+            count = createdLists.count
+            print("######## there is \(count) cell")
         }
         if tableView == self.secondView{
             count = joinedactivities.count
@@ -33,9 +33,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         var tableCell: UITableViewCell?
         if tableView == self.firstView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreatedCell", for: indexPath) as! CreatedCell
-            cell.createdActivity.text = activities[indexPath.row]
-            cell.createdDate.text = "2020-11-09"
-            cell.createdImage.image = imageofactivities
+            cell.cellData = createdLists[indexPath.row]
             tableCell = cell
         }
         if tableView == self.secondView{
@@ -47,7 +45,8 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         }
         return tableCell ?? UITableViewCell()
     }
-
+    
+    let dbSeed = DBSeeding(false)
     
     // change table views in personal page
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -98,6 +97,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
         self.loadInfo()
+        self.getActivities()
     }
     
     
@@ -151,5 +151,34 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         }
     }
 
+    func getActivities() {
+        //获取数据
+        guard let id = Auth.auth().currentUser?.uid else { return }
+        let query = db.collection(K.FStore.act).whereField("userId", isEqualTo: id)
+        query.getDocuments { [self] (querySnapshot, error) in
+            if let e = error{
+                print("error happens in getDocuments\(e)" )
+            }
+            else{
+                if let snapShotDocuments = querySnapshot?.documents{
+                    for doc in snapShotDocuments{
+                        let data = doc.data()
+                        let title = data[K.Activity.title] as? String
+                        let image = data[K.Activity.image] as? String
+                        let activityID = data[K.Activity.uid] as? String
+                        // read date later
+                        let date = ""
+                        
+                        let feedData = ActivityData(title: title, image: image, date: date, activityID: activityID)
+                        self.createdLists.append(feedData)
+                        print(createdLists)
+
+                    }
+                    self.firstView.reloadData()
+                }
+            }
+
+        }
+    }
 
 }

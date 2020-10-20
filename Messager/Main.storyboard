@@ -1168,9 +1168,9 @@
                                                                                 <accessibility key="accessibilityConfiguration" identifier="CreatedCell"/>
                                                                                 <gestureRecognizers/>
                                                                                 <connections>
-                                                                                    <outlet property="createdActivity" destination="KHg-Ts-KpA" id="JcO-Iq-aIR"/>
-                                                                                    <outlet property="createdDate" destination="CKi-ge-HvL" id="3X6-vH-Rux"/>
-                                                                                    <outlet property="createdImage" destination="DiS-9A-lCS" id="hMC-jf-f6B"/>
+                                                                                    <outlet property="activityLabel" destination="KHg-Ts-KpA" id="4GK-4E-EAi"/>
+                                                                                    <outlet property="dateLabel" destination="CKi-ge-HvL" id="BoQ-o9-CGt"/>
+                                                                                    <outlet property="imageLabel" destination="DiS-9A-lCS" id="Ijm-zE-14n"/>
                                                                                 </connections>
                                                                             </tableViewCell>
                                                                         </prototypes>
