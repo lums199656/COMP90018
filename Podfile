@@ -30,6 +30,8 @@ target 'Messager' do
   # UI
   pod 'CLTypingLabel', '~> 0.4.0'
   pod 'Tabman', '~> 2.9'  # another UI Page View Controller
+  pod 'lottie-ios'
+  pod 'DOFavoriteButtonNew'
   
   
 
@@ -55,6 +57,7 @@ pod 'Kingfisher'
 pod 'NVActivityIndicatorView'
 pod 'ChainableAnimations'
 pod 'SnapKit'
+
 
 # 通讯框架
 pod 'MessageKit'

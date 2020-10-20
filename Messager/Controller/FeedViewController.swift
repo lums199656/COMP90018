@@ -7,6 +7,8 @@
 
 import UIKit
 import Firebase
+import Lottie
+import DOFavoriteButtonNew
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var lists : [FeedData] = []
@@ -16,8 +18,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     //显示cell个数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("list数量是")
-        print(lists.count)
+        //print("list数量是"+lists.count)
         return lists.count
     }
     
@@ -27,6 +28,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         //cell.textLabel?.text = lists[indexPath.row]
         print("indexPath.row=\(indexPath.row)")
         cell.cellData = lists[indexPath.row]
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     
@@ -37,19 +39,31 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let dbSeed = DBSeeding(false)
     //let dbSeed = DBSeeding(true)
     
-    
+    //控制cell行高
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print(UIScreen.main.bounds.size.height)
+        return UIScreen.main.bounds.size.height - 80
+    }
 
-    
-//    @IBOutlet weak var activityTitle: UILabel!
-//    @IBOutlet weak var activityDetail: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("🔥FeedView Did Load")
+        let button = DOFavoriteButtonNew(frame: CGRect(x: 100, y:100, width: 44, height: 44), image: UIImage(named: "heart.png"))
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(tapped(sender:)), for: UIControl.Event.touchUpInside)
+        
         getData()
         
     }
-    
+    @objc func tapped(sender: DOFavoriteButtonNew) {
+            if sender.isSelected {
+                // deselect
+                sender.deselect()
+            } else {
+                // select with animation
+                sender.select()
+            }
+        }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print("🔥FeedView Did Disappear")
@@ -59,7 +73,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //调用下一个数据库数据
     func getData(){
         //获取数据
-        //print("124125415")
         db.collection(K.FStore.act).getDocuments{ (querySnapshot, error) in
             if let e = error{
                 print("error happens in getDocuments\(e)" )
@@ -71,20 +84,118 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         //将数据赋值建立结构体，加入到lists中
                         if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = data[K.Activity.uid] as? String, let user = data[K.Activity.user] as? String, let image = data[K.Activity.image] as? String{
                             //print(detail)
-                            let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image)
-                            //print(feedData)
-                            self.lists.append(feedData)
-                            
+                            var user1: String = ""
+                            var user2: String = ""
+                            var user3: String = ""
+                            var user4: String = ""
+                            var user5: String = ""
+                            //通过uid找到join表，获取userID
+                            self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
+                                if let e = error{
+                                    print("error happens in getDocuments\(e)" )
+                                }
+                                else{
+                                    if let snapShotDocuments = querySnapshot?.documents{
+                                        for doc in snapShotDocuments{
+                                            let data = doc.data()
+                                            if(data["user1"] != nil){
+                                                user1 = data["user1"] as! String
+                                            }
+                                            if(data["user2"] != nil){
+                                                user2 = data["user2"] as! String
+                                            }
+//                                            if(data["user3"] != nil){
+//                                                user3 = data["user3"] as! String
+//                                            }
+//                                            if(data["user4"] != nil){
+//                                                user4 = data["user4"] as! String
+//                                            }
+//                                            if(data["user5"] != nil){
+//                                                user5 = data["user5"] as! String
+//                                            }
+                                            
+                                            
+//                                            self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
+//                                                if let e = error{
+//                                                    print("error happens in getDocuments\(e)" )
+//                                                }
+//                                                else{
+//                                                    if let snapShotDocuments = querySnapshot?.documents{
+//                                                        for doc in snapShotDocuments{
+//                                                            let data = doc.data()
+//                                                        }
+//                                                    }
+//                                                }
+//                                            }
+                                            //通过userID获取 userImage
+                                            self.db.collection("UserInfo").whereField("userID", isEqualTo: user1).getDocuments{ (querySnapshot, error) in
+                                                if let e = error{
+                                                    print("error happens in getDocuments\(e)" )
+                                                }
+                                                else{
+                                                    if let snapShotDocuments = querySnapshot?.documents{
+                                                        for doc in snapShotDocuments{
+                                                            let data = doc.data()
+                                                            if let user1_1 = data["userImage"] as? String{
+                                                                user1 = user1_1
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                self.db.collection("UserInfo").whereField("userID", isEqualTo: user2).getDocuments{ (querySnapshot, error) in
+                                                    if let e = error{
+                                                        print("error happens in getDocuments\(e)" )
+                                                    }
+                                                    else{
+                                                        if let snapShotDocuments = querySnapshot?.documents{
+                                                            for doc in snapShotDocuments{
+                                                                let data = doc.data()
+                                                                if let user2_2 = data["userImage"] as? String{
+                                                                    user2 = user2_2
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, user1: user1, user2: user2)
+                                                    //print(feedData)
+                                                    self.lists.append(feedData)
+                                                    self.tableView.reloadData()
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
-                    self.tableView.reloadData()
-                    //print(self.lists.count)
                 }
             }
-            
         }
-        
+            
     }
+    
+//    func findProfile(name: String) -> String{
+//        var pic : String = ""
+//        db.collection("UserInfo").whereField("userID", isEqualTo: name).getDocuments{ (querySnapshot, error) in
+//            if let e = error{
+//                print("step2")
+//                print("error happens in getDocuments\(e)" )
+//            }
+//            else{
+//                if let snapShotDocuments = querySnapshot?.documents{
+//                    for doc in snapShotDocuments{
+//                        let data = doc.data()
+//                        //将数据赋值建立结构体，加入到lists中
+//                        pic = data["userImage"] as! String
+//                        print("pic is:"+pic)
+//                    }
+//                }
+//            }
+//        }
+//        print("pic is"+pic)
+//        return pic
+//    }
+
     //下滑拖动结束时候会触发事件的方法
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //self.tableView.reloadData()
@@ -134,7 +245,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //
 //    }
     
-    @IBAction func createActivityButtonTapped(_ sender: UIButton) {
+func createActivityButtonTapped(_ sender: UIButton) {
         
         
     }
@@ -176,14 +287,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     */
 
-}
 
 
-// MARK:- Activity
-extension FeedViewController {
-    
-    
-}
+
+//// MARK:- Activity
+//extension FeedViewController {
+//
+//
+//}
 
 
 // MARK:- Image
@@ -272,3 +383,4 @@ extension FeedViewController {
 //        }
 //    }
 //}
+}
