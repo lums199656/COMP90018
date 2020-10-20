@@ -15,6 +15,7 @@ class FirebaseRecentListener {
     private init() {
         
     }
+    
     func downloadRecentChatFromFireStore(completion: @escaping (_ allRecents: [RecentChat]) -> Void){
         
         // 这个 Listener 可以在数据库更新数据的时候，端自动收到消息

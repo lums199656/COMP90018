@@ -353,16 +353,15 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCW-WS-pme">
                                 <rect key="frame" x="242" y="409" width="152" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <state key="normal" title=" Forget Password ?"/>
                                 <connections>
                                     <action selector="forgetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pc3-hN-nka"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edq-H3-7b2">
-                                <rect key="frame" x="100" y="639" width="215" height="49"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edq-H3-7b2">
+                                <rect key="frame" x="100" y="642" width="214" height="46"/>
                                 <color key="backgroundColor" red="1" green="0.41980990730000001" blue="0.33045495990000001" alpha="0.93935596700000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <size key="titleShadowOffset" width="1" height="0.0"/>
@@ -416,11 +415,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="8DJ-D0-CLh" firstAttribute="top" secondItem="Edq-H3-7b2" secondAttribute="bottom" constant="42" id="AWp-Ni-evE"/>
                             <constraint firstItem="8DJ-D0-CLh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="Fns-eS-uEI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4To-WG-jMU" secondAttribute="trailing" constant="20" id="Frs-IS-azG"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8DJ-D0-CLh" secondAttribute="bottom" constant="100" id="GBj-UY-N6G"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="8DJ-D0-CLh" secondAttribute="bottom" priority="250" constant="100" id="GBj-UY-N6G"/>
+                            <constraint firstItem="Edq-H3-7b2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="Hi0-Sv-KmW"/>
                             <constraint firstItem="4To-WG-jMU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="SiU-ct-B2j"/>
                             <constraint firstItem="4To-WG-jMU" firstAttribute="top" secondItem="nuf-Xv-rfj" secondAttribute="bottom" constant="170" id="bXG-2T-d40"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Edq-H3-7b2" secondAttribute="trailing" constant="100" id="c2p-FF-dQf"/>
                         </constraints>
                     </view>
                     <connections>
