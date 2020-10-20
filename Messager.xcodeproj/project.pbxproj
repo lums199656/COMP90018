@@ -16,6 +16,7 @@
 		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
 		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
 		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
+		8223DC47253E6BA200675647 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223DC46253E6BA200675647 /* ActivityData.swift */; };
 		93927169253C570500F0CF1F /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93927168253C570500F0CF1F /* NotificationsViewController.swift */; };
 		939C932E253D924A00D77F0B /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 939C932D253D924A00D77F0B /* OtherUserViewController.swift */; };
 		A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = A503279C2531A04F00CEE6E7 /* RecentChat.swift */; };
@@ -97,6 +98,7 @@
 		8214C9F7253416D700909AEE /* CreatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedCell.swift; sourceTree = "<group>"; };
 		8214C9F8253416D700909AEE /* UIViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		8223DC46253E6BA200675647 /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
 		872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93927168253C570500F0CF1F /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		939C932D253D924A00D77F0B /* OtherUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				8214C9F8253416D700909AEE /* UIViewHelper.swift */,
 				A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */,
 				939C932D253D924A00D77F0B /* OtherUserViewController.swift */,
+				8223DC46253E6BA200675647 /* ActivityData.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8223DC47253E6BA200675647 /* ActivityData.swift in Sources */,
 				A58B7AC3253AB5C9004E5090 /* MessageLayoutDelegate.swift in Sources */,
 				A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */,
 				A5944D40253BDD380004C528 /* RealmManager.swift in Sources */,

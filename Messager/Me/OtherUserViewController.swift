@@ -31,9 +31,9 @@ class OtherUserViewController: UIViewController, UITableViewDelegate,UITableView
         var tableCell: UITableViewCell?
         if tableView == self.firstView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CreatedCell", for: indexPath) as! CreatedCell
-            cell.createdActivity.text = activities[indexPath.row]
-            cell.createdDate.text = "2020-11-09"
-            cell.createdImage.image = imageofactivities
+            cell.activityLabel.text = activities[indexPath.row]
+            cell.dateLabel.text = "2020-11-09"
+            cell.imageLabel.image = imageofactivities
             tableCell = cell
         }
         if tableView == self.secondView{

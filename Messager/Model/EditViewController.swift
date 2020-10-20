@@ -104,8 +104,12 @@ class EditViewController: UIViewController {
                     if let error = error {
                         print("Error getting documents: \(error)")
                     } else {
-                        let docID = querySnapshot!.documents[0].documentID
-                        let infoRef = db.collection("UserInfo").document(docID)
+                        var infoRef = db.collection("UserInfo").document()
+                        var docID = infoRef.documentID
+                        if querySnapshot!.documents.count > 0 {
+                            docID = querySnapshot!.documents[0].documentID
+                            infoRef = db.collection("UserInfo").document(docID)
+                        }
                         infoRef.setData([
                             "userID": id,
                             "userLocation": location,
