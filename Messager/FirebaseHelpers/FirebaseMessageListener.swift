@@ -37,7 +37,11 @@ class FirebaseMessageListener {
                         
                         if let message = messageObject {
                             
-                            if message.senderId != User.currentId {
+//                            if message.senderId != User.currentId {
+//                                RealmManager.shared.saveToRealm(message)
+//                            }
+                            
+                            if !message.senderId.contains(User.currentId) {
                                 RealmManager.shared.saveToRealm(message)
                             }
                         } else {

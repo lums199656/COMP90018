@@ -407,7 +407,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j7E-Bb-fiB">
-                                <rect key="frame" x="62" y="88" width="497" height="1"/>
+                                <rect key="frame" x="-43" y="88" width="497" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                             </view>

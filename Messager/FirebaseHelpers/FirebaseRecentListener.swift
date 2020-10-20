@@ -73,12 +73,18 @@ class FirebaseRecentListener {
     
     // 通过 message 更新 recent
     private func updateRecentItemWithNewMessage(recent: RecentChat, lastMessage: String) {
+        print("_x update recent")
         var tmpRecent = recent
         
-        if tmpRecent.senderId != User.currentId {
+        if !tmpRecent.senderId.contains(User.currentId) {
             tmpRecent.unreadCounter += 1
+
         }
-        
+            
+//        if tmpRecent.senderId != User.currentId {
+//            tmpRecent.unreadCounter += 1
+//        }
+//        
         tmpRecent.lastMessage = lastMessage
         tmpRecent.date = Date()
         

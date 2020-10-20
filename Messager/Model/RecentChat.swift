@@ -10,8 +10,8 @@ import FirebaseFirestoreSwift
 struct RecentChat: Codable {
     var id = ""
     var chatRoomId = ""
-    var senderId = ""
-    var senderName = ""
+    var senderId : [String] = [""]
+    var senderName : [String] = [""]
     var receiverId = ""
     var receiverName = ""
     @ServerTimestamp var date = Date()
