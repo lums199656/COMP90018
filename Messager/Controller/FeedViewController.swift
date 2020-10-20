@@ -48,13 +48,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         print("🔥FeedView Did Load")
-        let button = DOFavoriteButtonNew(frame: CGRect(x: 100, y:100, width: 44, height: 44), image: UIImage(named: "heart.png"))
-        self.view.addSubview(button)
-        button.addTarget(self, action: #selector(tapped(sender:)), for: UIControl.Event.touchUpInside)
-        
+//        let button = DOFavoriteButtonNew(frame: CGRect(x: 300, y:700, width: 44, height: 44), image: UIImage(named: "heart.png"))
+//        self.view.addSubview(button)
+//        button.addTarget(self, action: #selector(tapped(sender:)), for: UIControl.Event.touchUpInside)
         getData()
         
     }
+    
+    //按钮反应
     @objc func tapped(sender: DOFavoriteButtonNew) {
             if sender.isSelected {
                 // deselect

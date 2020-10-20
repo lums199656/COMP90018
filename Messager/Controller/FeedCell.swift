@@ -7,10 +7,9 @@
 
 import UIKit
 import Firebase
+import DOFavoriteButtonNew
 
 class FeedCell: UITableViewCell {
-
-    @IBOutlet weak var heartButton: DOFavoriteButtonNew!
     @IBOutlet weak var profile5: UIImageView!
     @IBOutlet weak var profile4: UIImageView!
     @IBOutlet weak var profile3: UIImageView!
@@ -19,6 +18,11 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var labelD: UILabel!
     @IBOutlet weak var labelT: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
+    @IBOutlet weak var view: UIView!
+    
+    @IBOutlet weak var btn: UIButton!
+    
+    @IBOutlet weak var bbb: DOFavoriteButtonNew!
     
     let storage = Storage.storage()
     let db = Firestore.firestore()
@@ -26,7 +30,7 @@ class FeedCell: UITableViewCell {
     var cellData : FeedData!{
     //监视器，判断是否发生变化
         didSet{
-            heartButton.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
+            bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             labelT.text = cellData.title
             labelD.text = cellData.detail
             labelD.numberOfLines=0 // 行数设置为0
