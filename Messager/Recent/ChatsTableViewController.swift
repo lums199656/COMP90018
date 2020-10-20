@@ -77,15 +77,14 @@ class ChatsTableViewController: UITableViewController {
     private func downloadRecentChats() {
         FirebaseRecentListener.shared.downloadRecentChatFromFireStore { (allChats) in
             self.allRecents = allChats
-            print("_x 下载了 \(self.allRecents.count) 条数据")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
     
+    // 刷新 recent
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("_x Refreshing")
         if self.refreshControl!.isRefreshing {
             self.downloadRecentChats()
             self.refreshControl!.endRefreshing()
