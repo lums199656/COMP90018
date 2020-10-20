@@ -12,23 +12,32 @@ import DOFavoriteButtonNew
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var lists : [FeedData] = []
-    //var cur_count = 0 //用来判断当前处在哪一个位置
+    var cur_count = 0 //用来判断当前处在哪一个位置
+    var max = 1 //用来判断最大访问数量
+    var changeUID: String = ""
      
     @IBOutlet weak var tableView: UITableView!
 
     //显示cell个数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("list数量是"+lists.count)
+        print("list数量是")
+        print(lists.count)
         return lists.count
     }
     
     //每行显示什么
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
-        //cell.textLabel?.text = lists[indexPath.row]
+        //cell.bbb.isSelected = false //修改状态
         print("indexPath.row=\(indexPath.row)")
+        cur_count = indexPath.row //直接在这里定义cur_count
         cell.cellData = lists[indexPath.row]
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        changeUID = lists[indexPath.row].uid! //获取当前row的uid
+        //如果row是0，先set read
+        if cur_count == 0{
+            setRead()
+        }
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none //点击页面无选中反应
         return cell
     }
     
@@ -37,16 +46,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let db = Firestore.firestore()
     
     let dbSeed = DBSeeding(false)
-    //let dbSeed = DBSeeding(true)
     
     //控制cell行高
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print(UIScreen.main.bounds.size.height)
         return UIScreen.main.bounds.size.height - 80
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //防止reload乱跑
+        tableView.estimatedRowHeight = 0
         print("🔥FeedView Did Load")
 //        let button = DOFavoriteButtonNew(frame: CGRect(x: 300, y:700, width: 44, height: 44), image: UIImage(named: "heart.png"))
 //        self.view.addSubview(button)
@@ -74,7 +83,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //调用下一个数据库数据
     func getData(){
         //获取数据
-        db.collection(K.FStore.act).getDocuments{ (querySnapshot, error) in
+        //.whereField().limit(to: num)
+        db.collection(K.FStore.act).whereField("read", isEqualTo: 0).limit(to: 2).getDocuments{ (querySnapshot, error) in
             if let e = error{
                 print("error happens in getDocuments\(e)" )
             }
@@ -87,9 +97,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             //print(detail)
                             var user1: String = ""
                             var user2: String = ""
-                            var user3: String = ""
-                            var user4: String = ""
-                            var user5: String = ""
+//                            var user3: String = ""
+//                            var user4: String = ""
+//                            var user5: String = ""
                             //通过uid找到join表，获取userID
                             self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
                                 if let e = error{
@@ -161,6 +171,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                     //print(feedData)
                                                     self.lists.append(feedData)
                                                     self.tableView.reloadData()
+                                                    
                                                 }
                                             }
                                         }
@@ -197,9 +208,51 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        return pic
 //    }
 
+    
+    
+    // 滑动偏移量，每次要清零，免得影响后续操作
+    var lastContentOffset: CGFloat = 0
+    var screenSize = UIScreen.main.bounds.size.height - 80
+
+    // 记录滑动偏移量
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.lastContentOffset = scrollView.contentOffset.y
+        print("scrollView.contentOffset.y is:")
+        print(scrollView.contentOffset.y)
+    }
+
     //下滑拖动结束时候会触发事件的方法
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //self.tableView.reloadData()
+        //向下
+        if self.lastContentOffset < scrollView.contentOffset.y {
+            //print("我猜我在向下滑动？")
+            if self.cur_count >= self.max {
+                print("read")
+                self.max += 1
+                setRead()
+            }
+//            print("列表size:")
+//            print(self.lists.count)
+            if(self.cur_count >= self.lists.count - 1){
+                getData()
+                print("getAgain")
+                self.tableView.reloadData()
+            }
+        }
+        //向上
+        else if self.lastContentOffset > scrollView.contentOffset.y {
+              print("func2")
+//            print(self.cur_count)
+        }
+    }
+//    // 上下滑动触发，滑动过程也有
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//
+//    }
+    
+    func setRead(){
+        //修改read为1
+        self.db.collection(K.FStore.act).document(changeUID).updateData(["read": 1])
     }
     
     

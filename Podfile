@@ -43,6 +43,7 @@ pod 'Firebase/Storage'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'FirebaseFirestoreSwift'
+pod 'Firebase/Database'
 
 # 素材
 pod 'Gallery'

@@ -1964,8 +1964,8 @@
         <image name="config" width="200" height="200"/>
         <image name="edit" width="200" height="200"/>
         <image name="gallery_empty_view_image.png" width="72" height="49"/>
-        <image name="heart" width="128" height="128"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" width="128" height="128"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
