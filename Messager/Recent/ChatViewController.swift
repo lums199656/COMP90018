@@ -184,7 +184,6 @@ class ChatViewController: MessagesViewController {
     // 检测是否有新的信息
     private func listenForNewChats() {
         FirebaseMessageListener.shared.listenForNewChats(User.currentId, collectionId: chatId, lastMessageDate: lastMessageDate())
-        print("_x 监听新 chat 结束")
     }
     private func lastMessageDate() -> Date {
         let lastMessageDate = allLocalMessages.last?.date ?? Date()
@@ -231,8 +230,6 @@ class ChatViewController: MessagesViewController {
                 print("Error on new insertion", error.localizedDescription)
             }
         })
-        
-        print("_x Load Chats 结束")
     }
 
     
