@@ -40,26 +40,35 @@ extension ChatViewController: MessagesDataSource {
         return nil
     }
     
-    // cell 下方的 labels
-    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        if isFromCurrentSender(message: message) {
-            let message = mkMessages[indexPath.section]
-            let status = indexPath.section == mkMessages.count - 1 ? message.status + " " + message.readData.time() : ""
-            let font = UIFont.boldSystemFont(ofSize: 10)
-            let color = UIColor.systemGray
-            
-            return NSAttributedString(string: status, attributes: [.font : font, .foregroundColor: color])
-        }
-        return nil
+    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        
+        let font = UIFont.boldSystemFont(ofSize: 10)
+        let color = UIColor.darkGray
+        
+        return NSAttributedString(string: String(message.sender.displayName.prefix(4)), attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
     }
     
+//    // cell 下方的 labels
+//    func cellBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+//        if isFromCurrentSender(message: message) {
+//            let message = mkMessages[indexPath.section]
+//            let status =  message.readData.time()
+//            let font = UIFont.boldSystemFont(ofSize: 10)
+//            let color = UIColor.systemGray
+//
+//            return NSAttributedString(string: status, attributes: [.font : font, .foregroundColor: color])
+//        }
+//        return nil
+//    }
+    
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        if indexPath.section != mkMessages.count - 1 {
-            let font = UIFont.boldSystemFont(ofSize: 10)
-            let color = UIColor.darkGray
-            
-            return NSAttributedString(string: message.sentDate.time(), attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
-        }
+        
+        let font = UIFont.boldSystemFont(ofSize: 10)
+        let color = UIColor.darkGray
+        let text = MessageKitDateFormatter.shared.string(from: message.sentDate)
+//        let text = message.sentDate.time()
+        return NSAttributedString(string:text, attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
+        
         
         return nil
     }

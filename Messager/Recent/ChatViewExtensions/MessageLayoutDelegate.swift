@@ -23,6 +23,10 @@ extension ChatViewController: MessagesLayoutDelegate {
         
 
     }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 20
+    }
 //
 //    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
 //        return UIColor(named: "chatOutgoingColor")
@@ -42,7 +46,7 @@ extension ChatViewController: MessagesLayoutDelegate {
             return 18
         }
         
-        return 0
+        return 18
     }
 
     
