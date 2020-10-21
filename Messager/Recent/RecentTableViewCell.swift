@@ -35,7 +35,13 @@ class RecentTableViewCell: UITableViewCell {
     }
     
     func configure(recent: RecentChat) {
-        usernameLabel.text = recent.receiverName
+        var tmpText = ""
+        for i in recent.receiverName {
+            tmpText += " | " + i.prefix(4)
+        }
+        tmpText += " | "
+        print("_x-2 聊天框标题为", tmpText)
+        usernameLabel.text = tmpText
         usernameLabel.adjustsFontSizeToFitWidth = true
         usernameLabel.minimumScaleFactor = 0.9
         

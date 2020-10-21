@@ -8,43 +8,83 @@
 import Foundation
 import Firebase
 
-func startChat(user1: User, user2: User) -> String {
-    let chatRoomId = chatRoomIdFrom(user1Id: user1.id, user2Id: user2.id)
-    createRecentItems(chatRoomId: chatRoomId, users: [user1, user2])
-    
+// 开始一个 chat
+func startChat(users: [User]) -> String {
+    let chatRoomId = chatRoomIdFrom(users: users)
+    print("_x-1 chatRoomId", chatRoomId)
+    createRecentItems(chatRoomId: chatRoomId, users: users)
     return chatRoomId
 }
 
+
 func createRecentItems(chatRoomId: String, users: [User]) {
     
-    var memberIdsToCreateRecent = [users.first!.id, users.last!.id]
-    print("_x bbb")
+    var memberIdsToCreateRecent : [String] = []
+    for i in users {
+        memberIdsToCreateRecent.append(i.id)
+    }
+    
+    var allMembersIds : [String] = []
+    var allMembersNames : [String] = []
 
-    // 用户是否已经有 recent chat
+    for i in users {
+        allMembersIds.append(i.id)
+        allMembersNames.append(i.username)
+    }
+    
+
+    // 得到当前 chatroomId 下的所有 userId
     FirebaseReference(.Recent).whereField(kCHATROOMID, isEqualTo: chatRoomId).getDocuments{ (snapshot, error) in
         
         guard let snapshot = snapshot else {return}
         if !snapshot.isEmpty {
+            // 得到需要建立 chat 但是 Recent 里没有数据的 userId
             memberIdsToCreateRecent = removeMemberWhoHasRecent(snapshot: snapshot, memberIds: memberIdsToCreateRecent)
         }
-        print("_x", memberIdsToCreateRecent)
-        for userId in memberIdsToCreateRecent {
-            print("_x create recent for id: ", userId)
-            let senderUser = userId == User.currentId ? User.currentUser! : getReceiverFrom(users: users)
-            
-            let receiverUser = userId == User.currentId ? getReceiverFrom(users: users) : User.currentUser!
-            
-            let recentObject = RecentChat(id: UUID().uuidString, chatRoomId: chatRoomId, senderId: senderUser.id, senderName: senderUser.username, receiverId: receiverUser.id, receiverName: receiverUser.username, date: Date(), memberIds: [senderUser.id, receiverUser.id], lastMessage: "", unreadCounter: 0, avatarLink: receiverUser.avatarLink)
         
+        // 为数据库没有数据的 Id 加入数据
+        for userId in memberIdsToCreateRecent {
+            
+            let senderUser = getSenderFrom(users: users, target: userId)
+            
+            if senderUser != nil {
+                let receiverUser = getReceiverFrom(users: users, target: senderUser!)
+                
+                var receiverUserNames : [String] = []
+                var receiverUserIds : [String] = []
+                
+                for i in receiverUser {
+                    receiverUserNames.append(i.username)
+                    receiverUserIds.append(i.id)
+                }
+                print("_x-3 sender: \(senderUser!.username), receivers: \(receiverUserNames)")
+                
+                let recentObject = RecentChat(id: UUID().uuidString, chatRoomId: chatRoomId, senderId: senderUser!.id, senderName: senderUser!.username, receiverId: receiverUserIds, receiverName: receiverUserNames, date: Date(), memberIds: allMembersIds, lastMessage: "", unreadCounter: 0, avatarLink: senderUser!.avatarLink)
+            
+            // 头像这里还没改 ！！！！！！！！！！！！
             FirebaseRecentListener.shared.saveRecent(recentObject)
+                
+            }else{
+                print("Snender 不存在")
+            }
         }
     }
 }
 
-func getReceiverFrom(users: [User]) -> User {
+func getSenderFrom (users: [User], target: String) -> User? {
+    
+    for i in users {
+        if i.id == target {
+            return i
+        }
+    }
+    return nil
+}
+
+func getReceiverFrom(users: [User], target: User) -> [User] {
     var allUsers = users
-    allUsers.remove(at: allUsers.firstIndex(of: User.currentUser!)!)
-    return allUsers.first!
+    allUsers.remove(at: allUsers.firstIndex(of: target)!)
+    return allUsers
 }
 
 func removeMemberWhoHasRecent(snapshot: QuerySnapshot, memberIds: [String]) -> [String]{
@@ -61,15 +101,34 @@ func removeMemberWhoHasRecent(snapshot: QuerySnapshot, memberIds: [String]) -> [
     return memberIdsToCreateRecent
 }
 
-// 确保两个 user 无论顺序如何都只能生成同一个 roomId
-func chatRoomIdFrom(user1Id: String, user2Id: String) -> String {
+// 确保多个 user 无论顺序如何都只能生成同一个 roomId
+func chatRoomIdFrom(users: [User]) -> String {
     var chatRoomId = ""
-    let value = user1Id.compare(user2Id).rawValue
+    var userIds : [String] = []
+    for i in users {
+        userIds.append(i.id)
+    }
+    userIds = selectSort(userIds)
     
-    // 拼接字符串
-    chatRoomId = value < 0 ? (user1Id + user2Id) : (user2Id + user1Id)
-    
+    for i in userIds {
+        chatRoomId += i
+    }
     return chatRoomId
+}
+
+// 排序字符串
+func selectSort(_ arr : [String]) -> [String] {
+    var arr = arr
+    for i in 0 ..< arr.count{
+        var minIndex = i
+        for j in i ..< arr.count{
+            if arr[j].compare(arr[minIndex]).rawValue < 0 {
+                minIndex = j
+            }
+        }
+        (arr[i] , arr[minIndex]) = (arr[minIndex] , arr[i])
+    }
+    return arr
 }
 
 // 当另一方把 recent 删除时，我方点击对话框时，在数据库会为对方新创建一个 recent

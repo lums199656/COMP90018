@@ -151,7 +151,6 @@ class FirebaseUserListener {
                     return
                 }
                 let user = try? docment.data(as: User.self)
-                print("_x 4", user?.id)
                 usersArray.append(user!)
                 count += 1
                 

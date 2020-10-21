@@ -38,8 +38,8 @@ class ChatViewController: MessagesViewController {
 
     
     private var chatId = ""
-    private var reipientId = ""
-    private var recipientName = ""
+    private var reipientId : [String] = []
+    private var recipientName : [String] = []
     
     let currentUser = MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
     
@@ -56,7 +56,8 @@ class ChatViewController: MessagesViewController {
     var notificationToken: NotificationToken?
     
     
-    init(chatId: String, recipientId: String, recipientName: String) {
+    init(chatId: String, recipientId: [String], recipientName: [String]) {
+
         
         super.init(nibName: nil, bundle: nil)
         
@@ -94,7 +95,13 @@ class ChatViewController: MessagesViewController {
         
         self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
         
-        titleLabel.text = recipientName
+        var tmpText = ""
+        for i in recipientName {
+            tmpText += " | " + i.prefix(4)
+        }
+        tmpText += " | \(User.currentUser!.username.prefix(4)) | "
+        
+        titleLabel.text = tmpText
     }
     
     private func configureLeftBarButton() {
@@ -163,7 +170,7 @@ class ChatViewController: MessagesViewController {
     // Message 的发送
     func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
         print("_x 发送信息")
-        OutgoingMessage.send(chartId: chatId, text: text!, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId, reipientId])
+        OutgoingMessage.send(chartId: chatId, text: text!, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId] + reipientId)
     }
     
     private func insertMessage(_ localMessage: LocalMessage) {
@@ -197,7 +204,7 @@ class ChatViewController: MessagesViewController {
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId)
 
         allLocalMessages = realm.objects(LocalMessage.self).filter(predicate).sorted(byKeyPath: kDATE, ascending: true)
-        print("we have \(allLocalMessages.count) messages")
+        print("_x-10 这个聊天框: \(chatId) 我们有 \(allLocalMessages.count) messages")
 
         
         // 从 firebase 下载数据保存到 localdb

@@ -40,6 +40,7 @@ class OutgoingMessage {
         for memberId in memberIds {
 //            print("_x save message for \(memberId)")
             // 保存在 firebase
+            print("_x-7 将新信息保存给", memberId)
             FirebaseMessageListener.shared.addMessage(message, memberId: memberId)
         }
     }

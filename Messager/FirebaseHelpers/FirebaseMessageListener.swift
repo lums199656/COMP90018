@@ -36,10 +36,12 @@ class FirebaseMessageListener {
                     case .success(let messageObject):
                         
                         if let message = messageObject {
-                            
+                            print("_x-11 sender: \(message.senderName), reveiver: \(User.currentUser?.username)")
                             if message.senderId != User.currentId {
                                 RealmManager.shared.saveToRealm(message)
+                                print("_x-8 \(User.currentUser?.username) 成功将新的 Message : \(message.message) 加入本地" )
                             }
+                            
                         } else {
                             print("Document doesnt exist")
                         }
@@ -50,6 +52,7 @@ class FirebaseMessageListener {
                 }
             }
         })
+        
     }
     
     func listenForReadStatusChange(_ documentId: String, collectionId: String, completion: @escaping (_ updatedMessage: LocalMessage) -> Void) {

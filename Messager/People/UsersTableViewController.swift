@@ -47,7 +47,6 @@ class UsersTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! UserTableViewCell
-        print("-x _")
         let  user = searchController.isActive ? filteredUsers[indexPath.row] : allUsers[indexPath.row]
         cell.configure(user: user)
         return cell
@@ -58,11 +57,11 @@ class UsersTableViewController: UITableViewController {
         let user = searchController.isActive ? filteredUsers[indexPath.row] : allUsers[indexPath.row]
         
         // chat
-        let chatId = startChat(user1: User.currentUser!, user2: user)
+        let chatId = startChat(users: [User.currentUser!, user, allUsers[8]])
         print("_x start chat", chatId)
         
         // 打开一个 chat room 界面
-        let privateChatView = ChatViewController(chatId: chatId, recipientId: user.id, recipientName: user.username)
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: [user.id], recipientName: [user.username])
         privateChatView.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(privateChatView, animated: true)
         

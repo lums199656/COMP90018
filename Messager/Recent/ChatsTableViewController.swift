@@ -103,7 +103,13 @@ class ChatsTableViewController: UITableViewController {
     // 搜索筛选的策略
     private func filteredContentForSearchText(searchText: String) {
         filteredRecents = allRecents.filter({ (recent) -> Bool in
-            return recent.receiverName.lowercased().contains(searchText.lowercased())
+            for i in recent.receiverName {
+                if i.lowercased().contains(searchText.lowercased()) {
+                    return true
+                }
+            }
+            return false
+            
         })
         
         tableView.reloadData()
