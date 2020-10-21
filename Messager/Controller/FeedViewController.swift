@@ -11,6 +11,7 @@ import Lottie
 import DOFavoriteButtonNew
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    let cur_id : String = Auth.auth().currentUser!.uid
     var lists : [FeedData] = []
     var cur_count = 0 //用来判断当前处在哪一个位置
     var max = 1 //用来判断最大访问数量
@@ -83,8 +84,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //调用下一个数据库数据
     func getData(){
         //获取数据
-        //.whereField().limit(to: num)
-        db.collection(K.FStore.act).whereField("read", isEqualTo: 0).limit(to: 2).getDocuments{ (querySnapshot, error) in
+        //.whereField().limit(to: num) .whereField("read", isEqualTo: 0)
+        //whereField(_:notIn:) finds documents where a specified field’s value is not in a specified array.
+        //let predicate = NSPredicate(format: "NONE read == %@", Auth.auth().currentUser!.uid)
+        //db.collection("Activities").filter(using: predicate)
+        db.collection(K.FStore.act).getDocuments{ (querySnapshot, error) in
             if let e = error{
                 print("error happens in getDocuments\(e)" )
             }
@@ -93,7 +97,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     for doc in snapShotDocuments{
                         let data = doc.data()
                         //将数据赋值建立结构体，加入到lists中
-                        if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = data[K.Activity.uid] as? String, let user = data[K.Activity.user] as? String, let image = data[K.Activity.image] as? String{
+                        if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = data[K.Activity.uid] as? String, let user = data[K.Activity.user] as? String, let image = data[K.Activity.image] as? String, let read = data["read"] as? [String]{
                             //print(detail)
                             var user1: String = ""
                             var user2: String = ""
@@ -101,59 +105,47 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //                            var user4: String = ""
 //                            var user5: String = ""
                             //通过uid找到join表，获取userID
-                            self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
-                                if let e = error{
-                                    print("error happens in getDocuments\(e)" )
-                                }
-                                else{
-                                    if let snapShotDocuments = querySnapshot?.documents{
-                                        for doc in snapShotDocuments{
-                                            let data = doc.data()
-                                            if(data["user1"] != nil){
-                                                user1 = data["user1"] as! String
-                                            }
-                                            if(data["user2"] != nil){
-                                                user2 = data["user2"] as! String
-                                            }
-//                                            if(data["user3"] != nil){
-//                                                user3 = data["user3"] as! String
-//                                            }
-//                                            if(data["user4"] != nil){
-//                                                user4 = data["user4"] as! String
-//                                            }
-//                                            if(data["user5"] != nil){
-//                                                user5 = data["user5"] as! String
-//                                            }
-                                            
-                                            
-//                                            self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
-//                                                if let e = error{
-//                                                    print("error happens in getDocuments\(e)" )
-//                                                }
-//                                                else{
-//                                                    if let snapShotDocuments = querySnapshot?.documents{
-//                                                        for doc in snapShotDocuments{
-//                                                            let data = doc.data()
-//                                                        }
-//                                                    }
-//                                                }
-//                                            }
-                                            //通过userID获取 userImage
-                                            self.db.collection("UserInfo").whereField("userID", isEqualTo: user1).getDocuments{ (querySnapshot, error) in
-                                                if let e = error{
-                                                    print("error happens in getDocuments\(e)" )
+                            print("uid is:"+Auth.auth().currentUser!.uid)
+                            if(!read.contains(Auth.auth().currentUser!.uid)){
+                                self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
+                                    if let e = error{
+                                        print("error happens in getDocuments\(e)" )
+                                    }
+                                    else{
+                                        if let snapShotDocuments = querySnapshot?.documents{
+                                            for doc in snapShotDocuments{
+                                                let data = doc.data()
+                                                if(data["user1"] != nil){
+                                                    user1 = data["user1"] as! String
                                                 }
-                                                else{
-                                                    if let snapShotDocuments = querySnapshot?.documents{
-                                                        for doc in snapShotDocuments{
-                                                            let data = doc.data()
-                                                            if let user1_1 = data["userImage"] as? String{
-                                                                user1 = user1_1
-                                                            }
-                                                        }
-                                                    }
+                                                if(data["user2"] != nil){
+                                                    user2 = data["user2"] as! String
                                                 }
-                                                self.db.collection("UserInfo").whereField("userID", isEqualTo: user2).getDocuments{ (querySnapshot, error) in
+    //                                            if(data["user3"] != nil){
+    //                                                user3 = data["user3"] as! String
+    //                                            }
+    //                                            if(data["user4"] != nil){
+    //                                                user4 = data["user4"] as! String
+    //                                            }
+    //                                            if(data["user5"] != nil){
+    //                                                user5 = data["user5"] as! String
+    //                                            }
+                                                
+                                                
+    //                                            self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
+    //                                                if let e = error{
+    //                                                    print("error happens in getDocuments\(e)" )
+    //                                                }
+    //                                                else{
+    //                                                    if let snapShotDocuments = querySnapshot?.documents{
+    //                                                        for doc in snapShotDocuments{
+    //                                                            let data = doc.data()
+    //                                                        }
+    //                                                    }
+    //                                                }
+    //                                            }
+                                                //通过userID获取 userImage
+                                                self.db.collection("UserInfo").whereField("userID", isEqualTo: user1).getDocuments{ (querySnapshot, error) in
                                                     if let e = error{
                                                         print("error happens in getDocuments\(e)" )
                                                     }
@@ -161,23 +153,39 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                         if let snapShotDocuments = querySnapshot?.documents{
                                                             for doc in snapShotDocuments{
                                                                 let data = doc.data()
-                                                                if let user2_2 = data["userImage"] as? String{
-                                                                    user2 = user2_2
+                                                                if let user1_1 = data["userImage"] as? String{
+                                                                    user1 = user1_1
                                                                 }
                                                             }
                                                         }
                                                     }
-                                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, user1: user1, user2: user2)
-                                                    //print(feedData)
-                                                    self.lists.append(feedData)
-                                                    self.tableView.reloadData()
-                                                    
+                                                    self.db.collection("UserInfo").whereField("userID", isEqualTo: user2).getDocuments{ (querySnapshot, error) in
+                                                        if let e = error{
+                                                            print("error happens in getDocuments\(e)" )
+                                                        }
+                                                        else{
+                                                            if let snapShotDocuments = querySnapshot?.documents{
+                                                                for doc in snapShotDocuments{
+                                                                    let data = doc.data()
+                                                                    if let user2_2 = data["userImage"] as? String{
+                                                                        user2 = user2_2
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, user1: user1, user2: user2)
+                                                        //print(feedData)
+                                                        self.lists.append(feedData)
+                                                        self.tableView.reloadData()
+                                                        
+                                                    }
                                                 }
                                             }
                                         }
                                     }
                                 }
                             }
+                            
                         }
                     }
                 }
@@ -210,15 +218,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     
     
-    // 滑动偏移量，每次要清零，免得影响后续操作
+    // 滑动偏移量
     var lastContentOffset: CGFloat = 0
     var screenSize = UIScreen.main.bounds.size.height - 80
 
     // 记录滑动偏移量
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.lastContentOffset = scrollView.contentOffset.y
-        print("scrollView.contentOffset.y is:")
-        print(scrollView.contentOffset.y)
+//        print("scrollView.contentOffset.y is:")
+//        print(scrollView.contentOffset.y)
     }
 
     //下滑拖动结束时候会触发事件的方法
@@ -231,8 +239,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.max += 1
                 setRead()
             }
-//            print("列表size:")
-//            print(self.lists.count)
             if(self.cur_count >= self.lists.count - 1){
                 getData()
                 print("getAgain")
@@ -252,7 +258,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func setRead(){
         //修改read为1
-        self.db.collection(K.FStore.act).document(changeUID).updateData(["read": 1])
+        self.db.collection(K.FStore.act).document(changeUID).updateData(["read": FieldValue.arrayUnion([self.cur_id])])
     }
     
     
