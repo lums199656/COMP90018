@@ -31,6 +31,8 @@ target 'Messager' do
   pod 'CLTypingLabel', '~> 0.4.0'
   pod 'Tabman', '~> 2.9'  # another UI Page View Controller
   
+  #keyboard features
+  pod 'IQKeyboardManagerSwift'
   
 
 pod 'Firebase/Core'
