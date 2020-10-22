@@ -72,14 +72,15 @@ struct DBSeeding {
     
     func seedActivity() {
         let names = ["Alice", "Bob", "Clara", "Dave", "Ella"]
+        
         let actNames = ["漫威复仇者", "队长小翼 新秀崛起",
                         "刀剑神域", "Survivalists!!!", "女神异闻录５"]
+        
         let actDetails = [ "单人战役模式需要一次性网络连接；多人游戏及下载上线后,内容需要网络连接。",
                            "深受追捧的《队长小翼》漫画在全球范围内依旧热度不减",
                            "世界绝不会忘记",
                            "全世界累计销量突破320万份的《___》，以系列首次的动作RPG形式登场。！",
-                           "精彩刺激", "最高质素"
-        ]
+                           "精彩刺激", "最高质素"]
         
         for i in 0...9 {
             
@@ -102,9 +103,11 @@ struct DBSeeding {
             // seed activity
             let actName = actNames.randomElement()! + String(Int.random(in: 1000...2000))
             let actDetail = actDetails.randomElement()! + String(Int.random(in: 1000...2000))
-            let act = Activity(uid: actRef.documentID, userId:
-                                userRef.documentID, createDate: Date().timeIntervalSince1970,
-                               actTitle: actName, actDetail: actDetail,
+            let act = Activity(uid: actRef.documentID,
+                               userId: userRef.documentID,
+                               createDate: Date().timeIntervalSince1970,
+                               actTitle: actName,
+                               actDetail: actDetail,
                                imageId: actRef.documentID)
             
             
