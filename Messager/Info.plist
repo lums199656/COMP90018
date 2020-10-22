@@ -64,5 +64,9 @@
 	<string>[the app wants to photo]</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>[the app wants to use your photo]</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app want to use your current location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Not gonna happen</string>
 </dict>
 </plist>

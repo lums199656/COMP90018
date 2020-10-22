@@ -43,10 +43,24 @@ class PostViewController2: UIViewController {
     
 
     
-    
+    // MARK:- IBActions
     @IBAction func backBttnTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
         print("wwwdw")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "tableToPost" {
+            let destinationVC = segue.destination as! PostViewController
+            let sd = sender as! ActivityTabelViewCell
+            destinationVC.postCategory = sd.category.name
+        }
+        if segue.identifier == "collectionToPost" {
+            let destinationVC = segue.destination as! PostViewController
+            let sd = sender as! CategoryCollectionViewCell
+            destinationVC.postCategory = sd.category.name
+        }
+       
     }
     
 }
@@ -112,7 +126,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }
     // Aktualisiere
     func update(){
-        let colors:[UIColor] = [#colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1), #colorLiteral(red: 0.2894071043, green: 0.9341720343, blue: 0.969543159, alpha: 1), #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1), #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1), #colorLiteral(red: 0.7254902124, green: 0.1283889892, blue: 0.1148036011, alpha: 1)]
+        let colors:[UIColor] = [#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)]
         let color = Int.random(in: 0..<colors.count)
         if let category = category {
             container.layer.cornerRadius = 20
@@ -145,3 +159,5 @@ class ActivityTabelViewCell: UITableViewCell {
     }
     
 }
+
+

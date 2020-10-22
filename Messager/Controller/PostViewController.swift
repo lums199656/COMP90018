@@ -12,20 +12,26 @@ import UITextView_Placeholder
 class PostViewController: UIViewController {
     
     // post activity related data
+    var postCategory: String?
     var postImage: UIImage?
     var postTitle: String?
     var postDetail: String?
+    var postLocationString: String?
+
     
     // IBOutlets
     @IBOutlet weak var activityImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
+
+
     
     @IBOutlet weak var detailTextView: UITextView!
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationButton: UIButton!
     
-  
+    @IBOutlet weak var categoryLabel: UILabel!
+    
     // _
     private let imagePicker = UIImagePickerController()
     private let db = Firestore.firestore()
@@ -49,15 +55,22 @@ class PostViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        if let category = postCategory {
+            categoryLabel.text = "Category: " + category
+        }
+        
+        setupUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
+    
     }
     
+    func setupUI() {
+        locationButton.setTitle("", for: [])
+    }
     
-    // IBActions
-
+    // MARK:- IBActions
     
     @IBAction func backBttnTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -128,6 +141,11 @@ class PostViewController: UIViewController {
             destinationVC.postTitle = self.postTitle
             destinationVC.postDetail = self.postDetail
         }
+        if segue.identifier == "toLocation" {
+            let destinationVC = segue.destination as! SelectLocationViewController
+            destinationVC.delegate = self
+        }
+        
     }
     
     
@@ -160,7 +178,12 @@ extension PostViewController:  UIImagePickerControllerDelegate {
 
 // MARK:- Select Location Delegate
 extension PostViewController: SelectLocationDelegate {
-    func updateLocation() {
+    func updateLocation(_ locString: String) {
+        print("!!!! Update Location Called")
+        
+        postLocationString = locString
+        
+        locationLabel.text = locString
         
     }
 }
