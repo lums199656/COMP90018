@@ -7,6 +7,7 @@
 		<key>Messager.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< Updated upstream
 			<integer>42</integer>
 		</dict>
 	</dict>
@@ -26,7 +27,9 @@
 		<dict>
 			<key>primary</key>
 			<true/>
+=======
 			<integer>43</integer>
+>>>>>>> Stashed changes
 		</dict>
 	</dict>
 </dict>

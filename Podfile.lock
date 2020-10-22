@@ -220,6 +220,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - ChainableAnimations (3.0.1)
   - CLTypingLabel (0.4.0)
+  - DOFavoriteButtonNew (0.0.6)
   - Firebase/Analytics (6.34.0):
     - Firebase/Core
   - Firebase/Auth (6.34.0):
@@ -359,6 +360,7 @@ PODS:
     - Kingfisher/Core (= 5.15.6)
   - Kingfisher/Core (5.15.6)
   - leveldb-library (1.22)
+  - lottie-ios (3.1.8)
   - MessageKit (3.4.2):
     - InputBarAccessoryView (~> 5.2.1)
   - nanopb (1.30906.0):
@@ -382,10 +384,12 @@ PODS:
   - SnapKit (5.0.1)
   - Tabman (2.9.1):
     - Pageboy (~> 3.6.0)
+  - "UITextView+Placeholder (1.4.0)"
 
 DEPENDENCIES:
   - ChainableAnimations
   - CLTypingLabel (~> 0.4.0)
+  - DOFavoriteButtonNew
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
@@ -398,6 +402,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - Just
   - Kingfisher
+  - lottie-ios
   - MessageKit
   - NVActivityIndicatorView
   - ProgressHUD
@@ -405,6 +410,7 @@ DEPENDENCIES:
   - SKPhotoBrowser
   - SnapKit
   - Tabman (~> 2.9)
+  - "UITextView+Placeholder"
 
 SPEC REPOS:
   trunk:
@@ -412,6 +418,7 @@ SPEC REPOS:
     - BoringSSL-GRPC
     - ChainableAnimations
     - CLTypingLabel
+    - DOFavoriteButtonNew
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -435,6 +442,7 @@ SPEC REPOS:
     - Just
     - Kingfisher
     - leveldb-library
+    - lottie-ios
     - MessageKit
     - nanopb
     - NVActivityIndicatorView
@@ -447,12 +455,14 @@ SPEC REPOS:
     - SKPhotoBrowser
     - SnapKit
     - Tabman
+    - "UITextView+Placeholder"
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   ChainableAnimations: 12e0a88e72fb554ad4cda38c40474e4d65c972a2
   CLTypingLabel: 95a7d1faf7e3d1d952cd11cb0491d17d80c50934
+  DOFavoriteButtonNew: 1710b2c958e9571f9adaa023f528b495cc5e3606
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
   FirebaseAuth: c92d49ada7948d1a23466e3db17bc4c2039dddc3
@@ -476,6 +486,7 @@ SPEC CHECKSUMS:
   Just: aef5105fb2c7069b65aa6f21aec8f429057f9c19
   Kingfisher: b3554e7bf6106115b44e8795300bad580ef2fdc7
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   MessageKit: 5ff0908bce5a7b6e11bd0b60e13a33e03697d161
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
@@ -488,7 +499,8 @@ SPEC CHECKSUMS:
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Tabman: 085d89c65be9e883629bdaf5b1453a6397e57846
+  "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: c9e54bad34f0aaac1ce42eab69b1376a73839d2d
+PODFILE CHECKSUM: fb5f7cc9f0320390e2cf7082ac361a930782df88
 
 COCOAPODS: 1.9.3
