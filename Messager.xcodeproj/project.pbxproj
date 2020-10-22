@@ -16,6 +16,7 @@
 		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
 		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
 		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
+		8223DCF4254186FF00675647 /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223DCF3254186FF00675647 /* ActivityDetailController.swift */; };
 		9B201B31253EE10E00A30EFE /* ScaleAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */; };
 		9B201B3B253EE8A400A30EFE /* DOFavoriteButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B201B3A253EE8A400A30EFE /* DOFavoriteButtonNew.swift */; };
 		9B28DDE225414E8D00A56C3D /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */; };
@@ -102,6 +103,7 @@
 		8214C9F7253416D700909AEE /* CreatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedCell.swift; sourceTree = "<group>"; };
 		8214C9F8253416D700909AEE /* UIViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		8223DCF3254186FF00675647 /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
 		872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1298873614C79BB233554 /* Pods-MessagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.debug.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimationButton.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 				BBEE4335252DDF2400D3B305 /* Activity.swift */,
 				BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */,
 				BBEE4366252DEAB900D3B305 /* DBSeeding.swift */,
+				8223DCF3254186FF00675647 /* ActivityDetailController.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				9B201B31253EE10E00A30EFE /* ScaleAnimationButton.swift in Sources */,
 				BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */,
 				BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */,
+				8223DCF4254186FF00675647 /* ActivityDetailController.swift in Sources */,
 				BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */,
 				BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */,
 				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
