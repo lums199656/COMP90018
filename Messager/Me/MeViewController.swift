@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
+class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDelegate {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
@@ -44,7 +44,7 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         }
         return tableCell ?? UITableViewCell()
     }
-    
+
     
     // change table views in personal page
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -167,4 +167,18 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         }
     }
 
+}
+
+extension MeViewController : UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        if tableView == self.firstView{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+            secondVC.activityID = createdLists[indexPath.row].activityID!
+            // show(secondVC, sender: self)
+            self.navigationController?.show(secondVC, sender: self)
+        }
+    }
 }
