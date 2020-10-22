@@ -19,6 +19,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var labelT: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var view: UIView!
+    @IBOutlet weak var test: UIImageView!
     
     @IBOutlet weak var btn: UIButton!
     
@@ -41,6 +42,7 @@ class FeedCell: UITableViewCell {
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
             print("activity-images/"+imageId)
+            //cloudFileRef.write(toFile: )
             cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -60,6 +62,7 @@ class FeedCell: UITableViewCell {
                         print(error.localizedDescription)
                     } else {
                         self.profile1.image = UIImage(data: data!)
+                        //self.test.image = UIImage(data: data!)
                     }
                 }
             }
