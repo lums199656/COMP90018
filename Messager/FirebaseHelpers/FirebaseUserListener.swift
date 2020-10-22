@@ -38,7 +38,7 @@ class FirebaseUserListener {
                 
                 // 创建 user 并且保存在本地
                 if authDataResult?.user != nil {
-                    let user = User(id: authDataResult!.user.uid, username: email, email: email, pushId: "", avatarLink: "", status: "Hello World!", intro: "", location: "")
+                    let user = User(id: authDataResult!.user.uid, username: email, email: email, pushId: "", avatarLink: "", status: "Hello World!", location: "", intro: "")
                     
                     // 保存 user 信息在本地
                     saveUserLocally(user)
