@@ -2388,7 +2388,7 @@
         <!--Activity Detail-->
         <scene sceneID="5fl-6i-kZN">
             <objects>
-                <viewController id="9IL-sf-v63" userLabel="Activity Detail" sceneMemberID="viewController">
+                <viewController id="9IL-sf-v63" userLabel="Activity Detail" customClass="ActivityDetailController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aFK-kr-S2p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2538,6 +2538,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aW4-xg-mXx">
                                 <rect key="frame" x="151" y="792" width="112" height="30"/>
                                 <state key="normal" title="Start group chat"/>
+                                <connections>
+                                    <action selector="startGroupChat:" destination="9IL-sf-v63" eventType="touchUpInside" id="du0-gY-3Af"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gm9-dg-o7A"/>
@@ -2567,6 +2570,23 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VZ4-ls-rqi"/>
+                    <connections>
+                        <outlet property="date" destination="zL9-U6-75d" id="pyK-U3-LVw"/>
+                        <outlet property="details" destination="Zbd-UJ-QFL" id="dp6-8O-N1S"/>
+                        <outlet property="image" destination="rGe-ei-hm3" id="yIH-Qp-t6h"/>
+                        <outlet property="location" destination="hMr-qq-fhB" id="6LV-CA-ZSd"/>
+                        <outlet property="p1Image" destination="qE1-kW-1hx" id="DQ9-fT-n8U"/>
+                        <outlet property="p1Name" destination="1tf-ck-6OM" id="VNO-yD-wq9"/>
+                        <outlet property="p2Image" destination="PEb-WI-iYn" id="UbR-19-IKh"/>
+                        <outlet property="p2Name" destination="xqG-NY-sGN" id="uj9-Y8-3Iu"/>
+                        <outlet property="p3Image" destination="w10-w8-tQ8" id="CuI-0t-Wmu"/>
+                        <outlet property="p3Name" destination="i5M-pV-r5l" id="h7q-Gi-nSf"/>
+                        <outlet property="p4Image" destination="5kW-gS-MG9" id="aTo-gf-SRJ"/>
+                        <outlet property="p4Name" destination="j6Y-RA-ou8" id="6Pj-Zt-HKG"/>
+                        <outlet property="starterImage" destination="xL0-5F-uA7" id="egu-RH-zwc"/>
+                        <outlet property="starterName" destination="s22-74-iuG" id="yVW-R6-8zh"/>
+                        <outlet property="title" destination="kJf-SK-7EB" id="FhC-aD-uL1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4sg-to-dfu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2588,8 +2608,8 @@
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart" width="128" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
