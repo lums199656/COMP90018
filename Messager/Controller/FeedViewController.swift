@@ -105,7 +105,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //                            var user4: String = ""
 //                            var user5: String = ""
                             //通过uid找到join表，获取userID
-                            print("uid is:"+Auth.auth().currentUser!.uid)
+                            //print("uid is:"+Auth.auth().currentUser!.uid)
                             if(!read.contains(Auth.auth().currentUser!.uid)){
                                 self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
                                     if let e = error{
@@ -258,7 +258,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func setRead(){
         //修改read为1
-        self.db.collection(K.FStore.act).document(changeUID).updateData(["read": FieldValue.arrayUnion([self.cur_id])])
+        //self.db.collection(K.FStore.act).document(changeUID).updateData(["read": FieldValue.arrayUnion([self.cur_id])])
     }
     
     
