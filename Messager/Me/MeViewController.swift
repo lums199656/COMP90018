@@ -22,7 +22,6 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         var count: Int?
         if tableView == self.firstView{
             count = createdLists.count
-            print("######## there is \(count) cell")
         }
         if tableView == self.secondView{
             count = joinedactivities.count
@@ -46,7 +45,6 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         return tableCell ?? UITableViewCell()
     }
     
-    let dbSeed = DBSeeding(false)
     
     // change table views in personal page
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -109,19 +107,21 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     func loadInfo() {
         let user = Auth.auth().currentUser
         if let user = user {
-            let userInfo = db.collection("UserInfo")
-            let query = userInfo.whereField("userID", isEqualTo: user.uid)
+            let userInfo = db.collection("User")
+            let query = userInfo.whereField("id", isEqualTo: user.uid)
             query.getDocuments { [self] (querySnapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
                         } else {
                             for document in querySnapshot!.documents {
                                 let data = document.data()
-                                let image = data["userImage"] as! String
-                                let intro = data["userIntro"] as! String
-                                let location = data["userLocation"] as! String
+                                let image = data["avatarLink"] as! String
+                                let intro = data["intro"] as! String
+                                let location = data["location"] as! String
+                                let name = data["username"] as! String
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
+                                self.userName.text = name
                                 let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
                                             cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
                                                 if let error = error {
@@ -134,20 +134,6 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
                             }
                         }
                     }
-            let userAuth = db.collection("User")
-            let queryUser = userAuth.whereField("id", isEqualTo: user.uid)
-            queryUser.getDocuments { [self] (querySnapshot, error) in
-                        if let error = error {
-                            print("Error getting documents: \(error)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let name = data["username"] as! String
-                                self.userName.text = name
-                            }
-                        }
-                    }
-
         }
     }
 

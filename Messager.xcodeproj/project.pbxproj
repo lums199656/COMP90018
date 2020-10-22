@@ -344,6 +344,8 @@
 		A5D8163025341DCB006E8DE4 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
+				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A5C155B22541381400A504D6 /* ActivityData.swift */,
 				A5C155AD2541380400A504D6 /* OtherUserViewController.swift */,
 				8214C9F7253416D700909AEE /* CreatedCell.swift */,
@@ -380,8 +382,6 @@
 				9B28DDE325414EBD00A56C3D /* MKMessage.swift */,
 				9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */,
 				A5C155652541356E00A504D6 /* OutgoingMessage.swift */,
-				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
-				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
 				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
