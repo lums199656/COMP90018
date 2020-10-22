@@ -13,7 +13,7 @@ public struct Activity: Codable {
     let userId: String?   // uid of the activity initiator
     let likeCount: Int? = nil  // number of likes
     let shareCount: Int? = nil // number of share to others..
-    
+    let read: Int? = nil
     let createDate: Double?
     
 //    var pendingApp: [String]? = nil // array of uid of activity_application
@@ -37,7 +37,23 @@ public struct Activity: Codable {
         case actTitle
         case actDetail
         case imageId
-        
+    }
+    
+    enum Catogory: String, CaseIterable {
+        case Sports
+        case ESports
+        case Recreation
+        case Movie
+        case OutdoorsAdventure
+        case Learning
+        case Phtography
+        case FoodNDrink
+        case Music
+        case Games
+        case Pet
+        case Shopping
+        case Dance
+        case Social
     }
 }
 
