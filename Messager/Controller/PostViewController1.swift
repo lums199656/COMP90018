@@ -8,22 +8,24 @@
 import UIKit
 import Firebase
 import UITextView_Placeholder
+import CoreLocation
 
-class PostViewController: UIViewController {
+class PostViewController1: UIViewController {
     
     // post activity related data
     var postCategory: String?
     var postImage: UIImage?
     var postTitle: String?
     var postDetail: String?
+    var postLocation: CLLocation?
     var postLocationString: String?
-
+    var postActStartDate: Date?
+    var postActEndDate: Date?
+    
     
     // IBOutlets
     @IBOutlet weak var activityImageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
-
-
     
     @IBOutlet weak var detailTextView: UITextView!
     
@@ -32,11 +34,19 @@ class PostViewController: UIViewController {
     
     @IBOutlet weak var categoryLabel: UILabel!
     
+    
+    @IBOutlet weak var startDateField: UITextField!
+    @IBOutlet weak var endDateField: UITextField!
+    
+    
     // _
     private let imagePicker = UIImagePickerController()
     private let db = Firestore.firestore()
     private let storage = Storage.storage()
     
+    var startDatePicker = UIDatePicker()
+    var endDatePicker = UIDatePicker()
+
     
     // Override Function
     override func viewDidLoad() {
@@ -45,18 +55,71 @@ class PostViewController: UIViewController {
         // Setup textView Placeholder stuff
         detailTextView.delegate = self
         
-        detailTextView.text = "Placeholder"
+        detailTextView.text = "Activity Details here..."
         detailTextView.textColor = UIColor.lightGray
         
 //        detailTextView.becomeFirstResponder()
 //        detailTextView.selectedTextRange = detailTextView.textRange(from: detailTextView.beginningOfDocument, to: detailTextView.beginningOfDocument)
-
+        
+        // Date Pickers
+        startDatePicker.datePickerMode = .dateAndTime
+        startDatePicker.preferredDatePickerStyle = .wheels
+        endDatePicker.datePickerMode = .dateAndTime
+        endDatePicker.preferredDatePickerStyle = .wheels
+        
+        // _. change input view of textfiled
+        startDateField.inputView = startDatePicker
+        endDateField.inputView = endDatePicker
+        
+        startDatePicker.addTarget(self, action: #selector(startDateChanged(datePicker:)), for: .valueChanged)
+        endDatePicker.addTarget(self, action: #selector(endDateChanged(datePicker:)), for: .valueChanged)
+        
+        // __. init Start time and show on screen
+        var nowDate = Date().advanced(by: 60*60*3)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:00"
+        startDateField.text = dateFormatter.string(from: nowDate)
+        postActStartDate = nowDate
+        
+        nowDate = nowDate.advanced(by: 60*60)
+        endDateField.text = dateFormatter.string(from: nowDate)
+        postActEndDate = nowDate
+        
+        startDatePicker.minimumDate = Date()
+        endDatePicker.minimumDate = nowDate.advanced(by: -60*60)
+        
+        startDatePicker.minuteInterval = 15
+        endDatePicker.minuteInterval = 15
     }
+    
+    @objc func startDateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+        
+        startDateField.text = dateFormatter.string(from: datePicker.date)
+        
+        // limit startPicker range
+        endDatePicker.minimumDate = startDatePicker.date.advanced(by: 60*15)
+        postActStartDate = datePicker.date
+        
+        // TODO: 如果start date > end date， 自动更新end date
+    }
+    
+    @objc func endDateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+        
+        endDateField.text = dateFormatter.string(from: datePicker.date)
+        
+        postActEndDate = datePicker.date
+    }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         if let category = postCategory {
-            categoryLabel.text = "Category: " + category
+            categoryLabel.text = category
         }
         
         setupUI()
@@ -88,7 +151,7 @@ class PostViewController: UIViewController {
     }
     
     @IBAction func postBttnTapped(_ sender: Any) {
-        print("postBttnTapped")
+
         
         guard let image = activityImageView.image else { print("no image selected"); return }
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -96,7 +159,7 @@ class PostViewController: UIViewController {
         guard let detailText = detailTextView.text else {return }
         
             
-        let actRef = db.collection(K.FStore.act).document()  // Activity Document reference
+        let actRef = db.collection(K.FStore.act).document()  // new Activity Document reference
         let storageRef = storage.reference()
         let activityImageRef = storageRef.child("activity-images")
         
@@ -115,15 +178,28 @@ class PostViewController: UIViewController {
         
         
         func uploadActivity() {
-            let act = Activity(uid: actRef.documentID, userId: userId,
-                               createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,
-                               imageId: actRef.documentID)
-            do {
-                try actRef.setData(from: act)
-                print("Activity Document added with ID: \(actRef.documentID)")
-            } catch let error {
-                print("Error writing city to Firestore: \(error)")
+//            let act = Activity(uid: actRef.documentID, userId: userId,
+//                               createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,
+//                               imageId: actRef.documentID)
+            var geoPoint: GeoPoint?
+            if let location = postLocation {
+                geoPoint = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             }
+            let readDic = [userId: 1]
+            actRef.setData([
+                "actDetail": detailText,
+                "actTitle": titleText,
+                "createDate": Date() as Any,
+                "startDate": postActStartDate as Any,
+                "endDate": postActEndDate as Any,
+                "location": geoPoint as Any,
+                "locationString": postLocationString as Any,
+                "category": postCategory as Any,
+                "imageId": actRef.documentID,
+                "read_dic": readDic as Any
+            ])
+
+            print("Activity Document added with ID: \(actRef.documentID)")
         }
         
         uploadActivity()
@@ -131,7 +207,10 @@ class PostViewController: UIViewController {
         
         
         // Segue back to Activity View
+        self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
         self.dismiss(animated: true, completion: nil)
+        
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -142,7 +221,7 @@ class PostViewController: UIViewController {
             destinationVC.postDetail = self.postDetail
         }
         if segue.identifier == "toLocation" {
-            let destinationVC = segue.destination as! SelectLocationViewController
+            let destinationVC = segue.destination as! PostLocationViewController
             destinationVC.delegate = self
         }
         
@@ -158,7 +237,7 @@ class PostViewController: UIViewController {
 
 
 // MARK:- Delegate for Image Picker
-extension PostViewController:  UIImagePickerControllerDelegate {
+extension PostViewController1:  UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -177,27 +256,29 @@ extension PostViewController:  UIImagePickerControllerDelegate {
 }
 
 // MARK:- Select Location Delegate
-extension PostViewController: SelectLocationDelegate {
-    func updateLocation(_ locString: String) {
+extension PostViewController1: PostLocationDelegate {
+    func updateLocation(location: CLLocation?, locString: String?) {
         print("!!!! Update Location Called")
         
-        postLocationString = locString
-        
-        locationLabel.text = locString
-        
+        if let location = location, let locString = locString {
+            postLocation = location
+            postLocationString = locString
+            locationLabel.text = locString
+        } else {
+            locationLabel.text = "Any Location"
+        }
     }
 }
 
 // MARK:- Navigation Controller Delegate
-extension PostViewController: UINavigationControllerDelegate {
+extension PostViewController1: UINavigationControllerDelegate {
     
 }
 
 
 // MARK:-
-extension PostViewController: UITextViewDelegate {
+extension PostViewController1: UITextViewDelegate {
     
-
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 
@@ -210,7 +291,7 @@ extension PostViewController: UITextViewDelegate {
         // and set the cursor to the beginning of the text view
         if updatedText.isEmpty {
 
-            textView.text = "Placeholder"
+            textView.text = "Activity Details here..."
             textView.textColor = UIColor.lightGray
 
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)

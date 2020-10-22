@@ -11,14 +11,14 @@ import Firebase
 struct DBSeeding {
     let db = Firestore.firestore()
     let storage = Storage.storage()
-    
+
     init(_ doSeed: Bool) {
-        
+
         if doSeed {
             seedActivity()
         }
     }
-    
+
     // MARK:
     func uploadImage(from fileName: String, to cloudName: String) {
         // 1. Cloud Storage Reference
@@ -26,24 +26,24 @@ struct DBSeeding {
         let activityImageRef = storageRef.child("activity-images")
         let cloudFileRef = activityImageRef.child(cloudName)
         print(cloudFileRef)
-        
+
         // 2. Convert image to Data()
         guard let data = UIImage(named: fileName)?.jpegData(compressionQuality: 1) else {
             fatalError("")
         }
-        
+
         // 3. Upload the file to the path "activity-images/_"
         let uploadTask = cloudFileRef.putData(data, metadata: nil) { (metadata, error) in
             guard let metadata = metadata else {
                 fatalError("metadata error?")
             }
-            
+
             print("Success upload image \(fileName)")
-            
+
             // Metadata contains file metadata such as size, content-type.
             let size = metadata.size
             print(size)
-            
+
             // You can also access to download URL after upload.
             cloudFileRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
@@ -53,10 +53,10 @@ struct DBSeeding {
             }
         }
     }
-    
+
     func getUserUid(by name: String) {
         let usersRef = db.collection(K.FStore.user)
-        
+
         let query = usersRef.whereField("username", isEqualTo: name)
         query.getDocuments { (querySnapshot, error) in
             if let error = error {
@@ -69,7 +69,7 @@ struct DBSeeding {
         }
         print("Query finished")
     }
-    
+
     func seedActivity() {
         let names = ["Alice", "Bob", "Clara", "Dave", "Ella"]
         let actNames = ["漫威复仇者", "队长小翼 新秀崛起",
@@ -80,13 +80,13 @@ struct DBSeeding {
                            "全世界累计销量突破320万份的《___》，以系列首次的动作RPG形式登场。！",
                            "精彩刺激", "最高质素"
         ]
-        
+
         for i in 0...9 {
-            
+
             let imageName = "port" + String(i)
             let userRef = db.collection(K.FStore.user).document()
             let actRef = db.collection(K.FStore.act).document()
-            
+
             // seed user
             userRef.setData(["username": names.randomElement()!]) { error in
                 if let error = error {
@@ -95,10 +95,10 @@ struct DBSeeding {
                     print("User Document added with ID: \(userRef.documentID)")
                 }
             }
-            
+
             // seed image
             uploadImage(from: imageName, to: actRef.documentID)
-            
+
             // seed activity
             let actName = actNames.randomElement()! + String(Int.random(in: 1000...2000))
             let actDetail = actDetails.randomElement()! + String(Int.random(in: 1000...2000))
@@ -106,7 +106,7 @@ struct DBSeeding {
                                 userRef.documentID, createDate: Date().timeIntervalSince1970,
                                actTitle: actName, actDetail: actDetail,
                                imageId: actRef.documentID)
-            
+
             
             do {
                 try actRef.setData(from: act)
@@ -114,8 +114,8 @@ struct DBSeeding {
             } catch let error {
                 print("Error writing city to Firestore: \(error)")
             }
-            
+
         }
     }
-    
+
 }
