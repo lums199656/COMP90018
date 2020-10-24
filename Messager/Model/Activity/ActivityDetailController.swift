@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import ButtonEnLargeClass
 
 class ActivityDetailController: UIViewController {
     var activityID = ""
@@ -18,6 +19,9 @@ class ActivityDetailController: UIViewController {
         loadData()
         print(activityID)
         // Do any additional setup after loading the view.
+        let button = UIButton.init(type: .custom)
+
+                button.setEnLargeEdge(224,0,0,0)
     }
     
     @IBOutlet weak var image: UIImageView!
@@ -44,7 +48,7 @@ class ActivityDetailController: UIViewController {
         
         
     }
-    
+
     
     func loadData() {
         let query = db.collection(K.FStore.act).whereField("uid", isEqualTo: activityID)
