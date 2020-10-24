@@ -2173,6 +2173,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gk-tK-Oeg">
                                         <rect key="frame" x="224" y="0.0" width="94" height="50"/>
                                         <state key="normal" title="ButtonStarter"/>
+                                        <connections>
+                                            <action selector="toStarter:" destination="9IL-sf-v63" eventType="touchUpInside" id="bg7-Hd-Wdn"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -2315,14 +2318,19 @@
                         <outlet property="details" destination="Zbd-UJ-QFL" id="dp6-8O-N1S"/>
                         <outlet property="image" destination="rGe-ei-hm3" id="yIH-Qp-t6h"/>
                         <outlet property="location" destination="hMr-qq-fhB" id="6LV-CA-ZSd"/>
+                        <outlet property="p1Button" destination="8zL-qi-4BH" id="qFI-0K-8h2"/>
                         <outlet property="p1Image" destination="qE1-kW-1hx" id="DQ9-fT-n8U"/>
                         <outlet property="p1Name" destination="1tf-ck-6OM" id="VNO-yD-wq9"/>
+                        <outlet property="p2Button" destination="rSy-tT-2bc" id="kRh-9h-DGE"/>
                         <outlet property="p2Image" destination="PEb-WI-iYn" id="UbR-19-IKh"/>
                         <outlet property="p2Name" destination="xqG-NY-sGN" id="uj9-Y8-3Iu"/>
+                        <outlet property="p3Button" destination="y2v-vp-DEi" id="0MO-nv-NOm"/>
                         <outlet property="p3Image" destination="w10-w8-tQ8" id="CuI-0t-Wmu"/>
                         <outlet property="p3Name" destination="i5M-pV-r5l" id="h7q-Gi-nSf"/>
+                        <outlet property="p4Button" destination="H2k-3n-QnZ" id="gdw-Y1-bux"/>
                         <outlet property="p4Image" destination="5kW-gS-MG9" id="aTo-gf-SRJ"/>
                         <outlet property="p4Name" destination="j6Y-RA-ou8" id="6Pj-Zt-HKG"/>
+                        <outlet property="starterButton" destination="0gk-tK-Oeg" id="Fch-60-GOd"/>
                         <outlet property="starterImage" destination="xL0-5F-uA7" id="egu-RH-zwc"/>
                         <outlet property="starterName" destination="s22-74-iuG" id="yVW-R6-8zh"/>
                     </connections>
@@ -2334,7 +2342,7 @@
         <!--OtherUserView-->
         <scene sceneID="eQi-kt-61g">
             <objects>
-                <viewController storyboardIdentifier="OtherUserVC" id="s1N-eu-B80" userLabel="OtherUserView" customClass="MeViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OtherUserVC" id="s1N-eu-B80" userLabel="OtherUserView" customClass="OtherUserViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7hf-S6-G9s">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2655,8 +2663,8 @@
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart" width="128" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

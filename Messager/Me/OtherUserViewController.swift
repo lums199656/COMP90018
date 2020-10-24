@@ -12,6 +12,7 @@ import Firebase
 class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollViewDelegate {
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    var currentUserID = ""
     
     // data source of activities
     var createdLists : [ActivityData] = []
@@ -105,10 +106,10 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
     @IBOutlet weak var userLocation: UILabel!
     @IBOutlet weak var userIntro: UILabel!
     func loadInfo() {
-        let user = Auth.auth().currentUser
-        if let user = user {
+        let userUid = currentUserID
+        if userUid == currentUserID {
             let userInfo = db.collection("User")
-            let query = userInfo.whereField("id", isEqualTo: user.uid)
+            let query = userInfo.whereField("id", isEqualTo: userUid)
             query.getDocuments { [self] (querySnapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
@@ -139,7 +140,7 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
 
     func getActivities() {
         //获取数据
-        guard let id = Auth.auth().currentUser?.uid else { return }
+        let id = currentUserID
         let query = db.collection(K.FStore.act).whereField("userId", isEqualTo: id)
         query.getDocuments { [self] (querySnapshot, error) in
             if let e = error{
