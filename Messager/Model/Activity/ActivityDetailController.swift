@@ -66,7 +66,7 @@ class ActivityDetailController: UIViewController {
         let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
         starterVC.currentUserID = starterUser
         print(starterUser)
-        self.navigationController?.show(starterVC, sender: self)
+        self.navigationController!.show(starterVC, sender: self)
     }
     
     func getUserInfo(){

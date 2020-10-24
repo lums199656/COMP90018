@@ -81,7 +81,8 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
     }
     //  Hide First Page NavigationBar
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        self.tabBarController?.tabBar.isHidden = true
         super.viewWillAppear(animated)
         self.loadInfo()
     }
