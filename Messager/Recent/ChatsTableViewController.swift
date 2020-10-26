@@ -26,6 +26,27 @@ class ChatsTableViewController: UITableViewController {
         self.tableView.refreshControl = self.refreshControl
         
         self.setupSearchController()
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.showTabBar()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.hideTabBar()
+        }
     }
 
     // MARK: - Table view data source

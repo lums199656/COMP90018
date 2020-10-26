@@ -9,10 +9,11 @@ import UIKit
 
 class TabViewController: UIViewController {
     
-    
+    //
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var tabBarView: UIView!
     
-        
+    //
     @IBOutlet weak var feedBttn: UIButton!
     @IBOutlet weak var chatBttn: UIButton!
     @IBOutlet weak var addBttn: UIButton!  // special Tab Button
@@ -50,6 +51,8 @@ class TabViewController: UIViewController {
         peopleViewController = storyboard.instantiateViewController(withIdentifier: "peopleNavVC")
         meViewController = storyboard.instantiateViewController(withIdentifier: "meVC")
         meNavigationController = storyboard.instantiateViewController(withIdentifier: "meNC")
+        
+        
         viewControllers = [feedViewController, chatViewController, peopleViewController, meNavigationController]
         
         buttons = [feedBttn, chatBttn, peopleBttn, meBttn]
@@ -61,15 +64,6 @@ class TabViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     @IBAction func tabBttnPressed(_ sender: UIButton) {
         let previousIndex = selectedIndex
@@ -97,10 +91,20 @@ class TabViewController: UIViewController {
         // Call the viewDidAppear method of the ViewController you are adding using didMove(toParentViewController: self).
         vc.didMove(toParent: self)
         
+        
+        
     }
     
     @IBAction func addBttnPressed(_ sender: UIButton) {
         
+    }
+    
+    public func hideTabBar() {
+        self.tabBarView.isHidden = true
+    }
+
+    public func showTabBar() {
+        self.tabBarView.isHidden = false
     }
     
 }
