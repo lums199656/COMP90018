@@ -11,5 +11,5 @@ import Foundation
 struct FeedData {
     let detail, title, uid, user: String?
     let image: String?
-    let user1, user2: String?
+    let join: [String]!
 }
