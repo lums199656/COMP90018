@@ -164,7 +164,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         //修改read为1
         //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) 数组写法
         let temp: String = "read_dic."+Auth.auth().currentUser!.uid
-        //self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
+        self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
     }
     
     
