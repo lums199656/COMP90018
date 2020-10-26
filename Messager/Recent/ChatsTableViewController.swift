@@ -26,6 +26,23 @@ class ChatsTableViewController: UITableViewController {
         self.tableView.refreshControl = self.refreshControl
         
         self.setupSearchController()
+        
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.showTabBar()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡 Chat Table View Will Disappear")
     }
 
     // MARK: - Table view data source
@@ -124,8 +141,14 @@ class ChatsTableViewController: UITableViewController {
         
         // 底部 bar 被隐藏
         privateChatView.hidesBottomBarWhenPushed = true
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.hideTabBar()
+        }
         // 底部的 bar 转化成输入bar
         navigationController?.pushViewController(privateChatView, animated: true)
+        
+        
     }
 
 }

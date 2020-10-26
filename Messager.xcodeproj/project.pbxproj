@@ -16,6 +16,9 @@
 		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
 		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
 		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
+		8223DCF4254186FF00675647 /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223DCF3254186FF00675647 /* ActivityDetailController.swift */; };
+		825C382725466BFD00F8F836 /* EditLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C382625466BFD00F8F836 /* EditLocationViewController.swift */; };
+		825C382C254672C000F8F836 /* EditActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C382B254672C000F8F836 /* EditActivityController.swift */; };
 		9B201B31253EE10E00A30EFE /* ScaleAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */; };
 		9B201B3B253EE8A400A30EFE /* DOFavoriteButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B201B3A253EE8A400A30EFE /* DOFavoriteButtonNew.swift */; };
 		9B28DDE225414E8D00A56C3D /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */; };
@@ -102,6 +105,9 @@
 		8214C9F7253416D700909AEE /* CreatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedCell.swift; sourceTree = "<group>"; };
 		8214C9F8253416D700909AEE /* UIViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
 		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		8223DCF3254186FF00675647 /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
+		825C382625466BFD00F8F836 /* EditLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLocationViewController.swift; sourceTree = "<group>"; };
+		825C382B254672C000F8F836 /* EditActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivityController.swift; sourceTree = "<group>"; };
 		872C2E380D6DAB7DAD451E3D /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B1298873614C79BB233554 /* Pods-MessagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.debug.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimationButton.swift; sourceTree = "<group>"; };
@@ -344,6 +350,8 @@
 		A5D8163025341DCB006E8DE4 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
+				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A5C155B22541381400A504D6 /* ActivityData.swift */,
 				A5C155AD2541380400A504D6 /* OtherUserViewController.swift */,
 				8214C9F7253416D700909AEE /* CreatedCell.swift */,
@@ -380,8 +388,6 @@
 				9B28DDE325414EBD00A56C3D /* MKMessage.swift */,
 				9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */,
 				A5C155652541356E00A504D6 /* OutgoingMessage.swift */,
-				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
-				8214C9F0253416B700909AEE /* EditViewController.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
 				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
@@ -432,6 +438,9 @@
 				BBEE4335252DDF2400D3B305 /* Activity.swift */,
 				BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */,
 				BBEE4366252DEAB900D3B305 /* DBSeeding.swift */,
+				8223DCF3254186FF00675647 /* ActivityDetailController.swift */,
+				825C382625466BFD00F8F836 /* EditLocationViewController.swift */,
+				825C382B254672C000F8F836 /* EditActivityController.swift */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -688,6 +697,7 @@
 				9B28DDEF25414F1D00A56C3D /* ChatViewController.swift in Sources */,
 				BB097016253B3EBF00A381A5 /* SelectLocationViewController.swift in Sources */,
 				A5C154B12541317900A504D6 /* FirebaseRecentListener.swift in Sources */,
+				825C382C254672C000F8F836 /* EditActivityController.swift in Sources */,
 				A5790B26251B90BC009E1347 /* User.swift in Sources */,
 				8214C9F2253416B700909AEE /* EditViewController.swift in Sources */,
 				A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */,
@@ -706,8 +716,10 @@
 				9B201B31253EE10E00A30EFE /* ScaleAnimationButton.swift in Sources */,
 				BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */,
 				BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */,
+				8223DCF4254186FF00675647 /* ActivityDetailController.swift in Sources */,
 				BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */,
 				BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */,
+				825C382725466BFD00F8F836 /* EditLocationViewController.swift in Sources */,
 				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
 				A5C155BD2541382400A504D6 /* MessageDataDelegate.swift in Sources */,
 				8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */,

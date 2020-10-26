@@ -24,6 +24,8 @@ struct User: Codable, Equatable {
     var pushId = ""
     var avatarLink = ""
     var status: String
+    var location = ""
+    var intro = ""
     
     static var currentId: String {
         return Auth.auth().currentUser!.uid

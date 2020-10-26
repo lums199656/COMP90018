@@ -60,6 +60,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         print("🔥FeedView Did Load")
         getData()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.parent as? TabViewController {
+            print("😃")
+            vcp.showTabBar()
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {

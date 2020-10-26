@@ -16,6 +16,7 @@ class CreatedCell: UITableViewCell {
     @IBOutlet weak var imageLabel: UIImageView!
     @IBOutlet weak var activityLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+
     
     var activityID = ""
     

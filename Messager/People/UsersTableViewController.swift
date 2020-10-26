@@ -36,6 +36,15 @@ class UsersTableViewController: UITableViewController {
         downloadUsers()
     
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.showTabBar()
+        }
+    }
 
     // 返回 cells 的个数
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

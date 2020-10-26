@@ -35,17 +35,19 @@ class EditViewController: UIViewController {
     func loadInfo() {
         let user = Auth.auth().currentUser
         if let user = user {
-            let userInfo = db.collection("UserInfo")
-            let query = userInfo.whereField("userID", isEqualTo: user.uid)
+            let userInfo = db.collection("User")
+            let query = userInfo.whereField("id", isEqualTo: user.uid)
             query.getDocuments { [self] (querySnapshot, error) in
                         if let error = error {
                             print("Error getting documents: \(error)")
                         } else {
                             for document in querySnapshot!.documents {
                                 let data = document.data()
-                                let image = data["userImage"] as! String
-                                let intro = data["userIntro"] as! String
-                                let location = data["userLocation"] as! String
+                                let image = data["avatarLink"] as! String
+                                let intro = data["intro"] as! String
+                                let location = data["location"] as! String
+                                let name = data["username"] as! String
+                                self.userName.text = name
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
                                 let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
@@ -60,20 +62,6 @@ class EditViewController: UIViewController {
                             }
                         }
                     }
-            let userAuth = db.collection("User")
-            let queryUser = userAuth.whereField("id", isEqualTo: user.uid)
-            queryUser.getDocuments { [self] (querySnapshot, error) in
-                        if let error = error {
-                            print("Error getting documents: \(error)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let name = data["username"] as! String
-                                self.userName.text = name
-                            }
-                        }
-                    }
-
         }
     }
     
@@ -99,22 +87,22 @@ class EditViewController: UIViewController {
 
         let storageRef = storage.reference()
         let infoImageRef = storageRef.child("user-photoes")
-        let query = db.collection("UserInfo").whereField("userID", isEqualTo: id)
+        let query = db.collection("User").whereField("id", isEqualTo: id)
         query.getDocuments { [self] (querySnapshot, error) in
                     if let error = error {
                         print("Error getting documents: \(error)")
                     } else {
-                        var infoRef = db.collection("UserInfo").document()
+                        var infoRef = db.collection("User").document()
                         var docID = infoRef.documentID
                         if querySnapshot!.documents.count > 0 {
                             docID = querySnapshot!.documents[0].documentID
-                            infoRef = db.collection("UserInfo").document(docID)
+                            infoRef = db.collection("User").document(docID)
                         }
-                        infoRef.setData([
-                            "userID": id,
-                            "userLocation": location,
-                            "userIntro": intro,
-                            "userImage": infoRef.documentID
+                        infoRef.updateData([
+                            "location": location,
+                            "intro": intro,
+                            "avatarLink": infoRef.documentID,
+                            "username": name
                         ]) { err in
                             if let err = err {
                                 print("Error adding document: \(err)")
@@ -126,19 +114,7 @@ class EditViewController: UIViewController {
                                             if let error = error {
                                                 print("Error getting documents: \(error)")
                                             } else {
-                                                //
-                                                let userDocID = userQuerySnapshot!.documents[0].documentID
-                                                let userRef = db.collection("User").document(userDocID)
-                                                userRef.updateData([
-                                                    "username": name
-                                                ]) { err in
-                                                    if let err = err {
-                                                        print("Error adding document: \(err)")
-                                                    } else {
-                                                        print("Document added with ID: \(userRef.documentID)")
-                                                        self.navigationController?.popViewController(animated: true)
-                                                    }
-                                                }
+                                                self.navigationController?.popViewController(animated: true)
                                             }
                                 }
                                 

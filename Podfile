@@ -35,6 +35,9 @@ target 'Messager' do
   # Keyboard
   pod 'IQKeyboardManagerSwift'
   
+  # Enlarge response area of buttons
+  pod 'ButtonEnLargeClass', '~> 1.0'
+  
   # TextView with Placeholder
   pod 'UITextView+Placeholder'
   pod 'lottie-ios'
