@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-//        // Configure Keyboard Manager
+        // Configure Keyboard Manager
 //        IQKeyboardManager.shared.enable = true
 //        IQKeyboardManager.shared.enableAutoToolbar = false
 //        IQKeyboardManager.shared.shouldResignOnTouchOutside = true

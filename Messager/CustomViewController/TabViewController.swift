@@ -98,13 +98,16 @@ class TabViewController: UIViewController {
     @IBAction func addBttnPressed(_ sender: UIButton) {
         
     }
+    @IBOutlet weak var tabHeightConstraint: NSLayoutConstraint!
     
     public func hideTabBar() {
         self.tabBarView.isHidden = true
+        self.tabHeightConstraint.constant = 0
     }
 
     public func showTabBar() {
         self.tabBarView.isHidden = false
+        self.tabHeightConstraint.constant = 80
     }
     
 }

@@ -223,6 +223,7 @@
                         <outlet property="peopleBttn" destination="YEW-CS-gpt" id="P3l-NO-nch"/>
                         <outlet property="peopleImage" destination="flE-Db-72g" id="Ue6-Qn-lGE"/>
                         <outlet property="tabBarView" destination="zFM-Up-ncc" id="x16-Yc-8ER"/>
+                        <outlet property="tabHeightConstraint" destination="62h-wF-5O3" id="0wC-fU-3vB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqE-BT-5cu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -888,7 +889,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rKE-sj-77G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4770" y="1896"/>
+            <point key="canvasLocation" x="-4771" y="1906"/>
         </scene>
         <!--Config-->
         <scene sceneID="8lm-dm-f8b">
@@ -2664,8 +2665,8 @@
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart" width="128" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

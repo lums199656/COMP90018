@@ -85,6 +85,16 @@ class ChatViewController: MessagesViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("Chat Will Appear")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("Chat Did Apear")
+    }
+    
+    
+    
     // 设定 title
     private func configureCustomTitle() {
         
