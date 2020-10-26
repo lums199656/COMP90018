@@ -55,6 +55,8 @@ class ChatViewController: MessagesViewController {
     
     var notificationToken: NotificationToken?
     
+    var longPressGesture: UILongPressGestureRecognizer!
+    
     
     init(chatId: String, recipientId: [String], recipientName: [String]) {
 
@@ -94,6 +96,44 @@ class ChatViewController: MessagesViewController {
     }
     
     
+//    private func actionAttachMessage() {
+//
+//        messageInputBar.inputTextView.resignFirstResponder()
+//
+//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//
+//        let takePhotoOrVideo = UIAlertAction(title: "Camera", style: .default) { (alert) in
+//
+//            self.showImageGallery(camera: true)
+//        }
+//
+//        let shareMedia = UIAlertAction(title: "Library", style: .default) { (alert) in
+//
+//            self.showImageGallery(camera: false)
+//        }
+//
+//        let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (alert) in
+//
+//            if let _ = LocationManager.shared.currentLocation {
+//                self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLOCATION)
+//            } else {
+//                print("no access to location")
+//            }
+//        }
+//    }
+
+
+    
+    func updateMicButtonStatus(show: Bool) {
+        
+        if show {
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+        }
+    }
     
     // 设定 title
     private func configureCustomTitle() {
@@ -175,6 +215,7 @@ class ChatViewController: MessagesViewController {
         //
         
     }
+    
     
     
     // Message 的发送
