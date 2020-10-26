@@ -8,8 +8,8 @@
 import Foundation
 
 struct ActivityData {
-    let title: String?
-    let image: String?
-    let date: String?
-    let activityID: String?
+    let title: String
+    let image: String
+    let date: String
+    let activityID: String
 }
