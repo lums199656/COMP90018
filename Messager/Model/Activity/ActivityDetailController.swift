@@ -19,11 +19,15 @@ class ActivityDetailController: UIViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
+    
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var startGroupChatButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        editButton.isHidden = true
+        startGroupChatButton.isHidden = true
         loadData()
-        print(activityID)
-        // Do any additional setup after loading the view.
         getUserInfo()
         let button = UIButton.init(type: .custom)
 
@@ -55,6 +59,7 @@ class ActivityDetailController: UIViewController {
     
     
     
+    
     @IBAction func startGroupChat(_ sender: Any) {
         
         
@@ -67,6 +72,17 @@ class ActivityDetailController: UIViewController {
         starterVC.currentUserID = starterUser
         print(starterUser)
         self.navigationController!.show(starterVC, sender: self)
+    }
+    
+    @IBAction func edit(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let editVC = storyboard.instantiateViewController(withIdentifier: "editActivity") as? EditActivityController else {  return }
+        editVC.activityID = self.activityID
+        editVC.image = self.image.image
+        editVC.titleAct = self.activityTitle.text!
+        editVC.detail = self.details.text!
+        editVC.location = self.location.text!
+        self.present(editVC, animated: true, completion: nil)
     }
     
     func getUserInfo(){
@@ -101,6 +117,10 @@ class ActivityDetailController: UIViewController {
                 // read date later
                 date.text = ""
                 let starterId = data["userId"] as? String
+                if starterId == Auth.auth().currentUser?.uid {
+                    editButton.isHidden = false
+                    startGroupChatButton.isHidden = false
+                }
                 details.text = data["actDetail"] as? String
                 
                 let userInfo = db.collection("User")

@@ -14,9 +14,10 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
     let storage = Storage.storage()
     
     // data source of activities
-    var createdLists : [ActivityData] = []
-    var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7"]
-    var joinedimageofactivities = UIImage(named:"avatar")
+    var createdLists: [ActivityData] = []
+    var joinedLists: [ActivityData] = []
+    // var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7"]
+    // var joinedimageofactivities = UIImage(named:"avatar")
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count: Int?
@@ -24,7 +25,7 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
             count = createdLists.count
         }
         if tableView == self.secondView{
-            count = joinedactivities.count
+            count = joinedLists.count
         }
         return count!
     }
@@ -37,9 +38,7 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
         }
         if tableView == self.secondView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "JoinedCell", for: indexPath) as! JoinedCell
-            cell.joinedActivity.text = joinedactivities[indexPath.row]
-            cell.joinedDate.text = "2088-11-22"
-            cell.joinedImage.image = joinedimageofactivities
+            cell.cellData = joinedLists[indexPath.row]
             tableCell = cell
         }
         return tableCell ?? UITableViewCell()
@@ -157,10 +156,11 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
     }
     
     func getActivities() {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd"
         //获取数据
         guard let id = Auth.auth().currentUser?.uid else { return }
-        let query = db.collection(K.FStore.act).whereField("userId", isEqualTo: id)
-        query.getDocuments { [self] (querySnapshot, error) in
+        db.collection(K.FStore.act).getDocuments() { [self] (querySnapshot, error) in
             if let e = error{
                 print("error happens in getDocuments\(e)" )
             }
@@ -168,16 +168,22 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                 if let snapShotDocuments = querySnapshot?.documents{
                     for doc in snapShotDocuments{
                         let data = doc.data()
+                        let starterID = data["actCreatorId"] as! String
+                        let joinUsers = data["join"] as! [String]
                         let title = data[K.Activity.title] as? String
                         let image = data[K.Activity.image] as? String
                         let activityID = data[K.Activity.uid] as? String
-                        // read date later
-                        let date = ""
+                        let dateLong = data["startDate"] as! Timestamp
+                        let date = dateLong.dateValue() as! Date
                         
-                        let feedData = ActivityData(title: title, image: image, date: date, activityID: activityID)
-                        self.createdLists.append(feedData)
-                        print(createdLists)
                         
+                        let feedData = ActivityData(title: title, image: image, date: df.string(from: date), activityID: activityID)
+                        if id == starterID {
+                            self.createdLists.append(feedData)
+                        }
+                        if joinUsers.contains(id) {
+                            self.joinedLists.append(feedData)
+                        }
                     }
                     self.firstView.reloadData()
                 }
@@ -191,13 +197,16 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
 extension MeViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+
         if tableView == self.firstView{
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
             secondVC.activityID = createdLists[indexPath.row].activityID!
             // show(secondVC, sender: self)
-            self.navigationController?.show(secondVC, sender: self)
         }
+        if tableView == self.secondView {
+            secondVC.activityID = joinedLists[indexPath.row].activityID!
+        }
+        self.navigationController?.show(secondVC, sender: self)
     }
 }
