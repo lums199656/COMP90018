@@ -19,7 +19,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var labelT: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var bbb: DOFavoriteButtonNew! //红心按钮
+    @IBOutlet weak var bbb: DOFavoriteButtonNew! //heart btn
     @IBOutlet weak var errorView: UIImageView!
     
     
@@ -27,16 +27,17 @@ class FeedCell: UITableViewCell {
     let db = Firestore.firestore()
     
     var cellData : FeedData!{
-    //监视器，判断是否发生变化
+    //monitor, reocrd change
         didSet{
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             labelT.text = cellData.title
             labelD.text = cellData.detail
-            labelD.numberOfLines=0 // 行数设置为0
-            // 换行的模式 文本自适应
-            labelD.lineBreakMode = NSLineBreakMode.byWordWrapping
-            //print("cellData.user1："+cellData.user1!)
             
+            //text adaption
+            labelD.numberOfLines=0
+            labelD.lineBreakMode = NSLineBreakMode.byWordWrapping
+            
+            //get feed image
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
             print("activity-images/"+imageId)
@@ -49,7 +50,7 @@ class FeedCell: UITableViewCell {
                 }
             }
             
-            let joins:[String] = cellData!.join //存储头像的数组
+            let joins:[String] = cellData!.join //for get profile array
             print("joins")
             print(joins)
             var cur = 1
@@ -67,7 +68,7 @@ class FeedCell: UITableViewCell {
                         if let snapShotDocuments = querySnapshot?.documents{
                             for doc in snapShotDocuments{
                                 let data = doc.data()
-                                //将头像数据加入到join_arr中
+                                //add profile to arr
                                 let pic = data["avatarLink"] as! String
                                 let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
                                 print("user-photoes/"+pic)
@@ -134,18 +135,19 @@ class FeedCell: UITableViewCell {
         }
     }
     
-    //点击触发
+    //tap action
     @objc func tappedButton(sender: DOFavoriteButtonNew) {
         if sender.isSelected {
             sender.deselect()
-            print("不喜欢")
+            print("dislike")
             removeUser()
         } else {
             upLoadUserToJoinList()
-            print("喜欢")
+            print("like")
         }
     }
     
+    //logic for add user in join field
     func upLoadUserToJoinList(){
         let docRef = db.collection(K.FStore.act).document(cellData.uid!)
         docRef.getDocument { (document, error) in
@@ -155,18 +157,19 @@ class FeedCell: UITableViewCell {
                 let cur_num = joinArr.count
                 if cur_num < max {
                     if cur_num+1 == max{
-                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user]), "actStatus":1]) //在join增加用户
+                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user]), "actStatus":1]) //join user in firebase and change status
                     }
                     else{
-                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user])]) //在join增加用户
+                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user])]) //join user in firebase
                     }
                     self.bbb.select()
                 }
                 else{
-                    //更改status. 更新都用update，setData会直接覆盖整个document！！！
+                    //change status. use update! instead of setData
                     self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["actStatus": 1])
-                    //弹窗
-                    print("人满了!")
+                    print("full")
+                    
+                    //animation
                     self.errorView.isHidden = false
                     self.errorView.alpha = 1.0
                     UIView.animate(withDuration: 0.5, delay: 2.0, options: [], animations: {
@@ -181,16 +184,17 @@ class FeedCell: UITableViewCell {
         }
     }
     
+    //logic for dislike
     func removeUser(){
         let docRef = db.collection(K.FStore.act).document(cellData.uid!)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let status:Int = document.data()!["actStatus"] as! Int
                 if status != 0 {
-                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user]), "actStatus":0]) //在join删除用户,并且状态变成awaiting
+                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user]), "actStatus":0]) //remove user in firebase and change status to 0
                 }
                 else{
-                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user])]) //在join删除用户
+                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user])]) //remove user in firebase
                 }
             }
         }
@@ -203,7 +207,6 @@ class FeedCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

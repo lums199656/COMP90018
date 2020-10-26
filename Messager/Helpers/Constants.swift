@@ -56,7 +56,11 @@ struct K {
         static let title = "actTitle"
         static let image = "imageId"
         static let uid = "uid"
-        static let user = "userId"
+        static let user = "actCreatorId"
+        static let groupSize = "actGroupSize"
+        static let status = "actStatus"
+        static let read_dict = "read_dic"
+        static let join = "join"
     }
     
 }
