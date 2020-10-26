@@ -86,44 +86,38 @@ class ActivityDetailController: UIViewController {
     }
     
     func getUserInfo(){
-        let query = db.collection(K.FStore.act).whereField("uid", isEqualTo: activityID)
-        query.getDocuments { [self] (querySnapshot, error) in
-            if let e = error{
-                print("error happens in getDocuments\(e)" )
+        let docRef = db.collection(K.FStore.act).document(activityID)
+        docRef.getDocument { [self] (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                starterUser = data!["currentUser"] as! String
+                p1User = self.starterUser
+                p2User = self.starterUser
+                p3User = self.starterUser
+                p4User = self.starterUser
+            } else {
+                print("Document does not exist")
             }
-            else{
-                let doc = querySnapshot!.documents[0]
-                let data = doc.data()
-                starterUser = data["userId"] as! String
-                p1User = data["userId"] as! String
-                p2User = data["userId"] as! String
-                p3User = data["userId"] as! String
-                p4User = data["userId"] as! String
-                }
         }
     }
     
     func loadData() {
-        let query = db.collection(K.FStore.act).whereField("uid", isEqualTo: activityID)
-        query.getDocuments { [self] (querySnapshot, error) in
-            if let e = error{
-                print("error happens in getDocuments\(e)" )
-            }
-            else{
-                let doc = querySnapshot!.documents[0]
-                let data = doc.data()
-                activityTitle.text = data[K.Activity.title] as? String
-                let image = data[K.Activity.image] as! String
+        let docRef = db.collection(K.FStore.act).document(activityID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                self.activityTitle.text = data?[K.Activity.title] as? String
+                let image = data![K.Activity.image] as! String
                 // read date later
-                date.text = ""
-                let starterId = data["userId"] as? String
+                self.date.text = ""
+                let starterId = data!["actCreatorId"] as? String
                 if starterId == Auth.auth().currentUser?.uid {
-                    editButton.isHidden = false
-                    startGroupChatButton.isHidden = false
+                    self.editButton.isHidden = false
+                    self.startGroupChatButton.isHidden = false
                 }
-                details.text = data["actDetail"] as? String
+                self.details.text = data!["actDetail"] as? String
                 
-                let userInfo = db.collection("User")
+                let userInfo = self.db.collection("User")
                 let query = userInfo.whereField("id", isEqualTo: starterId)
                 query.getDocuments { [self] (querySnapshot, error) in
                             if let error = error {
@@ -158,8 +152,65 @@ class ActivityDetailController: UIViewController {
                             }
 
                         
+            } else {
+                print("Document does not exist")
             }
-
         }
+
+//        docRef.getDocument() { (document, error) in
+//            if let e = error{
+//                print("error happens in getDocuments\(e)" )
+//            }
+//            else{
+//                let data = document.data()
+//                activityTitle.text = data?[K.Activity.title] as? String
+//                let image = data[K.Activity.image] as! String
+//                // read date later
+//                self.date.text = ""
+//                let starterId = data["actCreatorId"] as? String
+//                if starterId == Auth.auth().currentUser?.uid {
+//                    self.editButton.isHidden = false
+//                    self.startGroupChatButton.isHidden = false
+//                }
+//                details.text = data["actDetail"] as? String
+//
+//                let userInfo = self.db.collection("User")
+//                let query = userInfo.whereField("id", isEqualTo: starterId)
+//                query.getDocuments { [self] (querySnapshot, error) in
+//                            if let error = error {
+//                                print("Error getting documents: \(error)")
+//                            } else {
+//                                for document in querySnapshot!.documents {
+//                                    let data = document.data()
+//                                    let uimage = data["avatarLink"] as! String
+//                                    let name = data["username"] as! String
+//                                    self.starterName.text = name
+//                                    let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+uimage)
+//                                                cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                                                    if let error = error {
+//                                                        print(error.localizedDescription)
+//                                                    } else {
+//                                                        self.starterImage.image = UIImage(data: data!)
+//                                                    }
+//                                                }
+//
+//                            }
+//                        }
+//                }
+//
+//
+//                let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
+//                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                                if let error = error {
+//                                    print(error.localizedDescription)
+//                                } else {
+//                                    self.image.image = UIImage(data: data!)
+//                                }
+//                            }
+//
+//
+//            }
+//
+//        }
     }
 }

@@ -170,9 +170,9 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         let data = doc.data()
                         let starterID = data["actCreatorId"] as! String
                         let joinUsers = data["join"] as! [String]
-                        let title = data[K.Activity.title] as? String
-                        let image = data[K.Activity.image] as? String
-                        let activityID = data[K.Activity.uid] as? String
+                        let title = data[K.Activity.title] as! String
+                        let image = data[K.Activity.image] as! String
+                        let activityID = data[K.Activity.image] as! String
                         let dateLong = data["startDate"] as! Timestamp
                         let date = dateLong.dateValue() as! Date
                         
@@ -186,6 +186,7 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         }
                     }
                     self.firstView.reloadData()
+                    self.secondView.reloadData()
                 }
             }
             
@@ -201,11 +202,11 @@ extension MeViewController : UITableViewDelegate {
         let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
 
         if tableView == self.firstView{
-            secondVC.activityID = createdLists[indexPath.row].activityID!
+            secondVC.activityID = createdLists[indexPath.row].activityID
             // show(secondVC, sender: self)
         }
         if tableView == self.secondView {
-            secondVC.activityID = joinedLists[indexPath.row].activityID!
+            secondVC.activityID = joinedLists[indexPath.row].activityID
         }
         self.navigationController?.show(secondVC, sender: self)
     }
