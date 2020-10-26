@@ -26,7 +26,7 @@ class JoinedCell: UITableViewCell {
         didSet{
             joinedActivity.text = cellData.title
             joinedDate.text = cellData.date
-            self.activityID = cellData.activityID!
+            self.activityID = cellData.activityID
 
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)

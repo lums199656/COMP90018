@@ -28,7 +28,7 @@ class CreatedCell: UITableViewCell {
         didSet{
             activityLabel.text = cellData.title
             dateLabel.text = cellData.date
-            self.activityID = cellData.activityID!
+            self.activityID = cellData.activityID
 
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
