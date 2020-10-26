@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 
-class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate {
+class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDelegate {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
@@ -22,7 +22,6 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         var count: Int?
         if tableView == self.firstView{
             count = createdLists.count
-            print("######## there is \(count) cell")
         }
         if tableView == self.secondView{
             count = joinedactivities.count
@@ -46,7 +45,6 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         return tableCell ?? UITableViewCell()
     }
     
-    let dbSeed = DBSeeding(false)
     
     // change table views in personal page
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -59,36 +57,54 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         let offset = CGPoint(x: x, y: 0)
         scrollView.setContentOffset(offset, animated: true)
     }
-
+    
     //automatically update segment index
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            let index = Int(scrollView.contentOffset.x / firstView.bounds.width)
-            print(segmentedControl.selectedSegmentIndex)
-            print(scrollView.contentOffset.x)
-            segmentedControl.selectedSegmentIndex = index
-            print(segmentedControl.selectedSegmentIndex)
-            print(scrollView.contentOffset.x)
-
+        let index = Int(scrollView.contentOffset.x / firstView.bounds.width)
+        print(segmentedControl.selectedSegmentIndex)
+        print(scrollView.contentOffset.x)
+        segmentedControl.selectedSegmentIndex = index
+        print(segmentedControl.selectedSegmentIndex)
+        print(scrollView.contentOffset.x)
+        
     }
     
     @IBOutlet weak var PhotoContainer: UIView!
     private func setUI(){
-    //    PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
-    //    PhotoContainer.clipsToBounds = true
-    //    firstView.layer.cornerRadius = 20
-    //    firstView.clipsToBounds = true
-    //    secondView.layer.cornerRadius = 20
-    //    secondView.clipsToBounds = true
+        //    PhotoContainer.layer.cornerRadius = PhotoContainer.frame.size.width / 2
+        //    PhotoContainer.clipsToBounds = true
+        //    firstView.layer.cornerRadius = 20
+        //    firstView.clipsToBounds = true
+        //    secondView.layer.cornerRadius = 20
+        //    secondView.clipsToBounds = true
     }
     //  Hide First Page NavigationBar
+    
+    // MARK:- View Controller LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewWillAppear(animated)
         self.loadInfo()
+        
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.showTabBar()
+        }
     }
+    
+    
     override func viewWillDisappear(_ animated: Bool) {
-          navigationController?.setNavigationBarHidden(false, animated: true)
-          super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        super.viewWillDisappear(animated)
+        
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.navigationController?.parent as? TabViewController {
+            print("😃")
+            vcp.hideTabBar()
+        }
     }
     
     override func viewDidLoad() {
@@ -98,10 +114,11 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
         // Do any additional setup after loading the view.
         self.loadInfo()
         self.getActivities()
+        
     }
     
+    // MARK:-
     
-
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userLocation: UILabel!
@@ -109,48 +126,36 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
     func loadInfo() {
         let user = Auth.auth().currentUser
         if let user = user {
-            let userInfo = db.collection("UserInfo")
-            let query = userInfo.whereField("userID", isEqualTo: user.uid)
+            let userInfo = db.collection("User")
+            let query = userInfo.whereField("id", isEqualTo: user.uid)
             query.getDocuments { [self] (querySnapshot, error) in
-                        if let error = error {
-                            print("Error getting documents: \(error)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let image = data["userImage"] as! String
-                                let intro = data["userIntro"] as! String
-                                let location = data["userLocation"] as! String
-                                self.userIntro.text = intro
-                                self.userLocation.text = location
-                                let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
-                                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                                                if let error = error {
-                                                    print(error.localizedDescription)
-                                                } else {
-                                                    self.userImage.image = UIImage(data: data!)
-                                                }
-                                            }
-
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let image = data["avatarLink"] as! String
+                        let intro = data["intro"] as! String
+                        let location = data["location"] as! String
+                        let name = data["username"] as! String
+                        self.userIntro.text = intro
+                        self.userLocation.text = location
+                        self.userName.text = name
+                        let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
+                        cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+                            if let error = error {
+                                print(error.localizedDescription)
+                            } else {
+                                self.userImage.image = UIImage(data: data!)
                             }
                         }
+                        
                     }
-            let userAuth = db.collection("User")
-            let queryUser = userAuth.whereField("id", isEqualTo: user.uid)
-            queryUser.getDocuments { [self] (querySnapshot, error) in
-                        if let error = error {
-                            print("Error getting documents: \(error)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let name = data["username"] as! String
-                                self.userName.text = name
-                            }
-                        }
-                    }
-
+                }
+            }
         }
     }
-
+    
     func getActivities() {
         //获取数据
         guard let id = Auth.auth().currentUser?.uid else { return }
@@ -172,13 +177,27 @@ class MeViewController: UIViewController, UITableViewDelegate,UITableViewDataSou
                         let feedData = ActivityData(title: title, image: image, date: date, activityID: activityID)
                         self.createdLists.append(feedData)
                         print(createdLists)
-
+                        
                     }
                     self.firstView.reloadData()
                 }
             }
-
+            
         }
     }
+    
+}
 
+extension MeViewController : UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+        if tableView == self.firstView{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+            secondVC.activityID = createdLists[indexPath.row].activityID!
+            // show(secondVC, sender: self)
+            self.navigationController?.show(secondVC, sender: self)
+        }
+    }
 }

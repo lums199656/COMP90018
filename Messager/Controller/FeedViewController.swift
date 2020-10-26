@@ -63,6 +63,16 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        button.addTarget(self, action: #selector(tapped(sender:)), for: UIControl.Event.touchUpInside)
         getData()
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // toggle tabbar
+        print("😡")
+        if let vcp = self.parent as? TabViewController {
+            print("😃")
+            vcp.showTabBar()
+        }
     }
     
     //按钮反应
