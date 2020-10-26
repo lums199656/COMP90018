@@ -13,11 +13,12 @@ import UITextView_Placeholder
 class EditActivityController: UIViewController {
 
     // post activity related data
-    var postCategory: String?
-    var postImage: UIImage?
-    var postTitle: String?
-    var postDetail: String?
-    var postLocationString: String?
+    var activityID: String = ""
+    var category: String = ""
+    var image: UIImage?
+    var titleAct: String = ""
+    var detail: String = ""
+    var location: String = ""
 
     
     // IBOutlets
@@ -41,18 +42,18 @@ class EditActivityController: UIViewController {
         
         // Setup textView Placeholder stuff
         detailTextView.delegate = self
-        
-        detailTextView.text = "Placeholder"
+        detailTextView.text = detail
         detailTextView.textColor = UIColor.lightGray
+        locationLabel.text = location
+        activityImageView.image = image
+        titleTextField.text = titleAct
         
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        if let category = postCategory {
-            categoryLabel.text = "Category: " + category
-        }
+        categoryLabel.text = "Category: " + category
         
         setupUI()
     }
@@ -87,7 +88,7 @@ class EditActivityController: UIViewController {
         guard let detailText = detailTextView.text else {return }
         
             
-        let actRef = db.collection(K.FStore.act).document()  // Activity Document reference
+        let actRef = db.collection(K.FStore.act).document(activityID)  // Activity Document reference
         let storageRef = storage.reference()
         let activityImageRef = storageRef.child("activity-images")
         
@@ -95,8 +96,7 @@ class EditActivityController: UIViewController {
             
             let cloudFileRef = activityImageRef.child(cloudName)
             
-            guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
-            
+            guard let data = image.jpegData(compressionQuality: 1) else { return }
             let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else { return }  // if metadata is nil, return
                 
@@ -110,7 +110,11 @@ class EditActivityController: UIViewController {
                                createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,
                                imageId: actRef.documentID)
             do {
-                try actRef.setData(from: act)
+                try actRef.updateData([
+                    "actTitle": titleTextField.text,
+                    "actDetail": detailTextView.text,
+                    "locationString": locationLabel.text
+                ])
                 print("Activity Document added with ID: \(actRef.documentID)")
             } catch let error {
                 print("Error writing city to Firestore: \(error)")
@@ -125,18 +129,6 @@ class EditActivityController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPost2" {
-            let destinationVC = segue.destination as! PostViewController2
-            destinationVC.postImage = self.postImage
-            destinationVC.postTitle = self.postTitle
-            destinationVC.postDetail = self.postDetail
-        }
-        if segue.identifier == "toLocation" {
-            let destinationVC = segue.destination as! SelectLocationViewController
-            destinationVC.delegate = self
-        }
-    }
     
 }
 
@@ -151,7 +143,7 @@ extension EditActivityController:  UIImagePickerControllerDelegate {
             self.activityImageView.image = image
             
             //
-            self.postImage = image
+            self.image = image
         }
         
         self.dismiss(animated: true, completion: nil)
@@ -165,7 +157,7 @@ extension EditActivityController: SelectLocationDelegate {
     func updateLocation(_ locString: String) {
         print("!!!! Update Location Called")
         
-        postLocationString = locString
+        location = locString
         
         locationLabel.text = locString
         
