@@ -197,13 +197,16 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
 extension MeViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+
         if tableView == self.firstView{
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
             secondVC.activityID = createdLists[indexPath.row].activityID!
             // show(secondVC, sender: self)
-            self.navigationController?.show(secondVC, sender: self)
         }
+        if tableView == self.secondView {
+            secondVC.activityID = joinedLists[indexPath.row].activityID!
+        }
+        self.navigationController?.show(secondVC, sender: self)
     }
 }
