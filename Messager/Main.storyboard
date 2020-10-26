@@ -1928,6 +1928,10 @@
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
+                                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sorry" id="UbL-l4-itM">
+                                                                    <rect key="frame" x="0.0" y="55.5" width="414" height="300"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80U-yY-3q9" customClass="DOFavoriteButtonNew" customModule="Messager" customModuleProvider="target">
                                                                     <rect key="frame" x="326" y="292" width="55" height="53"/>
                                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1993,6 +1997,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="bbb" destination="80U-yY-3q9" id="6JK-X8-vYG"/>
+                                            <outlet property="errorView" destination="UbL-l4-itM" id="6fw-8d-vCd"/>
                                             <outlet property="feedImage" destination="vDI-NU-b8M" id="2mY-lQ-r5d"/>
                                             <outlet property="labelD" destination="kSq-da-uH1" id="tHD-Ir-cMf"/>
                                             <outlet property="labelT" destination="OtH-hm-QJ8" id="fso-gU-Oii"/>
@@ -2390,8 +2395,8 @@
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="heart" width="128" height="128"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" width="128" height="128"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
@@ -2403,6 +2408,7 @@
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="sorry" width="212.5" height="248"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
         <image name="tabBarItem:fhk-oD-cde:image" width="128" height="72"/>
         <namedColor name="TabBarColor">
