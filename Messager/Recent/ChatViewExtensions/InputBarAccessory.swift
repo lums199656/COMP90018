@@ -13,7 +13,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     
     // 检测正在输入的状态
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
-//        print("_x Typing...")
+        
     }
     
     // 点击发送按钮

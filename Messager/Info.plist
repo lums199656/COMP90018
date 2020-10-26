@@ -20,6 +20,14 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>[the app wants to photo]</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Not gonna happen</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>The app want to use your current location</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>[the app wants to use your photo]</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -60,13 +68,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>[the app wants to photo]</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>[the app wants to use your photo]</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>The app want to use your current location</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Not gonna happen</string>
 </dict>
 </plist>
