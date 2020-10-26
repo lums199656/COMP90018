@@ -90,7 +90,7 @@ class ActivityDetailController: UIViewController {
         docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
-                starterUser = data!["currentUser"] as! String
+                starterUser = data!["actCreatorId"] as! String
                 p1User = self.starterUser
                 p2User = self.starterUser
                 p3User = self.starterUser
