@@ -82,6 +82,10 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
     //  Hide First Page NavigationBar
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = .red
         self.tabBarController?.tabBar.isHidden = true
         super.viewWillAppear(animated)
         self.loadInfo()
