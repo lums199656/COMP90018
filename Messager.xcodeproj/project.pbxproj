@@ -381,12 +381,12 @@
 			isa = PBXGroup;
 			children = (
 				9B28DDE725414ECE00A56C3D /* RealmMessage */,
-				9B28DDE525414EC700A56C3D /* NotificationsViewController.swift */,
+				BBEE4334252DDEE500D3B305 /* Activity */,
 				9B28DDE325414EBD00A56C3D /* MKMessage.swift */,
+				9B28DDE525414EC700A56C3D /* NotificationsViewController.swift */,
 				9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */,
 				A5C155652541356E00A504D6 /* OutgoingMessage.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
-				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
 				BB1C1D0C253408C400DCF2D5 /* FeedData.swift */,
 				BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */,
