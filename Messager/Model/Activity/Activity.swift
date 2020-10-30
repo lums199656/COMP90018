@@ -13,7 +13,7 @@ public struct Activity: Codable {
     let userId: String?   // uid of the activity initiator
     let likeCount: Int? = nil  // number of likes
     let shareCount: Int? = nil // number of share to others..
-    
+    let read: Int? = nil
     let createDate: Double?
     
 //    var pendingApp: [String]? = nil // array of uid of activity_application
