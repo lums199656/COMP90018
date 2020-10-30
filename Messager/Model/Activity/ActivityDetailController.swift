@@ -29,9 +29,9 @@ class ActivityDetailController: UIViewController {
         startGroupChatButton.isHidden = true
         loadData()
         getUserInfo()
-        let button = UIButton.init(type: .custom)
+        let starterButton = UIButton.init(type: .custom)
 
-                button.setEnLargeEdge(224,0,0,0)
+        starterButton.setEnLargeEdge(20,20,414,414)
     }
     
     @IBOutlet weak var image: UIImageView!
