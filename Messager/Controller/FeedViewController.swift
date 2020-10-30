@@ -43,7 +43,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
    
     let db = Firestore.firestore()
-    let dbSeed = DBSeeding(false)
+    
     
     //control cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
