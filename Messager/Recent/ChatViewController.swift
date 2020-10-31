@@ -72,6 +72,7 @@ class ChatViewController: MessagesViewController {
         super.init(coder: coder)
     }
 
+    // MARK:- View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configueMessageCollectionView()
@@ -82,7 +83,7 @@ class ChatViewController: MessagesViewController {
         configureCustomTitle()
 
 
-        // Do any additional setup after loading the view.
+        // _. Setup Shake Gesture
         
         
     }
@@ -95,6 +96,33 @@ class ChatViewController: MessagesViewController {
         print("Chat Did Apear")
     }
     
+    // MARK:- Shake Gesture
+    override func becomeFirstResponder() -> Bool {  // For Shake Gesture
+        super.becomeFirstResponder()
+        return false
+    }
+  
+    private var isUserAtActivityLocation: Bool {
+        get {
+            return checkIfUserAtActivityLocation()
+        }
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            
+            if isUserAtActivityLocation {
+                print("👻Shimmy Shaky")
+                // TODO: Send_a_special_message_with_UI()
+                // TODO:
+            } else {
+                print("👻Get to the Activity location")
+            }
+            
+            
+            
+        }
+    }
     
 //    private func actionAttachMessage() {
 //

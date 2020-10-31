@@ -28,15 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        // Configure Keyboard Manager
-        IQKeyboardManager.shared.enable = true
-        IQKeyboardManager.shared.enableAutoToolbar = false
-        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
+        // _. Configure Keyboard Manager
+//        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enableAutoToolbar = false
+//        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        // Configure if seeding the Activity DB
+        // _. Configure if seeding the Activity DB
         let _ = DBSeeding(true)
         
-        // Configure Local Authentication (faceID...)
+        // _. Configure Local Authentication (faceID...)
         let context = LAContext()
         
         // __. Check Hardware support

@@ -59,6 +59,7 @@
 		A5C155C12541382400A504D6 /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BC2541382400A504D6 /* MessageDataSource.swift */; };
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
+		BB052F01254D41550046154B /* ActivityHelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB052F00254D41550046154B /* ActivityHelperFunctions.swift */; };
 		BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */; };
 		BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D0C253408C400DCF2D5 /* FeedData.swift */; };
 		BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */; };
@@ -158,6 +159,7 @@
 		A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB052F00254D41550046154B /* ActivityHelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityHelperFunctions.swift; sourceTree = "<group>"; };
 		BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCatogory.swift; sourceTree = "<group>"; };
 		BB1C1D0C253408C400DCF2D5 /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		A50327BD2532E77F00CEE6E7 /* Recent */ = {
 			isa = PBXGroup;
 			children = (
+				BB052F00254D41550046154B /* ActivityHelperFunctions.swift */,
 				9B28DDEE25414F1D00A56C3D /* ChatViewController.swift */,
 				A5C155B72541382400A504D6 /* ChatViewExtensions */,
 				A50327A42531FA5300CEE6E7 /* RecentTableViewCell.swift */,
@@ -736,6 +739,7 @@
 				A50624982533014B00A7FE9F /* ChatsTableViewController.swift in Sources */,
 				A5C155C12541382400A504D6 /* MessageDataSource.swift in Sources */,
 				9B28DDE425414EBD00A56C3D /* MKMessage.swift in Sources */,
+				BB052F01254D41550046154B /* ActivityHelperFunctions.swift in Sources */,
 				9B28DDE625414EC700A56C3D /* NotificationsViewController.swift in Sources */,
 				A517F8BF2514E89F00621A26 /* SceneDelegate.swift in Sources */,
 				9B28DDED25414EFA00A56C3D /* MessgaeKitDefaults.swift in Sources */,
