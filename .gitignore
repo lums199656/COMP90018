@@ -24,6 +24,7 @@ DerivedData
 .idea/
 *.hmap
 *.xcscmblueprint
+*.xcuserstate
 
 # Windows
 Thumbs.db
@@ -36,3 +37,4 @@ $RECYCLE.BIN/
 
 # Project
 Pods/
+Podfile.lock

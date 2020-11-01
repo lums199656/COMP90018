@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import UITextView_Placeholder
+import CoreLocation
 
 
 class EditActivityController: UIViewController {
@@ -153,16 +154,16 @@ extension EditActivityController:  UIImagePickerControllerDelegate {
 }
 
 // MARK:- Select Location Delegate
-extension EditActivityController: SelectLocationDelegate {
-    func updateLocation(_ locString: String) {
-        print("!!!! Update Location Called")
-        
-        location = locString
-        
-        locationLabel.text = locString
-        
-    }
-}
+//extension EditActivityController: PostLocationDelegate {
+//    func updateLocation(_ locString: String) {
+//        print("!!!! Update Location Called")
+//        
+//        location = locString
+//        
+//        locationLabel.text = locString
+//        
+//    }
+//}
 
 // MARK:- Navigation Controller Delegate
 extension EditActivityController: UINavigationControllerDelegate {

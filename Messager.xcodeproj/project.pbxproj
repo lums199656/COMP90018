@@ -60,14 +60,16 @@
 		A5C155C12541382400A504D6 /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BC2541382400A504D6 /* MessageDataSource.swift */; };
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
-		BB097016253B3EBF00A381A5 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */; };
 		BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */; };
 		BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D0C253408C400DCF2D5 /* FeedData.swift */; };
 		BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */; };
 		BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */; };
-		BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4B996A2532B5B60065128B /* PostViewController.swift */; };
 		BB5175192534554C0078F78B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5175182534554C0078F78B /* Main.storyboard */; };
 		BB51764425347FFD0078F78B /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51764325347FFD0078F78B /* TabViewController.swift */; };
+		BB93CC7B254BBC3900C7F59A /* PostViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC7A254BBC3900C7F59A /* PostViewController1.swift */; };
+		BB93CC80254BBC7300C7F59A /* PostLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */; };
+		BB93CC85254BBC7A00C7F59A /* PostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */; };
+		BB93CC8A254BBD0C00C7F59A /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */; };
 		BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */; };
 		BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */; };
 		BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE474E3252CA343005AE820 /* FeedViewController.swift */; };
@@ -158,14 +160,16 @@
 		A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCatogory.swift; sourceTree = "<group>"; };
 		BB1C1D0C253408C400DCF2D5 /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		BB4B996A2532B5B60065128B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BB5175182534554C0078F78B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BB51764325347FFD0078F78B /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		BB93CC7A254BBC3900C7F59A /* PostViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController1.swift; sourceTree = "<group>"; };
+		BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLocationViewController.swift; sourceTree = "<group>"; };
+		BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateViewController.swift; sourceTree = "<group>"; };
+		BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
 		BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTabViewController.swift; sourceTree = "<group>"; };
 		BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
 		BBE474E3252CA343005AE820 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -384,12 +388,12 @@
 			isa = PBXGroup;
 			children = (
 				9B28DDE725414ECE00A56C3D /* RealmMessage */,
-				9B28DDE525414EC700A56C3D /* NotificationsViewController.swift */,
+				BBEE4334252DDEE500D3B305 /* Activity */,
 				9B28DDE325414EBD00A56C3D /* MKMessage.swift */,
+				9B28DDE525414EC700A56C3D /* NotificationsViewController.swift */,
 				9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */,
 				A5C155652541356E00A504D6 /* OutgoingMessage.swift */,
 				A503279C2531A04F00CEE6E7 /* RecentChat.swift */,
-				BBEE4334252DDEE500D3B305 /* Activity */,
 				A5790B25251B90BC009E1347 /* User.swift */,
 				BB1C1D0C253408C400DCF2D5 /* FeedData.swift */,
 				BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */,
@@ -421,12 +425,14 @@
 			children = (
 				A5C154B6254131CD00A504D6 /* PatientInfoCustomLabel.swift */,
 				BBE474E3252CA343005AE820 /* FeedViewController.swift */,
-				BB4B996A2532B5B60065128B /* PostViewController.swift */,
 				BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */,
 				BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */,
 				BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */,
+				BB93CC7A254BBC3900C7F59A /* PostViewController1.swift */,
 				BBF8100F25388755004C61B2 /* PostViewController2.swift */,
-				BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */,
+				BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */,
+				BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */,
+				BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */,
 				9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */,
 			);
 			path = Controller;
@@ -688,13 +694,11 @@
 				A5C155BF2541382400A504D6 /* MessageDisplayDelegate.swift in Sources */,
 				9B28DDEA25414ECE00A56C3D /* RealmManager.swift in Sources */,
 				A5C154B22541317900A504D6 /* FirebaseUserListener.swift in Sources */,
-				BB4B996B2532B5B60065128B /* PostViewController.swift in Sources */,
 				A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */,
 				A50327B42532E2AE00CEE6E7 /* StartChat.swift in Sources */,
 				A5C155B32541381400A504D6 /* ActivityData.swift in Sources */,
 				A5790B2B252077E1009E1347 /* Constants.swift in Sources */,
 				9B28DDEF25414F1D00A56C3D /* ChatViewController.swift in Sources */,
-				BB097016253B3EBF00A381A5 /* SelectLocationViewController.swift in Sources */,
 				A5C154B12541317900A504D6 /* FirebaseRecentListener.swift in Sources */,
 				825C382C254672C000F8F836 /* EditActivityController.swift in Sources */,
 				A5790B26251B90BC009E1347 /* User.swift in Sources */,
@@ -704,6 +708,7 @@
 				A5C154B02541317900A504D6 /* FirebaseMessageListener.swift in Sources */,
 				BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
+				BB93CC7B254BBC3900C7F59A /* PostViewController1.swift in Sources */,
 				9B28DDEB25414ECE00A56C3D /* LocalMessage.swift in Sources */,
 				BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */,
 				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
@@ -727,6 +732,8 @@
 				BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */,
 				BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */,
 				A5C154B7254131CD00A504D6 /* PatientInfoCustomLabel.swift in Sources */,
+				BB93CC8A254BBD0C00C7F59A /* SuggestionsTableViewController.swift in Sources */,
+				BB93CC85254BBC7A00C7F59A /* PostDateViewController.swift in Sources */,
 				A5C154AF2541317900A504D6 /* FCollectionReferences.swift in Sources */,
 				BBF8101025388755004C61B2 /* PostViewController2.swift in Sources */,
 				A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */,
@@ -742,6 +749,7 @@
 				A5C155BE2541382400A504D6 /* InputBarAccessory.swift in Sources */,
 				BB51764425347FFD0078F78B /* TabViewController.swift in Sources */,
 				8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */,
+				BB93CC80254BBC7300C7F59A /* PostLocationViewController.swift in Sources */,
 				A5C155AE2541380400A504D6 /* OtherUserViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
