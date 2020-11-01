@@ -15,7 +15,10 @@ extension ChatViewController: MessagesLayoutDelegate {
         //MARK: - Cell top label
             
         if indexPath.section % 10 == 0 {
-
+            // 给第一行 “pull load more” 留出空间
+            if (indexPath.section == 0) && (allLocalMessages.count > displayingMessagesCount) {
+                return 40
+            }
             return 18
         }
         

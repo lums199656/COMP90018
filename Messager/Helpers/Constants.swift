@@ -14,7 +14,7 @@ public let kFILEREFERENCE = "gs://comp90018-19be3.appspot.com"
 
 
 
-public let kNUMBEROFMESSAGES = 12
+public let kNUMBEROFMESSAGES = 30
 
 
 public let kCURRENTUSER = "currentUser"

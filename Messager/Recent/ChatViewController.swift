@@ -61,6 +61,10 @@ class ChatViewController: MessagesViewController {
     var audioFileName = ""
     var audioDuration: Date!
     
+    var displayingMessagesCount = 0
+    var maxMessageNumber = 0
+    var minMessageNumber = 0
+    
     init(chatId: String, recipientId: [String], recipientName: [String]) {
 
         
@@ -103,6 +107,18 @@ class ChatViewController: MessagesViewController {
         // 关闭正在播放的音频
         FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
         audioController.stopAnyOngoingPlaying()
+    }
+    
+    // 下拉加载操作
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshController.isRefreshing {
+            if displayingMessagesCount < allLocalMessages.count {
+                // 加载之前的信息
+                self.loadMoreMessages(maxNumber: maxMessageNumber, minNumber: minMessageNumber)
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+            refreshController.endRefreshing()
+        }
     }
     
     
@@ -214,15 +230,49 @@ class ChatViewController: MessagesViewController {
         
         let incoming = IncomingMessage(_collectionView: self)
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
-//        displayingMessagesCount += 1
+        displayingMessagesCount += 1
     }
     
     // 插入信息以待展示
     private func insertMessages() {
-        for message in allLocalMessages {
-            insertMessage(message)
+        
+        maxMessageNumber = allLocalMessages.count - displayingMessagesCount
+        minMessageNumber = maxMessageNumber - kNUMBEROFMESSAGES
+        
+        if minMessageNumber < 0 {
+            minMessageNumber  = 0
+        }
+        
+        for i in minMessageNumber ..< maxMessageNumber {
+            insertMessage(allLocalMessages[i])
+        }
+        
+//
+//        for message in allLocalMessages {
+//            insertMessage(message)
+//        }
+    }
+    
+    // 下拉加载旧信息
+    private func loadMoreMessages(maxNumber: Int, minNumber: Int) {
+        maxMessageNumber = minNumber - 1
+        minMessageNumber = maxMessageNumber - kNUMBEROFMESSAGES
+        
+        if minMessageNumber < 0 {
+            minMessageNumber = 0
+        }
+        
+        for i in (minMessageNumber ... maxMessageNumber) {
+            insertOlderMessage(allLocalMessages[i])
         }
     }
+    
+    private func insertOlderMessage(_ localMessage: LocalMessage) {
+        let incoming = IncomingMessage(_collectionView: self)
+        self.mkMessages.insert(incoming.createMessage(localMessage: localMessage)!, at: 0)
+        displayingMessagesCount += 1
+    }
+    
     
     
     // 检测是否有新的信息

@@ -29,8 +29,13 @@ extension ChatViewController: MessagesDataSource {
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         // 每 10 条显示一个时间
         if indexPath.section % 10 == 0 {
-            let showLoadMore = false
-            let text = showLoadMore ? "Pull to load more" : MessageKitDateFormatter.shared.string(from: message.sentDate)
+            // 下拉加载
+            let showLoadMore = ((indexPath.section == 0) && (allLocalMessages.count > displayingMessagesCount))
+            if indexPath.section == 0 {
+                print("_x-32 ", showLoadMore)
+            }
+//            let text = showLoadMore ? "Pull to load more" : MessageKitDateFormatter.shared.string(from: message.sentDate)
+            let text = showLoadMore ? "Pull to load more" : "No more message"
             let font = showLoadMore ? UIFont.systemFont(ofSize: 13) : UIFont.boldSystemFont(ofSize: 10)
             let color = showLoadMore ? UIColor(named: "chatOutgoingColor") : UIColor.darkGray
             
