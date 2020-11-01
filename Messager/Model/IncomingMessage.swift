@@ -62,22 +62,22 @@ class IncomingMessage {
 //            mkMessage.locationItem = locationItem
 //        }
 //        
-//        if localMessage.type == kAUDIO {
-//            
-//            let audioMessage = AudioMessage(duration: Float(localMessage.audioDuration))
-//            
-//            mkMessage.audioItem = audioMessage
-//            mkMessage.kind = MessageKind.audio(audioMessage)
-//            
-//            FileStorage.downloadAudio(audioLink: localMessage.audioUrl) { (fileName) in
-//                
-//                let audioURL = URL(fileURLWithPath: fileInDocumentsDirectory(fileName: fileName))
-//                
-//                mkMessage.audioItem?.url = audioURL
-//            }
-//            self.messageCollectionView.messagesCollectionView.reloadData()
-//        }
-//        
+        if localMessage.type == kAUDIO {
+            
+            let audioMessage = AudioMessage(duration: Float(localMessage.audioDuration))
+            
+            mkMessage.audioItem = audioMessage
+            mkMessage.kind = MessageKind.audio(audioMessage)
+            
+            FileStorage.downloadAudio(audioLink: localMessage.audioUrl) { (fileName) in
+                
+                let audioURL = URL(fileURLWithPath: fileInDocumentsDirectory(fileName: fileName))
+                
+                mkMessage.audioItem?.url = audioURL
+            }
+            self.messageCollectionView.messagesCollectionView.reloadData()
+        }
+        
         return mkMessage
     }
 

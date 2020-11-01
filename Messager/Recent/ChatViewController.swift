@@ -41,6 +41,8 @@ class ChatViewController: MessagesViewController {
     private var reipientId : [String] = []
     private var recipientName : [String] = []
     
+    open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    
     let currentUser = MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
     
     // 组件
@@ -92,38 +94,17 @@ class ChatViewController: MessagesViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("Chat Will Appear")
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         print("Chat Did Apear")
+        super.viewDidAppear(animated)
+        // 关闭正在播放的音频
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+        audioController.stopAnyOngoingPlaying()
     }
     
-    
-//    private func actionAttachMessage() {
-//
-//        messageInputBar.inputTextView.resignFirstResponder()
-//
-//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//
-//        let takePhotoOrVideo = UIAlertAction(title: "Camera", style: .default) { (alert) in
-//
-//            self.showImageGallery(camera: true)
-//        }
-//
-//        let shareMedia = UIAlertAction(title: "Library", style: .default) { (alert) in
-//
-//            self.showImageGallery(camera: false)
-//        }
-//
-//        let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (alert) in
-//
-//            if let _ = LocationManager.shared.currentLocation {
-//                self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLOCATION)
-//            } else {
-//                print("no access to location")
-//            }
-//        }
-//    }
     
     // 设定 title
     private func configureCustomTitle() {
@@ -263,11 +244,11 @@ class ChatViewController: MessagesViewController {
         print("_x-10 这个聊天框: \(chatId) 我们有 \(allLocalMessages.count) messages")
 
         
-        // 从 firebase 下载数据保存到 localdb
-//        if allLocalMessages.isEmpty {
-//            checkForOldChats()
-//        }
-//
+        // 如果本地一条信息都没，尝试从 firebase 下载数据保存到 localdb
+        if allLocalMessages.isEmpty {
+            checkForOldChats()
+        }
+
         notificationToken = allLocalMessages.observe({ (changes: RealmCollectionChange) in
 
             //updated message
@@ -294,6 +275,13 @@ class ChatViewController: MessagesViewController {
             }
         })
     }
+    
+    private func checkForOldChats() {
+        FirebaseMessageListener.shared.checkForOldChats(User.currentId, collectionId: chatId)
+    }
+    
+    
+    
     
     private func configureGestureRecognizer() {
         longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAudio))

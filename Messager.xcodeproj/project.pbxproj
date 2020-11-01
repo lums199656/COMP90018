@@ -45,6 +45,8 @@
 		A527DEBE251734A30097D419 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A527DEBD251734A30097D419 /* GoogleService-Info.plist */; };
 		A5790B26251B90BC009E1347 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5790B25251B90BC009E1347 /* User.swift */; };
 		A5790B2B252077E1009E1347 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5790B2A252077E1009E1347 /* Constants.swift */; };
+		A59E1825254E85D200FC5C61 /* AudioMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E1824254E85D200FC5C61 /* AudioMessage.swift */; };
+		A59E182D254E8A0500FC5C61 /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E182C254E8A0500FC5C61 /* BasicAudioController.swift */; };
 		A5C154AF2541317900A504D6 /* FCollectionReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C154AB2541317900A504D6 /* FCollectionReferences.swift */; };
 		A5C154B02541317900A504D6 /* FirebaseMessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C154AC2541317900A504D6 /* FirebaseMessageListener.swift */; };
 		A5C154B12541317900A504D6 /* FirebaseRecentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C154AD2541317900A504D6 /* FirebaseRecentListener.swift */; };
@@ -53,7 +55,7 @@
 		A5C155662541356E00A504D6 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155652541356E00A504D6 /* OutgoingMessage.swift */; };
 		A5C155AE2541380400A504D6 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155AD2541380400A504D6 /* OtherUserViewController.swift */; };
 		A5C155B32541381400A504D6 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155B22541381400A504D6 /* ActivityData.swift */; };
-		A5C155BD2541382400A504D6 /* MessageDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155B82541382400A504D6 /* MessageDataDelegate.swift */; };
+		A5C155BD2541382400A504D6 /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155B82541382400A504D6 /* MessageCellDelegate.swift */; };
 		A5C155BE2541382400A504D6 /* InputBarAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155B92541382400A504D6 /* InputBarAccessory.swift */; };
 		A5C155BF2541382400A504D6 /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BA2541382400A504D6 /* MessageDisplayDelegate.swift */; };
 		A5C155C02541382400A504D6 /* MessageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BB2541382400A504D6 /* MessageLayoutDelegate.swift */; };
@@ -147,6 +149,8 @@
 		A527DEBD251734A30097D419 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5790B25251B90BC009E1347 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A5790B2A252077E1009E1347 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A59E1824254E85D200FC5C61 /* AudioMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessage.swift; sourceTree = "<group>"; };
+		A59E182C254E8A0500FC5C61 /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		A5C154AB2541317900A504D6 /* FCollectionReferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCollectionReferences.swift; sourceTree = "<group>"; };
 		A5C154AC2541317900A504D6 /* FirebaseMessageListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseMessageListener.swift; sourceTree = "<group>"; };
 		A5C154AD2541317900A504D6 /* FirebaseRecentListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseRecentListener.swift; sourceTree = "<group>"; };
@@ -155,7 +159,7 @@
 		A5C155652541356E00A504D6 /* OutgoingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OutgoingMessage.swift; path = ../OutgoingMessage.swift; sourceTree = "<group>"; };
 		A5C155AD2541380400A504D6 /* OtherUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		A5C155B22541381400A504D6 /* ActivityData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
-		A5C155B82541382400A504D6 /* MessageDataDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDataDelegate.swift; sourceTree = "<group>"; };
+		A5C155B82541382400A504D6 /* MessageCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
 		A5C155B92541382400A504D6 /* InputBarAccessory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputBarAccessory.swift; sourceTree = "<group>"; };
 		A5C155BA2541382400A504D6 /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
 		A5C155BB2541382400A504D6 /* MessageLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLayoutDelegate.swift; sourceTree = "<group>"; };
@@ -348,7 +352,7 @@
 		A5C155B72541382400A504D6 /* ChatViewExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				A5C155B82541382400A504D6 /* MessageDataDelegate.swift */,
+				A5C155B82541382400A504D6 /* MessageCellDelegate.swift */,
 				A5C155B92541382400A504D6 /* InputBarAccessory.swift */,
 				A5C155BA2541382400A504D6 /* MessageDisplayDelegate.swift */,
 				A5C155BB2541382400A504D6 /* MessageLayoutDelegate.swift */,
@@ -405,6 +409,8 @@
 				BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */,
 				A5DAAEEB254BE5D300F15718 /* AudioRecorder.swift */,
 				A5DAAEF5254D0CC200F15718 /* Channel.swift */,
+				A59E1824254E85D200FC5C61 /* AudioMessage.swift */,
+				A59E182C254E8A0500FC5C61 /* BasicAudioController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -715,6 +721,7 @@
 				A503279D2531A05000CEE6E7 /* RecentChat.swift in Sources */,
 				A50327A52531FA5300CEE6E7 /* RecentTableViewCell.swift in Sources */,
 				A5C154B02541317900A504D6 /* FirebaseMessageListener.swift in Sources */,
+				A59E1825254E85D200FC5C61 /* AudioMessage.swift in Sources */,
 				BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
 				BB93CC7B254BBC3900C7F59A /* PostViewController1.swift in Sources */,
@@ -737,7 +744,7 @@
 				825C382725466BFD00F8F836 /* EditLocationViewController.swift in Sources */,
 				9B7A78B5254D82340084A349 /* LikeBtn.swift in Sources */,
 				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
-				A5C155BD2541382400A504D6 /* MessageDataDelegate.swift in Sources */,
+				A5C155BD2541382400A504D6 /* MessageCellDelegate.swift in Sources */,
 				8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */,
 				A5C155662541356E00A504D6 /* OutgoingMessage.swift in Sources */,
 				BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */,
@@ -747,6 +754,7 @@
 				BB93CC8A254BBD0C00C7F59A /* SuggestionsTableViewController.swift in Sources */,
 				BB93CC85254BBC7A00C7F59A /* PostDateViewController.swift in Sources */,
 				A5C154AF2541317900A504D6 /* FCollectionReferences.swift in Sources */,
+				A59E182D254E8A0500FC5C61 /* BasicAudioController.swift in Sources */,
 				BBF8101025388755004C61B2 /* PostViewController2.swift in Sources */,
 				A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */,
 				A50624982533014B00A7FE9F /* ChatsTableViewController.swift in Sources */,
