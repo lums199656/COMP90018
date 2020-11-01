@@ -12,22 +12,39 @@ import FirebaseFirestoreSwift
 class OutgoingMessage {
 
     
-    class func send(chartId: String, text: String, photo: UIImage?, video: String?, audio: String?, audioDuration: Float = 0.0, location: String?, memberIds: [String]) {
+    class func send(chatId: String, text: String?, photo: UIImage?, video: String?, audio: String?, audioDuration: Float = 0.0, location: String?, memberIds: [String]) {
         let currentUser = User.currentUser!
         let message = LocalMessage()
         message.id = UUID().uuidString
-        message.chatRoomId = chartId
+        message.chatRoomId = chatId
         message.senderId = currentUser.id
         message.senderName = currentUser.username
         message.senderInitials = String(currentUser.username.first!)
         message.date = Date()
         message.status = kSENT
         
+        
         if text != nil {
-            // send text message
-            sendTextMessage(message: message, text: text, memberIds: memberIds)
-            FirebaseRecentListener.shared.updateRecents(chatRoomId: chartId, lastMessage: text)
+            sendTextMessage(message: message, text: text ?? "ERROR", memberIds: memberIds)
         }
+        
+//        if photo != nil {
+//            sendPictureMessage(message: message, photo: photo!, memberIds: memberIds)
+//        }
+//
+//        if video != nil {
+//            sendVideoMessage(message: message, video: video!, memberIds: memberIds)
+//        }
+//
+//        if location != nil {
+//            sendLocationMessage(message: message, memberIds: memberIds)
+//        }
+        
+        if audio != nil {
+            sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
+        }
+        
+        FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
         
         // 更新 recent
     }
@@ -44,6 +61,12 @@ class OutgoingMessage {
             FirebaseMessageListener.shared.addMessage(message, memberId: memberId)
         }
     }
+    
+    class func sendChannelMessage(message: LocalMessage, channel: Channel) {
+        
+        RealmManager.shared.saveToRealm(message)
+        FirebaseMessageListener.shared.addChannelMessage(message, channel: channel)
+    }
 }
 
 
@@ -54,3 +77,40 @@ func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
     OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
     
 }
+
+func addChannelMessage(_ message: LocalMessage, channel: Channel) {
+    
+    do {
+        let _ = try FirebaseReference(.Messages).document(channel.id).collection(channel.id).document(message.id).setData(from: message)
+    }
+    catch {
+        print("error saving message ", error.localizedDescription)
+    }
+}
+
+func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String], channel: Channel? = nil) {
+
+    message.message = "Audio message"
+    message.type = kAUDIO
+    
+    let fileDirectory =  "MediaMessages/Audio/" + "\(message.chatRoomId)/" + "_\(audioFileName)" + ".m4a"
+    
+    print("_x-27 准备上传音频")
+    FileStorage.uploadAudio(audioFileName, directory: fileDirectory) { (audioUrl) in
+        
+        if audioUrl != nil {
+            
+            message.audioUrl = audioUrl ?? ""
+            message.audioDuration = Double(audioDuration)
+            
+            if channel != nil {
+                OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+            } else {
+                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            }
+        }
+    }
+    print("_x-28 结束上传音频")
+    
+}
+

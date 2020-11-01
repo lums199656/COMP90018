@@ -56,7 +56,8 @@ class ChatViewController: MessagesViewController {
     var notificationToken: NotificationToken?
     
     var longPressGesture: UILongPressGestureRecognizer!
-    
+    var audioFileName = ""
+    var audioDuration: Date!
     
     init(chatId: String, recipientId: [String], recipientName: [String]) {
 
@@ -73,17 +74,19 @@ class ChatViewController: MessagesViewController {
     }
 
     override func viewDidLoad() {
+        // Do any additional setup after loading the view.
         super.viewDidLoad()
         configueMessageCollectionView()
-        configureMessageInputBar()
-        loadChats()
-        listenForNewChats()
+
         configureLeftBarButton()
         configureCustomTitle()
 
-
-        // Do any additional setup after loading the view.
+        configureGestureRecognizer()
         
+        configureMessageInputBar()
+
+        loadChats()
+        listenForNewChats()
         
     }
     
@@ -121,19 +124,6 @@ class ChatViewController: MessagesViewController {
 //            }
 //        }
 //    }
-
-
-    
-    func updateMicButtonStatus(show: Bool) {
-        
-        if show {
-            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
-        } else {
-            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
-        }
-    }
     
     // 设定 title
     private func configureCustomTitle() {
@@ -196,15 +186,19 @@ class ChatViewController: MessagesViewController {
         attachButton.image = UIImage(systemName: "plus")
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachButton.onTouchUpInside { item in
-            print("attach button pressed")
+            print("_x-17 attach button pressed")
         }
+        // 麦克风按钮
         micButton.image = UIImage(systemName: "mic.fill")
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
+        micButton.addGestureRecognizer(longPressGesture)
         
         // 将两个 button 放入布局, MessageKit 可以查看布局
         // imageButton
         messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
+        updateMicButtonStatus(show: true)
+        
         
         // textField
         // 不让用户能够在此处黏贴 image
@@ -216,12 +210,23 @@ class ChatViewController: MessagesViewController {
         
     }
     
+    // 设置何时现实 mic 何时显示 send
+    func updateMicButtonStatus(show: Bool) {
+        if show {
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+        }
+    }
+    
     
     
     // Message 的发送
     func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
         print("_x 发送信息")
-        OutgoingMessage.send(chartId: chatId, text: text!, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId] + reipientId)
+        OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId] + reipientId)
     }
     
     private func insertMessage(_ localMessage: LocalMessage) {
@@ -289,7 +294,36 @@ class ChatViewController: MessagesViewController {
             }
         })
     }
+    
+    private func configureGestureRecognizer() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAudio))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delaysTouchesBegan = true
+    }
 
+    @objc func recordAudio() {
+        switch longPressGesture.state {
+        case .began:
+            audioDuration = Date()
+            audioFileName = Date().stringDate()
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
+        case .ended:
+            AudioRecorder.shared.finishRecording()
+            
+            if fileExistsAtPath(path: audioFileName + ".m4a") {
+                // send message
+                let audioD = audioDuration.interval(ofComponent: .second, from: Date())
+                messageSend(text: nil, photo: nil, video: nil, audio: audioFileName, location: nil, audioDuration: audioD)
+            } else {
+                print("_x-21 no audio file")
+            }
+            audioFileName = ""
+            
+        default:
+            print("_x-20 unkown")
+        }
+        print("long press")
+    }
     
 
     /*

@@ -8,6 +8,11 @@
 import Foundation
 
 public let userDefaults = UserDefaults.standard
+public let kFILEREFERENCE = "gs://comp90018-19be3.appspot.com"
+
+
+
+
 
 public let kNUMBEROFMESSAGES = 12
 

@@ -57,6 +57,9 @@
 		A5C155BF2541382400A504D6 /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BA2541382400A504D6 /* MessageDisplayDelegate.swift */; };
 		A5C155C02541382400A504D6 /* MessageLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BB2541382400A504D6 /* MessageLayoutDelegate.swift */; };
 		A5C155C12541382400A504D6 /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C155BC2541382400A504D6 /* MessageDataSource.swift */; };
+		A5DAAEEC254BE5D300F15718 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAEEB254BE5D300F15718 /* AudioRecorder.swift */; };
+		A5DAAEF1254BFCAA00F15718 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAEF0254BFCAA00F15718 /* FileStorage.swift */; };
+		A5DAAEF6254D0CC200F15718 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DAAEF5254D0CC200F15718 /* Channel.swift */; };
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
 		BB097016253B3EBF00A381A5 /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB097015253B3EBF00A381A5 /* SelectLocationViewController.swift */; };
@@ -153,6 +156,9 @@
 		A5C155BA2541382400A504D6 /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
 		A5C155BB2541382400A504D6 /* MessageLayoutDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageLayoutDelegate.swift; sourceTree = "<group>"; };
 		A5C155BC2541382400A504D6 /* MessageDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
+		A5DAAEEB254BE5D300F15718 /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		A5DAAEF0254BFCAA00F15718 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		A5DAAEF5254D0CC200F15718 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +396,8 @@
 				A5790B25251B90BC009E1347 /* User.swift */,
 				BB1C1D0C253408C400DCF2D5 /* FeedData.swift */,
 				BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */,
+				A5DAAEEB254BE5D300F15718 /* AudioRecorder.swift */,
+				A5DAAEF5254D0CC200F15718 /* Channel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -401,6 +409,7 @@
 				A5790B2A252077E1009E1347 /* Constants.swift */,
 				A50327A9253202C000CEE6E7 /* GlobalFunctions.swift */,
 				A50327AE2532E15700CEE6E7 /* Extensions.swift */,
+				A5DAAEF0254BFCAA00F15718 /* FileStorage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -704,11 +713,13 @@
 				9B28DDEB25414ECE00A56C3D /* LocalMessage.swift in Sources */,
 				BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */,
 				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
+				A5DAAEF6254D0CC200F15718 /* Channel.swift in Sources */,
 				8214C9FD253416D700909AEE /* MeViewController.swift in Sources */,
 				A517F8BD2514E89F00621A26 /* AppDelegate.swift in Sources */,
 				BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */,
 				A5C155C02541382400A504D6 /* MessageLayoutDelegate.swift in Sources */,
 				BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */,
+				A5DAAEEC254BE5D300F15718 /* AudioRecorder.swift in Sources */,
 				9B201B31253EE10E00A30EFE /* ScaleAnimationButton.swift in Sources */,
 				BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */,
 				BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */,
@@ -721,6 +732,7 @@
 				8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */,
 				A5C155662541356E00A504D6 /* OutgoingMessage.swift in Sources */,
 				BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */,
+				A5DAAEF1254BFCAA00F15718 /* FileStorage.swift in Sources */,
 				BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */,
 				A5C154B7254131CD00A504D6 /* PatientInfoCustomLabel.swift in Sources */,
 				A5C154AF2541317900A504D6 /* FCollectionReferences.swift in Sources */,

@@ -9,8 +9,15 @@ import Foundation
 import Firebase
 
 // 开始一个 chat
-func startChat(users: [User]) -> String {
-    let chatRoomId = chatRoomIdFrom(users: users)
+func startChat(users: [User], activityId: String) -> String {
+    var chatRoomId: String
+    if activityId == "N" {
+        chatRoomId = UUID().uuidString
+    }else{
+        chatRoomId = activityId
+    }
+    
+//    let chatRoomId = chatRoomIdFrom(users: users)
     print("_x-1 chatRoomId", chatRoomId)
     createRecentItems(chatRoomId: chatRoomId, users: users)
     return chatRoomId

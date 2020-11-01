@@ -66,7 +66,8 @@ class UsersTableViewController: UITableViewController {
         let user = searchController.isActive ? filteredUsers[indexPath.row] : allUsers[indexPath.row]
         
         // chat
-        let chatId = startChat(users: [User.currentUser!, user, allUsers[8], allUsers[5]])
+        let activityId = "N"
+        let chatId = startChat(users: [User.currentUser!, user], activityId: activityId)
         print("_x start chat", chatId)
         
         // 打开一个 chat room 界面
