@@ -2,12 +2,7 @@
 //  DOFavoriteButtonNew.swift
 //  DOFavoriteButtonNew
 //
-//  Created by Daiki Okumura on 2015/07/09.
-//  Copyright (c) 2015 Daiki Okumura. All rights reserved.
-//
-//  This software is released under the MIT License.
-//  http://opensource.org/licenses/mit-license.php
-//
+//  Created by zhangchongjing 2020/10/19.
 
 import UIKit
 

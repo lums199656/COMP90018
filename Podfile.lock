@@ -299,6 +299,9 @@ PODS:
   - FirebaseStorage (3.9.1):
     - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Storage (9.0.0):
+    - Firebase/Storage
+    - SDWebImage (~> 5.6)
   - Gallery (2.4.0)
   - GoogleAppMeasurement (6.9.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
@@ -381,6 +384,9 @@ PODS:
   - Realm/Headers (10.0.0)
   - RealmSwift (10.0.0):
     - Realm (= 10.0.0)
+  - SDWebImage (5.9.4):
+    - SDWebImage/Core (= 5.9.4)
+  - SDWebImage/Core (5.9.4)
   - SKPhotoBrowser (6.1.0)
   - SnapKit (5.0.1)
   - Tabman (2.9.1):
@@ -399,6 +405,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - FirebaseFirestoreSwift
+  - FirebaseUI/Storage
   - Gallery
   - InputBarAccessoryView
   - IQKeyboardManagerSwift
@@ -433,6 +440,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - FirebaseMessaging
     - FirebaseStorage
+    - FirebaseUI
     - Gallery
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -455,6 +463,7 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
+    - SDWebImage
     - SKPhotoBrowser
     - SnapKit
     - Tabman
@@ -478,6 +487,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: bd3ffc24367f901a43c063b36c640b345a4a5dd1
   FirebaseMessaging: 5eca4ef173de76253352511aafef774caa1cba2a
   FirebaseStorage: 15e0f15ef3c7fec3d1899d68623e47d4447066b4
+  FirebaseUI: f0677a1cc235f6da602cbd5c9b5fbbd24544a6b3
   Gallery: b7fc1aeb68a39ad6d2c423574750196bf9b25e5c
   GoogleAppMeasurement: a6a3a066369828db64eda428cb2856dc1cdc7c4e
   GoogleDataTransport: f56af7caa4ed338dc8e138a5d7c5973e66440833
@@ -500,11 +510,12 @@ SPEC CHECKSUMS:
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   Realm: 5654b8e5e45034d07b219e089034be2ef7d1e7bf
   RealmSwift: 5b4c8c85be4c14ff52054a4d80a8d338167dd79c
+  SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Tabman: 085d89c65be9e883629bdaf5b1453a6397e57846
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
 
-PODFILE CHECKSUM: 0c0764be79497bdcd50c0bf4b62e4918d07d2da5
+PODFILE CHECKSUM: a6908aae28e7d42db30b55f33b67f6fdced28f43
 
 COCOAPODS: 1.9.3

@@ -12,4 +12,5 @@ struct FeedData {
     let detail, title, uid, user: String?
     let image: String?
     let join: [String]!
+    let star: Bool
 }

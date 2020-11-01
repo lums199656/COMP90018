@@ -1992,6 +1992,11 @@
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
+                                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ufj-AG-ZUp">
+                                                                    <rect key="frame" x="334" y="19.5" width="39" height="42"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="tintColor" name="chatOutgoingColor"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
@@ -2033,6 +2038,7 @@
                                             <outlet property="profile3" destination="96c-Xk-eFh" id="LJH-gp-E4m"/>
                                             <outlet property="profile4" destination="hvr-vQ-k9b" id="m5j-Zy-qGf"/>
                                             <outlet property="profile5" destination="Xn9-9R-O6K" id="2ek-sK-YcE"/>
+                                            <outlet property="star" destination="ufj-AG-ZUp" id="OYz-lA-VK4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2041,6 +2047,17 @@
                                     <outlet property="delegate" destination="ykW-60-60n" id="YVx-0E-som"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" id="EOd-3o-wTP" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="182" y="464" width="50" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" name="chatOutgoingColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballPulse"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LQ2-AZ-810"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2054,6 +2071,7 @@
                     <tabBarItem key="tabBarItem" title="Feed" image="suit.heart.fill" catalog="system" id="c9J-4R-maG"/>
                     <navigationItem key="navigationItem" id="Rhg-iq-enh"/>
                     <connections>
+                        <outlet property="loadingView" destination="EOd-3o-wTP" id="Q5H-eQ-o8R"/>
                         <outlet property="tableView" destination="Ao2-xN-CSW" id="4N2-gj-aNs"/>
                     </connections>
                 </viewController>
@@ -2952,6 +2970,7 @@
         <image name="photo.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="sorry" width="212.5" height="248"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="suit.heart.fill" catalog="system" width="128" height="109"/>
         <image name="tabBarItem:fhk-oD-cde:image" width="128" height="72"/>
         <namedColor name="TabBarColor">
@@ -2962,6 +2981,9 @@
         </namedColor>
         <namedColor name="avatarViewBackground">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="chatOutgoingColor">
+            <color red="0.92400002479553223" green="0.45699998736381531" blue="0.36300000548362732" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="collectionViewBackground">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

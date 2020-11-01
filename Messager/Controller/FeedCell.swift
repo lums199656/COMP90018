@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import DOFavoriteButtonNew
+import FirebaseUI
+import RealmSwift
 
 class FeedCell: UITableViewCell {
     @IBOutlet weak var profile5: UIImageView!
@@ -21,10 +23,12 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var bbb: DOFavoriteButtonNew! //heart btn
     @IBOutlet weak var errorView: UIImageView!
+    @IBOutlet weak var star: UIImageView!
     
     
     let storage = Storage.storage()
     let db = Firestore.firestore()
+    let realm = try! Realm()
     
     var cellData : FeedData!{
     //monitor, reocrd change
@@ -32,7 +36,10 @@ class FeedCell: UITableViewCell {
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             labelT.text = cellData.title
             labelD.text = cellData.detail
-            
+            star.isHidden = true //prevent cell reusable
+            if cellData.star {
+                star.isHidden = false
+            }
             //text adaption
             labelD.numberOfLines=0
             labelD.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -40,25 +47,55 @@ class FeedCell: UITableViewCell {
             //get feed image
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
+            //print("===========================")
             print("activity-images/"+imageId)
-            //cloudFileRef.write(toFile: )
-            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.feedImage.image = UIImage(data: data!)
+            //print("===========================")
+            feedImage.sd_setImage(with: cloudFileRef) //very quick function!
+            
+//            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                } else {
+//                    self.feedImage.image = UIImage(data: data!)
+//                }
+//            }
+            
+            //initiate like btn
+            //if selected, set it like, if not keep unselected
+            //+"&& user == "+cellData.user!
+            let s: String = "id = '"+cellData.uid!+"' AND user = '"+cellData.user!+"'"
+            let predicate = NSPredicate(format: s)
+            let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
+            //print("likeBtn")
+            //print(likeBtn)
+            // if query doesn't exist, create one
+            if likeBtn == nil{
+                bbb.deselect()
+                let lb = LikeBtn()
+                lb.id = cellData.uid!
+                lb.user = cellData.user!
+                lb.select = false
+                try! realm.write {
+                    realm.add(lb)
                 }
             }
-            
+            else{
+                if likeBtn?.select == true{
+                    bbb.select()
+                }
+                else{
+                    bbb.deselect()
+                }
+            }
             let joins:[String] = cellData!.join //for get profile array
             print("joins")
             print(joins)
             var cur = 1
-            profile5.image = nil
-            profile4.image = nil
-            profile3.image = nil
-            profile2.image = nil
-            profile1.image = nil
+//            profile5.image = nil
+//            profile4.image = nil
+//            profile3.image = nil
+//            profile2.image = nil
+//            profile1.image = nil
             for join in joins{
                 self.db.collection("User").whereField("id", isEqualTo: join).getDocuments{ (querySnapshot, error) in
                     if let e = error{
@@ -72,36 +109,30 @@ class FeedCell: UITableViewCell {
                                 let pic = data["avatarLink"] as! String
                                 let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
                                 print("user-photoes/"+pic)
-                                proRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                    } else {
-                                        switch cur {
-                                        case 1:
-                                            self.profile1.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 2:
-                                            self.profile2.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 3:
-                                            self.profile3.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 4:
-                                            self.profile4.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 5:
-                                            self.profile5.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        default:
-                                            cur = 1
-                                            break
-                                        }
-                                    }
+                                switch cur {
+                                case 1:
+                                    self.profile1.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 2:
+                                    self.profile2.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 3:
+                                    self.profile3.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 4:
+                                    self.profile4.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 5:
+                                    self.profile5.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                default:
+                                    cur = 1
+                                    break
                                 }
                             }
                         }//snapshot
@@ -109,40 +140,26 @@ class FeedCell: UITableViewCell {
                 }
                 cur = 1
             }
-//            if(p1 != ""){
-//                let proRef = storage.reference(withPath: "user-photoes/"+p1)
-//                print("user-photoes/"+p1)
-//                proRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                    } else {
-//                        self.profile1.image = UIImage(data: data!)
-//                        //self.test.image = UIImage(data: data!)
-//                    }
-//                }
-//            }
-//            if(p2 != ""){
-//                let proRef = storage.reference(withPath: "user-photoes/"+p2)
-//                print("user-photoes/"+p2)
-//                proRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                    } else {
-//                        self.profile2.image = UIImage(data: data!)
-//                    }
-//                }
-//            }
         }
     }
     
     //tap action
     @objc func tappedButton(sender: DOFavoriteButtonNew) {
+        let s: String = "id = '"+cellData.uid!+"' AND user = '"+cellData.user!+"'"
+        let predicate = NSPredicate(format: s)
+        let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
         if sender.isSelected {
             sender.deselect()
+            try! realm.write {
+                likeBtn!.select = false
+            }
             print("dislike")
             removeUser()
         } else {
             upLoadUserToJoinList()
+            try! realm.write {
+                likeBtn!.select = true
+            }
             print("like")
         }
     }
