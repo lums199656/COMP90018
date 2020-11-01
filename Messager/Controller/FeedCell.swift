@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import DOFavoriteButtonNew
+import FirebaseUI
+import RealmSwift
 
 class FeedCell: UITableViewCell {
     @IBOutlet weak var profile5: UIImageView!
@@ -19,45 +21,81 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var labelT: UILabel!
     @IBOutlet weak var feedImage: UIImageView!
     @IBOutlet weak var view: UIView!
-    @IBOutlet weak var bbb: DOFavoriteButtonNew! //红心按钮
+    @IBOutlet weak var bbb: DOFavoriteButtonNew! //heart btn
     @IBOutlet weak var errorView: UIImageView!
+    @IBOutlet weak var star: UIImageView!
     
     
     let storage = Storage.storage()
     let db = Firestore.firestore()
+    let realm = try! Realm()
     
     var cellData : FeedData!{
-    //监视器，判断是否发生变化
+    //monitor, reocrd change
         didSet{
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             labelT.text = cellData.title
             labelD.text = cellData.detail
-            labelD.numberOfLines=0 // 行数设置为0
-            // 换行的模式 文本自适应
+            star.isHidden = true //prevent cell reusable
+            if cellData.star {
+                star.isHidden = false
+            }
+            //text adaption
+            labelD.numberOfLines=0
             labelD.lineBreakMode = NSLineBreakMode.byWordWrapping
-            //print("cellData.user1："+cellData.user1!)
             
+            //get feed image
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
+            //print("===========================")
             print("activity-images/"+imageId)
-            //cloudFileRef.write(toFile: )
-            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.feedImage.image = UIImage(data: data!)
+            //print("===========================")
+            feedImage.sd_setImage(with: cloudFileRef) //very quick function!
+            
+//            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                } else {
+//                    self.feedImage.image = UIImage(data: data!)
+//                }
+//            }
+            
+            //initiate like btn
+            //if selected, set it like, if not keep unselected
+            //+"&& user == "+cellData.user!
+            let s: String = "id = '"+cellData.uid!+"' AND user = '"+cellData.user!+"'"
+            let predicate = NSPredicate(format: s)
+            let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
+            //print("likeBtn")
+            //print(likeBtn)
+            // if query doesn't exist, create one
+            if likeBtn == nil{
+                bbb.deselect()
+                let lb = LikeBtn()
+                lb.id = cellData.uid!
+                lb.user = cellData.user!
+                lb.select = false
+                try! realm.write {
+                    realm.add(lb)
                 }
             }
-            
-            let joins:[String] = cellData!.join //存储头像的数组
+            else{
+                if likeBtn?.select == true{
+                    bbb.select()
+                }
+                else{
+                    bbb.deselect()
+                }
+            }
+            let joins:[String] = cellData!.join //for get profile array
             print("joins")
             print(joins)
             var cur = 1
-            profile5.image = nil
-            profile4.image = nil
-            profile3.image = nil
-            profile2.image = nil
-            profile1.image = nil
+//            profile5.image = nil
+//            profile4.image = nil
+//            profile3.image = nil
+//            profile2.image = nil
+//            profile1.image = nil
             for join in joins{
                 self.db.collection("User").whereField("id", isEqualTo: join).getDocuments{ (querySnapshot, error) in
                     if let e = error{
@@ -67,40 +105,34 @@ class FeedCell: UITableViewCell {
                         if let snapShotDocuments = querySnapshot?.documents{
                             for doc in snapShotDocuments{
                                 let data = doc.data()
-                                //将头像数据加入到join_arr中
+                                //add profile to arr
                                 let pic = data["avatarLink"] as! String
                                 let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
                                 print("user-photoes/"+pic)
-                                proRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                                    if let error = error {
-                                        print(error.localizedDescription)
-                                    } else {
-                                        switch cur {
-                                        case 1:
-                                            self.profile1.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 2:
-                                            self.profile2.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 3:
-                                            self.profile3.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 4:
-                                            self.profile4.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        case 5:
-                                            self.profile5.image = UIImage(data: data!)
-                                            cur+=1
-                                            break
-                                        default:
-                                            cur = 1
-                                            break
-                                        }
-                                    }
+                                switch cur {
+                                case 1:
+                                    self.profile1.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 2:
+                                    self.profile2.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 3:
+                                    self.profile3.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 4:
+                                    self.profile4.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                case 5:
+                                    self.profile5.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                default:
+                                    cur = 1
+                                    break
                                 }
                             }
                         }//snapshot
@@ -108,44 +140,31 @@ class FeedCell: UITableViewCell {
                 }
                 cur = 1
             }
-//            if(p1 != ""){
-//                let proRef = storage.reference(withPath: "user-photoes/"+p1)
-//                print("user-photoes/"+p1)
-//                proRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                    } else {
-//                        self.profile1.image = UIImage(data: data!)
-//                        //self.test.image = UIImage(data: data!)
-//                    }
-//                }
-//            }
-//            if(p2 != ""){
-//                let proRef = storage.reference(withPath: "user-photoes/"+p2)
-//                print("user-photoes/"+p2)
-//                proRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                    if let error = error {
-//                        print(error.localizedDescription)
-//                    } else {
-//                        self.profile2.image = UIImage(data: data!)
-//                    }
-//                }
-//            }
         }
     }
     
-    //点击触发
+    //tap action
     @objc func tappedButton(sender: DOFavoriteButtonNew) {
+        let s: String = "id = '"+cellData.uid!+"' AND user = '"+cellData.user!+"'"
+        let predicate = NSPredicate(format: s)
+        let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
         if sender.isSelected {
             sender.deselect()
-            print("不喜欢")
+            try! realm.write {
+                likeBtn!.select = false
+            }
+            print("dislike")
             removeUser()
         } else {
             upLoadUserToJoinList()
-            print("喜欢")
+            try! realm.write {
+                likeBtn!.select = true
+            }
+            print("like")
         }
     }
     
+    //logic for add user in join field
     func upLoadUserToJoinList(){
         let docRef = db.collection(K.FStore.act).document(cellData.uid!)
         docRef.getDocument { (document, error) in
@@ -155,18 +174,19 @@ class FeedCell: UITableViewCell {
                 let cur_num = joinArr.count
                 if cur_num < max {
                     if cur_num+1 == max{
-                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user]), "actStatus":1]) //在join增加用户
+                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user]), "actStatus":1]) //join user in firebase and change status
                     }
                     else{
-                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user])]) //在join增加用户
+                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user])]) //join user in firebase
                     }
                     self.bbb.select()
                 }
                 else{
-                    //更改status. 更新都用update，setData会直接覆盖整个document！！！
+                    //change status. use update! instead of setData
                     self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["actStatus": 1])
-                    //弹窗
-                    print("人满了!")
+                    print("full")
+                    
+                    //animation
                     self.errorView.isHidden = false
                     self.errorView.alpha = 1.0
                     UIView.animate(withDuration: 0.5, delay: 2.0, options: [], animations: {
@@ -181,16 +201,17 @@ class FeedCell: UITableViewCell {
         }
     }
     
+    //logic for dislike
     func removeUser(){
         let docRef = db.collection(K.FStore.act).document(cellData.uid!)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let status:Int = document.data()!["actStatus"] as! Int
                 if status != 0 {
-                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user]), "actStatus":0]) //在join删除用户,并且状态变成awaiting
+                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user]), "actStatus":0]) //remove user in firebase and change status to 0
                 }
                 else{
-                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user])]) //在join删除用户
+                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user])]) //remove user in firebase
                 }
             }
         }
@@ -203,7 +224,6 @@ class FeedCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 

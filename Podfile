@@ -15,6 +15,7 @@ target 'Messager' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Messaging'
   pod 'FirebaseFirestoreSwift'
+  pod 'FirebaseUI/Storage'
 
   
   # 素材

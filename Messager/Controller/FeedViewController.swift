@@ -9,19 +9,27 @@ import UIKit
 import Firebase
 import Lottie
 import DOFavoriteButtonNew
+import CoreLocation
+import NVActivityIndicatorView
+import MapKit
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let cur_id : String = Auth.auth().currentUser!.uid
     var lists : [FeedData] = []
-    var cur_count = 0 //用来判断当前处在哪一个位置
-    var max = 1 //用来判断最大访问数量
+    var cur_count = 0 //current row
+    var max = 1 //max num
     var changeUID: String = "" //document id
+    var pre_count = 0
+    let locationManager = CLLocationManager()
+    var lat: Double = 0.0
+    var lont: Double = 0.0
      
+    @IBOutlet weak var loadingView: NVActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     //显示cell个数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("list数量是")
+        print("list count")
         print(lists.count)
         return lists.count
     }
@@ -29,38 +37,42 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     //每行显示什么
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
-        //cell.bbb.isSelected = false //修改状态
         print("indexPath.row=\(indexPath.row)")
-        cur_count = indexPath.row //直接在这里定义cur_count
+        cur_count = indexPath.row //define cur_count
         cell.cellData = lists[indexPath.row]
-        changeUID = lists[indexPath.row].uid! //获取当前row的uid
+        changeUID = lists[indexPath.row].uid! //get current row uid
         //如果row是0，先set read
         if cur_count == 0{
             setRead()
         }
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none //点击页面无选中反应
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none //none selection response of tableView
         return cell
     }
     
    
-    //let storage = Storage.storage()
     let db = Firestore.firestore()
     
-    let dbSeed = DBSeeding(false)
     
-    //控制cell行高
+    //control cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.size.height - 80
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //防止reload乱跑
+        //make page stable when reload
         tableView.estimatedRowHeight = 0
         print("🔥FeedView Did Load")
-        getData()
         
+        // 1. Setup
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
+        // add animation
+        loadingView.startAnimating()
+        getData(flag: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,9 +90,8 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
   
-    //调用下一个数据库数据
-    func getData(){
-        //获取数据
+    //get data, if true find distance < 1000, else whatever
+    func getData(flag: Bool){
         //.whereField().limit(to: num) .whereField("read", isEqualTo: 0)
         //whereField(_:notIn:) finds documents where a specified field’s value is not in a specified array.
         db.collection(K.FStore.act).getDocuments{ (querySnapshot, error) in
@@ -90,6 +101,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             else{
                 let page_limit = 10
                 var page_load = 0
+                var flag_load_page = 0
                 if let snapShotDocuments = querySnapshot?.documents{
                     for doc in snapShotDocuments{
                         if(page_load >= page_limit){
@@ -97,320 +109,119 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             break
                         }
                         let data = doc.data()
-                        //将数据赋值建立结构体，加入到lists中
-                        if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = doc.documentID as? String, let image = data[K.Activity.image] as? String, let t = data["read_dic"] as? [String : Int], let user = data["actCreatorId"] as? String, let size = data["actGroupSize"] as? Int, let status = data["actStatus"] as? Int{//user要变成creatorid
-                            //必须强制转换，不然会变成optional类型数据，取不到值
-                            let read = data["read_dic"] as! [String : Int]
-                            let join = data["join"] as! [String]
+                        //Assign data to create a structure and add it to the lists
+                        if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = doc.documentID as? String, let image = data[K.Activity.image] as? String, let t = data[K.Activity.read_dict] as? [String : Int], let user = data[K.Activity.user] as? String, let size = data[K.Activity.groupSize] as? Int, let status = data[K.Activity.status] as? Int{
+                            //Must be forced to convert, otherwise it will become optional type data, can not get the value
+                            let read = data["read_dic"] as! [String : Int] //unwrap
+                            let join = data[K.Activity.join] as! [String]
                             let cur_size = join.count
+                            //print("location: lat:\(self.lat)+lont:\(self.lont)")
+                            //get geopoint
+                            let points = data[K.Activity.location] as! GeoPoint //latitude = points.latitude, longtitude = points.longtitude
+                            var currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
+                            var targetLocation = CLLocation(latitude: points.latitude, longitude: points.longitude)
+                            var distance:CLLocationDistance = currentLocation.distance(from: targetLocation) //two point distance
+                            //print("两点间距离是：\(distance)")
+                            //print("user id: \(Auth.auth().currentUser!.uid)")
                             
-                            //if(!read.contains(Auth.auth().currentUser!.uid)){ //数组方法
-                            if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size){//没读过，人数没上限，状态是0
-                                print("进来了")
-                                page_load+=1
-                                let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join)
-                                //print(feedData)
-                                self.lists.append(feedData)
-                                self.tableView.reloadData()
+                            if flag{
+                                if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size && distance<1000){//not in read_dic, status is awaiting, not reach size, distance<1000
+                                    page_load+=1
+                                    flag_load_page+=1
+                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join, star: true)
+                                    //print(feedData)
+                                    self.lists.append(feedData)
+                                    self.loadingView.stopAnimating()
+                                    self.tableView.reloadData()
+                                }
                             }
-                            print("阿爸阿爸")
+                            else{
+                                if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size){//not in read_dic, status is awaiting, not reach size
+                                    page_load+=1
+                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join, star: false)
+                                    //print(feedData)
+                                    self.lists.append(feedData)
+                                    self.loadingView.stopAnimating()
+                                    self.tableView.reloadData()
+                                }
+                            }
                         }
+                    }
+                    print("flag page:\(flag_load_page)")
+                    if flag_load_page == 0 && flag{
+                        self.getData(flag: false)
                     }
                 }
             }
         }
-            
     }
 
-    // 滑动偏移量
     var lastContentOffset: CGFloat = 0
     var screenSize = UIScreen.main.bounds.size.height - 80
 
-    // 记录滑动偏移量
+    // record offset
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.lastContentOffset = scrollView.contentOffset.y
-//        print("scrollView.contentOffset.y is:")
-//        print(scrollView.contentOffset.y)
     }
 
-    //下滑拖动结束时候会触发事件的方法
+    //The method that will trigger the event when the sliding drag ends
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        //向下
+        //downside
         if self.lastContentOffset < scrollView.contentOffset.y {
-            //print("我猜我在向下滑动？")
             if self.cur_count >= self.max {
                 print("read")
                 self.max += 1
                 setRead()
             }
             if(self.cur_count >= self.lists.count - 1){
-                getData()
+                getData(flag: true)
                 print("getAgain")
                 self.tableView.reloadData()
             }
         }
-        //向上
+        //upside
         else if self.lastContentOffset > scrollView.contentOffset.y {
-              print("func2")
+              print("upside")
 //            print(self.cur_count)
         }
     }
-//    // 上下滑动触发，滑动过程也有
+//    // during process
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //
 //    }
     
+    //remove duplication
     func setRead(){
-        //修改read为1
-        //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) 数组写法
+        //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) array method
         let temp: String = "read_dic."+Auth.auth().currentUser!.uid
         self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
     }
     
+}
+extension FeedViewController: CLLocationManagerDelegate {
     
-//    @IBAction func uploadButtonPressed(_ sender: UIButton) {
-//        print("----------------------")
-//        uploadImage(from: "port1", to: "Again19")
-//    }
-//
-//    @IBAction func downloadButtonPressed(_ sender: UIButton) {
-//        print("----------------------")
-//
-//        downloadImage("port4")
-//    }
-//
-//    @IBAction func upTextButtonPressed(_ sender: UIButton) {
-//        let title = "尴尬不尴尬"
-//        let detail = "Wonderland Lalaland Give me five"
+    // 2. Method when location is updated
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        // Method 1: Add new doc to collection, auto-generate id
-//        var ref: DocumentReference? = nil
-//        ref = db.collection("activities").addDocument(data: [
-//            "title": title,
-//            "detail": detail
-//        ]) { error in
-//            if let e = error {
-//                print("Error saving data to firestore, \(e)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
-//
-        // Method 2: set data of a document, explicitly set id
-//        let docRef = db.collection("activities").document("explicitSpecified")
-//        docRef.setData([
-//            "title": title,
-//            "detail": detail
-//        ]) { err in
-//            if let err = err {
-//                print("Error writing document: \(err)")
-//            } else {
-//                print("Document successfully written!")
-//            }
-//        }
-//
-//    }
-    
-    
-//    @IBAction func downTextButtonPressed(_ sender: UIButton) {
-//        db.collection("activities").getDocuments { (querySnapshot, error) in
-//            if let e = error {
-//                print("Error getting documents: \(e)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//                }
-//            }
-//        }
+        let userLocation: CLLocation = locations[0]
         
-//        let docRef = db.collection("activities").document("explicitSpecified")
-//        docRef.getDocument { (docSnapShot, error) in
-//            guard let docSnapShot = docSnapShot, docSnapShot.exists else {return}
-//            let data = docSnapShot.data()
-//            let title = data?["title"] as? String ?? ""
-//            let detail = data?["detail"] as? String ?? ""
-//            self.activityDetail.text = detail
-//            self.activityTitle.text = title
-//        }
-//
-//
-//    }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        lat = userLocation.coordinate.latitude
+        lont = userLocation.coordinate.longitude
     }
-    */
-
-
-// MARK:- Image
-
-//extension FeedViewController {
-//
-//    /// Upload the image from memory to Cloud
-//    ///
-//    /// - warning:
-//    /// - parameter fileName:
-//    /// - parameter cloudName: use `activityApplicationId` for file reference
-//    /// - returns: string representation of the poo
-//    func uploadImage(from fileName: String, to cloudName: String) {
-//        // 1. Cloud Storage Reference
-//        let storageRef = storage.reference()
-//        let activityImageRef = storageRef.child("activity-images")
-//        let cloudFileRef = activityImageRef.child(cloudName)
-//        print(cloudFileRef)
-//
-//        // 2. Convert image to Data()
-//        guard let data = UIImage(named: fileName)?.jpegData(compressionQuality: 1) else {
-//            fatalError("")
-//        }
-//
-//        // 3. Upload the file to the path "activity-images/_"
-//        let uploadTask = cloudFileRef.putData(data, metadata: nil) { (metadata, error) in
-//            guard let metadata = metadata else {
-//                fatalError("metadata error?")
-//            }
-//
-//            // Metadata contains file metadata such as size, content-type.
-//            let size = metadata.size
-//            print(size)
-//
-//            // You can also access to download URL after upload.
-//            cloudFileRef.downloadURL { (url, error) in
-//                guard let downloadURL = url else {
-//                    // Uh-oh, an error occurred!
-//                    return
-//                }
-//            }
-//        }
-//    }
-//
-//
-//
-//    /// Download the image from Cloud
-//    ///
-//    ///- parameter cloudName: use `activityApplicationId` for file reference
-//    /// - returns: UIImage?
-//    /// - warning: return `nil` when error occur
-//    func downloadImage(_ cloudName: String){
-//
-//        // 1. Create a reference with an initial file path and name
-//        let cloudFileRef = storage.reference(withPath: "activity-images/\(cloudName)")
-//        print(cloudFileRef)
-//
-//        cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else {
-//                self.imageView.image = UIImage(data: data!)
-//
-//            }
-//        }
-//    }
-//
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if let clErr = error as? CLError {
+            switch clErr {
+            case CLError.locationUnknown:
+                print("location unknown")
+            case CLError.denied:
+                print("denied")
+            default:
+                print("other Core Location error")
+            }
+        } else {
+            print("other error:", error.localizedDescription)
+        }
+    }
     
-//    func uploadImage() { // from local
-//        let uploadTask = cloudFileRef.putFile(from: localFile, metadata: nil) {
-//            metadata, error in
-//
-//            guard let metadata = metadata else {
-//                return
-//                print(error)
-//            }
-//
-//            let size = metadata.size
-//
-//            cloudFileRef.downloadURL { (url, error) in
-//                guard let downloadURL = url else {
-//                    return
-//                }
-//            }
-//
-//        }
-//    }
-//}
 }
 
-
-//                                self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
-//                                    if let e = error{
-//                                        print("error happens in getDocuments\(e)" )
-//                                    }
-//                                    else{
-//                                        if let snapShotDocuments = querySnapshot?.documents{
-//                                            for doc in snapShotDocuments{
-//                                                let data = doc.data()
-//                                                if(data["user1"] != nil){
-//                                                    user1 = data["user1"] as! String
-//                                                }
-//                                                if(data["user2"] != nil){
-//                                                    user2 = data["user2"] as! String
-//                                                }
-//    //                                            if(data["user3"] != nil){
-//    //                                                user3 = data["user3"] as! String
-//    //                                            }
-//    //                                            if(data["user4"] != nil){
-//    //                                                user4 = data["user4"] as! String
-//    //                                            }
-//    //                                            if(data["user5"] != nil){
-//    //                                                user5 = data["user5"] as! String
-//    //                                            }
-//
-//
-//    //                                            self.db.collection("JoinUsers").whereField("keyID", isEqualTo: uid).getDocuments{ (querySnapshot, error) in
-//    //                                                if let e = error{
-//    //                                                    print("error happens in getDocuments\(e)" )
-//    //                                                }
-//    //                                                else{
-//    //                                                    if let snapShotDocuments = querySnapshot?.documents{
-//    //                                                        for doc in snapShotDocuments{
-//    //                                                            let data = doc.data()
-//    //                                                        }
-//    //                                                    }
-//    //                                                }
-//    //                                            }
-//                                                //通过userID获取 userImage
-//                                                self.db.collection("UserInfo").whereField("userID", isEqualTo: user1).getDocuments{ (querySnapshot, error) in
-//                                                    if let e = error{
-//                                                        print("error happens in getDocuments\(e)" )
-//                                                    }
-//                                                    else{
-//                                                        if let snapShotDocuments = querySnapshot?.documents{
-//                                                            for doc in snapShotDocuments{
-//                                                                let data = doc.data()
-//                                                                if let user1_1 = data["userImage"] as? String{
-//                                                                    user1 = user1_1
-//                                                                }
-//                                                            }
-//                                                        }
-//                                                    }
-//                                                    self.db.collection("UserInfo").whereField("userID", isEqualTo: user2).getDocuments{ (querySnapshot, error) in
-//                                                        if let e = error{
-//                                                            print("error happens in getDocuments\(e)" )
-//                                                        }
-//                                                        else{
-//                                                            if let snapShotDocuments = querySnapshot?.documents{
-//                                                                for doc in snapShotDocuments{
-//                                                                    let data = doc.data()
-//                                                                    if let user2_2 = data["userImage"] as? String{
-//                                                                        user2 = user2_2
-//                                                                    }
-//                                                                }
-//                                                            }
-//                                                        }
-//                                                        let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, user1: user1, user2: user2)
-//                                                        //print(feedData)
-//                                                        self.lists.append(feedData)
-//                                                        self.tableView.reloadData()
-//
-//                                                    }
-//                                                }
-//                                            }
-//                                        }
-//                                    }
-//                                }
