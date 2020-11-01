@@ -33,4 +33,5 @@ extension ChatViewController : MessageCellDelegate {
             audioController.playSound(for: message, in: cell)
         }
     }
+    
 }

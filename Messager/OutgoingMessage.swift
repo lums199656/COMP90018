@@ -25,7 +25,9 @@ class OutgoingMessage {
         
         
         if text != nil {
+//            sendTextMessage(message: message, text: text ?? "ERROR", memberIds: memberIds)
             sendTextMessage(message: message, text: text ?? "ERROR", memberIds: memberIds)
+
         }
         
 //        if photo != nil {
@@ -74,6 +76,14 @@ func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
     message.message = text
     message.type = kTEXT
     
+    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    
+}
+
+func sendSupriseMessage(message: LocalMessage, text: String, memberIds: [String]) {
+    message.message = text
+    message.type = kTEXT
+    message.surprise = true
     OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
     
 }

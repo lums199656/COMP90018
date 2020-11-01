@@ -13,6 +13,10 @@ extension ChatViewController: MessagesLayoutDelegate {
     // top label 的高
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         //MARK: - Cell top label
+        if mkMessages[indexPath.section].surprise {
+            print("_x-39 该显示 surprise 了")
+            return 40
+        }
             
         if indexPath.section % 10 == 0 {
             // 给第一行 “pull load more” 留出空间
@@ -28,6 +32,9 @@ extension ChatViewController: MessagesLayoutDelegate {
     }
     
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if mkMessages[indexPath.section].surprise {
+            return 0
+        }
         return 20
     }
 //
@@ -44,7 +51,9 @@ extension ChatViewController: MessagesLayoutDelegate {
     
 
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-       
+        if mkMessages[indexPath.section].surprise {
+            return 0
+        }
         if indexPath.section % 10 == 0 {
             return 18
         }
@@ -56,7 +65,11 @@ extension ChatViewController: MessagesLayoutDelegate {
     // 设置头像
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         // 将首字母作为头像
-        avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+        if mkMessages[indexPath.section].surprise {
+            avatarView.set(avatar: Avatar(image: UIImage(named: "suprise_avatar"), initials: ""))
+        } else {
+            avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+        }
 
     }
     

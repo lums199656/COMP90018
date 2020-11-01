@@ -27,15 +27,25 @@ extension ChatViewController: MessagesDataSource {
     
     // cell 上方的 labels
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        // 每 10 条显示一个时间
-        if indexPath.section % 10 == 0 {
+        if mkMessages[indexPath.section].surprise {
+            // u 仔的 suprise
+            print("_x-38 该显示 suprise 了")
+            let text = "Suprise"
+            let font = UIFont.systemFont(ofSize: 13)
+            let color = UIColor(named: "chatOutgoingColor")
+            return NSAttributedString(string: text, attributes: [.font: font, .foregroundColor: color])
+            
+        } else if indexPath.section % 10 == 0 {
+            // 每 10 条显示一个时间
+
             // 下拉加载
             let showLoadMore = ((indexPath.section == 0) && (allLocalMessages.count > displayingMessagesCount))
+            var text = ""
             if indexPath.section == 0 {
-                print("_x-32 ", showLoadMore)
+                text = showLoadMore ? "Pull to load more" : "No more message"
+            } else {
+                text = MessageKitDateFormatter.shared.string(from: message.sentDate)
             }
-//            let text = showLoadMore ? "Pull to load more" : MessageKitDateFormatter.shared.string(from: message.sentDate)
-            let text = showLoadMore ? "Pull to load more" : "No more message"
             let font = showLoadMore ? UIFont.systemFont(ofSize: 13) : UIFont.boldSystemFont(ofSize: 10)
             let color = showLoadMore ? UIColor(named: "chatOutgoingColor") : UIColor.darkGray
             

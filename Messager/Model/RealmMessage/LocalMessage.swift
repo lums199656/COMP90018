@@ -27,6 +27,8 @@ class LocalMessage: Object, Codable {
     @objc dynamic var latitude = 0.0
     @objc dynamic var longitude = 0.0
     @objc dynamic var audioDuration = 0.0
+    @objc dynamic var surprise = false
+
     
     
     override class func primaryKey() -> String? {

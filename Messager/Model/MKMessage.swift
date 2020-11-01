@@ -27,6 +27,7 @@ class MKMessage: NSObject, MessageType {
     
     var status: String
     var readData: Date
+    var surprise: Bool
     
     init(message: LocalMessage) {
         self.messageId = message.id
@@ -56,6 +57,7 @@ class MKMessage: NSObject, MessageType {
         self.sentDate = message.date
         self.readData = message.readDate
         self.incoming = User.currentId != mkSender.senderId
+        self.surprise = message.surprise
         
     }
 }
