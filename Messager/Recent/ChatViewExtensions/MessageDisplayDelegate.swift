@@ -13,7 +13,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         if mkMessages[indexPath.section].surprise {
             return  UIColor(named: "chatIncomingColor")!
         }
-        return isFromCurrentSender(message: message) ? UIColor(named: "chatIncomingColor")! : UIColor(white: 1, alpha: 1 )
+        return isFromCurrentSender(message: message) ? UIColor(named: "chatIncomingColor")! : UIColor(white: 0, alpha: 1 )
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
