@@ -33,6 +33,16 @@ extension ChatViewController: MessagesDisplayDelegate {
     
     func didTapAvatar(in cell: MessageCollectionViewCell) {
         print("_x-40 点击了头像")
+        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
+        let message = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
+        starterVC.currentUserID = message.sender.senderId
+        print(cell.description)
+        self.navigationController!.show(starterVC, sender: self)
     }
     
 }
