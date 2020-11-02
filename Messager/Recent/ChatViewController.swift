@@ -65,9 +65,10 @@ class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
     
+    // TODO: EDIT THIS:
+    var activityManager: ActivityManager = ActivityManager("149wK5iFrNhLOX8vAgVA")
+    
     init(chatId: String, recipientId: [String], recipientName: [String]) {
-
-        
         super.init(nibName: nil, bundle: nil)
         
         self.chatId = chatId
@@ -79,6 +80,7 @@ class ChatViewController: MessagesViewController {
         super.init(coder: coder)
     }
 
+    // MARK:- View Lifecycle
     override func viewDidLoad() {
         // Do any additional setup after loading the view.
         super.viewDidLoad()
@@ -87,12 +89,17 @@ class ChatViewController: MessagesViewController {
         configureLeftBarButton()
         configureCustomTitle()
 
+
+        // _. Setup Shake Gesture
         configureGestureRecognizer()
         
         configureMessageInputBar()
 
         loadChats()
         listenForNewChats()
+        
+        //activityManager
+        activityManager.delegate = self
         
     }
     
@@ -108,6 +115,37 @@ class ChatViewController: MessagesViewController {
         FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
         audioController.stopAnyOngoingPlaying()
     }
+    
+    // MARK:- Shake Gesture
+    override func becomeFirstResponder() -> Bool {  // For Shake Gesture
+        super.becomeFirstResponder()
+        return false
+    }
+  
+    var isUserAllowedToCheckIn: Bool = false {
+        didSet {
+            print("didSet isUserAtActivityLocation")
+            if isUserAllowedToCheckIn {
+                
+                OutgoingMessage.sendSuprise(chatId: chatId, text: "📍This Guy Arrived", memberIds: [User.currentId] + reipientId)
+
+            } else {
+                let distance = userDistanceFromActivityLocation ?? 9999
+                OutgoingMessage.sendSuprise(chatId: chatId, text: "👻Get to the Activity location.\n Your are \(distance) meters away!", memberIds: [User.currentId] + reipientId)
+            }
+        }
+    }
+    
+    var userDistanceFromActivityLocation: Int?
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+                print("👻Shimmy Shaky")
+                activityManager.currentUserTryToCheckIn()
+        }
+    }
+    
+
     
     // 下拉加载操作
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -133,11 +171,14 @@ class ChatViewController: MessagesViewController {
         self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
         
         var tmpText = ""
-        for i in recipientName {
-            tmpText += " | " + i.prefix(4)
+        if recipientName.count == 2 {
+            for i in recipientName {
+                tmpText += " | " + i.prefix(4)
+            }
+            tmpText += " | "
+        } else {
+            tmpText = "Group Chat"
         }
-        tmpText += " | \(User.currentUser!.username.prefix(4)) | "
-        
         titleLabel.text = tmpText
     }
     
@@ -216,8 +257,7 @@ class ChatViewController: MessagesViewController {
             messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
         }
-    }
-    
+    }    
     
     
     // Message 的发送
@@ -373,5 +413,24 @@ class ChatViewController: MessagesViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+// MARK:-
+extension ChatViewController: ActivityManagerDelegate {
+    func activityManagerDid() {
+        
+    }
+    
+    func activityManager(_ manager: ActivityManager, didUpdateActivityTitle title: String) {
+        titleLabel.text = title
+    }
+
+    func activityManager(_ manager: ActivityManager, didCheckInUser isAllowed: Bool, distanceToActivityLocation distance: Int?) {
+        self.userDistanceFromActivityLocation = distance
+        
+        isUserAllowedToCheckIn = isAllowed
+    }
+
 
 }

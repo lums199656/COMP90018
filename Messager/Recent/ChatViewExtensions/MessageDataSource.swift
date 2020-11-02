@@ -29,7 +29,7 @@ extension ChatViewController: MessagesDataSource {
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         if mkMessages[indexPath.section].surprise {
             // u 仔的 suprise
-            print("_x-38 该显示 suprise 了")
+//            print("_x-38 该显示 suprise 了")
             let text = "Suprise"
             let font = UIFont.systemFont(ofSize: 13)
             let color = UIColor(named: "chatOutgoingColor")

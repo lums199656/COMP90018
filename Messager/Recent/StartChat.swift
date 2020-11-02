@@ -11,7 +11,9 @@ import Firebase
 // 开始一个 chat
 func startChat(users: [User], activityId: String) -> String {
     var chatRoomId: String
-    if activityId == "N" {
+    if activityId == "O" {
+        chatRoomId = chatRoomIdFrom(users: users)
+    }else if activityId == "N" {
         chatRoomId = UUID().uuidString
     }else{
         chatRoomId = activityId

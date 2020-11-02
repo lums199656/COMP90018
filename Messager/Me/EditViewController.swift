@@ -8,6 +8,9 @@
 import UIKit
 import Firebase
 import FirebaseUI
+import IQKeyboardManagerSwift
+
+
 
 class EditViewController: UIViewController {
     let db = Firestore.firestore()
@@ -18,6 +21,9 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
         loadInfo()
 
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         // Do any additional setup after loading the view.
     }
     

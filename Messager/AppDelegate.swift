@@ -8,23 +8,55 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
+import LocalAuthentication
+
+enum LocalAuthState {
+    case loggedin, loggedout
+}
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var localAuthState: LocalAuthState = .loggedout {
+        didSet {
+            print(localAuthState)
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
-        // Configure Keyboard Manager
+        // _. Configure Keyboard Manager
 //        IQKeyboardManager.shared.enable = true
 //        IQKeyboardManager.shared.enableAutoToolbar = false
 //        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        let _ = DBSeeding(false)
+        // _. Configure if seeding the Activity DB
+        let _ = DBSeeding(true)
+        
+        // _. Configure Local Authentication (faceID...)
+        let context = LAContext()
+        
+        // __. Check Hardware support
+        var error: NSError?
+        if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {  // & for passing reference in swift..
+            
+            let reason = "Prove Yourself"
+            context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason) { (success, error) in
+                if success {
+                    self.localAuthState = .loggedin
+                } else {
+                    print("Local Auth 1")
+                    print(error?.localizedDescription ?? "💀Failed to authenticate.")
+                }
+            }
+            
+        } else {
+            print("Local Auth 2")
+            print(error?.localizedDescription ?? "💀Auth policy cannot be evaluated.")
+        }
         
         return true
     }
