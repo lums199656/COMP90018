@@ -10,13 +10,15 @@ import MessageKit
 
 extension ChatViewController: MessagesDisplayDelegate {
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        
-        return isFromCurrentSender(message: message) ? UIColor(named: "chatIncomingColor")! : UIColor(white: 0, alpha: 1 )
+        if mkMessages[indexPath.section].surprise {
+            return  UIColor(named: "chatIncomingColor")!
+        }
+        return isFromCurrentSender(message: message) ? UIColor(named: "chatIncomingColor")! : UIColor(white: 1, alpha: 1 )
     }
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         if mkMessages[indexPath.section].surprise {
-            return isFromCurrentSender(message: message) ? UIColor(named: "suprise")! : UIColor(white: 0.8, alpha: 0.5 )
+            return UIColor(named: "suprise")!
         }
         return isFromCurrentSender(message: message) ? UIColor(named: "chatOutgoingColor")! : UIColor(white: 0.8, alpha: 0.5 )
     }

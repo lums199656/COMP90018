@@ -66,8 +66,6 @@ class ChatViewController: MessagesViewController {
     var minMessageNumber = 0
     
     init(chatId: String, recipientId: [String], recipientName: [String]) {
-
-        
         super.init(nibName: nil, bundle: nil)
         
         self.chatId = chatId
@@ -133,11 +131,14 @@ class ChatViewController: MessagesViewController {
         self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
         
         var tmpText = ""
-        for i in recipientName {
-            tmpText += " | " + i.prefix(4)
+        if recipientName.count == 2 {
+            for i in recipientName {
+                tmpText += " | " + i.prefix(4)
+            }
+            tmpText += " | "
+        } else {
+            tmpText = "Group Chat"
         }
-        tmpText += " | \(User.currentUser!.username.prefix(4)) | "
-        
         titleLabel.text = tmpText
     }
     
