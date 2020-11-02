@@ -72,7 +72,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func goToApp(){
 //        let mainView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "MainView") as! UITabBarController
-        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "rootTabVC")
+//        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "rootTabVC")
+        
+        // Local Auth is default to .loggedout
+
+
+        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "localAuth")
+        
         
         self.window?.rootViewController = mainView
     }
