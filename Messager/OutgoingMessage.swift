@@ -50,6 +50,28 @@ class OutgoingMessage {
         
         // 更新 recent
     }
+    
+    class func sendSuprise(chatId: String, text: String?, memberIds: [String]) {
+        let currentUser = User.currentUser!
+        let message = LocalMessage()
+        message.id = UUID().uuidString
+        message.chatRoomId = chatId
+        message.senderId = currentUser.id
+        message.senderName = currentUser.username
+        message.senderInitials = String(currentUser.username.first!)
+        message.date = Date()
+        message.status = kSENT
+        
+        
+        if let text = text {
+            sendSupriseMessage(message: message, text: text, memberIds: memberIds)
+        }
+        
+        FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
+        
+        // 更新 recent
+    }
+    
     // 发送推送
     class func sendMessage(message: LocalMessage, memberIds: [String]) {
         
@@ -80,7 +102,7 @@ func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
     
 }
 
-func sendSupriseMessage(message: LocalMessage, text: String, memberIds: [String]) {
+fileprivate func sendSupriseMessage(message: LocalMessage, text: String, memberIds: [String]) {
     message.message = text
     message.type = kTEXT
     message.surprise = true

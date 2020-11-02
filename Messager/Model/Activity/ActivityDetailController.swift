@@ -157,7 +157,8 @@ class ActivityDetailController: UIViewController {
                 print("Document does not exist")
             }
         }
-
+        
+        
 //        docRef.getDocument() { (document, error) in
 //            if let e = error{
 //                print("error happens in getDocuments\(e)" )

@@ -65,6 +65,9 @@ class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
     
+    // TODO: EDIT THIS:
+    var activityManager: ActivityManager = ActivityManager("149wK5iFrNhLOX8vAgVA")
+    
     init(chatId: String, recipientId: [String], recipientName: [String]) {
 
         
@@ -97,6 +100,9 @@ class ChatViewController: MessagesViewController {
         loadChats()
         listenForNewChats()
         
+        //activityManager
+        activityManager.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,64 +124,31 @@ class ChatViewController: MessagesViewController {
         return false
     }
   
-    private var isUserAtActivityLocation: Bool {
-        get {
-            return checkIfUserAtActivityLocation()
+    var isUserAllowedToCheckIn: Bool = false {
+        didSet {
+            print("didSet isUserAtActivityLocation")
+            if isUserAllowedToCheckIn {
+                
+                OutgoingMessage.sendSuprise(chatId: chatId, text: "📍This Guy Arrived", memberIds: [User.currentId] + reipientId)
+
+            } else {
+                let distance = userDistanceFromActivityLocation ?? 9999
+                OutgoingMessage.sendSuprise(chatId: chatId, text: "👻Get to the Activity location.\n Your are \(distance) meters away!", memberIds: [User.currentId] + reipientId)
+            }
         }
     }
+    
+    var userDistanceFromActivityLocation: Int?
     
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
-            
-            if isUserAtActivityLocation {
                 print("👻Shimmy Shaky")
-                // TODO: Send_a_special_message_with_UI()
-                // TODO:
-            } else {
-                print("👻Get to the Activity location")
-            }
-            
-            
-            
+                activityManager.currentUserTryToCheckIn()
         }
     }
     
-//    private func actionAttachMessage() {
-//
-//        messageInputBar.inputTextView.resignFirstResponder()
-//
-//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-//
-//        let takePhotoOrVideo = UIAlertAction(title: "Camera", style: .default) { (alert) in
-//
-//            self.showImageGallery(camera: true)
-//        }
-//
-//        let shareMedia = UIAlertAction(title: "Library", style: .default) { (alert) in
-//
-//            self.showImageGallery(camera: false)
-//        }
-//
-//        let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (alert) in
-//
-//            if let _ = LocationManager.shared.currentLocation {
-//                self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLOCATION)
-//            } else {
-//                print("no access to location")
-//            }
-//        }
-//    }
-
 
     
-    func updateMicButtonStatus(show: Bool) {
-        
-        if show {
-            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
-        } else {
-            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
-            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
     // 下拉加载操作
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshController.isRefreshing {
@@ -283,8 +256,7 @@ class ChatViewController: MessagesViewController {
             messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
         }
-    }
-    
+    }    
     
     
     // Message 的发送
@@ -440,5 +412,24 @@ class ChatViewController: MessagesViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+// MARK:-
+extension ChatViewController: ActivityManagerDelegate {
+    func activityManagerDid() {
+        
+    }
+    
+    func activityManager(_ manager: ActivityManager, didUpdateActivityTitle title: String) {
+        titleLabel.text = title
+    }
+
+    func activityManager(_ manager: ActivityManager, didCheckInUser isAllowed: Bool, distanceToActivityLocation distance: Int?) {
+        self.userDistanceFromActivityLocation = distance
+        
+        isUserAllowedToCheckIn = isAllowed
+    }
+
 
 }
