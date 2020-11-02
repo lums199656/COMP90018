@@ -10,6 +10,7 @@ import Firebase
 import DOFavoriteButtonNew
 import FirebaseUI
 import RealmSwift
+import FirebaseFirestore
 
 class FeedCell: UITableViewCell {
     @IBOutlet weak var profile5: UIImageView!
@@ -27,6 +28,7 @@ class FeedCell: UITableViewCell {
     
     
     let storage = Storage.storage()
+    
     let db = Firestore.firestore()
     let realm = try! Realm()
     
@@ -91,11 +93,7 @@ class FeedCell: UITableViewCell {
             print("joins")
             print(joins)
             var cur = 1
-//            profile5.image = nil
-//            profile4.image = nil
-//            profile3.image = nil
-//            profile2.image = nil
-//            profile1.image = nil
+
             for join in joins{
                 self.db.collection("User").whereField("id", isEqualTo: join).getDocuments{ (querySnapshot, error) in
                     if let e = error{
@@ -128,6 +126,34 @@ class FeedCell: UITableViewCell {
                                     break
                                 case 5:
                                     self.profile5.sd_setImage(with: proRef)
+                                    cur+=1
+                                    break
+                                default:
+                                    cur = 1
+                                    break
+                                }
+                            }
+                            //prevent reuse, so set other profile nil
+                            while cur<=5{
+                                switch cur {
+                                case 1:
+                                    self.profile1.image = nil
+                                    cur+=1
+                                    break
+                                case 2:
+                                    self.profile2.image = nil
+                                    cur+=1
+                                    break
+                                case 3:
+                                    self.profile3.image = nil
+                                    cur+=1
+                                    break
+                                case 4:
+                                    self.profile4.image = nil
+                                    cur+=1
+                                    break
+                                case 5:
+                                    self.profile5.image = nil
                                     cur+=1
                                     break
                                 default:

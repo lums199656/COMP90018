@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-
+import FirebaseUI
 
 class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollViewDelegate {
     let db = Firestore.firestore()
@@ -128,13 +128,14 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
                         self.userLocation.text = location
                         self.userName.text = name
                         let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
-                        cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                            if let error = error {
-                                print(error.localizedDescription)
-                            } else {
-                                self.userImage.image = UIImage(data: data!)
-                            }
-                        }
+                        self.userImage.sd_setImage(with: cloudFileRef)
+//                        cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                            if let error = error {
+//                                print(error.localizedDescription)
+//                            } else {
+//                                self.userImage.image = UIImage(data: data!)
+//                            }
+//                        }
                         
                     }
                 }
