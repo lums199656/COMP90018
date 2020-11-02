@@ -8,8 +8,13 @@
 import Foundation
 
 public let userDefaults = UserDefaults.standard
+public let kFILEREFERENCE = "gs://comp90018-19be3.appspot.com"
 
-public let kNUMBEROFMESSAGES = 12
+
+
+
+
+public let kNUMBEROFMESSAGES = 30
 
 
 public let kCURRENTUSER = "currentUser"
@@ -55,12 +60,13 @@ struct K {
         static let detail = "actDetail"
         static let title = "actTitle"
         static let image = "imageId"
-        static let uid = "uid"
+        static let uid = "uid" //document id
         static let user = "actCreatorId"
         static let groupSize = "actGroupSize"
         static let status = "actStatus"
         static let read_dict = "read_dic"
         static let join = "join"
+        static let location = "location"
     }
     
 }

@@ -88,8 +88,6 @@ class FirebaseMessageListener {
     }
 
 
-    
-    
     func checkForOldChats(_ documentId: String, collectionId: String) {
         
         FirebaseReference(.Messages).document(documentId).collection(collectionId).getDocuments { (querySnapshot, error) in
@@ -150,6 +148,16 @@ class FirebaseMessageListener {
         
         if self.updatedChatListener != nil {
             self.updatedChatListener.remove()
+        }
+    }
+    
+    func addChannelMessage(_ message: LocalMessage, channel: Channel) {
+        
+        do {
+            let _ = try FirebaseReference(.Messages).document(channel.id).collection(channel.id).document(message.id).setData(from: message)
+        }
+        catch {
+            print("error saving message ", error.localizedDescription)
         }
     }
 }

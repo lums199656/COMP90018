@@ -21,16 +21,32 @@ class MKMessage: NSObject, MessageType {
     var incoming: Bool
     var senderInitials: String
     
+    var audioItem: AudioMessage?
+    
 //    var photoMessage: PhotoMessage
     
     var status: String
     var readData: Date
+    var surprise: Bool
     
     init(message: LocalMessage) {
         self.messageId = message.id
         self.mkSender = MKSender(senderId: message.senderId, displayName: message.senderName)
         self.status = message.status
-        self.kind = MessageKind.text(message.message)
+//        self.kind = MessageKind.text(message.message)
+        
+        switch message.type {
+        case kTEXT:
+            self.kind = MessageKind.text(message.message)
+        case kAUDIO:
+            let audioItem = AudioMessage(duration: 2.0)
+            
+            self.kind = MessageKind.audio(audioItem)
+            self.audioItem = audioItem
+        default:
+            self.kind = MessageKind.text(message.message)
+            print("unknown message type")
+        }
         
 //        switch message.type {
 //        case pattern:
@@ -41,6 +57,7 @@ class MKMessage: NSObject, MessageType {
         self.sentDate = message.date
         self.readData = message.readDate
         self.incoming = User.currentId != mkSender.senderId
+        self.surprise = message.surprise
         
     }
 }

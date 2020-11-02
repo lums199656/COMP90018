@@ -41,6 +41,8 @@ class ChatViewController: MessagesViewController {
     private var reipientId : [String] = []
     private var recipientName : [String] = []
     
+    open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    
     let currentUser = MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
     
     // 组件
@@ -56,7 +58,12 @@ class ChatViewController: MessagesViewController {
     var notificationToken: NotificationToken?
     
     var longPressGesture: UILongPressGestureRecognizer!
+    var audioFileName = ""
+    var audioDuration: Date!
     
+    var displayingMessagesCount = 0
+    var maxMessageNumber = 0
+    var minMessageNumber = 0
     
     init(chatId: String, recipientId: [String], recipientName: [String]) {
 
@@ -74,26 +81,35 @@ class ChatViewController: MessagesViewController {
 
     // MARK:- View Lifecycle
     override func viewDidLoad() {
+        // Do any additional setup after loading the view.
         super.viewDidLoad()
         configueMessageCollectionView()
-        configureMessageInputBar()
-        loadChats()
-        listenForNewChats()
+
         configureLeftBarButton()
         configureCustomTitle()
 
 
         // _. Setup Shake Gesture
+        configureGestureRecognizer()
         
+        configureMessageInputBar()
+
+        loadChats()
+        listenForNewChats()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("Chat Will Appear")
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         print("Chat Did Apear")
+        super.viewDidAppear(animated)
+        // 关闭正在播放的音频
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+        audioController.stopAnyOngoingPlaying()
     }
     
     // MARK:- Shake Gesture
@@ -160,8 +176,18 @@ class ChatViewController: MessagesViewController {
         } else {
             messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
             messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+    // 下拉加载操作
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshController.isRefreshing {
+            if displayingMessagesCount < allLocalMessages.count {
+                // 加载之前的信息
+                self.loadMoreMessages(maxNumber: maxMessageNumber, minNumber: minMessageNumber)
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+            refreshController.endRefreshing()
         }
     }
+    
     
     // 设定 title
     private func configureCustomTitle() {
@@ -224,15 +250,19 @@ class ChatViewController: MessagesViewController {
         attachButton.image = UIImage(systemName: "plus")
         attachButton.setSize(CGSize(width: 30, height: 30), animated: false)
         attachButton.onTouchUpInside { item in
-            print("attach button pressed")
+            print("_x-17 attach button pressed")
         }
+        // 麦克风按钮
         micButton.image = UIImage(systemName: "mic.fill")
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
+        micButton.addGestureRecognizer(longPressGesture)
         
         // 将两个 button 放入布局, MessageKit 可以查看布局
         // imageButton
         messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
         messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false)
+        updateMicButtonStatus(show: true)
+        
         
         // textField
         // 不让用户能够在此处黏贴 image
@@ -244,27 +274,72 @@ class ChatViewController: MessagesViewController {
         
     }
     
+    // 设置何时现实 mic 何时显示 send
+    func updateMicButtonStatus(show: Bool) {
+        if show {
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+        }
+    }
+    
     
     
     // Message 的发送
     func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
         print("_x 发送信息")
-        OutgoingMessage.send(chartId: chatId, text: text!, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId] + reipientId)
+        OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId] + reipientId)
     }
     
     private func insertMessage(_ localMessage: LocalMessage) {
         
         let incoming = IncomingMessage(_collectionView: self)
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
-//        displayingMessagesCount += 1
+        displayingMessagesCount += 1
     }
     
     // 插入信息以待展示
     private func insertMessages() {
-        for message in allLocalMessages {
-            insertMessage(message)
+        
+        maxMessageNumber = allLocalMessages.count - displayingMessagesCount
+        minMessageNumber = maxMessageNumber - kNUMBEROFMESSAGES
+        
+        if minMessageNumber < 0 {
+            minMessageNumber  = 0
+        }
+        
+        for i in minMessageNumber ..< maxMessageNumber {
+            insertMessage(allLocalMessages[i])
+        }
+        
+//
+//        for message in allLocalMessages {
+//            insertMessage(message)
+//        }
+    }
+    
+    // 下拉加载旧信息
+    private func loadMoreMessages(maxNumber: Int, minNumber: Int) {
+        maxMessageNumber = minNumber - 1
+        minMessageNumber = maxMessageNumber - kNUMBEROFMESSAGES
+        
+        if minMessageNumber < 0 {
+            minMessageNumber = 0
+        }
+        
+        for i in (minMessageNumber ... maxMessageNumber) {
+            insertOlderMessage(allLocalMessages[i])
         }
     }
+    
+    private func insertOlderMessage(_ localMessage: LocalMessage) {
+        let incoming = IncomingMessage(_collectionView: self)
+        self.mkMessages.insert(incoming.createMessage(localMessage: localMessage)!, at: 0)
+        displayingMessagesCount += 1
+    }
+    
     
     
     // 检测是否有新的信息
@@ -286,11 +361,11 @@ class ChatViewController: MessagesViewController {
         print("_x-10 这个聊天框: \(chatId) 我们有 \(allLocalMessages.count) messages")
 
         
-        // 从 firebase 下载数据保存到 localdb
-//        if allLocalMessages.isEmpty {
-//            checkForOldChats()
-//        }
-//
+        // 如果本地一条信息都没，尝试从 firebase 下载数据保存到 localdb
+        if allLocalMessages.isEmpty {
+            checkForOldChats()
+        }
+
         notificationToken = allLocalMessages.observe({ (changes: RealmCollectionChange) in
 
             //updated message
@@ -317,7 +392,43 @@ class ChatViewController: MessagesViewController {
             }
         })
     }
+    
+    private func checkForOldChats() {
+        FirebaseMessageListener.shared.checkForOldChats(User.currentId, collectionId: chatId)
+    }
+    
+    
+    
+    
+    private func configureGestureRecognizer() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAudio))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delaysTouchesBegan = true
+    }
 
+    @objc func recordAudio() {
+        switch longPressGesture.state {
+        case .began:
+            audioDuration = Date()
+            audioFileName = Date().stringDate()
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
+        case .ended:
+            AudioRecorder.shared.finishRecording()
+            
+            if fileExistsAtPath(path: audioFileName + ".m4a") {
+                // send message
+                let audioD = audioDuration.interval(ofComponent: .second, from: Date())
+                messageSend(text: nil, photo: nil, video: nil, audio: audioFileName, location: nil, audioDuration: audioD)
+            } else {
+                print("_x-21 no audio file")
+            }
+            audioFileName = ""
+            
+        default:
+            print("_x-20 unkown")
+        }
+        print("long press")
+    }
     
 
     /*
