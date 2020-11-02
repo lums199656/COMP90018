@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import ButtonEnLargeClass
 import MapKit
+import FirebaseUI
 
 class ActivityDetailController: UIViewController {
     var activityID = ""
@@ -19,6 +20,7 @@ class ActivityDetailController: UIViewController {
     var p4User = ""
     let db = Firestore.firestore()
     let storage = Storage.storage()
+    var userList = [User]()
     
     
     @IBOutlet weak var editButton: UIButton!
@@ -31,7 +33,6 @@ class ActivityDetailController: UIViewController {
         loadData()
         getUserInfo()
         //let starterButton = UIButton.init(type: .custom)
-
         //starterButton.setEnLargeEdge(20,20,414,414)
     }
     
@@ -57,8 +58,6 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var p2Button: UIButton!
     @IBOutlet weak var p3Button: UIButton!
     @IBOutlet weak var p4Button: UIButton!
-    
-    
     
     
     @IBAction func startGroupChat(_ sender: Any) {
@@ -102,9 +101,10 @@ class ActivityDetailController: UIViewController {
         }
     }
     
+    
     func loadData() {
         let docRef = db.collection(K.FStore.act).document(activityID)
-        docRef.getDocument { (document, error) in
+        docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
                 self.activityTitle.text = data?[K.Activity.title] as? String
@@ -117,6 +117,7 @@ class ActivityDetailController: UIViewController {
                     self.startGroupChatButton.isHidden = false
                 }
                 self.details.text = data!["actDetail"] as? String
+                let joins = data![K.Activity.join] as! [String] //String array
                 
                 let userInfo = self.db.collection("User")
                 let query = userInfo.whereField("id", isEqualTo: starterId)
@@ -130,27 +131,38 @@ class ActivityDetailController: UIViewController {
                                     let name = data["username"] as! String
                                     self.starterName.text = name
                                     let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+uimage)
-                                                cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                                                    if let error = error {
-                                                        print(error.localizedDescription)
-                                                    } else {
-                                                        self.starterImage.image = UIImage(data: data!)
-                                                    }
-                                                }
-
+                                    self.starterImage.sd_setImage(with: cloudFileRef)
                             }
                         }
                 }
-
                 
-                let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
-                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+                //find userInfo for join list, Chongjing Part
+                for join in joins {
+                    let query = userInfo.whereField("id", isEqualTo: starterId)
+                    query.getDocuments { [self] (querySnapshot, error) in
                                 if let error = error {
-                                    print(error.localizedDescription)
+                                    print("Error getting documents: \(error)")
                                 } else {
-                                    self.image.image = UIImage(data: data!)
+                                    for document in querySnapshot!.documents {
+                                        let data = document.data()
+                                        var user = User()
+                                        user.avatarLink = data["avatarLink"] as! String
+                                        user.username = data["username"] as! String
+                                        user.email = data["email"] as! String
+                                        user.id = data["id"] as! String
+                                        user.intro = data["intro"] as! String
+                                        user.location = data["location"] as! String
+                                        user.pushId = data["pushId"] as! String
+                                        user.status = data["status"] as! String
+                                        userList.append(user)
                                 }
                             }
+                        print("userList is: \(userList)")
+                    }
+                }
+                
+                let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
+                self.image.sd_setImage(with: cloudFileRef)
 
                         
             } else {

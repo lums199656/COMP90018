@@ -7,7 +7,7 @@
 
 import UIKit
 import Firebase
-
+import FirebaseUI
 
 class EditViewController: UIViewController {
     let db = Firestore.firestore()
@@ -52,13 +52,14 @@ class EditViewController: UIViewController {
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
                                 let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
-                                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                                                if let error = error {
-                                                    print(error.localizedDescription)
-                                                } else {
-                                                    self.userImage.image = UIImage(data: data!)
-                                                }
-                                            }
+                                self.userImage.sd_setImage(with: cloudFileRef)
+//                                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                                                if let error = error {
+//                                                    print(error.localizedDescription)
+//                                                } else {
+//                                                    self.userImage.image = UIImage(data: data!)
+//                                                }
+//                                            }
 
                             }
                         }

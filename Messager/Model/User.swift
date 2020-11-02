@@ -19,11 +19,11 @@ import FirebaseFirestoreSwift
 struct User: Codable, Equatable {
     
     var id = ""
-    var username: String
-    var email: String
+    var username: String = ""
+    var email: String = ""
     var pushId = ""
     var avatarLink = ""
-    var status: String
+    var status: String = ""
     var location = ""
     var intro = ""
     
