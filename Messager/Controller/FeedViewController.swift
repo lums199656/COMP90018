@@ -118,10 +118,15 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let cur_size = join.count
                             //print("location: lat:\(self.lat)+lont:\(self.lont)")
                             //get geopoint
-                            let points = data[K.Activity.location] as! GeoPoint //latitude = points.latitude, longtitude = points.longtitude
-                            var currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
-                            var targetLocation = CLLocation(latitude: points.latitude, longitude: points.longitude)
-                            var distance:CLLocationDistance = currentLocation.distance(from: targetLocation) //two point distance
+                            let points = data[K.Activity.location] as? GeoPoint //latitude = points.latitude, longtitude = points.longtitude
+                            var distance:CLLocationDistance = 1001
+                            if points != nil{
+                                let point = points as! GeoPoint
+                                var currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
+                                var targetLocation = CLLocation(latitude: point.latitude, longitude: point.longitude)
+                                distance = currentLocation.distance(from: targetLocation)
+                            }
+                            //two point distance
                             print("两点间距离是：\(distance)")
                             //print("user id: \(Auth.auth().currentUser!.uid)")
                             
