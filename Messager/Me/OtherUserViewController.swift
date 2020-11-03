@@ -156,20 +156,24 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
                 if let snapShotDocuments = querySnapshot?.documents{
                     for doc in snapShotDocuments{
                         let data = doc.data()
-                        let starterID = data["actCreatorId"] as! String
-                        let joinUsers = data["join"] as! [String]
-                        let title = data[K.Activity.title] as! String
-                        let image = data[K.Activity.image] as! String
-                        let activityID = data[K.Activity.image] as! String
-                        let dateLong = data["startDate"] as! Timestamp
-                        let date = dateLong.dateValue() as! Date
+                        let starterID = data["actCreatorId"] as? String
+                        let joinUsers = data["join"] as? [String]
+                        let title = data[K.Activity.title] as? String
+                        let image = data[K.Activity.image] as? String
+                        let activityID = data[K.Activity.image] as? String
+                        let dateLong = data["startDate"] as? Timestamp
+                        let date = dateLong?.dateValue() as? Date
+                        var dateString = ""
+                        if date != nil {
+                            dateString = df.string(from: date!)
+                        }
                         
                         
-                        let feedData = ActivityData(title: title, image: image, date: df.string(from: date), activityID: activityID)
+                        let feedData = ActivityData(title: title ?? "", image: image ?? "error.jpg", date: dateString, activityID: activityID ?? "")
                         if id == starterID {
                             self.createdLists.append(feedData)
                         }
-                        if joinUsers.contains(id) {
+                        if ((joinUsers?.contains(id)) != nil) {
                             self.joinedLists.append(feedData)
                         }
                     }
