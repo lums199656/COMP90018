@@ -66,6 +66,7 @@
 		A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */; };
 		A5DFB0E4252ABF6D00471C1A /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */; };
 		BB052F0E254FBF710046154B /* ActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB052F0D254FBF710046154B /* ActivityManager.swift */; };
+		BB052F12254FE5160046154B /* LocalAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB052F11254FE5160046154B /* LocalAuthViewController.swift */; };
 		BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */; };
 		BB1C1D0D253408C400DCF2D5 /* FeedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D0C253408C400DCF2D5 /* FeedData.swift */; };
 		BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */; };
@@ -170,6 +171,7 @@
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB052F0D254FBF710046154B /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
+		BB052F11254FE5160046154B /* LocalAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthViewController.swift; sourceTree = "<group>"; };
 		BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCatogory.swift; sourceTree = "<group>"; };
 		BB1C1D0C253408C400DCF2D5 /* FeedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedData.swift; sourceTree = "<group>"; };
 		BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				A5DFB0C8252829C500471C1A /* Model */,
 				A517F8BC2514E89F00621A26 /* AppDelegate.swift */,
 				A517F8BE2514E89F00621A26 /* SceneDelegate.swift */,
+				BB052F11254FE5160046154B /* LocalAuthViewController.swift */,
 				A517F8C72514E89F00621A26 /* LaunchScreen.storyboard */,
 				BB5175182534554C0078F78B /* Main.storyboard */,
 				A517F8C52514E89F00621A26 /* Assets.xcassets */,
@@ -745,6 +748,7 @@
 				8223DCF4254186FF00675647 /* ActivityDetailController.swift in Sources */,
 				BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */,
 				BB1C1D1225340C4800DCF2D5 /* FeedCell.swift in Sources */,
+				BB052F12254FE5160046154B /* LocalAuthViewController.swift in Sources */,
 				825C382725466BFD00F8F836 /* EditLocationViewController.swift in Sources */,
 				9B7A78B5254D82340084A349 /* LikeBtn.swift in Sources */,
 				8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */,
