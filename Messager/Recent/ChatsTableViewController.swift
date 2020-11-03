@@ -74,8 +74,7 @@ class ChatsTableViewController: UITableViewController {
         let recent = searchController.isActive ? filteredRecents[indexPath.row] : allRecents[indexPath.row]
         // go to chatroom
         FirebaseRecentListener.shared.clearUnreadCounter(recent: recent)
-        
-        goToChat(recent: recent)
+        goToChat(recent: recent, isActivity: recent.isActivity)
     }
 
     
@@ -132,10 +131,13 @@ class ChatsTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    private func goToChat(recent: RecentChat) {
+    private func goToChat(recent: RecentChat, isActivity: Bool) {
         
         // 当另一方把 recent 删除时，我方点击对话框时，在数据库会为对方新创建一个 recent
-        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds)
+        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds, isActivity: isActivity)
+        
+        
+        
         
         let privateChatView = ChatViewController(chatId: recent.chatRoomId, recipientId: recent.receiverId, recipientName: recent.receiverName, isActivity: false)
         

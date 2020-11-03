@@ -10,9 +10,11 @@ import Firebase
 
 // 开始一个 chat
 func startChat(users: [User], activityId: String) -> String {
+    var isActivity = true
     var chatRoomId: String
     if activityId == "O" {
         chatRoomId = chatRoomIdFrom(users: users)
+        isActivity = false
     }else if activityId == "N" {
         chatRoomId = UUID().uuidString
     }else{
@@ -21,12 +23,12 @@ func startChat(users: [User], activityId: String) -> String {
     
 //    let chatRoomId = chatRoomIdFrom(users: users)
     print("_x-1 chatRoomId", chatRoomId)
-    createRecentItems(chatRoomId: chatRoomId, users: users)
+    createRecentItems(chatRoomId: chatRoomId, users: users, isActivity: isActivity)
     return chatRoomId
 }
 
 
-func createRecentItems(chatRoomId: String, users: [User]) {
+func createRecentItems(chatRoomId: String, users: [User], isActivity: Bool) {
     
     var memberIdsToCreateRecent : [String] = []
     for i in users {
@@ -68,7 +70,7 @@ func createRecentItems(chatRoomId: String, users: [User]) {
                 }
                 print("_x-3 sender: \(senderUser!.username), receivers: \(receiverUserNames)")
                 
-                let recentObject = RecentChat(id: UUID().uuidString, chatRoomId: chatRoomId, senderId: senderUser!.id, senderName: senderUser!.username, receiverId: receiverUserIds, receiverName: receiverUserNames, date: Date(), memberIds: allMembersIds, lastMessage: "", unreadCounter: 0, avatarLink: senderUser!.avatarLink)
+                let recentObject = RecentChat(id: UUID().uuidString, chatRoomId: chatRoomId, senderId: senderUser!.id, senderName: senderUser!.username, receiverId: receiverUserIds, receiverName: receiverUserNames, date: Date(), memberIds: allMembersIds, lastMessage: "", unreadCounter: 0, avatarLink: senderUser!.avatarLink, isActivity: isActivity)
             
             // 头像这里还没改 ！！！！！！！！！！！！
             FirebaseRecentListener.shared.saveRecent(recentObject)
@@ -141,10 +143,10 @@ func selectSort(_ arr : [String]) -> [String] {
 }
 
 // 当另一方把 recent 删除时，我方点击对话框时，在数据库会为对方新创建一个 recent
-func restartChat(chatRoomId: String, memberIds: [String]) {
+func restartChat(chatRoomId: String, memberIds: [String], isActivity: Bool) {
     FirebaseUserListener.shared.downloadUsersFromFirebase(withIds: memberIds) { (users) in
         if users.count > 0 {
-            createRecentItems(chatRoomId: chatRoomId, users: users)
+            createRecentItems(chatRoomId: chatRoomId, users: users, isActivity: isActivity)
         }
     }
 }
