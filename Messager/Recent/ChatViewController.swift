@@ -185,13 +185,12 @@ class ChatViewController: MessagesViewController {
         self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
                 
         var tmpText = ""
-        if recipientName.count == 2 {
+        if !isActivity {
+            print("_x-41 ")
             for i in recipientName {
                 tmpText += " | " + i.prefix(4)
             }
             tmpText += " | "
-        } else {
-            tmpText = ""
         }
         titleLabel.text = tmpText
     }

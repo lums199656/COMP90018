@@ -87,8 +87,10 @@ class UsersTableViewController: UITableViewController {
         var recipientId : [String] = []
         var recipientName : [String] = []
         for user in users {
-            recipientId.append(user.id)
-            recipientName.append(user.username)
+            if user.id != User.currentId {
+                recipientId.append(user.id)
+                recipientName.append(user.username)
+            }
         }
         // 打开一个 chat room 界面
         var isActivity = true
