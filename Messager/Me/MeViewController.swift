@@ -167,7 +167,7 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         if id == starterID {
                             self.createdLists.append(feedData)
                         }
-                        if ((joinUsers?.contains(id)) != nil) {
+                        if ((joinUsers?[1...].contains(id)) != nil && joinUsers![1...].contains(id)) {
                             self.joinedLists.append(feedData)
                         }
                     }

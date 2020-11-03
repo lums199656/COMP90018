@@ -218,33 +218,33 @@ class ActivityDetailController: UIViewController {
     
     func loadJoinData() {
         let userNum = userList.count
-        if userNum > 0 {
-            self.p1Name.text = userList[0].username
-            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[0].avatarLink)
+        if userNum > 1 {
+            self.p1Name.text = userList[1].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[1].avatarLink)
             self.p1Image.sd_setImage(with: cloudFileRef)
             self.p1Name.isHidden = false
             self.p1Image.isHidden = false
             self.p1Button.isHidden = false
         }
-        if userNum > 1 {
-            self.p2Name.text = userList[1].username
-            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[1].avatarLink)
+        if userNum > 2 {
+            self.p2Name.text = userList[2].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[2].avatarLink)
             self.p2Image.sd_setImage(with: cloudFileRef)
             self.p2Name.isHidden = false
             self.p2Image.isHidden = false
             self.p2Button.isHidden = false
         }
-        if userNum > 2 {
-            self.p3Name.text = userList[2].username
-            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[2].avatarLink)
+        if userNum > 3 {
+            self.p3Name.text = userList[3].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[3].avatarLink)
             self.p3Image.sd_setImage(with: cloudFileRef)
             self.p3Name.isHidden = false
             self.p3Image.isHidden = false
             self.p3Button.isHidden = false
         }
-        if userNum > 3 {
-            self.p4Name.text = userList[3].username
-            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[3].avatarLink)
+        if userNum > 4 {
+            self.p4Name.text = userList[4].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[4].avatarLink)
             self.p4Image.sd_setImage(with: cloudFileRef)
             self.p4Name.isHidden = false
             self.p4Image.isHidden = false
