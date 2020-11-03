@@ -2007,7 +2007,7 @@
                                                             <color key="titleColor" name="AccentColor"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="toStarter:" destination="9IL-sf-v63" eventType="touchUpInside" id="bg7-Hd-Wdn"/>
+                                                            <action selector="toParticipater:" destination="9IL-sf-v63" eventType="touchUpInside" id="8p6-OF-vrs"/>
                                                         </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="watermelon" translatesAutoresizingMaskIntoConstraints="NO" id="xL0-5F-uA7">
@@ -2081,6 +2081,9 @@
                                                             <constraint firstAttribute="height" constant="50" id="WD6-D2-ng8"/>
                                                         </constraints>
                                                         <state key="normal" title="ButtonP1"/>
+                                                        <connections>
+                                                            <action selector="toParticipater:" destination="9IL-sf-v63" eventType="touchUpInside" id="MWw-2U-Pft"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="watermelon" translatesAutoresizingMaskIntoConstraints="NO" id="qE1-kW-1hx">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2132,6 +2135,9 @@
                                                             <constraint firstAttribute="width" constant="50" id="vSj-0o-iel"/>
                                                         </constraints>
                                                         <state key="normal" title="ButtonP2"/>
+                                                        <connections>
+                                                            <action selector="toParticipater:" destination="9IL-sf-v63" eventType="touchUpInside" id="2xt-hh-bex"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="watermelon" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-WI-iYn">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2183,6 +2189,9 @@
                                                             <constraint firstAttribute="height" constant="50" id="bOs-xF-80F"/>
                                                         </constraints>
                                                         <state key="normal" title="ButtonP3"/>
+                                                        <connections>
+                                                            <action selector="toParticipater:" destination="9IL-sf-v63" eventType="touchUpInside" id="5P9-NS-6tJ"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="watermelon" translatesAutoresizingMaskIntoConstraints="NO" id="w10-w8-tQ8">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2234,6 +2243,9 @@
                                                             <constraint firstAttribute="height" constant="50" id="YOl-m5-fZu"/>
                                                         </constraints>
                                                         <state key="normal" title="ButtonP4"/>
+                                                        <connections>
+                                                            <action selector="toParticipater:" destination="9IL-sf-v63" eventType="touchUpInside" id="gCG-oT-fM4"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="watermelon" translatesAutoresizingMaskIntoConstraints="NO" id="5kW-gS-MG9">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2281,7 +2293,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="184" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-g8-pRQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="92" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="q0f-Rc-lEv"/>
                                                 </constraints>
@@ -2291,7 +2303,7 @@
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMr-qq-fhB">
-                                                <rect key="frame" x="92" y="0.0" width="92" height="40"/>
+                                                <rect key="frame" x="30" y="0.0" width="154" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="RSy-wZ-gVL"/>
                                                 </constraints>
