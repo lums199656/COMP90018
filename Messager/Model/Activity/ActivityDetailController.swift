@@ -87,7 +87,7 @@ class ActivityDetailController: UIViewController {
             recipientName.append(user.username)
         }
         // 打开一个 chat room 界面
-        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName)
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName, isActivity: true)
         privateChatView.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(privateChatView, animated: true)
     }

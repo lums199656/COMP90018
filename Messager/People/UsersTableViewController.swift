@@ -90,7 +90,11 @@ class UsersTableViewController: UITableViewController {
             recipientName.append(user.username)
         }
         // 打开一个 chat room 界面
-        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName)
+        var isActivity = true
+        if activityId == "O" {
+            isActivity = false
+        }
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName, isActivity: isActivity)
         privateChatView.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(privateChatView, animated: true)
     }

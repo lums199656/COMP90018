@@ -65,12 +65,14 @@ class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
     
+    var isActivity = true
+    
     // TODO: EDIT THIS:
     var activityManager: ActivityManager = ActivityManager("149wK5iFrNhLOX8vAgVA")
     
-    init(chatId: String, recipientId: [String], recipientName: [String]) {
+    init(chatId: String, recipientId: [String], recipientName: [String], isActivity: Bool) {
         super.init(nibName: nil, bundle: nil)
-        
+        self.isActivity = isActivity
         self.chatId = chatId
         self.reipientId = recipientId
         self.recipientName = recipientName
