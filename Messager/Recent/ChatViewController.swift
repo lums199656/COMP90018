@@ -65,17 +65,29 @@ class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
     
-    var isActivity = true
+    private var isActivity: Bool = true
     
     // TODO: EDIT THIS:
-    var activityManager: ActivityManager = ActivityManager("149wK5iFrNhLOX8vAgVA")
+    private var activityId: String?
+    var activityManager: ActivityManager?
     
     init(chatId: String, recipientId: [String], recipientName: [String], isActivity: Bool) {
+        
+        
         super.init(nibName: nil, bundle: nil)
+        
         self.isActivity = isActivity
         self.chatId = chatId
         self.reipientId = recipientId
         self.recipientName = recipientName
+        
+        if isActivity {
+            self.activityId = self.chatId
+        }
+        
+        if let actId = self.activityId {
+            activityManager = ActivityManager(actId)
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -101,7 +113,7 @@ class ChatViewController: MessagesViewController {
         listenForNewChats()
         
         //activityManager
-        activityManager.delegate = self
+        activityManager?.delegate = self
         
     }
     
@@ -143,7 +155,7 @@ class ChatViewController: MessagesViewController {
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
                 print("👻Shimmy Shaky")
-                activityManager.currentUserTryToCheckIn()
+                activityManager?.currentUserTryToCheckIn()
         }
     }
     
@@ -179,7 +191,7 @@ class ChatViewController: MessagesViewController {
             }
             tmpText += " | "
         } else {
-            tmpText = "Group Chat"
+            tmpText = ""
         }
         titleLabel.text = tmpText
     }

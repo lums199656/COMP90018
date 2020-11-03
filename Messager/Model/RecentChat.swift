@@ -20,4 +20,5 @@ struct RecentChat: Codable {
     var unreadCounter = 0
     var avatarLink = ""
     var isActivity = false
+    var activityTitle = "Squad Up"
 }

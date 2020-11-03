@@ -15,6 +15,7 @@ import FirebaseFirestore
 class ActivityDetailController: UIViewController {
     var activityID = ""
     var starterUser = ""
+    var activityTitleText = ""
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
@@ -79,7 +80,7 @@ class ActivityDetailController: UIViewController {
     }
     
     func startActivityChat(users:[User], activityId: String) {
-        let chatId = startChat(users: users, activityId: activityId)
+        let chatId = startChat(users: users, activityId: activityId, activityTitle: activityTitleText)
         print("_x start chat", chatId)
         var recipientId : [String] = []
         var recipientName : [String] = []
@@ -140,6 +141,7 @@ class ActivityDetailController: UIViewController {
             if let document = document, document.exists {
                 let data = document.data()
                 self.activityTitle.text = data?[K.Activity.title] as? String
+                self.activityTitleText = self.activityTitle.text!
                 let image = data![K.Activity.image] as! String
                 // read date later
                 self.date.text = ""

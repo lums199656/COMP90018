@@ -81,7 +81,7 @@ class UsersTableViewController: UITableViewController {
     }
     
     func startActivityChat(users:[User], activityId: String) {
-        let chatId = startChat(users: users, activityId: activityId)
+        let chatId = startChat(users: users, activityId: activityId, activityTitle: "")
         print("_x start chat", chatId)
         var recipientId : [String] = []
         var recipientName : [String] = []

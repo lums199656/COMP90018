@@ -134,12 +134,10 @@ class ChatsTableViewController: UITableViewController {
     private func goToChat(recent: RecentChat, isActivity: Bool) {
         
         // 当另一方把 recent 删除时，我方点击对话框时，在数据库会为对方新创建一个 recent
-        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds, isActivity: isActivity)
+        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds, isActivity: isActivity, activityTitle: recent.activityTitle)
         
         
-        
-        
-        let privateChatView = ChatViewController(chatId: recent.chatRoomId, recipientId: recent.receiverId, recipientName: recent.receiverName, isActivity: false)
+        let privateChatView = ChatViewController(chatId: recent.chatRoomId, recipientId: recent.receiverId, recipientName: recent.receiverName, isActivity: isActivity)
         
         // 底部 bar 被隐藏
         privateChatView.hidesBottomBarWhenPushed = true

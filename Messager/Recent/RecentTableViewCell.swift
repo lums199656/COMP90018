@@ -43,7 +43,7 @@ class RecentTableViewCell: UITableViewCell {
             }
             tmpText += " | "
         } else {
-            tmpText = "Group Chat"
+            tmpText = recent.activityTitle
         }
         
         print("_x-2 聊天框标题为", tmpText)
