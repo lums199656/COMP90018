@@ -48,7 +48,7 @@ class ActivityDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         editButton.isHidden = true
-        startGroupChatButton.isHidden = true
+        startGroupChatButton.isHidden = false
         p1Image.isHidden = true
         p2Image.isHidden = true
         p3Image.isHidden = true
@@ -62,7 +62,7 @@ class ActivityDetailController: UIViewController {
         p3Button.isHidden = true
         p4Button.isHidden = true
 
-        loadData()
+//        loadData()
         getUserInfo()
         //let starterButton = UIButton.init(type: .custom)
         //starterButton.setEnLargeEdge(20,20,414,414)
@@ -70,8 +70,26 @@ class ActivityDetailController: UIViewController {
     
 
     @IBAction func startGroupChat(_ sender: Any) {
-        
-        
+        print("_x-40 ", activityID)
+        for i in userList {
+            print(i.username)
+        }
+        self.startActivityChat(users: userList, activityId: activityID)
+    }
+    
+    func startActivityChat(users:[User], activityId: String) {
+        let chatId = startChat(users: users, activityId: activityId)
+        print("_x start chat", chatId)
+        var recipientId : [String] = []
+        var recipientName : [String] = []
+        for user in users {
+            recipientId.append(user.id)
+            recipientName.append(user.username)
+        }
+        // 打开一个 chat room 界面
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName)
+        privateChatView.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(privateChatView, animated: true)
     }
     
     
@@ -114,6 +132,8 @@ class ActivityDetailController: UIViewController {
     
     
     func loadData() {
+        print("_x ----------------")
+        userList = []
         let docRef = db.collection(K.FStore.act).document(activityID)
         docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
@@ -156,12 +176,14 @@ class ActivityDetailController: UIViewController {
                 }
                 
                 //find userInfo for join list, Chongjing Part
+                print("_x-43 len-joins is: \(joins.count)")
                 for join in joins {
-                    let query = userInfo.whereField("id", isEqualTo: starterId)
+                    let query = userInfo.whereField("id", isEqualTo: join)
                     query.getDocuments { [self] (querySnapshot, error) in
                                 if let error = error {
                                     print("Error getting documents: \(error)")
                                 } else {
+                                    print("_x-43 len-document is: \(querySnapshot!.documents.count)")
                                     for document in querySnapshot!.documents {
                                         let data = document.data()
                                         var user = User()
@@ -178,9 +200,9 @@ class ActivityDetailController: UIViewController {
                                     }
                                     loadJoinData()
                                 }
-                        print("userList is: \(userList)")
                     }
                 }
+                print("_x-41 userList is: \(userList)")
                 
                 let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
                 self.image.sd_setImage(with: cloudFileRef)

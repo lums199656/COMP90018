@@ -13,6 +13,7 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate {
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var isAudioRecordingGranted: Bool!
+
     
     static let shared = AudioRecorder()
     
@@ -62,7 +63,6 @@ class AudioRecorder: NSObject, AVAudioRecorderDelegate {
     
     func startRecording(fileName: String) {
         print("_x-25 开始记录音频")
-        
         let audioFileName = getDocumentsURL().appendingPathComponent(fileName + ".m4a", isDirectory: false)
         
         let settings = [

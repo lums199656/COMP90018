@@ -140,3 +140,4 @@ extension UsersTableViewController: UISearchResultsUpdating {
         filteredContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }
+
