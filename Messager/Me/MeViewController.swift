@@ -73,8 +73,8 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
         navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewWillAppear(animated)
         self.loadInfo()
-        self.createdLists = []
-        self.joinedLists = []
+        createdLists = []
+        joinedLists = []
         self.getActivities()
         // toggle tabbar
         print("😡")
@@ -98,14 +98,13 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         //setUI()
         //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
-        self.loadInfo()
-        self.createdLists = []
-        self.joinedLists = []
-        self.getActivities()
+        //self.loadInfo()
+        //self.getActivities()
         
     }
     
@@ -142,6 +141,8 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
     }
     
     func getActivities() {
+        self.createdLists = []
+        self.joinedLists = []
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
         //获取数据
