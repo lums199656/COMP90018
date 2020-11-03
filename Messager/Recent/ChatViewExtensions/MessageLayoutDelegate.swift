@@ -14,7 +14,7 @@ extension ChatViewController: MessagesLayoutDelegate {
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         //MARK: - Cell top label
         if mkMessages[indexPath.section].surprise {
-            print("_x-39 该显示 surprise 了")
+//            print("_x-39 该显示 surprise 了")
             return 40
         }
             

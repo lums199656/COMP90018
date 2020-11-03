@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Firebase
+import FirebaseUI
 
 
 class JoinedCell: UITableViewCell {
@@ -31,13 +32,14 @@ class JoinedCell: UITableViewCell {
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
             print("activity-images/"+imageId)
-            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else {
-                    self.joinedImage.image = UIImage(data: data!)
-                }
-            }
+            self.joinedImage.sd_setImage(with: cloudFileRef)
+//            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                } else {
+//                    self.joinedImage.image = UIImage(data: data!)
+//                }
+//            }
         }
     }
     

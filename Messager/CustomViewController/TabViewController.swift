@@ -7,7 +7,12 @@
 
 import UIKit
 
+
+
 class TabViewController: UIViewController {
+    
+    
+    
     
     //
     @IBOutlet weak var contentView: UIView!
@@ -39,15 +44,23 @@ class TabViewController: UIViewController {
     
     private var selectedIndex: Int = 0
 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        if localAuthState == .loggedout {
+//            print("11111")
+//            let localAuthView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "localAuth")
+//
+//            self.present(localAuthView, animated: false, completion: nil)
+//        }
 
         // Do any additional setup after loading the view.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         feedViewController = storyboard.instantiateViewController(withIdentifier: "feedVC")
         chatViewController = storyboard.instantiateViewController(withIdentifier: "chatNavVC")
-//        addViewController = storyboard.instantiateViewController(withIdentifier: "addVC")// special Tab VC
+
         peopleViewController = storyboard.instantiateViewController(withIdentifier: "peopleNavVC")
         meViewController = storyboard.instantiateViewController(withIdentifier: "meVC")
         meNavigationController = storyboard.instantiateViewController(withIdentifier: "meNC")
