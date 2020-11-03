@@ -122,11 +122,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             var currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
                             var targetLocation = CLLocation(latitude: points.latitude, longitude: points.longitude)
                             var distance:CLLocationDistance = currentLocation.distance(from: targetLocation) //two point distance
-                            //print("两点间距离是：\(distance)")
+                            print("两点间距离是：\(distance)")
                             //print("user id: \(Auth.auth().currentUser!.uid)")
                             
                             if flag{
                                 if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size && distance<1000){//not in read_dic, status is awaiting, not reach size, distance<1000
+                                    //print("进来了")
                                     page_load+=1
                                     flag_load_page+=1
                                     let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join, star: true)
@@ -149,7 +150,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         }
                     }
                     print("flag page:\(flag_load_page)")
-                    if flag_load_page == 0 && flag{
+                    if (flag_load_page == 0 || flag_load_page == 1) && flag{
                         self.getData(flag: false)
                     }
                 }
@@ -195,7 +196,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func setRead(){
         //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) array method
         let temp: String = "read_dic."+Auth.auth().currentUser!.uid
-        //self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
+        self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
     }
     
 }

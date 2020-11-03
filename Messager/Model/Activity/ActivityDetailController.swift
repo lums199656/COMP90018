@@ -10,6 +10,7 @@ import Firebase
 import ButtonEnLargeClass
 import MapKit
 import FirebaseUI
+import FirebaseFirestore
 
 class ActivityDetailController: UIViewController {
     var activityID = ""
@@ -157,7 +158,7 @@ class ActivityDetailController: UIViewController {
                 
                 //find userInfo for join list, Chongjing Part
                 for join in joins {
-                    let query = userInfo.whereField("id", isEqualTo: starterId)
+                    let query = userInfo.whereField("id", isEqualTo: join)
                     query.getDocuments { [self] (querySnapshot, error) in
                                 if let error = error {
                                     print("Error getting documents: \(error)")

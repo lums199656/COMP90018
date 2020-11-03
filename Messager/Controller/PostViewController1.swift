@@ -10,6 +10,7 @@ import Firebase
 import UITextView_Placeholder
 import CoreLocation
 import IQKeyboardManagerSwift
+import FirebaseFirestore
 
 
 class PostViewController1: UIViewController {
