@@ -49,7 +49,7 @@ class ActivityDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         editButton.isHidden = true
-        startGroupChatButton.isHidden = false
+        startGroupChatButton.isHidden = true
         p1Image.isHidden = true
         p2Image.isHidden = true
         p3Image.isHidden = true
@@ -71,7 +71,6 @@ class ActivityDetailController: UIViewController {
     
 
     @IBAction func startGroupChat(_ sender: Any) {
-        print("_x-40 ", activityID)
         for i in userList {
             print(i.username)
         }
@@ -133,7 +132,6 @@ class ActivityDetailController: UIViewController {
     
     
     func loadData() {
-        print("_x ----------------")
         userList = []
         let docRef = db.collection(K.FStore.act).document(activityID)
         docRef.getDocument { [self] (document, error) in
@@ -172,38 +170,48 @@ class ActivityDetailController: UIViewController {
                                     self.starterName.text = name
                                     let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+uimage)
                                     self.starterImage.sd_setImage(with: cloudFileRef)
+                                    var user = User()
+                                    user.avatarLink = data["avatarLink"] as! String
+                                    user.username = data["username"] as! String
+                                    user.email = data["email"] as! String
+                                    user.id = data["id"] as! String
+                                    user.intro = data["intro"] as! String
+                                    user.location = data["location"] as! String
+                                    user.pushId = data["pushId"] as! String
+                                    user.status = data["status"] as! String
+                                    userList.append(user)
                             }
+                                //find userInfo for join list, Chongjing Part
+                                print("_x-43 len-joins is: \(joins)")
+                                for join in joins[1...] {
+                                    let query = userInfo.whereField("id", isEqualTo: join)
+                                    query.getDocuments { [self] (querySnapshot, error) in
+                                                if let error = error {
+                                                    print("Error getting documents: \(error)")
+                                                } else {
+                                                    print("_x-43 len-document is: \(querySnapshot!.documents.count)")
+                                                    for document in querySnapshot!.documents {
+                                                        let data = document.data()
+                                                        var user = User()
+                                                        user.avatarLink = data["avatarLink"] as! String
+                                                        user.username = data["username"] as! String
+                                                        user.email = data["email"] as! String
+                                                        user.id = data["id"] as! String
+                                                        user.intro = data["intro"] as! String
+                                                        user.location = data["location"] as! String
+                                                        user.pushId = data["pushId"] as! String
+                                                        user.status = data["status"] as! String
+                                                        userList.append(user)
+                                                        loadJoinData()
+
+                                                    }
+                                                }
+                                    }
+                                }
                         }
                 }
                 
-                //find userInfo for join list, Chongjing Part
-                print("_x-43 len-joins is: \(joins.count)")
-                for join in joins {
-                    let query = userInfo.whereField("id", isEqualTo: join)
-                    query.getDocuments { [self] (querySnapshot, error) in
-                                if let error = error {
-                                    print("Error getting documents: \(error)")
-                                } else {
-                                    print("_x-43 len-document is: \(querySnapshot!.documents.count)")
-                                    for document in querySnapshot!.documents {
-                                        let data = document.data()
-                                        var user = User()
-                                        user.avatarLink = data["avatarLink"] as! String
-                                        user.username = data["username"] as! String
-                                        user.email = data["email"] as! String
-                                        user.id = data["id"] as! String
-                                        user.intro = data["intro"] as! String
-                                        user.location = data["location"] as! String
-                                        user.pushId = data["pushId"] as! String
-                                        user.status = data["status"] as! String
-                                        userList.append(user)
-                                        
-                                    }
-                                    loadJoinData()
-                                }
-                    }
-                }
-                print("_x-41 userList is: \(userList)")
+                
                 
                 let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
                 self.image.sd_setImage(with: cloudFileRef)
@@ -225,6 +233,7 @@ class ActivityDetailController: UIViewController {
             self.p1Name.isHidden = false
             self.p1Image.isHidden = false
             self.p1Button.isHidden = false
+            print(userList)
         }
         if userNum > 2 {
             self.p2Name.text = userList[2].username
