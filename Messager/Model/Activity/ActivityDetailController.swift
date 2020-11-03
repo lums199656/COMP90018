@@ -57,6 +57,10 @@ class ActivityDetailController: UIViewController {
         p2Name.isHidden = true
         p3Name.isHidden = true
         p4Name.isHidden = true
+        p1Button.isHidden = true
+        p2Button.isHidden = true
+        p3Button.isHidden = true
+        p4Button.isHidden = true
 
         loadData()
         getUserInfo()
@@ -70,6 +74,12 @@ class ActivityDetailController: UIViewController {
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
+    }
+
     
     @IBAction func toStarter(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -118,6 +128,14 @@ class ActivityDetailController: UIViewController {
                     self.startGroupChatButton.isHidden = false
                 }
                 self.details.text = data!["actDetail"] as? String
+                self.location.text = data!["locationString"] as? String
+                let df = DateFormatter()
+                df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let dateLong = data!["startDate"] as! Timestamp
+                let date = dateLong.dateValue() as! Date
+                self.date.text = df.string(from: date)
+
+                
                 let joins = data![K.Activity.join] as! [String] //String array
                 
                 let userInfo = self.db.collection("User")
@@ -156,8 +174,10 @@ class ActivityDetailController: UIViewController {
                                         user.pushId = data["pushId"] as! String
                                         user.status = data["status"] as! String
                                         userList.append(user)
+                                        
+                                    }
+                                    loadJoinData()
                                 }
-                            }
                         print("userList is: \(userList)")
                     }
                 }
@@ -165,7 +185,7 @@ class ActivityDetailController: UIViewController {
                 let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
                 self.image.sd_setImage(with: cloudFileRef)
                 
-                loadJoinData()
+                
                         
             } else {
                 print("Document does not exist")
@@ -181,6 +201,7 @@ class ActivityDetailController: UIViewController {
             self.p1Image.sd_setImage(with: cloudFileRef)
             self.p1Name.isHidden = false
             self.p1Image.isHidden = false
+            self.p1Button.isHidden = false
         }
         if userNum > 1 {
             self.p2Name.text = userList[1].username
@@ -188,7 +209,7 @@ class ActivityDetailController: UIViewController {
             self.p2Image.sd_setImage(with: cloudFileRef)
             self.p2Name.isHidden = false
             self.p2Image.isHidden = false
-
+            self.p2Button.isHidden = false
         }
         if userNum > 2 {
             self.p3Name.text = userList[2].username
@@ -196,6 +217,7 @@ class ActivityDetailController: UIViewController {
             self.p3Image.sd_setImage(with: cloudFileRef)
             self.p3Name.isHidden = false
             self.p3Image.isHidden = false
+            self.p3Button.isHidden = false
         }
         if userNum > 3 {
             self.p4Name.text = userList[3].username
@@ -203,6 +225,7 @@ class ActivityDetailController: UIViewController {
             self.p4Image.sd_setImage(with: cloudFileRef)
             self.p4Name.isHidden = false
             self.p4Image.isHidden = false
+            self.p4Button.isHidden = false
         }
     }
 }
