@@ -73,6 +73,8 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
         navigationController?.setNavigationBarHidden(true, animated: true)
         super.viewWillAppear(animated)
         self.loadInfo()
+        self.createdLists = []
+        self.joinedLists = []
         self.getActivities()
         // toggle tabbar
         print("😡")
@@ -101,6 +103,8 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
         //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
         self.loadInfo()
+        self.createdLists = []
+        self.joinedLists = []
         self.getActivities()
         
     }

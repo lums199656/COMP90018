@@ -88,6 +88,8 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
         //self.tabBarController?.tabBar.isHidden = true
         super.viewWillAppear(animated)
         self.loadInfo()
+        self.createdLists = []
+        self.joinedLists = []
         self.getActivities()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,6 +103,8 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
         //Fatal error: Unexpectedly found nil while implicitly unwrapping an Optional value: file
         // Do any additional setup after loading the view.
         self.loadInfo()
+        self.createdLists = []
+        self.joinedLists = []
         self.getActivities()
     }
     
