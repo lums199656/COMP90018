@@ -34,13 +34,6 @@ class CreatedCell: UITableViewCell {
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
             print("activity-images/"+imageId)
             self.imageLabel.sd_setImage(with: cloudFileRef)
-//            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                } else {
-//                    self.imageLabel.image = UIImage(data: data!)
-//                }
-//            }
         }
     }
     

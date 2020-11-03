@@ -16,8 +16,6 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
     // data source of activities
     var createdLists: [ActivityData] = []
     var joinedLists: [ActivityData] = []
-    // var joinedactivities = ["活动1","活动2","活动3","活动4","活动5","活动6","活动7"]
-    // var joinedimageofactivities = UIImage(named:"avatar")
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count: Int?
@@ -142,14 +140,6 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         self.userName.text = name
                         let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
                         self.userImage.sd_setImage(with: cloudFileRef)
-//                        cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                            if let error = error {
-//                                print(error.localizedDescription)
-//                            } else {
-//                                self.userImage.image = UIImage(data: data!)
-//                            }
-//                        }
-                        
                     }
                 }
             }
