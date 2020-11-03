@@ -31,6 +31,7 @@ class FeedCell: UITableViewCell {
     
     let db = Firestore.firestore()
     let realm = try! Realm()
+    let cur_user = Auth.auth().currentUser!.uid
     
     var cellData : FeedData!{
     //monitor, reocrd change
@@ -193,17 +194,24 @@ class FeedCell: UITableViewCell {
     //logic for add user in join field
     func upLoadUserToJoinList(){
         let docRef = db.collection(K.FStore.act).document(cellData.uid!)
+        print("我进来了")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let max:Int = document.data()!["actGroupSize"] as! Int
                 let joinArr:[String] = document.data()!["join"] as! [String]
                 let cur_num = joinArr.count
+                
                 if cur_num < max {
+                    print("我进来了2")
                     if cur_num+1 == max{
-                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user]), "actStatus":1]) //join user in firebase and change status
+                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cur_user]), "actStatus":1]) //join user in firebase and change status
                     }
                     else{
-                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cellData.user])]) //join user in firebase
+                        print(self.cellData.uid!)
+                        print(self.cellData.user)
+                        let a = self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cur_user])]) //join user in firebase
+                        print("我进来了4")
+                        print(a)
                     }
                     self.bbb.select()
                 }
@@ -234,10 +242,10 @@ class FeedCell: UITableViewCell {
             if let document = document, document.exists {
                 let status:Int = document.data()!["actStatus"] as! Int
                 if status != 0 {
-                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user]), "actStatus":0]) //remove user in firebase and change status to 0
+                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cur_user]), "actStatus":0]) //remove user in firebase and change status to 0
                 }
                 else{
-                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cellData.user])]) //remove user in firebase
+                    self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayRemove([self.cur_user])]) //remove user in firebase
                 }
             }
         }
