@@ -68,7 +68,8 @@ class UsersTableViewController: UITableViewController {
         // N: 没有 actId 的群聊。就自己生成一个
         // O: 1v1 聊天，通过两个 UserId 生成 actId
         // 其他：直接输入 actId
-        startActivityChat(users: [User.currentUser!, user, user], activityId: "O")
+        
+        startActivityChat(users: [User.currentUser!, user], activityId: "O")
 //        // chat
 //        let activityId = "N"
 //        let chatId = startChat(users: [User.currentUser!, user], activityId: activityId)
@@ -81,16 +82,22 @@ class UsersTableViewController: UITableViewController {
     }
     
     func startActivityChat(users:[User], activityId: String) {
-        let chatId = startChat(users: users, activityId: activityId)
+        let chatId = startChat(users: users, activityId: activityId, activityTitle: "")
         print("_x start chat", chatId)
         var recipientId : [String] = []
         var recipientName : [String] = []
         for user in users {
-            recipientId.append(user.id)
-            recipientName.append(user.username)
+            if user.id != User.currentId {
+                recipientId.append(user.id)
+                recipientName.append(user.username)
+            }
         }
         // 打开一个 chat room 界面
-        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName)
+        var isActivity = true
+        if activityId == "O" {
+            isActivity = false
+        }
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName, isActivity: isActivity)
         privateChatView.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(privateChatView, animated: true)
     }

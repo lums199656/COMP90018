@@ -15,6 +15,7 @@ import FirebaseFirestore
 class ActivityDetailController: UIViewController {
     var activityID = ""
     var starterUser = ""
+    var activityTitleText = ""
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
@@ -64,7 +65,6 @@ class ActivityDetailController: UIViewController {
         p4Button.isHidden = true
 
 //        loadData()
-        getUserInfo()
         //let starterButton = UIButton.init(type: .custom)
         //starterButton.setEnLargeEdge(20,20,414,414)
     }
@@ -78,7 +78,7 @@ class ActivityDetailController: UIViewController {
     }
     
     func startActivityChat(users:[User], activityId: String) {
-        let chatId = startChat(users: users, activityId: activityId)
+        let chatId = startChat(users: users, activityId: activityId, activityTitle: activityTitleText)
         print("_x start chat", chatId)
         var recipientId : [String] = []
         var recipientName : [String] = []
@@ -87,7 +87,7 @@ class ActivityDetailController: UIViewController {
             recipientName.append(user.username)
         }
         // 打开一个 chat room 界面
-        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName)
+        let privateChatView = ChatViewController(chatId: chatId, recipientId: recipientId, recipientName: recipientName, isActivity: true)
         privateChatView.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(privateChatView, animated: true)
     }
@@ -99,11 +99,32 @@ class ActivityDetailController: UIViewController {
     }
 
     
-    @IBAction func toStarter(_ sender: Any) {
+//    @IBAction func toStarter(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
+//        starterVC.currentUserID = userList[0].id
+//        print(userList[0].id)
+//        self.navigationController!.show(starterVC, sender: self)
+//    }
+    @IBAction func toParticipater(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
-        starterVC.currentUserID = starterUser
-        print(starterUser)
+        if (sender as! NSObject) == self.starterButton{
+            starterVC.currentUserID = userList[0].id
+        }
+        if (sender as! NSObject) == self.p1Button{
+            starterVC.currentUserID = userList[1].id
+        }
+        if (sender as! NSObject) == self.p2Button{
+            starterVC.currentUserID = userList[2].id
+        }
+        if (sender as! NSObject) == self.p3Button{
+            starterVC.currentUserID = userList[3].id
+        }
+        if (sender as! NSObject) == self.p4Button{
+            starterVC.currentUserID = userList[4].id
+        }
+        print(starterVC.currentUserID)
         self.navigationController!.show(starterVC, sender: self)
     }
     
@@ -118,17 +139,6 @@ class ActivityDetailController: UIViewController {
         self.present(editVC, animated: true, completion: nil)
     }
     
-    func getUserInfo(){
-        let docRef = db.collection(K.FStore.act).document(activityID)
-        docRef.getDocument { [self] (document, error) in
-            if let document = document, document.exists {
-                let data = document.data()
-                starterUser = data!["actCreatorId"] as! String
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
     
     
     func loadData() {
@@ -138,6 +148,7 @@ class ActivityDetailController: UIViewController {
             if let document = document, document.exists {
                 let data = document.data()
                 self.activityTitle.text = data?[K.Activity.title] as? String
+                self.activityTitleText = self.activityTitle.text!
                 let image = data![K.Activity.image] as! String
                 // read date later
                 self.date.text = ""
