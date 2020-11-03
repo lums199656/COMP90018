@@ -74,11 +74,11 @@ class RecentTableViewCell: UITableViewCell {
     
     private func setAvatar(avatarLink: String) {
         if avatarLink != "" {
-            // 从 Firestore 下载头像，暂时还没写，先用默认头像代替
-//            FileStorage.downloadImage(imageUrl: avatarLink) { (avatarImage) in
-//                self.avatarImageView.image = avatarImage
-//            }
-            self.avatarImageView.image = UIImage(named: "avatar")
+//             从 Firestore 下载头像，暂时还没写，先用默认头像代替
+            FileStorage.downloadImage(imageUrl: avatarLink) { (avatarImage) in
+                self.avatarImageView.image = avatarImage
+            }
+//            self.avatarImageView.image = UIImage(named: "avatar")
         }else{
             self.avatarImageView.image = UIImage(named: "avatar")
         }

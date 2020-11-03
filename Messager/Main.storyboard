@@ -3203,8 +3203,8 @@
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart" width="128" height="128"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="highlighter" catalog="system" width="128" height="119"/>
         <image name="house" catalog="system" width="128" height="106"/>
