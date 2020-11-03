@@ -88,6 +88,7 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
         //self.tabBarController?.tabBar.isHidden = true
         super.viewWillAppear(animated)
         self.loadInfo()
+        self.getActivities()
     }
     override func viewWillDisappear(_ animated: Bool) {
           navigationController?.setNavigationBarHidden(false, animated: true)
