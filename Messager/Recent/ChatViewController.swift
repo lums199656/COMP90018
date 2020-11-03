@@ -169,7 +169,7 @@ class ChatViewController: MessagesViewController {
         let leftBarButtonItem = UIBarButtonItem(customView: leftBarButtonView)
         
         self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
-        
+                
         var tmpText = ""
         if recipientName.count == 2 {
             for i in recipientName {
