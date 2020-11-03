@@ -14,10 +14,6 @@ import FirebaseUI
 class ActivityDetailController: UIViewController {
     var activityID = ""
     var starterUser = ""
-    var p1User = ""
-    var p2User = ""
-    var p3User = ""
-    var p4User = ""
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
@@ -26,16 +22,6 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var startGroupChatButton: UIButton!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        editButton.isHidden = true
-        startGroupChatButton.isHidden = true
-        loadData()
-        getUserInfo()
-        //let starterButton = UIButton.init(type: .custom)
-        //starterButton.setEnLargeEdge(20,20,414,414)
-    }
-    
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var activityTitle: UILabel!
     @IBOutlet weak var location: UILabel!
@@ -59,12 +45,41 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var p3Button: UIButton!
     @IBOutlet weak var p4Button: UIButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        editButton.isHidden = true
+        startGroupChatButton.isHidden = true
+        p1Image.isHidden = true
+        p2Image.isHidden = true
+        p3Image.isHidden = true
+        p4Image.isHidden = true
+        p1Name.isHidden = true
+        p2Name.isHidden = true
+        p3Name.isHidden = true
+        p4Name.isHidden = true
+        p1Button.isHidden = true
+        p2Button.isHidden = true
+        p3Button.isHidden = true
+        p4Button.isHidden = true
+
+        loadData()
+        getUserInfo()
+        //let starterButton = UIButton.init(type: .custom)
+        //starterButton.setEnLargeEdge(20,20,414,414)
+    }
     
+
     @IBAction func startGroupChat(_ sender: Any) {
         
         
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadData()
+    }
+
     
     @IBAction func toStarter(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -91,10 +106,6 @@ class ActivityDetailController: UIViewController {
             if let document = document, document.exists {
                 let data = document.data()
                 starterUser = data!["actCreatorId"] as! String
-                p1User = self.starterUser
-                p2User = self.starterUser
-                p3User = self.starterUser
-                p4User = self.starterUser
             } else {
                 print("Document does not exist")
             }
@@ -117,6 +128,14 @@ class ActivityDetailController: UIViewController {
                     self.startGroupChatButton.isHidden = false
                 }
                 self.details.text = data!["actDetail"] as? String
+                self.location.text = data!["locationString"] as? String
+                let df = DateFormatter()
+                df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                let dateLong = data!["startDate"] as! Timestamp
+                let date = dateLong.dateValue() as! Date
+                self.date.text = df.string(from: date)
+
+                
                 let joins = data![K.Activity.join] as! [String] //String array
                 
                 let userInfo = self.db.collection("User")
@@ -155,76 +174,58 @@ class ActivityDetailController: UIViewController {
                                         user.pushId = data["pushId"] as! String
                                         user.status = data["status"] as! String
                                         userList.append(user)
+                                        
+                                    }
+                                    loadJoinData()
                                 }
-                            }
                         print("userList is: \(userList)")
                     }
                 }
                 
                 let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
                 self.image.sd_setImage(with: cloudFileRef)
-
+                
+                
                         
             } else {
                 print("Document does not exist")
             }
         }
-        
-        
-//        docRef.getDocument() { (document, error) in
-//            if let e = error{
-//                print("error happens in getDocuments\(e)" )
-//            }
-//            else{
-//                let data = document.data()
-//                activityTitle.text = data?[K.Activity.title] as? String
-//                let image = data[K.Activity.image] as! String
-//                // read date later
-//                self.date.text = ""
-//                let starterId = data["actCreatorId"] as? String
-//                if starterId == Auth.auth().currentUser?.uid {
-//                    self.editButton.isHidden = false
-//                    self.startGroupChatButton.isHidden = false
-//                }
-//                details.text = data["actDetail"] as? String
-//
-//                let userInfo = self.db.collection("User")
-//                let query = userInfo.whereField("id", isEqualTo: starterId)
-//                query.getDocuments { [self] (querySnapshot, error) in
-//                            if let error = error {
-//                                print("Error getting documents: \(error)")
-//                            } else {
-//                                for document in querySnapshot!.documents {
-//                                    let data = document.data()
-//                                    let uimage = data["avatarLink"] as! String
-//                                    let name = data["username"] as! String
-//                                    self.starterName.text = name
-//                                    let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+uimage)
-//                                                cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                                                    if let error = error {
-//                                                        print(error.localizedDescription)
-//                                                    } else {
-//                                                        self.starterImage.image = UIImage(data: data!)
-//                                                    }
-//                                                }
-//
-//                            }
-//                        }
-//                }
-//
-//
-//                let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
-//                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                                if let error = error {
-//                                    print(error.localizedDescription)
-//                                } else {
-//                                    self.image.image = UIImage(data: data!)
-//                                }
-//                            }
-//
-//
-//            }
-//
-//        }
+    }
+    
+    func loadJoinData() {
+        let userNum = userList.count
+        if userNum > 0 {
+            self.p1Name.text = userList[0].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[0].avatarLink)
+            self.p1Image.sd_setImage(with: cloudFileRef)
+            self.p1Name.isHidden = false
+            self.p1Image.isHidden = false
+            self.p1Button.isHidden = false
+        }
+        if userNum > 1 {
+            self.p2Name.text = userList[1].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[1].avatarLink)
+            self.p2Image.sd_setImage(with: cloudFileRef)
+            self.p2Name.isHidden = false
+            self.p2Image.isHidden = false
+            self.p2Button.isHidden = false
+        }
+        if userNum > 2 {
+            self.p3Name.text = userList[2].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[2].avatarLink)
+            self.p3Image.sd_setImage(with: cloudFileRef)
+            self.p3Name.isHidden = false
+            self.p3Image.isHidden = false
+            self.p3Button.isHidden = false
+        }
+        if userNum > 3 {
+            self.p4Name.text = userList[3].username
+            let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[3].avatarLink)
+            self.p4Image.sd_setImage(with: cloudFileRef)
+            self.p4Name.isHidden = false
+            self.p4Image.isHidden = false
+            self.p4Button.isHidden = false
+        }
     }
 }
