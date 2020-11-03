@@ -49,7 +49,7 @@ class PostViewController1: UIViewController {
     
     var startDatePicker = UIDatePicker()
     var endDatePicker = UIDatePicker()
-
+    
     // MARK:- View Lifecycle
     // Override Function
     override func viewDidLoad() {
@@ -156,14 +156,14 @@ class PostViewController1: UIViewController {
     }
     
     @IBAction func postBttnTapped(_ sender: Any) {
-
+        
         
         guard let image = activityImageView.image else { print("no image selected"); return }
         guard let userId = Auth.auth().currentUser?.uid else { return }
         guard let titleText = titleTextField.text else {return }
         guard let detailText = detailTextView.text else {return }
         
-            
+        
         let actRef = db.collection(K.FStore.act).document()  // new Activity Document reference
         let storageRef = storage.reference()
         let activityImageRef = storageRef.child("activity-images")
@@ -183,13 +183,16 @@ class PostViewController1: UIViewController {
         
         
         func uploadActivity() {
-
+            
             var geoPoint: GeoPoint?
             if let location = postLocation {
                 geoPoint = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             }
             let readDic = [userId: 1]
+            let join = [userId]
+            
             actRef.setData([
+                "actCreatorId": userId,
                 "actDetail": detailText,
                 "actTitle": titleText,
                 "createDate": Date() as Any,
@@ -199,9 +202,12 @@ class PostViewController1: UIViewController {
                 "locationString": postLocationString as Any,
                 "category": postCategory as Any,
                 "imageId": actRef.documentID,
-                "read_dic": readDic as Any
+                "read_dic": readDic as Any,
+                "join": join as Any,
+                "actStatus": 0, //0: awaiting, 1: ready, 2: finish
+                "actGroupSize": 5,
             ])
-
+            
             print("Activity Document added with ID: \(actRef.documentID)")
         }
         
@@ -213,11 +219,11 @@ class PostViewController1: UIViewController {
         self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
         self.dismiss(animated: true, completion: nil)
         
-
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         if segue.identifier == "toLocation" {
             let destinationVC = segue.destination as! PostLocationViewController
             destinationVC.delegate = self
@@ -279,37 +285,37 @@ extension PostViewController1: UITextViewDelegate {
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
+        
         // Combine the textView text and the replacement text to
         // create the updated text string
         let currentText:String = textView.text
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
-
+        
         // If updated text view will be empty, add the placeholder
         // and set the cursor to the beginning of the text view
         if updatedText.isEmpty {
-
+            
             textView.text = "Activity Details here..."
             textView.textColor = UIColor.lightGray
-
+            
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
         }
-
+        
         // Else if the text view's placeholder is showing and the
         // length of the replacement string is greater than 0, set
         // the text color to black then set its text to the
         // replacement string
-         else if textView.textColor == UIColor.lightGray && !text.isEmpty {
+        else if textView.textColor == UIColor.lightGray && !text.isEmpty {
             textView.textColor = UIColor.black
             textView.text = text
         }
-
+        
         // For every other case, the text should change with the usual
         // behavior...
         else {
             return true
         }
-
+        
         // ...otherwise return false since the updates have already
         // been made
         return false

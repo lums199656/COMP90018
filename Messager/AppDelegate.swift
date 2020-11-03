@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
         // _. Configure if seeding the Activity DB
-        let _ = DBSeeding(true)
+//        let _ = DBSeeding(true)
         
         
         
