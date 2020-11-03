@@ -1438,7 +1438,7 @@
                                                         </subviews>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                                                <size key="value" width="818" height="0.0"/>
+                                                                <size key="value" width="828" height="600"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -2319,10 +2319,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="HH4-4C-sqW" userLabel="from date">
-                                        <rect key="frame" x="0.0" y="61" width="184" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="61" width="102" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="from:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLU-dz-njg" userLabel="from">
-                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="40.5" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="3Jt-Pt-tfW"/>
                                                 </constraints>
@@ -2331,7 +2331,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zL9-U6-75d">
-                                                <rect key="frame" x="102.5" y="0.0" width="81.5" height="20.5"/>
+                                                <rect key="frame" x="61.5" y="0.0" width="40.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2339,10 +2339,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="hm6-33-k90" userLabel="to date">
-                                        <rect key="frame" x="0.0" y="102.5" width="184" height="17.5"/>
+                                        <rect key="frame" x="0.0" y="102.5" width="105" height="17.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="to:     " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L8p-2v-Drn" userLabel="from">
-                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="17.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="42" height="17.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="EOj-ET-Gmk"/>
                                                 </constraints>
@@ -2351,7 +2351,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nB7-Z3-BoK">
-                                                <rect key="frame" x="102.5" y="0.0" width="81.5" height="17.5"/>
+                                                <rect key="frame" x="63" y="0.0" width="42" height="17.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2706,7 +2706,7 @@
                                                         </subviews>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                                                <size key="value" width="818" height="0.0"/>
+                                                                <size key="value" width="828" height="600"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>

@@ -58,11 +58,10 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
     //automatically update segment index
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = Int(scrollView.contentOffset.x / firstView.bounds.width)
-        // print(segmentedControl.selectedSegmentIndex)
-        // print(scrollView.contentOffset.x)
+        print(firstView.bounds.width)
         segmentedControl.selectedSegmentIndex = index
-        // print(segmentedControl.selectedSegmentIndex)
-        // print(scrollView.contentOffset.x)
+        print(segmentedControl.selectedSegmentIndex)
+        print(scrollView.contentOffset)
         
     }
     
