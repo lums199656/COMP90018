@@ -10,6 +10,7 @@ import Firebase
 import ButtonEnLargeClass
 import MapKit
 import FirebaseUI
+import FirebaseFirestore
 
 class ActivityDetailController: UIViewController {
     var activityID = ""
