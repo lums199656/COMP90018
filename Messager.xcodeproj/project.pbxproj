@@ -83,6 +83,7 @@
 		BBEE4336252DDF2400D3B305 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4335252DDF2400D3B305 /* Activity.swift */; };
 		BBEE433E252DE06E00D3B305 /* ActivityApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */; };
 		BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEE4366252DEAB900D3B305 /* DBSeeding.swift */; };
+		BBF749B225527E7200CC60AE /* ConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF749B125527E7200CC60AE /* ConfigTableViewController.swift */; };
 		BBF8101025388755004C61B2 /* PostViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF8100F25388755004C61B2 /* PostViewController2.swift */; };
 /* End PBXBuildFile section */
 
@@ -169,7 +170,6 @@
 		A5DAAEF5254D0CC200F15718 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		A5DFB0E3252ABF6D00471C1A /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
-		AEDC2D351139AF1C01E7F136 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB052F0D254FBF710046154B /* ActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityManager.swift; sourceTree = "<group>"; };
 		BB052F11254FE5160046154B /* LocalAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthViewController.swift; sourceTree = "<group>"; };
 		BB09701C253C29FC00A381A5 /* ActivityCatogory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCatogory.swift; sourceTree = "<group>"; };
@@ -189,6 +189,7 @@
 		BBEE4335252DDF2400D3B305 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		BBEE433D252DE06E00D3B305 /* ActivityApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityApplication.swift; sourceTree = "<group>"; };
 		BBEE4366252DEAB900D3B305 /* DBSeeding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBSeeding.swift; sourceTree = "<group>"; };
+		BBF749B125527E7200CC60AE /* ConfigTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTableViewController.swift; sourceTree = "<group>"; };
 		BBF8100F25388755004C61B2 /* PostViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController2.swift; sourceTree = "<group>"; };
 		BC7CD7FFE5534F21402F83EC /* Pods_Messager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D594DDF3806905AE2D5F8769 /* Pods-Messager-MessagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messager-MessagerUITests.debug.xcconfig"; path = "Target Support Files/Pods-Messager-MessagerUITests/Pods-Messager-MessagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -380,6 +381,7 @@
 				8214C9F6253416D700909AEE /* JoinedCell.swift */,
 				8214C9F8253416D700909AEE /* UIViewHelper.swift */,
 				A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */,
+				BBF749B125527E7200CC60AE /* ConfigTableViewController.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -736,6 +738,7 @@
 				BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */,
 				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
 				A5DAAEF6254D0CC200F15718 /* Channel.swift in Sources */,
+				BBF749B225527E7200CC60AE /* ConfigTableViewController.swift in Sources */,
 				8214C9FD253416D700909AEE /* MeViewController.swift in Sources */,
 				A517F8BD2514E89F00621A26 /* AppDelegate.swift in Sources */,
 				BB09701D253C29FC00A381A5 /* ActivityCatogory.swift in Sources */,
