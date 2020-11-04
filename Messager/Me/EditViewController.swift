@@ -91,8 +91,6 @@ class EditViewController: UIViewController {
         guard let location = userLocation.text else { return }
         guard let intro = userIntro.text else {return }
         
-        
-
         let storageRef = storage.reference()
         let infoImageRef = storageRef.child("user-photoes")
         let query = db.collection("User").whereField("id", isEqualTo: id)
@@ -100,6 +98,7 @@ class EditViewController: UIViewController {
                     if let error = error {
                         print("Error getting documents: \(error)")
                     } else {
+                        kCURRENTUSERNAME = name
                         var infoRef = db.collection("User").document()
                         var docID = infoRef.documentID
                         if querySnapshot!.documents.count > 0 {

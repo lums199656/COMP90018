@@ -18,7 +18,8 @@ class OutgoingMessage {
         message.id = UUID().uuidString
         message.chatRoomId = chatId
         message.senderId = currentUser.id
-        message.senderName = currentUser.username
+//        message.senderName = currentUser.username
+        message.senderName = kCURRENTUSERNAME
         message.senderInitials = String(currentUser.username.first!)
         message.date = Date()
         message.status = kSENT

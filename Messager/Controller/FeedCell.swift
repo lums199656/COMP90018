@@ -37,7 +37,7 @@ class FeedCell: UITableViewCell {
     var cellData : FeedData!{
     //monitor, reocrd change
         didSet{
-            seeMoreBtn.isHidden = true
+//            seeMoreBtn.isHidden = true
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             labelT.text = cellData.title
             labelD.text = cellData.detail

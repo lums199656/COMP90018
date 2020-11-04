@@ -40,6 +40,7 @@ public let kREADDATE = "date"
 public let kADMINID = "adminId"
 public let kMEMBERIDS = "memberIds"
 
+public var kCURRENTUSERNAME = "nil"
 
 
 struct K {
