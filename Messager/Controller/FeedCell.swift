@@ -32,10 +32,12 @@ class FeedCell: UITableViewCell {
     let db = Firestore.firestore()
     let realm = try! Realm()
     let cur_user = Auth.auth().currentUser!.uid
+    var myViewController: FeedViewController!
     
     var cellData : FeedData!{
     //monitor, reocrd change
         didSet{
+            seeMoreBtn.isHidden = true
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             labelT.text = cellData.title
             labelD.text = cellData.detail
@@ -88,7 +90,7 @@ class FeedCell: UITableViewCell {
                     bbb.deselect()
                 }
             }
-            var joins:[String] = cellData!.join //for get profile array
+            let joins:[String] = cellData!.join //for get profile array
             print("joins")
             print(joins)
             var cur = 1
@@ -136,34 +138,6 @@ class FeedCell: UITableViewCell {
                                     break
                                 }
                             }
-//                            //prevent reuse, so set other profile nil
-//                            while cur<=5{
-//                                switch cur {
-//                                case 1:
-//                                    self.profile1.image = nil
-//                                    cur+=1
-//                                    break
-//                                case 2:
-//                                    self.profile2.image = nil
-//                                    cur+=1
-//                                    break
-//                                case 3:
-//                                    self.profile3.image = nil
-//                                    cur+=1
-//                                    break
-//                                case 4:
-//                                    self.profile4.image = nil
-//                                    cur+=1
-//                                    break
-//                                case 5:
-//                                    self.profile5.image = nil
-//                                    cur+=1
-//                                    break
-//                                default:
-//                                    cur = 1
-//                                    break
-//                                }
-//                            }
                         }//snapshot
                     }
                 }
@@ -253,12 +227,7 @@ class FeedCell: UITableViewCell {
         }
     }
     
-    @IBAction func jumpToDetail(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
-        secondVC.activityID = cellData.uid!
-        //self.navigationController?.show(secondVC, sender: self)
-    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

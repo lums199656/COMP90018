@@ -24,6 +24,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let locationManager = CLLocationManager()
     var lat: Double = 0.0
     var lont: Double = 0.0
+    let db = Firestore.firestore()
      
     @IBOutlet weak var loadingView: NVActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -47,12 +48,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             setRead()
         }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none //none selection response of tableView
+        
+//        let nvc: UINavigationController = UIStoryboard(name: "myStoryboard", bundle: nil).instantiateViewController(withIdentifier: "myNavigationController") as! UINavigationController
+//            cell.myViewController = nvc.childViewControllers.first as! MyViewController
+        
         return cell
     }
-    
-   
-    let db = Firestore.firestore()
-    
     
     //control cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -200,7 +201,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func setRead(){
         //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) array method
         let temp: String = "read_dic."+Auth.auth().currentUser!.uid
-        //self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
+        self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
     }
     
 }
