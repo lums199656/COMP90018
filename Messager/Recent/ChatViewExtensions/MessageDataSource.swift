@@ -30,7 +30,7 @@ extension ChatViewController: MessagesDataSource {
         if mkMessages[indexPath.section].surprise {
             // u 仔的 suprise
 //            print("_x-38 该显示 suprise 了")
-            let text = "Suprise"
+            let text = "- SUPRISE -"
             let font = UIFont.systemFont(ofSize: 13)
             let color = UIColor(named: "chatOutgoingColor")
             return NSAttributedString(string: text, attributes: [.font: font, .foregroundColor: color])
@@ -42,7 +42,7 @@ extension ChatViewController: MessagesDataSource {
             let showLoadMore = ((indexPath.section == 0) && (allLocalMessages.count > displayingMessagesCount))
             var text = ""
             if indexPath.section == 0 {
-                text = showLoadMore ? "Pull to load more" : "No more message"
+                text = showLoadMore ? "- PULL TO LOAD MORE -" : "- THE END -"
             } else {
                 text = MessageKitDateFormatter.shared.string(from: message.sentDate)
             }

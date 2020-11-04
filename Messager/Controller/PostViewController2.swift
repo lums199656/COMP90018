@@ -24,12 +24,6 @@ class PostViewController2: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        
-        
-//        for a in Activity.Catogory.allCases{
-//            print(a)
-//        }
         print(categories.count, current.count)
         setupUI()
     }
@@ -84,7 +78,7 @@ extension PostViewController2: UICollectionViewDataSource, UICollectionViewDeleg
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        return CGSize(width: 100, height: 90)
 //    }
-//
+
     
     
     
@@ -105,7 +99,7 @@ extension PostViewController2: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
 
 
@@ -124,7 +118,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
             self.update()
         }
     }
-    // Aktualisiere
+    
     func update(){
         let colors:[UIColor] = [#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)]
         let color = Int.random(in: 0..<colors.count)
@@ -143,6 +137,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 class ActivityTabelViewCell: UITableViewCell {
     
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
     
     var category: ActivityCategory! {
         didSet {
@@ -153,9 +148,15 @@ class ActivityTabelViewCell: UITableViewCell {
     func update() {
         if let category = category {
             categoryLabel.text = category.name
+            
+            let image = UIImage(named: category.name)
+            categoryImage.image = image
+            
         } else {
             print("ERRPR")
         }
+        
+        
     }
     
 }

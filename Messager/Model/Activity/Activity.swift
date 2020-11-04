@@ -44,9 +44,9 @@ public struct Activity: Codable {
         case ESports
         case Recreation
         case Movie
-        case OutdoorsAdventure
+        case OutdoorsAdventure = "Outdoor Adventure"
         case Learning
-        case Phtography
+        case Photography
         case FoodNDrink
         case Music
         case Games
