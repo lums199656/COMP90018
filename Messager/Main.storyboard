@@ -872,7 +872,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P9j-ch-fi7">
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P9j-ch-fi7">
                                                             <rect key="frame" x="325" y="7" width="51" height="31"/>
                                                         </switch>
                                                     </subviews>
@@ -909,7 +909,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1wx-4e-R5H">
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1wx-4e-R5H">
                                                             <rect key="frame" x="325" y="7" width="51" height="31"/>
                                                         </switch>
                                                     </subviews>
@@ -946,7 +946,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBB-N1-hLb">
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oBB-N1-hLb">
                                                             <rect key="frame" x="325" y="7" width="51" height="31"/>
                                                         </switch>
                                                     </subviews>
@@ -994,7 +994,9 @@
                                                                 <constraint firstAttribute="width" constant="22" id="FMD-0Q-NUK"/>
                                                             </constraints>
                                                             <color key="tintColor" name="TabIconColor"/>
-                                                            <state key="normal" title="Button" image="arrow.right.circle.fill" catalog="system"/>
+                                                            <state key="normal" title="Button" image="angle-right-512">
+                                                                <color key="titleColor" name="avatarViewBackground"/>
+                                                            </state>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1037,7 +1039,9 @@
                                                                 <constraint firstAttribute="height" constant="22" id="xKC-zF-rwH"/>
                                                             </constraints>
                                                             <color key="tintColor" name="TabIconColor"/>
-                                                            <state key="normal" title="Button" image="arrow.right.circle.fill" catalog="system"/>
+                                                            <state key="normal" title="Button" image="angle-right-512">
+                                                                <color key="titleColor" name="avatarViewBackground"/>
+                                                            </state>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1080,7 +1084,9 @@
                                                                 <constraint firstAttribute="width" constant="22" id="XLX-AA-eHt"/>
                                                             </constraints>
                                                             <color key="tintColor" name="TabIconColor"/>
-                                                            <state key="normal" title="Button" image="arrow.right.circle.fill" catalog="system"/>
+                                                            <state key="normal" title="Button" image="angle-right-512">
+                                                                <color key="titleColor" name="avatarViewBackground"/>
+                                                            </state>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1116,14 +1122,16 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8d-Ap-OVC">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8d-Ap-OVC">
                                                             <rect key="frame" x="352" y="11.5" width="22" height="22"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="22" id="i35-Td-iIQ"/>
                                                                 <constraint firstAttribute="width" constant="22" id="za4-0o-9iV"/>
                                                             </constraints>
                                                             <color key="tintColor" name="TabIconColor"/>
-                                                            <state key="normal" title="Button" image="arrow.right.circle.fill" catalog="system"/>
+                                                            <state key="normal" image="angle-right-512">
+                                                                <color key="titleColor" name="avatarViewBackground"/>
+                                                            </state>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1145,20 +1153,20 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle=" " footerTitle=" " id="WxJ-jg-jW4">
+                            <tableViewSection headerTitle=" " id="WxJ-jg-jW4">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="96" id="8Bg-JN-KP7">
-                                        <rect key="frame" x="0.0" y="635" width="414" height="96"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="160" id="8Bg-JN-KP7">
+                                        <rect key="frame" x="0.0" y="635" width="414" height="160"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Bg-JN-KP7" id="kof-X7-wd0">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2R-Nw-tOk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="96"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEk-BE-qAj">
-                                                            <rect key="frame" x="50" y="25" width="314" height="46"/>
+                                                            <rect key="frame" x="50" y="57" width="314" height="46"/>
                                                             <color key="backgroundColor" name="TabIconColor"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="46" id="pQ7-xN-HsC"/>
@@ -1195,6 +1203,14 @@
                                                 <constraint firstAttribute="trailing" secondItem="x2R-Nw-tOk" secondAttribute="trailing" id="cRX-lz-xzy"/>
                                                 <constraint firstItem="x2R-Nw-tOk" firstAttribute="leading" secondItem="kof-X7-wd0" secondAttribute="leading" id="kQq-BL-gSk"/>
                                             </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="g3s-Jb-jEJ">
+                                        <rect key="frame" x="0.0" y="795" width="414" height="120"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="g3s-Jb-jEJ" id="Ilh-sl-3ej">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -2584,7 +2600,7 @@
                                         <rect key="frame" x="0.0" y="191.5" width="354" height="50"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lB4-6U-Aax">
-                                                <rect key="frame" x="0.0" y="0.0" width="219.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2v-vp-DEi">
                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2621,7 +2637,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Participant3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-pV-r5l">
-                                                <rect key="frame" x="261.5" y="15" width="92.5" height="20.5"/>
+                                                <rect key="frame" x="92" y="15" width="262" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -2697,7 +2713,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="184" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8y-g8-pRQ">
-                                                <rect key="frame" x="0.0" y="0.0" width="92" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="q0f-Rc-lEv"/>
                                                 </constraints>
@@ -2707,7 +2723,7 @@
                                                 </state>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMr-qq-fhB">
-                                                <rect key="frame" x="92" y="0.0" width="92" height="40"/>
+                                                <rect key="frame" x="30" y="0.0" width="154" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="RSy-wZ-gVL"/>
                                                 </constraints>
@@ -2723,10 +2739,10 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="HH4-4C-sqW" userLabel="from date">
-                                        <rect key="frame" x="0.0" y="61" width="102" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="61" width="111" height="20.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="from:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLU-dz-njg" userLabel="from">
-                                                <rect key="frame" x="0.0" y="0.0" width="40.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="45" id="3Jt-Pt-tfW"/>
                                                 </constraints>
@@ -2735,7 +2751,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="date" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zL9-U6-75d">
-                                                <rect key="frame" x="61.5" y="0.0" width="40.5" height="20.5"/>
+                                                <rect key="frame" x="66" y="0.0" width="45" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3342,7 +3358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IeV-xO-KXa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3872" y="1931"/>
+            <point key="canvasLocation" x="3946" y="1975"/>
         </scene>
         <!--Edit Location-->
         <scene sceneID="ORi-x8-qX7">
@@ -3440,7 +3456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZfS-Ga-i6b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4701" y="1931"/>
+            <point key="canvasLocation" x="4716" y="1975"/>
         </scene>
         <!--Post Activity-->
         <scene sceneID="fSr-Qj-5pW">
@@ -3854,6 +3870,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="WechatIMG1" width="160" height="105"/>
+        <image name="angle-right-512" width="512" height="512"/>
         <image name="arrow.right.circle.fill" catalog="system" width="128" height="121"/>
         <image name="avatar" width="1744" height="1516"/>
         <image name="bubble.right" catalog="system" width="128" height="110"/>
