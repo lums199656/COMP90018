@@ -47,17 +47,26 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         if cur_count == 0{
             setRead()
         }
+        
+        cell.seeMoreBtn.tag = indexPath.row
+        cell.seeMoreBtn.addTarget(self, action: #selector(goDetail), for: .touchUpInside)
+        
         cell.selectionStyle = UITableViewCell.SelectionStyle.none //none selection response of tableView
-        
-//        let nvc: UINavigationController = UIStoryboard(name: "myStoryboard", bundle: nil).instantiateViewController(withIdentifier: "myNavigationController") as! UINavigationController
-//            cell.myViewController = nvc.childViewControllers.first as! MyViewController
-        
         return cell
     }
     
     //control cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UIScreen.main.bounds.size.height - 80
+    }
+    
+    @objc func goDetail(sender : UIButton){
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+        vc.activityID = changeUID
+        print("vc is: \(vc)")
+        let a = self.navigationController?.pushViewController(vc, animated:true)
+        let b = self.navigationController?.show(vc, sender: self)
+        print("navigation is \(b)")
     }
 
     override func viewDidLoad() {
@@ -96,7 +105,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func getData(flag: Bool){
         //.whereField().limit(to: num) .whereField("read", isEqualTo: 0)
         //whereField(_:notIn:) finds documents where a specified field’s value is not in a specified array.
-        db.collection(K.FStore.act).getDocuments{ (querySnapshot, error) in
+        db.collection(K.FStore.act).getDocuments{ [self] (querySnapshot, error) in
             if let e = error{
                 print("error happens in getDocuments\(e)" )
             }
@@ -158,6 +167,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                     if (flag_load_page == 0 || flag_load_page == 1) && flag{
                         self.getData(flag: false)
                     }
+                    if self.lists.count==pre_count && !flag {
+                        self.getData(flag: true)
+                    }
+                    else{
+                        pre_count = self.lists.count
+                    }
                 }
             }
         }
@@ -201,7 +216,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func setRead(){
         //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) array method
         let temp: String = "read_dic."+Auth.auth().currentUser!.uid
-        self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
+        //self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
     }
     
 }
