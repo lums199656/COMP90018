@@ -141,11 +141,12 @@ class ChatViewController: MessagesViewController {
             print("didSet isUserAtActivityLocation")
             if isUserAllowedToCheckIn {
                 
-                OutgoingMessage.sendSuprise(chatId: chatId, text: "📍This Guy Arrived", memberIds: [User.currentId] + reipientId)
+                OutgoingMessage.sendSuprise(chatId: chatId, text: "-「\(currentUser.displayName)」 Arrived -", memberIds: [User.currentId] + reipientId)
 
             } else {
-                let distance = userDistanceFromActivityLocation ?? 9999
-                OutgoingMessage.sendSuprise(chatId: chatId, text: "👻Get to the Activity location.\n Your are \(distance) meters away!", memberIds: [User.currentId] + reipientId)
+                let distance = Int(userDistanceFromActivityLocation ?? 9999)/1000
+                
+                OutgoingMessage.sendSuprise(chatId: chatId, text: "「\(currentUser.displayName)」❤️「YOU」-> \(distance) km", memberIds: [User.currentId] + reipientId)
             }
         }
     }

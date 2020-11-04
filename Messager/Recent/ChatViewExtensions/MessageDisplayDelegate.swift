@@ -16,6 +16,7 @@ extension ChatViewController: MessagesDisplayDelegate {
         return isFromCurrentSender(message: message) ? UIColor(named: "chatIncomingColor")! : UIColor(white: 0, alpha: 1 )
     }
     
+    
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
         if mkMessages[indexPath.section].surprise {
             return UIColor(named: "suprise")!
