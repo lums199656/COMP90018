@@ -24,6 +24,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     let locationManager = CLLocationManager()
     var lat: Double = 0.0
     var lont: Double = 0.0
+    let db = Firestore.firestore()
      
     @IBOutlet weak var loadingView: NVActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -47,12 +48,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             setRead()
         }
         cell.selectionStyle = UITableViewCell.SelectionStyle.none //none selection response of tableView
+        
+//        let nvc: UINavigationController = UIStoryboard(name: "myStoryboard", bundle: nil).instantiateViewController(withIdentifier: "myNavigationController") as! UINavigationController
+//            cell.myViewController = nvc.childViewControllers.first as! MyViewController
+        
         return cell
     }
-    
-   
-    let db = Firestore.firestore()
-    
     
     //control cell height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -121,14 +122,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let points = data[K.Activity.location] as? GeoPoint //latitude = points.latitude, longtitude = points.longtitude
                             var distance:CLLocationDistance = 1001
                             if points != nil{
-                                var currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
-                                var targetLocation = CLLocation(latitude: points!.latitude, longitude: points!.longitude)
+                                let currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
+                                let targetLocation = CLLocation(latitude: points!.latitude, longitude: points!.longitude)
                                 distance = currentLocation.distance(from: targetLocation)
                             }
                             //two point distance
                             print("两点间距离是：\(distance)")
                             //print("user id: \(Auth.auth().currentUser!.uid)")
-                            
+
                             if flag{
                                 if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size && distance<1000){//not in read_dic, status is awaiting, not reach size, distance<1000
                                     //print("进来了")
@@ -187,7 +188,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         //upside
         else if self.lastContentOffset > scrollView.contentOffset.y {
-              print("upside")
+            print("upside")
 //            print(self.cur_count)
         }
     }
