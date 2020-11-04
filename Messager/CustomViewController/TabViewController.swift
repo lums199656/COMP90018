@@ -29,6 +29,7 @@ class TabViewController: UIViewController {
     @IBOutlet weak var chatImage: UIImageView!
     @IBOutlet weak var peopleImage: UIImageView!
     @IBOutlet weak var meImage: UIImageView!
+    @IBOutlet weak var addBackgroundImage: UIImageView!
     
     private var buttons: [UIButton]!
     private var buttonImages: [UIImageView]!
@@ -48,14 +49,6 @@ class TabViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if localAuthState == .loggedout {
-//            print("11111")
-//            let localAuthView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "localAuth")
-//
-//            self.present(localAuthView, animated: false, completion: nil)
-//        }
-
-        // Do any additional setup after loading the view.
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         feedViewController = storyboard.instantiateViewController(withIdentifier: "feedVC")
@@ -74,6 +67,9 @@ class TabViewController: UIViewController {
         
         // Init Setup
         tabBttnPressed(buttons[selectedIndex])
+        
+        // UI
+        addBackgroundImage.layer.cornerRadius = 8
     }
     
 

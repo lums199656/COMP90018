@@ -46,6 +46,7 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var p2Button: UIButton!
     @IBOutlet weak var p3Button: UIButton!
     @IBOutlet weak var p4Button: UIButton!
+    @IBOutlet weak var noParticipants: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +64,7 @@ class ActivityDetailController: UIViewController {
         p2Button.isHidden = true
         p3Button.isHidden = true
         p4Button.isHidden = true
+        self.noParticipants.isHidden = false
 
 //        loadData()
         //let starterButton = UIButton.init(type: .custom)
@@ -142,6 +144,7 @@ class ActivityDetailController: UIViewController {
     
     
     func loadData() {
+        print("ID 现在是：\(activityID)")
         userList = []
         let docRef = db.collection(K.FStore.act).document(activityID)
         docRef.getDocument { [self] (document, error) in
@@ -244,6 +247,7 @@ class ActivityDetailController: UIViewController {
             self.p1Name.isHidden = false
             self.p1Image.isHidden = false
             self.p1Button.isHidden = false
+            self.noParticipants.isHidden = true
             print(userList)
         }
         if userNum > 2 {
