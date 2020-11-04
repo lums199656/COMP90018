@@ -63,10 +63,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func goDetail(sender : UIButton){
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
         vc.activityID = changeUID
-        print("vc is: \(vc)")
-        let a = self.navigationController?.pushViewController(vc, animated:true)
-        let b = self.navigationController?.show(vc, sender: self)
-        print("navigation is \(b)")
+        // print("vc is: \(vc)")
+        // print(self.navigationController)
+        // let a = self.navigationController?.pushViewController(vc, animated:true)
+        // let b = self.navigationController?.show(vc, sender: self)
+        self.present(vc, animated: true, completion: nil)
+        // print("navigation is \(b)")
     }
 
     override func viewDidLoad() {
