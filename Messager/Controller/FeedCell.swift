@@ -152,9 +152,7 @@ class FeedCell: UITableViewCell {
         let predicate = NSPredicate(format: s)
         let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
         if sender.isSelected {
-//            if cellData.join.contains(cur_user){
-//                cellData.join.removeLast()
-//            }
+            removeUserProfile()
             sender.deselect()
             try! realm.write {
                 likeBtn!.select = false
@@ -162,9 +160,7 @@ class FeedCell: UITableViewCell {
             print("dislike")
             removeUser()
         } else {
-//            if !cellData.join.contains(cur_user){
-//                cellData.join.append(cur_user)
-//            }
+            addUserProfile() //add cur user profile into list
             upLoadUserToJoinList()
             try! realm.write {
                 likeBtn!.select = true
@@ -227,7 +223,84 @@ class FeedCell: UITableViewCell {
         }
     }
     
+    func removeUserProfile() {
+        var index = 0
+        for join in cellData.join {
+            if join==cur_user {
+                break
+            }
+            else{
+                index += 1
+            }
+        }
+        //var count = cellData.join.count + 1
+        while index<=cellData.join.count + 1 {
+            switch index {
+            case 1:
+                self.profile1.image = self.profile2.image
+                index+=1
+            case 2:
+                self.profile2.image = self.profile3.image
+                index+=1
+            case 3:
+                self.profile3.image = self.profile4.image
+                index+=1
+            case 4:
+                self.profile4.image = self.profile5.image
+                index+=1
+            case 5:
+                self.profile5.image = nil
+                index+=1
+            default:
+                index+=1
+                break
+            }
+        }
+    }
     
+    func addUserProfile() {
+        var count = cellData.join.count + 2
+        let docRef = db.collection("User").document(cur_user)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let pic = document.data()!["avatarLink"] as! String
+                let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
+                while count>=1 {
+                    switch count {
+                    case 1:
+                        self.profile1.image = nil
+                        self.profile1.sd_setImage(with: proRef)
+                        let animation = CABasicAnimation(keyPath: "opacity")
+                        animation.fromValue = 0.0
+                        animation.toValue = 1.0
+                        animation.duration = 0.5
+                        self.profile1.layer.add(animation, forKey: "Image-opacity")
+                        count-=1
+                        break
+                    case 2:
+                        self.profile2.image = self.profile1.image
+                        count-=1
+                        break
+                    case 3:
+                        self.profile3.image = self.profile2.image
+                        count-=1
+                        break
+                    case 4:
+                        self.profile4.image = self.profile3.image
+                        count-=1
+                        break
+                    case 5:
+                        self.profile5.image = self.profile4.image
+                        count-=1
+                        break
+                    default:
+                        break
+                    }
+                }
+                
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
