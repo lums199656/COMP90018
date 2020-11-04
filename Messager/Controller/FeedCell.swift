@@ -25,8 +25,8 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var bbb: DOFavoriteButtonNew! //heart btn
     @IBOutlet weak var errorView: UIImageView!
     @IBOutlet weak var star: UIImageView!
-    @IBOutlet weak var seeMoreBtn: UIButton!
     
+    @IBOutlet weak var seeMoreBtn: UIButton!
     
     let storage = Storage.storage()
     let db = Firestore.firestore()
