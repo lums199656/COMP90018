@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
     
     //Views
     @IBOutlet weak var repeatPasswordLineView: UIView!
+    @IBOutlet weak var logoImageView: UIImageView!
     
     //MARK: - IBActions
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -72,6 +73,8 @@ class LoginViewController: UIViewController {
         // Auto fill email for dev
         emailTextField.text = "chocolodos@hotmail.com"
         passwordTextField.text = "19840844"
+        
+        logoImageView.layer.cornerRadius = logoImageView.frame.width/2
     }
 
     //MARK: - Setup

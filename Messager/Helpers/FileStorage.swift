@@ -64,16 +64,17 @@ class FileStorage {
                 
                 completion(contentsOfFile)
             } else {
-                print("couldnt convert local image")
+                print("_x-51 couldnt convert local image")
                 completion(UIImage(named: "avatar"))
             }
             
         } else {
             //download from FB
-//            print("Lets get from FB")
+            print("_x-50 Lets get from FB")
 
             if imageUrl != "" {
-                
+                print("_x-54", imageUrl)
+
                 let documentUrl = URL(string: imageUrl)
                 
                 let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
@@ -83,7 +84,7 @@ class FileStorage {
                     let data = NSData(contentsOf: documentUrl!)
                     
                     if data != nil {
-                        
+                        print("_x-53")
                         //Save locally
                         FileStorage.saveFileLocally(fileData: data!, fileName: imageFileName)
                         
@@ -92,7 +93,7 @@ class FileStorage {
                         }
                         
                     } else {
-                        print("no document in database")
+                        print("_x-52 no document in database")
                         DispatchQueue.main.async {
                             completion(nil)
                         }

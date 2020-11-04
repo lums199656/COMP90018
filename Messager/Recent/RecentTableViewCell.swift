@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
 
 class RecentTableViewCell: UITableViewCell {
 
@@ -17,13 +19,14 @@ class RecentTableViewCell: UITableViewCell {
     @IBOutlet weak var unreadCounterLabel: UILabel!
     @IBOutlet weak var unreadCounterBackgroundView: UIView!
     
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         unreadCounterBackgroundView.layer.cornerRadius = unreadCounterBackgroundView.frame.width / 2
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -67,23 +70,53 @@ class RecentTableViewCell: UITableViewCell {
             self.unreadCounterBackgroundView.isHidden = true
         }
         
-        setAvatar(avatarLink: recent.avatarLink)
+        setAvatar(avatarLink: recent.avatarLink, recent: recent)
 
         dateLabel.text = timeElapsed(recent.date ?? Date())
         dateLabel.adjustsFontSizeToFitWidth = true
     }
     
     
-    private func setAvatar(avatarLink: String) {
+    private func setAvatar(avatarLink: String, recent: RecentChat) {
+        print("_x-60", avatarLink)
         if avatarLink != "" {
 //             从 Firestore 下载头像，暂时还没写，先用默认头像代替
-            FileStorage.downloadImage(imageUrl: avatarLink) { (avatarImage) in
-                self.avatarImageView.image = avatarImage
-            }
-//            self.avatarImageView.image = UIImage(named: "avatar")
+            loadImage(recent: recent)
         }else{
             self.avatarImageView.image = UIImage(named: "avatar")
         }
     }
+    
+    private func loadImage(recent: RecentChat) {
+        if recent.isActivity {
+            let docRef = db.collection(K.FStore.act).document(recent.chatRoomId)
+            docRef.getDocument { [self] (document, error) in
+                if let document = document, document.exists {
+                    let data = document.data()
+                    let image = data![K.Activity.image] as! String
+                    let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
+                    self.avatarImageView.sd_setImage(with: cloudFileRef)
+                    self.avatarImageView.layer.cornerRadius = avatarImageView.frame.width/2
+                }
+            }
+        } else {
+            let userId = recent.receiverId[0]
+            let userInfo = db.collection("User")
+            let query = userInfo.whereField("id", isEqualTo: userId)
+            query.getDocuments { [self] (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let image = data["avatarLink"] as! String
+                        let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
+                        self.avatarImageView.sd_setImage(with: cloudFileRef)
+                        self.avatarImageView.layer.cornerRadius = avatarImageView.frame.width/2
 
+                    }
+                }
+            }
+        }
+    }
 }
