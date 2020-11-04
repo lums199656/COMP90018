@@ -39,18 +39,13 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         print("current row=\(cur_count)")
         print("list count: \(lists.count)")
-        if cell.cellData == nil{
-            cell.cellData = lists[indexPath.row]
-        }
-        else{
-            let docRef = db.collection(K.FStore.act).document(cell.cellData.uid!)
-            docRef.getDocument { (document, error) in
-                if let document = document, document.exists {
-                    let data = document.data()
-                    cell.cellData.join = data!["join"] as! [String]
-                }
+        cell.cellData = lists[indexPath.row]
+        let docRef = db.collection(K.FStore.act).document(cell.cellData.uid!)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                cell.cellData.join = data!["join"] as! [String]
             }
-            //cell.cellData.join = [String]
         }
         changeUID = lists[indexPath.row].uid! //get current row uid
         print("tableview changUID is: \(changeUID)")
@@ -97,6 +92,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         // toggle tabbar
+        tableView?.scrollsToTop = false;
         print("😡")
         if let vcp = self.parent as? TabViewController {
             print("😃")

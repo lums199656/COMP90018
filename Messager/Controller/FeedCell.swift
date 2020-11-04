@@ -226,14 +226,12 @@ class FeedCell: UITableViewCell {
     func removeUserProfile() {
         var index = 0
         for join in cellData.join {
+            index += 1
             if join==cur_user {
                 break
             }
-            else{
-                index += 1
-            }
         }
-        //var count = cellData.join.count + 1
+        
         while index<=cellData.join.count + 1 {
             switch index {
             case 1:
@@ -259,43 +257,55 @@ class FeedCell: UITableViewCell {
     }
     
     func addUserProfile() {
-        var count = cellData.join.count + 2
+        var count = cellData.join.count + 1
         let docRef = db.collection("User").document(cur_user)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let pic = document.data()!["avatarLink"] as! String
                 let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
-                while count>=1 {
-                    switch count {
-                    case 1:
-                        self.profile1.image = nil
-                        self.profile1.sd_setImage(with: proRef)
-                        let animation = CABasicAnimation(keyPath: "opacity")
-                        animation.fromValue = 0.0
-                        animation.toValue = 1.0
-                        animation.duration = 0.5
-                        self.profile1.layer.add(animation, forKey: "Image-opacity")
-                        count-=1
-                        break
-                    case 2:
-                        self.profile2.image = self.profile1.image
-                        count-=1
-                        break
-                    case 3:
-                        self.profile3.image = self.profile2.image
-                        count-=1
-                        break
-                    case 4:
-                        self.profile4.image = self.profile3.image
-                        count-=1
-                        break
-                    case 5:
-                        self.profile5.image = self.profile4.image
-                        count-=1
-                        break
-                    default:
-                        break
-                    }
+                switch count {
+                case 1:
+                    self.profile1.sd_setImage(with: proRef)
+                    let animation = CABasicAnimation(keyPath: "opacity")
+                    animation.fromValue = 0.0
+                    animation.toValue = 1.0
+                    animation.duration = 0.5
+                    self.profile1.layer.add(animation, forKey: "Image-opacity")
+                    break
+                case 2:
+                    self.profile2.sd_setImage(with: proRef)
+                    let animation = CABasicAnimation(keyPath: "opacity")
+                    animation.fromValue = 0.0
+                    animation.toValue = 1.0
+                    animation.duration = 0.5
+                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    break
+                case 3:
+                    self.profile3.sd_setImage(with: proRef)
+                    let animation = CABasicAnimation(keyPath: "opacity")
+                    animation.fromValue = 0.0
+                    animation.toValue = 1.0
+                    animation.duration = 0.5
+                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    break
+                case 4:
+                    self.profile4.sd_setImage(with: proRef)
+                    let animation = CABasicAnimation(keyPath: "opacity")
+                    animation.fromValue = 0.0
+                    animation.toValue = 1.0
+                    animation.duration = 0.5
+                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    break
+                case 5:
+                    self.profile5.sd_setImage(with: proRef)
+                    let animation = CABasicAnimation(keyPath: "opacity")
+                    animation.fromValue = 0.0
+                    animation.toValue = 1.0
+                    animation.duration = 0.5
+                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    break
+                default:
+                    break
                 }
                 
             }
