@@ -25,10 +25,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var bbb: DOFavoriteButtonNew! //heart btn
     @IBOutlet weak var errorView: UIImageView!
     @IBOutlet weak var star: UIImageView!
+    @IBOutlet weak var seeMoreBtn: UIButton!
     
     
     let storage = Storage.storage()
-    
     let db = Firestore.firestore()
     let realm = try! Realm()
     let cur_user = Auth.auth().currentUser!.uid
@@ -64,8 +64,6 @@ class FeedCell: UITableViewCell {
 //            }
             
             //initiate like btn
-            //if selected, set it like, if not keep unselected
-            //+"&& user == "+cellData.user!
             let s: String = "id = '"+cellData.uid!+"' AND user = '"+cellData.user!+"'"
             let predicate = NSPredicate(format: s)
             let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
@@ -90,7 +88,7 @@ class FeedCell: UITableViewCell {
                     bbb.deselect()
                 }
             }
-            let joins:[String] = cellData!.join //for get profile array
+            var joins:[String] = cellData!.join //for get profile array
             print("joins")
             print(joins)
             var cur = 1
@@ -111,6 +109,10 @@ class FeedCell: UITableViewCell {
                                 switch cur {
                                 case 1:
                                     self.profile1.sd_setImage(with: proRef)
+                                    self.profile2.image = nil
+                                    self.profile3.image = nil
+                                    self.profile4.image = nil
+                                    self.profile5.image = nil
                                     cur+=1
                                     break
                                 case 2:
@@ -134,34 +136,34 @@ class FeedCell: UITableViewCell {
                                     break
                                 }
                             }
-                            //prevent reuse, so set other profile nil
-                            while cur<=5{
-                                switch cur {
-                                case 1:
-                                    self.profile1.image = nil
-                                    cur+=1
-                                    break
-                                case 2:
-                                    self.profile2.image = nil
-                                    cur+=1
-                                    break
-                                case 3:
-                                    self.profile3.image = nil
-                                    cur+=1
-                                    break
-                                case 4:
-                                    self.profile4.image = nil
-                                    cur+=1
-                                    break
-                                case 5:
-                                    self.profile5.image = nil
-                                    cur+=1
-                                    break
-                                default:
-                                    cur = 1
-                                    break
-                                }
-                            }
+//                            //prevent reuse, so set other profile nil
+//                            while cur<=5{
+//                                switch cur {
+//                                case 1:
+//                                    self.profile1.image = nil
+//                                    cur+=1
+//                                    break
+//                                case 2:
+//                                    self.profile2.image = nil
+//                                    cur+=1
+//                                    break
+//                                case 3:
+//                                    self.profile3.image = nil
+//                                    cur+=1
+//                                    break
+//                                case 4:
+//                                    self.profile4.image = nil
+//                                    cur+=1
+//                                    break
+//                                case 5:
+//                                    self.profile5.image = nil
+//                                    cur+=1
+//                                    break
+//                                default:
+//                                    cur = 1
+//                                    break
+//                                }
+//                            }
                         }//snapshot
                     }
                 }
@@ -176,6 +178,9 @@ class FeedCell: UITableViewCell {
         let predicate = NSPredicate(format: s)
         let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
         if sender.isSelected {
+//            if cellData.join.contains(cur_user){
+//                cellData.join.removeLast()
+//            }
             sender.deselect()
             try! realm.write {
                 likeBtn!.select = false
@@ -183,6 +188,9 @@ class FeedCell: UITableViewCell {
             print("dislike")
             removeUser()
         } else {
+//            if !cellData.join.contains(cur_user){
+//                cellData.join.append(cur_user)
+//            }
             upLoadUserToJoinList()
             try! realm.write {
                 likeBtn!.select = true
@@ -194,7 +202,6 @@ class FeedCell: UITableViewCell {
     //logic for add user in join field
     func upLoadUserToJoinList(){
         let docRef = db.collection(K.FStore.act).document(cellData.uid!)
-        print("我进来了")
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let max:Int = document.data()!["actGroupSize"] as! Int
@@ -202,16 +209,11 @@ class FeedCell: UITableViewCell {
                 let cur_num = joinArr.count
                 
                 if cur_num < max {
-                    print("我进来了2")
                     if cur_num+1 == max{
                         self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cur_user]), "actStatus":1]) //join user in firebase and change status
                     }
                     else{
-                        print(self.cellData.uid!)
-                        print(self.cellData.user)
-                        let a = self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cur_user])]) //join user in firebase
-                        print("我进来了4")
-                        print(a)
+                        self.db.collection(K.FStore.act).document(self.cellData.uid!).updateData(["join": FieldValue.arrayUnion([self.cur_user])]) //join user in firebase
                     }
                     self.bbb.select()
                 }
@@ -249,6 +251,13 @@ class FeedCell: UITableViewCell {
                 }
             }
         }
+    }
+    
+    @IBAction func jumpToDetail(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let secondVC = storyboard.instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+        secondVC.activityID = cellData.uid!
+        //self.navigationController?.show(secondVC, sender: self)
     }
     
     override func awakeFromNib() {

@@ -121,14 +121,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let points = data[K.Activity.location] as? GeoPoint //latitude = points.latitude, longtitude = points.longtitude
                             var distance:CLLocationDistance = 1001
                             if points != nil{
-                                var currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
-                                var targetLocation = CLLocation(latitude: points!.latitude, longitude: points!.longitude)
+                                let currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
+                                let targetLocation = CLLocation(latitude: points!.latitude, longitude: points!.longitude)
                                 distance = currentLocation.distance(from: targetLocation)
                             }
                             //two point distance
                             print("两点间距离是：\(distance)")
                             //print("user id: \(Auth.auth().currentUser!.uid)")
-                            
+
                             if flag{
                                 if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size && distance<1000){//not in read_dic, status is awaiting, not reach size, distance<1000
                                     //print("进来了")
@@ -187,7 +187,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         //upside
         else if self.lastContentOffset > scrollView.contentOffset.y {
-              print("upside")
+            print("upside")
 //            print(self.cur_count)
         }
     }
@@ -200,7 +200,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func setRead(){
         //self.db.collection(K.FStore.act).document(changeUID).updateData(["read_dict": FieldValue.arrayUnion([self.cur_id])]) array method
         let temp: String = "read_dic."+Auth.auth().currentUser!.uid
-        self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
+        //self.db.collection(K.FStore.act).document(changeUID).updateData([temp:1])
     }
     
 }
