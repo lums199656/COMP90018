@@ -11,6 +11,6 @@ import Foundation
 struct FeedData {
     let detail, title, uid, user: String?
     let image: String?
-    let join: [String]!
+    var join: [String]!
     let star: Bool
 }

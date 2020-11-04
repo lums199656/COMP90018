@@ -142,6 +142,7 @@ class ActivityDetailController: UIViewController {
     
     
     func loadData() {
+        print("ID 现在是：\(activityID)")
         userList = []
         let docRef = db.collection(K.FStore.act).document(activityID)
         docRef.getDocument { [self] (document, error) in
