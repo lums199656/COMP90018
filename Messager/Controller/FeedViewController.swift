@@ -31,18 +31,17 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     //显示cell个数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("list count")
-        print(lists.count)
         return lists.count
     }
     
     //每行显示什么
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
-        print("indexPath.row=\(indexPath.row)")
-        cur_count = indexPath.row //define cur_count
+        print("current row=\(cur_count)")
+        print("list count: \(lists.count)")
         cell.cellData = lists[indexPath.row]
         changeUID = lists[indexPath.row].uid! //get current row uid
+        print("tableview changUID is: \(changeUID)")
         //如果row是0，先set read
         if cur_count == 0{
             setRead()
@@ -62,13 +61,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @objc func goDetail(sender : UIButton){
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
-        vc.activityID = changeUID
-        // print("vc is: \(vc)")
-        // print(self.navigationController)
-        // let a = self.navigationController?.pushViewController(vc, animated:true)
-        // let b = self.navigationController?.show(vc, sender: self)
+        vc.activityID = lists[cur_count].uid!
         self.present(vc, animated: true, completion: nil)
-        // print("navigation is \(b)")
+        print("button changUID is: \(lists[cur_count].uid!)")
     }
 
     override func viewDidLoad() {
@@ -77,7 +72,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.estimatedRowHeight = 0
         print("🔥FeedView Did Load")
         
-        // 1. Setup
+        // Setup Location manager
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -190,6 +185,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     //The method that will trigger the event when the sliding drag ends
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        cur_count = tableView.indexPathsForVisibleRows!.last!.row
         //downside
         if self.lastContentOffset < scrollView.contentOffset.y {
             if self.cur_count >= self.max {
