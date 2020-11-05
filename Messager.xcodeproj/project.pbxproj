@@ -77,6 +77,7 @@
 		BB93CC80254BBC7300C7F59A /* PostLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */; };
 		BB93CC85254BBC7A00C7F59A /* PostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */; };
 		BB93CC8A254BBD0C00C7F59A /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */; };
+		BBAFAEA32554526800013DBE /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBAFAEA22554526800013DBE /* EditTableViewController.swift */; };
 		BBD17F362532FB9600C182D4 /* ActivityTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */; };
 		BBD17F3C2533080C00C182D4 /* ActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */; };
 		BBE474E4252CA343005AE820 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE474E3252CA343005AE820 /* FeedViewController.swift */; };
@@ -182,6 +183,7 @@
 		BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLocationViewController.swift; sourceTree = "<group>"; };
 		BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateViewController.swift; sourceTree = "<group>"; };
 		BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
+		BBAFAEA22554526800013DBE /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		BBC43B125DD1521B2072F3BD /* Pods-MessagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MessagerTests.release.xcconfig"; path = "Target Support Files/Pods-MessagerTests/Pods-MessagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTabViewController.swift; sourceTree = "<group>"; };
 		BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewController.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			children = (
 				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
 				8214C9F0253416B700909AEE /* EditViewController.swift */,
+				BBAFAEA22554526800013DBE /* EditTableViewController.swift */,
 				A5C155B22541381400A504D6 /* ActivityData.swift */,
 				A5C155AD2541380400A504D6 /* OtherUserViewController.swift */,
 				8214C9F7253416D700909AEE /* CreatedCell.swift */,
@@ -717,6 +720,7 @@
 				9B201B3B253EE8A400A30EFE /* DOFavoriteButtonNew.swift in Sources */,
 				A5C155BF2541382400A504D6 /* MessageDisplayDelegate.swift in Sources */,
 				9B28DDEA25414ECE00A56C3D /* RealmManager.swift in Sources */,
+				BBAFAEA32554526800013DBE /* EditTableViewController.swift in Sources */,
 				A5C154B22541317900A504D6 /* FirebaseUserListener.swift in Sources */,
 				A5DFB0DA2529F8E200471C1A /* SettingTableViewController.swift in Sources */,
 				A50327B42532E2AE00CEE6E7 /* StartChat.swift in Sources */,
