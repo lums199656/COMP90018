@@ -1,8 +1,8 @@
 //
-//  EditViewController.swift
+//  EditTableViewController.swift
 //  Messager
 //
-//  Created by 王品 on 2020/10/11.
+//  Created by Boyang Zhang on 6/11/20.
 //
 
 import UIKit
@@ -11,20 +11,30 @@ import FirebaseUI
 import IQKeyboardManagerSwift
 
 
-
-class EditViewController: UIViewController {
+class EditTableViewController: UITableViewController {
     let db = Firestore.firestore()
-    // let storage = Storage.storage()
+    let storage = Storage.storage()
     let imagePicker = UIImagePickerController()
-
+    
+    @IBOutlet weak var userName: UITextField!
+    @IBOutlet weak var userImage: UIImageView!
+    @IBOutlet weak var userLocation: UITextField!
+    @IBOutlet weak var userIntro: UITextField!
+    
+    // MARK:-
     override func viewDidLoad() {
+        super.viewDidLoad()
+
+        
         super.viewDidLoad()
         loadInfo()
 
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        // Do any additional setup after loading the view.
+        
+        
+        tableView.separatorColor = .clear
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -32,43 +42,6 @@ class EditViewController: UIViewController {
         IQKeyboardManager.shared.enable = false
     }
     
-    @IBOutlet weak var userName: UITextField!
-    @IBOutlet weak var userImage: UIImageView!
-    @IBOutlet weak var userLocation: UITextField!
-    @IBOutlet weak var userIntro: UITextField!
-    
-    //dismiss keyboard when touch blank area
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-            self.view?.endEditing(true)
-
-     }
-    
-    func loadInfo() {
-        let user = Auth.auth().currentUser
-        if let user = user {
-            let userInfo = db.collection("User")
-            let query = userInfo.whereField("id", isEqualTo: user.uid)
-            query.getDocuments { [self] (querySnapshot, error) in
-                        if let error = error {
-                            print("Error getting documents: \(error)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let image = data["avatarLink"] as! String
-                                let intro = data["intro"] as! String
-                                let location = data["location"] as! String
-                                let name = data["username"] as! String
-                                self.userName.text = name
-                                self.userIntro.text = intro
-                                self.userLocation.text = location
-                                let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
-                                self.userImage.sd_setImage(with: cloudFileRef)
-                            }
-                        }
-                    }
-        }
-    }
     
     // select image
     @IBAction func changePhoto(_ sender: UIButton) {
@@ -135,7 +108,7 @@ class EditViewController: UIViewController {
             
             guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
             
-            let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
+            let _ = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else { return }  // if metadata is nil, return
                 
                 print("Success upload image \(cloudName)")
@@ -150,13 +123,39 @@ class EditViewController: UIViewController {
         
     }
     
+    // MARK:-
     
+    func loadInfo() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let userInfo = db.collection("User")
+            let query = userInfo.whereField("id", isEqualTo: user.uid)
+            query.getDocuments { [self] (querySnapshot, error) in
+                        if let error = error {
+                            print("Error getting documents: \(error)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                let data = document.data()
+                                let image = data["avatarLink"] as! String
+                                let intro = data["intro"] as! String
+                                let location = data["location"] as! String
+                                let name = data["username"] as! String
+                                self.userName.text = name
+                                self.userIntro.text = intro
+                                self.userLocation.text = location
+                                let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
+                                self.userImage.sd_setImage(with: cloudFileRef)
 
+                            }
+                        }
+                    }
+        }
+    }
+    
 }
 
-
 // MARK:- Delegate for Image Picker
-extension EditViewController:  UIImagePickerControllerDelegate {
+extension EditTableViewController:  UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -171,6 +170,7 @@ extension EditViewController:  UIImagePickerControllerDelegate {
 }
 
 
-extension EditViewController: UINavigationControllerDelegate {
+extension EditTableViewController: UINavigationControllerDelegate {
     
 }
+
