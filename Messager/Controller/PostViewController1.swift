@@ -23,7 +23,15 @@ class PostViewController1: UIViewController {
     var postLocation: CLLocation?
     var postLocationString: String?
     var postActStartDate: Date?
+
     var postActEndDate: Date?
+    {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+            endDateField.text = dateFormatter.string(from: endDatePicker.date)
+        }
+    }
     
     
     // IBOutlets
@@ -40,7 +48,6 @@ class PostViewController1: UIViewController {
     
     @IBOutlet weak var startDateField: UITextField!
     @IBOutlet weak var endDateField: UITextField!
-    
     
     // _
     private let imagePicker = UIImagePickerController()
@@ -91,6 +98,9 @@ class PostViewController1: UIViewController {
         
         startDatePicker.minuteInterval = 15
         endDatePicker.minuteInterval = 15
+        
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +112,8 @@ class PostViewController1: UIViewController {
         setupUI()
         
         IQKeyboardManager.shared.enable = true  // for
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -115,11 +127,17 @@ class PostViewController1: UIViewController {
         
         startDateField.text = dateFormatter.string(from: datePicker.date)
         
+        
+        // Auto Update End Date if Start > End
+        if startDatePicker.date > endDatePicker.date {
+            endDatePicker.date = startDatePicker.date.advanced(by: 60*15)
+            endDateField.text = dateFormatter.string(from: endDatePicker.date)
+        }
+        
         // limit startPicker range
         endDatePicker.minimumDate = startDatePicker.date.advanced(by: 60*15)
         postActStartDate = datePicker.date
         
-        // TODO: 如果start date > end date， 自动更新end date
     }
     
     @objc func endDateChanged(datePicker: UIDatePicker) {
