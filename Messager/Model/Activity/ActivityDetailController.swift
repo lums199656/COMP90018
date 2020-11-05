@@ -28,6 +28,7 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var activityTitle: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var toDate: UILabel!
     @IBOutlet weak var details: UILabel!
     
     @IBOutlet weak var starterImage: UIImageView!
@@ -167,6 +168,9 @@ class ActivityDetailController: UIViewController {
                 let dateLong = data!["startDate"] as! Timestamp
                 let date = dateLong.dateValue() as! Date
                 self.date.text = df.string(from: date)
+                let todateLong = data!["endDate"] as! Timestamp
+                let todate = todateLong.dateValue() as! Date
+                self.toDate.text = df.string(from: todate)
 
                 
                 let joins = data![K.Activity.join] as! [String] //String array
