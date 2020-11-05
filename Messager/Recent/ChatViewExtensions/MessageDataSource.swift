@@ -60,7 +60,7 @@ extension ChatViewController: MessagesDataSource {
         let font = UIFont.boldSystemFont(ofSize: 10)
         let color = UIColor.darkGray
         
-        return NSAttributedString(string: String(message.sender.displayName.prefix(4)), attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
+        return NSAttributedString(string: String(message.sender.displayName.prefix(10)), attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
     }
     
 //    // cell 下方的 labels
