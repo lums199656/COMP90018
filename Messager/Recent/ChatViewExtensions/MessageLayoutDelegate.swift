@@ -73,7 +73,7 @@ extension ChatViewController: MessagesLayoutDelegate {
         } else {
 //            avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
             let userId = mkMessages[indexPath.section].mkSender.senderId
-            avatarView.set(avatar: Avatar(image: avatars[userId] ?? UIImage(named: "avatar"), initials: "?"))
+            avatarView.set(avatar: Avatar(image: avatars[userId] ?? UIImage(named: "logo2"), initials: "?"))
         }
 
     }

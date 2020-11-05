@@ -42,9 +42,9 @@ class RecentTableViewCell: UITableViewCell {
     
         if !recent.isActivity {
             for i in recent.receiverName {
-                tmpText += " | " + i.prefix(10)
+                tmpText += " - " + i.prefix(10)
             }
-            tmpText += " | "
+            tmpText += " - "
         } else {
             tmpText = recent.activityTitle
         }
