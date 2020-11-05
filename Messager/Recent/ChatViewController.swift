@@ -11,6 +11,9 @@ import InputBarAccessoryView
 import Gallery
 // 用来保存 message
 import RealmSwift
+import Firebase
+import FirebaseUI
+
 
 class ChatViewController: MessagesViewController {
     
@@ -88,6 +91,35 @@ class ChatViewController: MessagesViewController {
         if let actId = self.activityId {
             activityManager = ActivityManager(actId)
         }
+        
+        print("_x-80 啦啦啦啦初始化聊天")
+        let db = Firestore.firestore()
+        let allMembers = recipientId + [currentUser.senderId]
+        for userId in allMembers {
+            let userInfo = db.collection("User")
+            let query = userInfo.whereField("id", isEqualTo: userId)
+            query.getDocuments { [self] (querySnapshot, error) in
+                if let error = error {
+                    print("Error getting documents: \(error)")
+                } else {
+                    let storage = Storage.storage()
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        let image = data["avatarLink"] as! String
+                        let cloudFileRef = storage.reference(withPath: "user-photoes/"+image)
+                        cloudFileRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
+                            if let error = error {
+                                avatars[userId] = nil
+                            } else {
+                                let avatar = UIImage(data: data!)
+                                avatars[userId] = avatar
+                                loadChats()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -116,6 +148,7 @@ class ChatViewController: MessagesViewController {
         activityManager?.delegate = self
         
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         print("Chat Will Appear")

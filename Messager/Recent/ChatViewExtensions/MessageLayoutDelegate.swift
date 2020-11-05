@@ -7,6 +7,8 @@
 
 import Foundation
 import MessageKit
+import Firebase
+import FirebaseUI
 
 // 聊天 cell 的样式
 extension ChatViewController: MessagesLayoutDelegate {
@@ -30,6 +32,7 @@ extension ChatViewController: MessagesLayoutDelegate {
         
 
     }
+    
     
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         if mkMessages[indexPath.section].surprise {
@@ -68,7 +71,9 @@ extension ChatViewController: MessagesLayoutDelegate {
         if mkMessages[indexPath.section].surprise {
             avatarView.set(avatar: Avatar(image: UIImage(named: "suprise_avatar"), initials: ""))
         } else {
-            avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+//            avatarView.set(avatar: Avatar(initials: mkMessages[indexPath.section].senderInitials))
+            let userId = mkMessages[indexPath.section].mkSender.senderId
+            avatarView.set(avatar: Avatar(image: avatars[userId] ?? UIImage(named: "avatar"), initials: "?"))
         }
 
     }

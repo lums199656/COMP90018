@@ -10,6 +10,9 @@ import UIKit
 import AVFoundation
 
 
+public var avatars : [String:UIImage?] = ["1":nil]
+
+
 func removeCurrentUserFrom(userIds: [String]) -> [String] {
     
     var allIds = userIds

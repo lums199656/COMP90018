@@ -46,4 +46,5 @@ extension ChatViewController: MessagesDisplayDelegate {
         self.navigationController!.show(starterVC, sender: self)
     }
     
+    
 }
