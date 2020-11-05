@@ -14,7 +14,7 @@ import IQKeyboardManagerSwift
 
 class EditViewController: UIViewController {
     let db = Firestore.firestore()
-    let storage = Storage.storage()
+    // let storage = Storage.storage()
     let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
@@ -62,16 +62,8 @@ class EditViewController: UIViewController {
                                 self.userName.text = name
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
-                                let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
+                                let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
                                 self.userImage.sd_setImage(with: cloudFileRef)
-//                                            cloudFileRef.getData(maxSize: 1*1024*1024) { (data, error) in
-//                                                if let error = error {
-//                                                    print(error.localizedDescription)
-//                                                } else {
-//                                                    self.userImage.image = UIImage(data: data!)
-//                                                }
-//                                            }
-
                             }
                         }
                     }
@@ -96,7 +88,7 @@ class EditViewController: UIViewController {
         guard let location = userLocation.text else { return }
         guard let intro = userIntro.text else {return }
         
-        let storageRef = storage.reference()
+        let storageRef = Storage.storage().reference()
         let infoImageRef = storageRef.child("user-photoes")
         let query = db.collection("User").whereField("id", isEqualTo: id)
         query.getDocuments { [self] (querySnapshot, error) in
@@ -106,6 +98,7 @@ class EditViewController: UIViewController {
                         kCURRENTUSERNAME = name
                         var infoRef = db.collection("User").document()
                         var docID = infoRef.documentID
+                        let imageID = docID + String(format: "%d", Int(NSDate().timeIntervalSince1970*100000))
                         if querySnapshot!.documents.count > 0 {
                             docID = querySnapshot!.documents[0].documentID
                             infoRef = db.collection("User").document(docID)
@@ -113,14 +106,14 @@ class EditViewController: UIViewController {
                         infoRef.updateData([
                             "location": location,
                             "intro": intro,
-                            "avatarLink": infoRef.documentID,
+                            "avatarLink": imageID,
                             "username": name
                         ]) { err in
                             if let err = err {
                                 print("Error adding document: \(err)")
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
-                                uploadImage(from: image, to: docID)
+                                uploadImage(from: image, to: imageID)
                                 let userQuery = db.collection("User").whereField("id", isEqualTo: id)
                                 userQuery.getDocuments { [self] (userQuerySnapshot, error) in
                                             if let error = error {
