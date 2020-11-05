@@ -2817,7 +2817,6 @@
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="hMr-qq-fhB" firstAttribute="leading" secondItem="h8y-g8-pRQ" secondAttribute="trailing" id="1gf-ar-EJa"/>
                                             <constraint firstItem="hMr-qq-fhB" firstAttribute="top" secondItem="bV3-8t-ZOq" secondAttribute="top" id="cLF-XR-Ydz"/>
                                         </constraints>
                                     </stackView>
