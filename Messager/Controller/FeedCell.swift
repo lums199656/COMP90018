@@ -24,30 +24,35 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var bbb: DOFavoriteButtonNew! //heart btn
     @IBOutlet weak var errorView: UIImageView!
-    @IBOutlet weak var star: UIImageView!
-    
-    @IBOutlet weak var seeMoreBtn: UIButton!
+    //@IBOutlet weak var seeMoreBtn: UIButton!
+    @IBOutlet weak var labelMaxUser: PatientInfoCustomLabel!
     
     let storage = Storage.storage()
     let db = Firestore.firestore()
     let realm = try! Realm()
     let cur_user = Auth.auth().currentUser!.uid
-    var myViewController: FeedViewController!
     
     var cellData : FeedData!{
     //monitor, reocrd change
         didSet{
             //seeMoreBtn.isHidden = true
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
-            labelT.text = cellData.title
-            labelD.text = cellData.detail
-            star.isHidden = true //prevent cell reusable
-            if cellData.star {
-                star.isHidden = false
+            var distance: String = ""
+            if cellData.distance > 100 {
+                distance = ">100KM"
             }
+            else{
+                distance = "\(cellData.distance!)KM"
+            }
+            let title: String = "[\(cellData.category.uppercased())] \(cellData.title!.uppercased())/ \(cellData.locationString.uppercased())/ \(distance)"
+            labelT.text = title
+            print("endDate is: \(cellData.endDate)")
+            labelD.text = "End Date: \(cellData.endDate!)"
+            labelMaxUser.text = "People: \(cellData.join.count)/\(cellData.groupSize!)"
+
             //text adaption
-            labelD.numberOfLines=0
-            labelD.lineBreakMode = NSLineBreakMode.byWordWrapping
+            labelT.numberOfLines=0
+            labelT.lineBreakMode = NSLineBreakMode.byWordWrapping
             
             //get feed image
             let imageId : String! = cellData!.image
@@ -224,6 +229,9 @@ class FeedCell: UITableViewCell {
     }
     
     func removeUserProfile() {
+        if !cellData.join.contains(cur_user) {
+            self.cellData.join.append(cur_user)
+        }
         var index = 0
         for join in cellData.join {
             index += 1
@@ -231,7 +239,7 @@ class FeedCell: UITableViewCell {
                 break
             }
         }
-        
+        let remove_index = index - 1
         while index<=cellData.join.count + 1 {
             switch index {
             case 1:
@@ -254,12 +262,14 @@ class FeedCell: UITableViewCell {
                 break
             }
         }
+        cellData.join.remove(at: remove_index)
     }
     
     func addUserProfile() {
+        labelMaxUser.text = "People: \(cellData.join.count+1)/\(cellData.groupSize!)"
         var count = cellData.join.count + 1
         let docRef = db.collection("User").document(cur_user)
-        docRef.getDocument { (document, error) in
+        docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
                 let pic = document.data()!["avatarLink"] as! String
                 let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
@@ -307,7 +317,6 @@ class FeedCell: UITableViewCell {
                 default:
                     break
                 }
-                
             }
         }
     }

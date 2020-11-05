@@ -48,14 +48,14 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         changeUID = lists[indexPath.row].uid! //get current row uid
-        print("tableview changUID is: \(changeUID)")
+        //print("tableview changUID is: \(changeUID)")
         //如果row是0，先set read
         if cur_count == 0{
             setRead()
         }
         
-        cell.seeMoreBtn.tag = indexPath.row
-        cell.seeMoreBtn.addTarget(self, action: #selector(goDetail), for: .touchUpInside)
+//        cell.seeMoreBtn.tag = indexPath.row
+//        cell.seeMoreBtn.addTarget(self, action: #selector(goDetail), for: .touchUpInside)
         
         cell.selectionStyle = UITableViewCell.SelectionStyle.none //none selection response of tableView
         return cell
@@ -66,12 +66,18 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         return UIScreen.main.bounds.size.height - 80
     }
     
-    @objc func goDetail(sender : UIButton){
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
         vc.activityID = lists[cur_count].uid!
         self.present(vc, animated: true, completion: nil)
-        print("button changUID is: \(lists[cur_count].uid!)")
     }
+    
+//    @objc func goDetail(sender : UIButton){
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ActivityDetail") as ActivityDetailController
+//        vc.activityID = lists[cur_count].uid!
+//        self.present(vc, animated: true, completion: nil)
+//        //print("button changUID is: \(lists[cur_count].uid!)")
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,22 +132,28 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                         }
                         let data = doc.data()
                         //Assign data to create a structure and add it to the lists
-                        if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = doc.documentID as? String, let image = data[K.Activity.image] as? String, let t = data[K.Activity.read_dict] as? [String : Int], let user = data[K.Activity.user] as? String, let size = data[K.Activity.groupSize] as? Int, let status = data[K.Activity.status] as? Int{
+                        if let detail = data[K.Activity.detail] as? String, let title = data[K.Activity.title] as? String, let uid = doc.documentID as? String, let image = data[K.Activity.image] as? String, let t = data[K.Activity.read_dict] as? [String : Int], let user = data[K.Activity.user] as? String, let size = data[K.Activity.groupSize] as? Int, let status = data[K.Activity.status] as? Int, let category = data[K.Activity.category] as? String, let ls = data[K.Activity.locationString] as? String{
                             //Must be forced to convert, otherwise it will become optional type data, can not get the value
                             let read = data["read_dic"] as! [String : Int] //unwrap
                             let join = data[K.Activity.join] as! [String]
                             let cur_size = join.count
-                            //print("location: lat:\(self.lat)+lont:\(self.lont)")
+                            //Initiate timestamp
+                            let dateLong = data["startDate"] as! Timestamp
+                            let date = dateLong.dateValue() as! Date
+                            let df = DateFormatter()
+                            df.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                            let endDate = df.string(from: date)
                             //get geopoint
                             let points = data[K.Activity.location] as? GeoPoint //latitude = points.latitude, longtitude = points.longtitude
-                            var distance:CLLocationDistance = 1001
+                            var dis:CLLocationDistance = 1001
                             if points != nil{
                                 let currentLocation = CLLocation(latitude: self.lat, longitude: self.lont) //get personal location
                                 let targetLocation = CLLocation(latitude: points!.latitude, longitude: points!.longitude)
-                                distance = currentLocation.distance(from: targetLocation)
+                                dis = currentLocation.distance(from: targetLocation)
                             }
+                            let distance = Int(dis/1000)
                             //two point distance
-                            print("两点间距离是：\(distance)")
+                            print("两点间距离是：\(distance)Km")
                             //print("user id: \(Auth.auth().currentUser!.uid)")
 
                             if flag{
@@ -149,7 +161,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     //print("进来了")
                                     page_load+=1
                                     flag_load_page+=1
-                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join, star: true)
+                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join, category: category, locationString: ls, distance: distance, groupSize: size, endDate: endDate)
                                     //print(feedData)
                                     self.lists.append(feedData)
                                     self.loadingView.stopAnimating()
@@ -159,7 +171,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             else{
                                 if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size){//not in read_dic, status is awaiting, not reach size
                                     page_load+=1
-                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join, star: false)
+                                    let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join,  category: category, locationString: ls, distance: distance, groupSize: size, endDate: endDate)
                                     //print(feedData)
                                     self.lists.append(feedData)
                                     self.loadingView.stopAnimating()

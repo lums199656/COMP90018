@@ -68,6 +68,8 @@ struct K {
         static let read_dict = "read_dic"
         static let join = "join"
         static let location = "location"
+        static let category = "category"
+        static let locationString = "locationString"
     }
     
 }
