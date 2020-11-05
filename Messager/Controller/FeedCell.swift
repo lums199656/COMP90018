@@ -31,11 +31,13 @@ class FeedCell: UITableViewCell {
     let db = Firestore.firestore()
     let realm = try! Realm()
     let cur_user = Auth.auth().currentUser!.uid
+    var joinList = [String]()
     
     var cellData : FeedData!{
     //monitor, reocrd change
         didSet{
             //seeMoreBtn.isHidden = true
+            joinList = cellData.join
             bbb.addTarget(self, action: #selector(self.tappedButton), for: .touchUpInside)
             var distance: String = ""
             if cellData.distance > 100 {
@@ -96,8 +98,6 @@ class FeedCell: UITableViewCell {
                 }
             }
             let joins:[String] = cellData!.join //for get profile array
-            print("joins")
-            print(joins)
             var cur = 1
 
             for join in joins{
@@ -229,45 +229,62 @@ class FeedCell: UITableViewCell {
     }
     
     func removeUserProfile() {
-        if !cellData.join.contains(cur_user) {
-            self.cellData.join.append(cur_user)
-        }
-        var index = 0
-        for join in cellData.join {
-            index += 1
-            if join==cur_user {
-                break
-            }
-        }
-        let remove_index = index - 1
-        while index<=cellData.join.count + 1 {
-            switch index {
+        if !joinList.contains(cur_user) {
+            let count = joinList.count+1
+            switch count {
             case 1:
-                self.profile1.image = self.profile2.image
-                index+=1
+                self.profile1.image = nil
             case 2:
-                self.profile2.image = self.profile3.image
-                index+=1
+                self.profile2.image = nil
             case 3:
-                self.profile3.image = self.profile4.image
-                index+=1
+                self.profile3.image = nil
             case 4:
-                self.profile4.image = self.profile5.image
-                index+=1
+                self.profile4.image = nil
             case 5:
                 self.profile5.image = nil
-                index+=1
             default:
-                index+=1
                 break
             }
         }
-        cellData.join.remove(at: remove_index)
+        else{
+            var index = 0
+            for join in joinList {
+                index += 1
+                if join==cur_user {
+                    break
+                }
+            }
+            let remove_index = index - 1
+            while index<=joinList.count + 1 {
+                switch index {
+                case 1:
+                    self.profile1.image = self.profile2.image
+                    index+=1
+                case 2:
+                    self.profile2.image = self.profile3.image
+                    index+=1
+                case 3:
+                    self.profile3.image = self.profile4.image
+                    index+=1
+                case 4:
+                    self.profile4.image = self.profile5.image
+                    index+=1
+                case 5:
+                    self.profile5.image = nil
+                    index+=1
+                default:
+                    index+=1
+                    break
+                }
+            }
+            joinList.remove(at: remove_index)
+        }
+        labelMaxUser.text = "People: \(joinList.count)/\(cellData.groupSize!)"
     }
     
     func addUserProfile() {
-        labelMaxUser.text = "People: \(cellData.join.count+1)/\(cellData.groupSize!)"
-        var count = cellData.join.count + 1
+        labelMaxUser.text = "People: \(joinList.count+1)/\(cellData.groupSize!)"
+        var count = joinList.count + 1
         let docRef = db.collection("User").document(cur_user)
         docRef.getDocument { [self] (document, error) in
             if let document = document, document.exists {
@@ -296,7 +313,7 @@ class FeedCell: UITableViewCell {
                     animation.fromValue = 0.0
                     animation.toValue = 1.0
                     animation.duration = 0.5
-                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    self.profile3.layer.add(animation, forKey: "Image-opacity")
                     break
                 case 4:
                     self.profile4.sd_setImage(with: proRef)
@@ -304,7 +321,7 @@ class FeedCell: UITableViewCell {
                     animation.fromValue = 0.0
                     animation.toValue = 1.0
                     animation.duration = 0.5
-                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    self.profile4.layer.add(animation, forKey: "Image-opacity")
                     break
                 case 5:
                     self.profile5.sd_setImage(with: proRef)
@@ -312,7 +329,7 @@ class FeedCell: UITableViewCell {
                     animation.fromValue = 0.0
                     animation.toValue = 1.0
                     animation.duration = 0.5
-                    self.profile2.layer.add(animation, forKey: "Image-opacity")
+                    self.profile5.layer.add(animation, forKey: "Image-opacity")
                     break
                 default:
                     break
