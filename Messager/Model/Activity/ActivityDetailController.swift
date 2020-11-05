@@ -126,8 +126,8 @@ class ActivityDetailController: UIViewController {
         if (sender as! NSObject) == self.p4Button{
             starterVC.currentUserID = userList[4].id
         }
-        print(starterVC.currentUserID)
-        self.navigationController!.show(starterVC, sender: self)
+        print("starterVC.currentUserID: \(starterVC.currentUserID)")
+        self.navigationController?.show(starterVC, sender: self)
     }
     
     @IBAction func edit(_ sender: Any) {
