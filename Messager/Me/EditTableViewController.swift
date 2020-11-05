@@ -61,7 +61,7 @@ class EditTableViewController: UITableViewController {
         guard let location = userLocation.text else { return }
         guard let intro = userIntro.text else {return }
         
-        let storageRef = storage.reference()
+        let storageRef = Storage.storage().reference()
         let infoImageRef = storageRef.child("user-photoes")
         let query = db.collection("User").whereField("id", isEqualTo: id)
         query.getDocuments { [self] (querySnapshot, error) in
@@ -71,6 +71,7 @@ class EditTableViewController: UITableViewController {
                         kCURRENTUSERNAME = name
                         var infoRef = db.collection("User").document()
                         var docID = infoRef.documentID
+                        let imageID = docID + String(format: "%d", Int(NSDate().timeIntervalSince1970*100000))
                         if querySnapshot!.documents.count > 0 {
                             docID = querySnapshot!.documents[0].documentID
                             infoRef = db.collection("User").document(docID)
@@ -78,14 +79,14 @@ class EditTableViewController: UITableViewController {
                         infoRef.updateData([
                             "location": location,
                             "intro": intro,
-                            "avatarLink": infoRef.documentID,
+                            "avatarLink": imageID,
                             "username": name
                         ]) { err in
                             if let err = err {
                                 print("Error adding document: \(err)")
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
-                                uploadImage(from: image, to: docID)
+                                uploadImage(from: image, to: imageID)
                                 let userQuery = db.collection("User").whereField("id", isEqualTo: id)
                                 userQuery.getDocuments { [self] (userQuerySnapshot, error) in
                                             if let error = error {
@@ -107,7 +108,7 @@ class EditTableViewController: UITableViewController {
             
             guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
             
-            let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
+            let _ = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else { return }  // if metadata is nil, return
                 
                 print("Success upload image \(cloudName)")
@@ -142,7 +143,7 @@ class EditTableViewController: UITableViewController {
                                 self.userName.text = name
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
-                                let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
+                                let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
                                 self.userImage.sd_setImage(with: cloudFileRef)
 
                             }
