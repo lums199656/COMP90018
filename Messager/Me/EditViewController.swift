@@ -27,6 +27,11 @@ class EditViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        IQKeyboardManager.shared.enable = false
+    }
+    
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userLocation: UITextField!
