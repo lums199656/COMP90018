@@ -63,7 +63,6 @@ struct DBSeeding {
                            activity(title: "How do I get over a broken heart", detail: "Im freaking out, I need advice, I recently just got out of my first real relationship and it physically hurts to live for real", location: "Online"),
                            activity(title: "Call Me by Your Name ", detail: "We rip out so much of ourselves to be cured of things faster than we should that we go bankrupt by the age of thirty and have less to offer each time we start with someone new. But to feel nothing so as not to feel anything - what a waste", location: "151 Elizabeth, Melbourne"),
                            activity(title: "Humble Rays Melb", detail: " Linguini mushroom in garlic miso butter with lots of parmesan, bonito and onsen egg on top waiting for you to just dig in. Not to mention it was the best selling from our first dine in. I bet you gonna like it!", location: "71 Bouverie Street,Carlton, Melbourne")
-                           
                            ]
         
         let actCats = ["Sports" , "ESports", "Recreation", "Movie", "Learning", "Food"]
