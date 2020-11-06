@@ -32,6 +32,7 @@ class PostViewController1: UIViewController {
     // IBOutlets
     @IBOutlet weak var activityImageView: UIImageView! {
         didSet {
+            activityImageView.contentMode = .scaleAspectFill
             postImage = activityImageView.image
         }
     }
@@ -64,7 +65,6 @@ class PostViewController1: UIViewController {
     var postActEndDate: Date?
     {
         didSet {
-            print(postActEndDate)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
             endDateField.text = dateFormatter.string(from: endDatePicker.date)
