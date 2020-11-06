@@ -86,35 +86,34 @@ class EditTableViewController: UITableViewController {
                                 print("Error adding document: \(err)")
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
-                                uploadImage(from: image, to: imageID)
-                                let userQuery = db.collection("User").whereField("id", isEqualTo: id)
-                                userQuery.getDocuments { [self] (userQuerySnapshot, error) in
-                                            if let error = error {
-                                                print("Error getting documents: \(error)")
-                                            } else {
-                                                self.navigationController?.popViewController(animated: true)
-                                            }
-                                }
-                                
+                                uploadImage(from: image, to: imageID, completion: { () in
+                                    self.navigationController?.popViewController(animated: true)
+                                })
+
                             }
                         }
                     }
         }
         
         
-        func uploadImage(from image: UIImage, to cloudName: String) {
-            
+        func uploadImage(from image: UIImage, to cloudName: String, completion:@escaping(() -> () )) {
             let cloudFileRef = infoImageRef.child(cloudName)
-            
-            guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
-            
-            let _ = cloudFileRef.putData(data, metadata: nil) { metadata, error in
-                guard let _ = metadata else { return }  // if metadata is nil, return
-                
-                print("Success upload image \(cloudName)")
+            guard let data = image.jpegData(compressionQuality: 1) else {completion() ;return }
+        
+            let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
+                guard let _ = metadata else {return }
+                let userQuery = self.db.collection("User").whereField("id", isEqualTo: id)
+                userQuery.getDocuments { [self] (userQuerySnapshot, error) in
+                            if let error = error {
+                                completion()
+                                return
+                            } else {
+                                completion()
+                            }
+                }
             }
         }
-        
+
         // uploadInfo()
         // uploadImage(from: image, to: infoDocID)
         
