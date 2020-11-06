@@ -103,15 +103,7 @@ class EditTableViewController: UITableViewController {
         
             let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else {return }
-                let userQuery = self.db.collection("User").whereField("id", isEqualTo: id)
-                userQuery.getDocuments { [self] (userQuerySnapshot, error) in
-                            if let error = error {
-                                completion()
-                                return
-                            } else {
-                                completion()
-                            }
-                }
+                completion()
             }
         }
 

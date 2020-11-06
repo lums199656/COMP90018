@@ -9,9 +9,14 @@ import UIKit
 import Firebase
 import UITextView_Placeholder
 import CoreLocation
+import IQKeyboardManagerSwift
+import FirebaseFirestore
 
 
 class EditActivityController: UIViewController {
+    
+    // Pop Up View
+    var popup: UIView!
 
     // post activity related data
     var activityID: String = ""
@@ -19,7 +24,10 @@ class EditActivityController: UIViewController {
     var image: UIImage?
     var titleAct: String = ""
     var detail: String = ""
-    var location: String = ""
+    var locationStr: String = ""
+    var coord: CLLocation?
+    var startDate: String = ""
+    var endDate: String = ""
 
     
     // IBOutlets
@@ -29,6 +37,9 @@ class EditActivityController: UIViewController {
     @IBOutlet weak var detailTextView: UITextView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var startDateField: UITextField!
+    @IBOutlet weak var endDateField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     
     // _
@@ -36,7 +47,19 @@ class EditActivityController: UIViewController {
     private let db = Firestore.firestore()
     private let storage = Storage.storage()
     
+    var startDatePicker = UIDatePicker()
+    var endDatePicker = UIDatePicker()
     
+    var postActStartDate: Date?
+    var postActEndDate: Date?
+    {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+            endDateField.text = dateFormatter.string(from: endDatePicker.date)
+        }
+    }
+
     // Override Function
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,27 +68,96 @@ class EditActivityController: UIViewController {
         detailTextView.delegate = self
         detailTextView.text = detail
         detailTextView.textColor = UIColor.lightGray
-        locationLabel.text = location
+        locationLabel.text = locationStr
         activityImageView.image = image
         titleTextField.text = titleAct
+        categoryLabel.text = category
+        startDateField.text = ""
+        endDateField.text = ""
         
+        startDatePicker.datePickerMode = .dateAndTime
+        startDatePicker.preferredDatePickerStyle = .wheels
+        endDatePicker.datePickerMode = .dateAndTime
+        endDatePicker.preferredDatePickerStyle = .wheels
+        
+        // _. change input view of textfiled
+        startDateField.inputView = startDatePicker
+        endDateField.inputView = endDatePicker
+        
+        startDatePicker.addTarget(self, action: #selector(startDateChanged(datePicker:)), for: .valueChanged)
+        endDatePicker.addTarget(self, action: #selector(endDateChanged(datePicker:)), for: .valueChanged)
+        
+        startDatePicker.minuteInterval = 15
+        endDatePicker.minuteInterval = 15
+        
+        // __. Set minimum Date for DatePicker()
+        var nowDate = Date()
+        startDatePicker.minimumDate = nowDate
+        endDatePicker.minimumDate = nowDate.advanced(by: 60*15)
+        
+        // __. Init Start/End time and show on screen
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+        
+//        nowDate = Date().nearestHour().advanced(by: 60*60*2)
+        
+        startDateField.text = dateFormatter.string(from: nowDate)
+        postActStartDate = nowDate
+        
+        nowDate = nowDate.advanced(by: 60*60)
+//        endDateField.text = dateFormatter.string(from: nowDate)
+        postActEndDate = nowDate
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
-        categoryLabel.text = "Category: " + category
+        categoryLabel.text = category
         
         setupUI()
+        
+        IQKeyboardManager.shared.enable = true  // for
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-    
+        IQKeyboardManager.shared.enable = false
     }
     
     func setupUI() {
         locationButton.setTitle("", for: [])
     }
+
+    // MARK:- Date Picker
+    @objc func startDateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+        
+        startDateField.text = dateFormatter.string(from: datePicker.date)
+        
+        
+        // Auto Update End Date if Start > End
+        if datePicker.date > endDatePicker.date {
+            endDatePicker.date = datePicker.date.advanced(by: 60*15)
+            endDateField.text = dateFormatter.string(from: endDatePicker.date)
+        }
+        
+        // limit startPicker range
+        endDatePicker.minimumDate = startDatePicker.date.advanced(by: 60*15)
+        postActStartDate = datePicker.date
+        
+    }
+    
+    @objc func endDateChanged(datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+        
+        endDateField.text = dateFormatter.string(from: datePicker.date)
+        
+        postActEndDate = datePicker.date
+    }
+
     
     // MARK:- IBActions
     
@@ -79,42 +171,59 @@ class EditActivityController: UIViewController {
         imagePicker.allowsEditing = true
         
         self.present(imagePicker, animated: true, completion: nil)
-
     }
     
     @IBAction func save(_ sender: Any) {
-        guard let image = activityImageView.image else { print("no image selected"); return }
+        guard let image = activityImageView.image else {
+            self.showAlert("No image selected")
+            return
+        }
         guard let userId = Auth.auth().currentUser?.uid else { return }
         guard let titleText = titleTextField.text else {return }
+        guard titleText.count > 5 else {
+            print("Title needs to be longer than 5")
+            self.showAlert("Title needs to be more than 5 characters")
+            return
+        }
         guard let detailText = detailTextView.text else {return }
-        
+        guard detailText.count > 30 else {
+            print("Detail needs to be longer than 30")
+            self.showAlert("Detail needs to be more than 30 characters")
+
+            return
+        }
+
             
         let actRef = db.collection(K.FStore.act).document(activityID)  // Activity Document reference
         let storageRef = storage.reference()
         let activityImageRef = storageRef.child("activity-images")
         
-        func uploadImage(from image: UIImage, to cloudName: String) {
-            
+        func uploadImage(from image: UIImage, to cloudName: String, completion:@escaping(() -> () )) {
             let cloudFileRef = activityImageRef.child(cloudName)
-            
-            guard let data = image.jpegData(compressionQuality: 1) else { return }
+            guard let data = image.jpegData(compressionQuality: 1) else {completion() ;return }
+        
             let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
-                guard let _ = metadata else { return }  // if metadata is nil, return
-                
-                print("Success upload image \(cloudName)")
+                guard let _ = metadata else {return }
+                completion()
             }
         }
-        
-        
+
+        let imageID = actRef.documentID + String(format: "%d", Int(NSDate().timeIntervalSince1970*100000))
+
         func uploadActivity() {
-            let act = Activity(uid: actRef.documentID, userId: userId,
-                               createDate: Date().timeIntervalSince1970, actTitle: titleText, actDetail: detailText,
-                               imageId: actRef.documentID)
+            var geoPoint: GeoPoint?
+            if let location = coord {
+                geoPoint = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            }
             do {
                 try actRef.updateData([
                     "actTitle": titleTextField.text,
                     "actDetail": detailTextView.text,
-                    "locationString": locationLabel.text
+                    "startDate": postActStartDate as Any,
+                    "endDate": postActEndDate as Any,
+                    "location": geoPoint as Any,
+                    "locationString": locationLabel.text,
+                    "imageId": imageID
                 ])
                 print("Activity Document added with ID: \(actRef.documentID)")
             } catch let error {
@@ -123,15 +232,29 @@ class EditActivityController: UIViewController {
         }
         
         uploadActivity()
-        uploadImage(from: image, to: actRef.documentID)
+        uploadImage(from: image, to: imageID, completion: { () in
+            // Segue back to Activity View
+            self.dismiss(animated: true, completion: nil)
+        })
         
         
-        // Segue back to Activity View
-        self.dismiss(animated: true, completion: nil)
+        
+        
     }
     
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toLocation" {
+            let destinationVC = segue.destination as! PostLocationViewController
+            destinationVC.delegate = self
+        }
+        
+    }
+
+    
 }
+
 
 
 // MARK:- Delegate for Image Picker
@@ -154,16 +277,19 @@ extension EditActivityController:  UIImagePickerControllerDelegate {
 }
 
 // MARK:- Select Location Delegate
-//extension EditActivityController: PostLocationDelegate {
-//    func updateLocation(_ locString: String) {
-//        print("!!!! Update Location Called")
-//        
-//        location = locString
-//        
-//        locationLabel.text = locString
-//        
-//    }
-//}
+extension EditActivityController: PostLocationDelegate {
+    func updateLocation(location: CLLocation?, locString: String?) {
+        print("!!!! Update Location Called")
+        
+        if let location = location, let locString = locString {
+            coord = location
+            locationStr = locString
+            locationLabel.text = locString
+        } else {
+            locationLabel.text = "Any Location"
+        }
+    }
+}
 
 // MARK:- Navigation Controller Delegate
 extension EditActivityController: UINavigationControllerDelegate {
@@ -223,3 +349,50 @@ extension EditActivityController: UITextViewDelegate {
     
     
 }
+
+
+
+extension EditActivityController {
+    func showAlert(_ alertText: String) {
+        saveButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "ic_close_48px")
+        popIcon.alpha = 0.8
+        popup.addSubview(popIcon)
+        
+        let popLabel = UILabel(frame: CGRect(x: 10, y: 90, width: 180, height: 100))
+        popLabel.numberOfLines = 0
+        popLabel.text = alertText
+        popLabel.font = UIFont(name: "Futura", size: 15)
+        popLabel.textAlignment = .center
+        popup.addSubview(popLabel)
+        
+        popup.backgroundColor = #colorLiteral(red: 0.9463161846, green: 0.7284850336, blue: 0.6472102874, alpha: 1)
+        popup.center = view.center
+
+        popup.layer.shadowColor = UIColor.black.cgColor
+        popup.layer.shadowOpacity = 0.5
+        popup.layer.shadowOffset = .zero
+        popup.layer.shadowRadius = 10
+        
+        self.view.addSubview(popup)
+        
+        Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(dismissAlert), userInfo: nil, repeats: false)
+        
+    }
+    
+    @objc func dismissAlert() {
+        saveButton.isEnabled = true
+
+        if popup != nil {
+            popup.removeFromSuperview()
+        }
+    }
+    
+    
+}
+

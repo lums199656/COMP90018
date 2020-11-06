@@ -16,6 +16,9 @@ class ActivityDetailController: UIViewController {
     var activityID = ""
     var starterUser = ""
     var activityTitleText = ""
+    var category = ""
+    var startDate = ""
+    var endDate = ""
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
@@ -139,7 +142,10 @@ class ActivityDetailController: UIViewController {
         editVC.image = self.image.image
         editVC.titleAct = self.activityTitle.text!
         editVC.detail = self.details.text!
-        editVC.location = self.location.text!
+        editVC.locationStr = self.location.text!
+        editVC.category = self.category
+        editVC.startDate = self.startDate
+        editVC.endDate = self.endDate
         self.present(editVC, animated: true, completion: nil)
     }
     
@@ -172,6 +178,12 @@ class ActivityDetailController: UIViewController {
                 let todateLong = data!["endDate"] as! Timestamp
                 let todate = todateLong.dateValue() as! Date
                 self.toDate.text = df.string(from: todate)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+                self.startDate = dateFormatter.string(from: date)
+                self.endDate = dateFormatter.string(from: todate)
+                
+                self.category = data!["category"] as! String
 
                 
                 let joins = data![K.Activity.join] as! [String] //String array
@@ -201,7 +213,6 @@ class ActivityDetailController: UIViewController {
                                     userList.append(user)
                             }
                                 //find userInfo for join list, Chongjing Part
-                                print("_x-43 len-joins is: \(joins)")
                                 for join in joins[1...] {
                                     let query = userInfo.whereField("id", isEqualTo: join)
                                     query.getDocuments { [self] (querySnapshot, error) in
