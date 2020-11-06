@@ -19,7 +19,8 @@ class EditTableViewController: UITableViewController {
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userLocation: UITextField!
-    @IBOutlet weak var userIntro: UITextField!
+    // @IBOutlet weak var userIntro: UITextField!
+    @IBOutlet weak var userIntro: UITextView!
     
     // MARK:-
     override func viewDidLoad() {

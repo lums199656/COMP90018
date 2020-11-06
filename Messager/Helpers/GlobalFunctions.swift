@@ -11,6 +11,8 @@ import AVFoundation
 
 
 public var avatars : [String:UIImage?] = ["1":nil]
+public var displayNames : [String:String] = ["1":"1"]
+
 
 
 func removeCurrentUserFrom(userIds: [String]) -> [String] {

@@ -10,7 +10,6 @@
 		0113E4928C3B96AA37E24A9A /* Pods_Messager_MessagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D6198C424F6A83FE143FAB /* Pods_Messager_MessagerUITests.framework */; };
 		2CF3794D5F3E5EB4973930F6 /* Pods_Messager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC7CD7FFE5534F21402F83EC /* Pods_Messager.framework */; };
 		721822EF70C2CE41F9874CD9 /* Pods_MessagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15331159C2A6F1CA53F54F45 /* Pods_MessagerTests.framework */; };
-		8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9EF253416B700909AEE /* ConfigViewController.swift */; };
 		8214C9FA253416D700909AEE /* JoinedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F6253416D700909AEE /* JoinedCell.swift */; };
 		8214C9FB253416D700909AEE /* CreatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F7253416D700909AEE /* CreatedCell.swift */; };
 		8214C9FC253416D700909AEE /* UIViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F8253416D700909AEE /* UIViewHelper.swift */; };
@@ -106,7 +105,6 @@
 
 /* Begin PBXFileReference section */
 		15331159C2A6F1CA53F54F45 /* Pods_MessagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MessagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8214C9EF253416B700909AEE /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		8214C9F6253416D700909AEE /* JoinedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinedCell.swift; sourceTree = "<group>"; };
 		8214C9F7253416D700909AEE /* CreatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedCell.swift; sourceTree = "<group>"; };
 		8214C9F8253416D700909AEE /* UIViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewHelper.swift; sourceTree = "<group>"; };
@@ -372,7 +370,6 @@
 		A5D8163025341DCB006E8DE4 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				8214C9EF253416B700909AEE /* ConfigViewController.swift */,
 				BBAFAEA22554526800013DBE /* EditTableViewController.swift */,
 				A5C155B22541381400A504D6 /* ActivityData.swift */,
 				A5C155AD2541380400A504D6 /* OtherUserViewController.swift */,
@@ -736,7 +733,6 @@
 				BB93CC7B254BBC3900C7F59A /* PostViewController1.swift in Sources */,
 				9B28DDEB25414ECE00A56C3D /* LocalMessage.swift in Sources */,
 				BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */,
-				8214C9F1253416B700909AEE /* ConfigViewController.swift in Sources */,
 				A5DAAEF6254D0CC200F15718 /* Channel.swift in Sources */,
 				BBF749B225527E7200CC60AE /* ConfigTableViewController.swift in Sources */,
 				8214C9FD253416D700909AEE /* MeViewController.swift in Sources */,
