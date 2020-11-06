@@ -1986,37 +1986,34 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="To3-pI-X5s">
-                                        <rect key="frame" x="0.0" y="502.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="To3-pI-X5s">
+                                        <rect key="frame" x="0.0" y="502.5" width="414" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="To3-pI-X5s" id="A8U-Nt-Ixp">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vn1-Sq-IQE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                                     <subviews>
-                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Intro" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="MD5-43-mmd">
-                                                            <rect key="frame" x="20" y="2" width="374" height="40"/>
-                                                            <color key="backgroundColor" name="collectionViewBackground"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="40" id="chT-hg-R3k"/>
-                                                            </constraints>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
-                                                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                        </textField>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ssr-Q9-cyI" userLabel="User Intro">
+                                                            <rect key="frame" x="15" y="12.5" width="384" height="94.5"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="textColor" systemColor="labelColor"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                        </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="MD5-43-mmd" firstAttribute="centerY" secondItem="Vn1-Sq-IQE" secondAttribute="centerY" id="C1M-20-ReZ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="MD5-43-mmd" secondAttribute="trailing" constant="20" id="Rfv-r8-hQ8"/>
-                                                        <constraint firstItem="MD5-43-mmd" firstAttribute="leading" secondItem="Vn1-Sq-IQE" secondAttribute="leading" constant="20" id="Rtu-ZQ-txg"/>
+                                                        <constraint firstAttribute="height" constant="120" id="HDz-sm-Ry4"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Vn1-Sq-IQE" secondAttribute="bottom" id="DpE-dT-38K"/>
+                                                <constraint firstItem="Vn1-Sq-IQE" firstAttribute="top" secondItem="A8U-Nt-Ixp" secondAttribute="top" id="FDd-Nv-VbS"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vn1-Sq-IQE" secondAttribute="bottom" id="ftX-P7-pMg"/>
                                                 <constraint firstAttribute="trailing" secondItem="Vn1-Sq-IQE" secondAttribute="trailing" id="lmx-lC-NVy"/>
                                                 <constraint firstItem="Vn1-Sq-IQE" firstAttribute="leading" secondItem="A8U-Nt-Ixp" secondAttribute="leading" id="tV8-Ue-Xtz"/>
                                                 <constraint firstItem="Vn1-Sq-IQE" firstAttribute="top" secondItem="A8U-Nt-Ixp" secondAttribute="top" id="u7J-Xn-vvi"/>
@@ -2041,14 +2038,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="userImage" destination="9ri-8u-h3c" id="8jA-O9-yCR"/>
-                        <outlet property="userIntro" destination="MD5-43-mmd" id="wqB-Y1-Otc"/>
                         <outlet property="userLocation" destination="glO-4c-DD4" id="FU2-8G-oef"/>
                         <outlet property="userName" destination="ytJ-up-nbQ" id="Gpw-0O-cVa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwg-GD-XYP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372.46376811594206" y="1974.7767857142856"/>
+            <point key="canvasLocation" x="1716" y="1975"/>
         </scene>
         <!--Feed-->
         <scene sceneID="JZT-NH-jy8">
