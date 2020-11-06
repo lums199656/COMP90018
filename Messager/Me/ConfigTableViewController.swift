@@ -19,6 +19,7 @@ class ConfigTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.separatorColor = .clear
+        self.title = "Configuration"
     }
 
   
