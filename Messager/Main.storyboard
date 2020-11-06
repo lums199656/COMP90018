@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -2025,26 +2025,32 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vn1-Sq-IQE">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                                     <subviews>
-                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ssr-Q9-cyI" userLabel="User Intro">
-                                                            <rect key="frame" x="15" y="12.5" width="384" height="94.5"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <color key="textColor" systemColor="labelColor"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ssr-Q9-cyI" userLabel="User Intro">
+                                                            <rect key="frame" x="20" y="12.5" width="374" height="94.5"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Intro"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </textView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
+                                                        <constraint firstItem="Ssr-Q9-cyI" firstAttribute="leading" secondItem="Vn1-Sq-IQE" secondAttribute="leading" constant="20" id="1zm-Wq-W5o"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Ssr-Q9-cyI" secondAttribute="trailing" constant="20" id="4jV-Bp-w4H"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Ssr-Q9-cyI" secondAttribute="bottom" constant="13" id="9Tt-9E-dvH"/>
                                                         <constraint firstAttribute="height" constant="120" id="HDz-sm-Ry4"/>
+                                                        <constraint firstItem="Ssr-Q9-cyI" firstAttribute="top" secondItem="Vn1-Sq-IQE" secondAttribute="top" constant="12.5" id="XbE-An-tX3"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Vn1-Sq-IQE" secondAttribute="bottom" id="DpE-dT-38K"/>
                                                 <constraint firstItem="Vn1-Sq-IQE" firstAttribute="top" secondItem="A8U-Nt-Ixp" secondAttribute="top" id="FDd-Nv-VbS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vn1-Sq-IQE" secondAttribute="trailing" id="O4q-mh-sxZ"/>
+                                                <constraint firstItem="Vn1-Sq-IQE" firstAttribute="leading" secondItem="A8U-Nt-Ixp" secondAttribute="leading" id="cY2-Rn-iHo"/>
                                                 <constraint firstAttribute="bottom" secondItem="Vn1-Sq-IQE" secondAttribute="bottom" id="ftX-P7-pMg"/>
-                                                <constraint firstAttribute="trailing" secondItem="Vn1-Sq-IQE" secondAttribute="trailing" id="lmx-lC-NVy"/>
-                                                <constraint firstItem="Vn1-Sq-IQE" firstAttribute="leading" secondItem="A8U-Nt-Ixp" secondAttribute="leading" id="tV8-Ue-Xtz"/>
                                                 <constraint firstItem="Vn1-Sq-IQE" firstAttribute="top" secondItem="A8U-Nt-Ixp" secondAttribute="top" id="u7J-Xn-vvi"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -2067,6 +2073,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="userImage" destination="9ri-8u-h3c" id="8jA-O9-yCR"/>
+                        <outlet property="userIntro" destination="Ssr-Q9-cyI" id="5Mj-hw-8eV"/>
                         <outlet property="userLocation" destination="glO-4c-DD4" id="FU2-8G-oef"/>
                         <outlet property="userName" destination="ytJ-up-nbQ" id="Gpw-0O-cVa"/>
                     </connections>
