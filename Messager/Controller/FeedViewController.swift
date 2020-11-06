@@ -38,7 +38,6 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         print("current row=\(cur_count)")
-        print("list count: \(lists.count)")
         cell.cellData = lists[indexPath.row]
         let docRef = db.collection(K.FStore.act).document(cell.cellData.uid!)
         docRef.getDocument { (document, error) in

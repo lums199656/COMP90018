@@ -222,9 +222,9 @@ class ChatViewController: MessagesViewController {
         if !isActivity {
             print("_x-41 ")
             for i in recipientName {
-                tmpText += " | " + i.prefix(10)
+                tmpText += " - " + i.prefix(10)
             }
-            tmpText += " | "
+            tmpText += " - "
         }
         titleLabel.text = tmpText
     }
