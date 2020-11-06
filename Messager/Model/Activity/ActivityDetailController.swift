@@ -51,6 +51,7 @@ class ActivityDetailController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Detail"
         editButton.isHidden = true
         startGroupChatButton.isHidden = true
         p1Image.isHidden = true

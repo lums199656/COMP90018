@@ -1777,7 +1777,7 @@
             </objects>
             <point key="canvasLocation" x="2615.9420289855075" y="1115.625"/>
         </scene>
-        <!--Edit Table View Controller-->
+        <!--Edit-->
         <scene sceneID="t1S-Ef-tM3">
             <objects>
                 <tableViewController id="h16-kM-t4s" customClass="EditTableViewController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
@@ -2062,7 +2062,7 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="58M-gP-D5f">
+                    <navigationItem key="navigationItem" title="Edit" id="58M-gP-D5f">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="hAS-PI-QSu">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="lDX-Tp-869">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
