@@ -388,28 +388,29 @@ extension PostViewController1 {
     func showAlert(_ alertText: String) {
         postButton.isEnabled = false
         
-        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
         popup.cornerRadius = 10
         
         let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
         popIcon.image = UIImage(named: "ic_close_48px")
         popIcon.alpha = 0.8
-        popup.addSubview(popIcon)
+//        popup.addSubview(popIcon)
         
         let popLabel = UILabel(frame: CGRect(x: 10, y: 90, width: 180, height: 100))
         popLabel.numberOfLines = 0
         popLabel.text = alertText
         popLabel.font = UIFont(name: "Futura", size: 15)
         popLabel.textAlignment = .center
+        popLabel.center = popup.center
         popup.addSubview(popLabel)
         
-        popup.backgroundColor = #colorLiteral(red: 0.9463161846, green: 0.7284850336, blue: 0.6472102874, alpha: 1)
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         popup.center = view.center
 
         popup.layer.shadowColor = UIColor.black.cgColor
-        popup.layer.shadowOpacity = 0.5
+        popup.layer.shadowOpacity = 1
         popup.layer.shadowOffset = .zero
-        popup.layer.shadowRadius = 10
+        popup.layer.shadowRadius = 200
         
         self.view.addSubview(popup)
         
