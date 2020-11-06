@@ -38,14 +38,25 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! FeedCell
         print("current row=\(cur_count)")
-        cell.cellData = lists[indexPath.row]
-        let docRef = db.collection(K.FStore.act).document(cell.cellData.uid!)
+//        cell.cellData = lists[indexPath.row]
+//        let docRef = db.collection(K.FStore.act).document(cell.cellData.uid!)
+//        docRef.getDocument { (document, error) in
+//            if let document = document, document.exists {
+//                let data = document.data()
+//                cell.cellData.join = data!["join"] as! [String]
+//            }
+//        }
+        
+        
+        let docRef = db.collection(K.FStore.act).document(lists[indexPath.row].uid!)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
-                cell.cellData.join = data!["join"] as! [String]
+                self.lists[indexPath.row].join = data!["join"] as! [String]
+                cell.cellData = self.lists[indexPath.row]
             }
         }
+        
         changeUID = lists[indexPath.row].uid! //get current row uid
         //print("tableview changUID is: \(changeUID)")
         //如果row是0，先set read

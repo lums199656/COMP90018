@@ -32,7 +32,6 @@ class CreatedCell: UITableViewCell {
 
             let imageId : String! = cellData!.image
             let cloudFileRef = storage.reference(withPath: "activity-images/"+imageId)
-            print("activity-images/"+imageId)
             self.imageLabel.sd_setImage(with: cloudFileRef)
         }
     }
