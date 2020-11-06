@@ -17,6 +17,7 @@ protocol PostLocationDelegate {
 
 
 class PostLocationViewController: UIViewController {
+    
     private enum CellReuseID: String {
         case resultCell
     }
@@ -27,19 +28,22 @@ class PostLocationViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    private var suggestionController: SuggestionsTableViewController!
+    private var searchController: UISearchController!
+
+    
     var locationString: String?
     var locationCoord: CLLocation?
     var delegate: PostLocationDelegate?
     
     @IBOutlet weak var map: MKMapView!
     
-    var locationManager = CLLocationManager()
-    
+    private var locationManager = CLLocationManager()
+    private var boundingRegion: MKCoordinateRegion = MKCoordinateRegion(MKMapRect.world)
     
     @IBOutlet weak var tableView: UITableView!
     
-    private var suggestionController: SuggestionsTableViewController!
-    private var searchController: UISearchController!
     
     private var foregroundRestorationObserver: NSObjectProtocol?
 
@@ -67,7 +71,7 @@ class PostLocationViewController: UIViewController {
         let name = UIApplication.willEnterForegroundNotification
         foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [unowned self] (_) in
             // Get a new location when returning from Settings to enable location services.
-//            self.requestLocation()
+            self.requestLocation()
         })
     }
 
@@ -79,6 +83,23 @@ class PostLocationViewController: UIViewController {
         mapSetup()
         
         longPressSetup()
+        
+        searchSetup()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        requestLocation()
+    }
+    
+    func searchSetup() {
+        self.searchBar.delegate = self
+        
+        /*
+         Search is presenting a view controller, and needs the presentation context to be defined by a controller in the
+         presented view controller hierarchy.
+         */
+        definesPresentationContext = true
     }
     
     func locationManagerSetup() {
@@ -115,13 +136,12 @@ class PostLocationViewController: UIViewController {
         locationCoord = nil
         map.removeAnnotations(map.annotations)
     }
+    
     @IBAction func useCurLocationTapped(_ sender: UIButton) {
         
         // TODO: Check if location Service is turned on, if not, show alert.
         locationManager.requestWhenInUseAuthorization()
-        
         locationManager.requestLocation()
-        
     }
     
     @IBAction func confirmBttnTapped(_ sender: UIButton) {
@@ -130,6 +150,10 @@ class PostLocationViewController: UIViewController {
     }
     
     
+    
+}
+
+extension PostLocationViewController {
     func updateMap(_ location: CLLocation) {
         
         // Span controls the Zoom of the map
@@ -229,6 +253,89 @@ class PostLocationViewController: UIViewController {
     }
 }
 
+extension PostLocationViewController {
+    private func requestLocation() {
+        guard CLLocationManager.locationServicesEnabled() else {
+            displayLocationServicesDisabledAlert()
+            return
+        }
+        
+//        let status = CLLocationManager.authorizationStatus
+//
+//        guard status != .denied else {
+//            displayLocationServicesDeniedAlert()
+//            return
+//        }
+        
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
+    }
+    
+    private func displayLocationServicesDisabledAlert() {
+        let message = NSLocalizedString("LOCATION_SERVICES_DISABLED", comment: "Location services are disabled")
+        let alertController = UIAlertController(title: NSLocalizedString("LOCATION_SERVICES_ALERT_TITLE", comment: "Location services alert title"),
+                                                message: message,
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("BUTTON_OK", comment: "OK alert button"), style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func displayLocationServicesDeniedAlert() {
+        let message = NSLocalizedString("LOCATION_SERVICES_DENIED", comment: "Location services are denied")
+        let alertController = UIAlertController(title: NSLocalizedString("LOCATION_SERVICES_ALERT_TITLE", comment: "Location services alert title"),
+                                                message: message,
+                                                preferredStyle: .alert)
+        let settingsButtonTitle = NSLocalizedString("BUTTON_SETTINGS", comment: "Settings alert button")
+        let openSettingsAction = UIAlertAction(title: settingsButtonTitle, style: .default) { (_) in
+            if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+                // Take the user to the Settings app to change permissions.
+                UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+            }
+        }
+        
+        let cancelButtonTitle = NSLocalizedString("BUTTON_CANCEL", comment: "Location denied cancel button")
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(openSettingsAction)
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK:- Extension >>> Search
+extension PostLocationViewController {
+    private func search(for suggestionCompletion: MKLocalSearchCompletion) {
+        let searchRequest = MKLocalSearch.Request(completion: suggestionCompletion)
+        search(using: searchRequest)
+    }
+    
+    private func search (for queryString: String?) {
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = queryString
+        search(using: searchRequest)
+    }
+    
+    private func search (using searchRequest: MKLocalSearch.Request) {
+        searchRequest.region = boundingRegion
+        
+        searchRequest.resultTypes = .pointOfInterest
+        
+        localSearch = MKLocalSearch(request: searchRequest)
+        localSearch?.start(completionHandler: { [unowned self] (response, error) in
+            guard error == nil else {
+                return
+            }
+            
+            self.places = response?.mapItems
+            
+            // Used when setting the map's region in `prepareForSegue`
+            if let updatedRegion = response?.boundingRegion {
+                self.boundingRegion = updatedRegion
+            }
+        })
+    }
+}
+
 // MARK:-
 extension PostLocationViewController: CLLocationManagerDelegate {
     
@@ -272,14 +379,53 @@ extension PostLocationViewController {
 // MARK:- TableView
 extension PostLocationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return places?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.resultCell.rawValue, for: indexPath)
         
-        let cell = UITableViewCell()
+        if let mapItem = places?[indexPath.row] {
+            cell.textLabel?.text = mapItem.name
+            cell.detailTextLabel?.text = mapItem.placemark.formattedAddress
+        }
+        
         return cell
     }
     
+}
+
+// MARK:- UI Search Bar Delegate
+extension PostLocationViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        dismiss(animated: true, completion: nil)
+        
+        // TODO: search(for: searchBar.text)
+    }
+    
+    
+    
+}
+
+
+import Contacts
+
+extension MKPlacemark {
+    var formattedAddress: String? {
+        guard let postalAddress = postalAddress else { return nil }
+        return CNPostalAddressFormatter.string(from: postalAddress, style: .mailingAddress).replacingOccurrences(of: "\n", with: " ")
+    }
 }

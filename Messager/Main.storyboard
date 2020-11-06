@@ -4221,10 +4221,6 @@
                                     <constraint firstItem="da9-L6-btR" firstAttribute="centerY" secondItem="Vbo-uN-FRx" secondAttribute="centerY" id="sAK-7d-yzx"/>
                                 </constraints>
                             </view>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-1c-otP">
-                                <rect key="frame" x="0.0" y="70" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nkg-sL-Zc4">
                                 <rect key="frame" x="0.0" y="484" width="414" height="358"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4280,6 +4276,10 @@
                                     <constraint firstAttribute="height" constant="350" id="e7u-H3-wN8"/>
                                 </constraints>
                             </mapView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-1c-otP">
+                                <rect key="frame" x="0.0" y="70" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LhC-ob-oes"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -4298,6 +4298,7 @@
                     <navigationItem key="navigationItem" id="MwG-HL-fMd"/>
                     <connections>
                         <outlet property="map" destination="t8H-Ve-LAX" id="8Lm-jt-mw5"/>
+                        <outlet property="searchBar" destination="0bj-1c-otP" id="RNc-P0-Za7"/>
                         <outlet property="tableView" destination="nkg-sL-Zc4" id="QLL-aS-lww"/>
                     </connections>
                 </viewController>
