@@ -133,7 +133,7 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         self.userName.text = name
                         let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
                         self.userImage.sd_setImage(with: cloudFileRef)
-                        print("loooking foooooor imaaaaaaage")
+                        print("TEST:      loooking foooooor imaaaaaaage")
                     }
                 }
             }
