@@ -11,7 +11,7 @@ import FirebaseUI
 
 class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDelegate {
     let db = Firestore.firestore()
-    // let storage = Storage.storage()
+    let storage = Storage.storage()
     
     // data source of activities
     var createdLists: [ActivityData] = []
@@ -131,8 +131,9 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         self.userIntro.text = intro
                         self.userLocation.text = location
                         self.userName.text = name
-                        let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
+                        let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
                         self.userImage.sd_setImage(with: cloudFileRef)
+                        print("loooking foooooor imaaaaaaage")
                     }
                 }
             }

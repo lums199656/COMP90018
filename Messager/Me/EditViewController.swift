@@ -14,7 +14,7 @@ import IQKeyboardManagerSwift
 
 class EditViewController: UIViewController {
     let db = Firestore.firestore()
-    // let storage = Storage.storage()
+    let storage = Storage.storage()
     let imagePicker = UIImagePickerController()
 
     override func viewDidLoad() {
@@ -62,7 +62,7 @@ class EditViewController: UIViewController {
                                 self.userName.text = name
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
-                                let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
+                                let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+image)
                                 self.userImage.sd_setImage(with: cloudFileRef)
                             }
                         }
@@ -88,7 +88,7 @@ class EditViewController: UIViewController {
         guard let location = userLocation.text else { return }
         guard let intro = userIntro.text else {return }
         
-        let storageRef = Storage.storage().reference()
+        let storageRef = self.storage.reference()
         let infoImageRef = storageRef.child("user-photoes")
         let query = db.collection("User").whereField("id", isEqualTo: id)
         query.getDocuments { [self] (querySnapshot, error) in
@@ -113,46 +113,43 @@ class EditViewController: UIViewController {
                                 print("Error adding document: \(err)")
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
-                                uploadImage(from: image, to: imageID)
-                                let userQuery = db.collection("User").whereField("id", isEqualTo: id)
-                                userQuery.getDocuments { [self] (userQuerySnapshot, error) in
-                                            if let error = error {
-                                                print("Error getting documents: \(error)")
-                                            } else {
-                                                self.navigationController?.popViewController(animated: true)
-                                            }
-                                }
-                                
+                                uploadImage(from: image, to: imageID, completion: { () in
+                                    print("????????????????????????????")
+                                    print("????????????????????????????")
+                                    print("????????????????????????????")
+                                    print("????????????????????????????")
+                                    print("????????????????????????????")
+                                    self.navigationController?.popViewController(animated: true)
+                                })
                             }
+
+                                
                         }
                     }
-        }
-        
-        
-        func uploadImage(from image: UIImage, to cloudName: String) {
-            
+            }
+        func uploadImage(from image: UIImage, to cloudName: String, completion:@escaping(() -> () )) {
             let cloudFileRef = infoImageRef.child(cloudName)
-            
-            guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
-            
+            guard let data = image.jpegData(compressionQuality: 1) else {completion() ;return }
+        
             let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
-                guard let _ = metadata else { return }  // if metadata is nil, return
-                
-                print("Success upload image \(cloudName)")
+                guard let _ = metadata else {return }
+                let userQuery = self.db.collection("User").whereField("id", isEqualTo: id)
+                userQuery.getDocuments { [self] (userQuerySnapshot, error) in
+                            if let error = error {
+                                completion()
+                                return
+                            } else {
+                                completion()
+                            }
+                }                
             }
         }
-        
-        // uploadInfo()
-        // uploadImage(from: image, to: infoDocID)
-        
-        
-        // Segue back to Activity View
-        
     }
+}
+        
     
     
 
-}
 
 
 // MARK:- Delegate for Image Picker
