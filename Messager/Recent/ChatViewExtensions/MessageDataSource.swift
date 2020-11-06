@@ -59,8 +59,8 @@ extension ChatViewController: MessagesDataSource {
         
         let font = UIFont.boldSystemFont(ofSize: 10)
         let color = UIColor.darkGray
-        
-        return NSAttributedString(string: String(message.sender.displayName.prefix(10)), attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
+        let displayName = displayNames[message.sender.senderId] ?? String(message.sender.displayName)
+        return NSAttributedString(string: displayName, attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
     }
     
 //    // cell 下方的 labels
@@ -83,7 +83,6 @@ extension ChatViewController: MessagesDataSource {
         let text = MessageKitDateFormatter.shared.string(from: message.sentDate)
 //        let text = message.sentDate.time()
         return NSAttributedString(string:text, attributes: [.font : UIFont.boldSystemFont(ofSize: 10), .foregroundColor : UIColor.darkGray])
-        
         
         return nil
     }

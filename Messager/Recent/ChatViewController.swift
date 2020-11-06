@@ -92,7 +92,7 @@ class ChatViewController: MessagesViewController {
             activityManager = ActivityManager(actId)
         }
         
-        print("_x-80 啦啦啦啦初始化聊天")
+        print("_x-80 重新加载消息信息")
         let db = Firestore.firestore()
         let allMembers = recipientId + [currentUser.senderId]
         for userId in allMembers {
@@ -106,6 +106,8 @@ class ChatViewController: MessagesViewController {
                     for document in querySnapshot!.documents {
                         let data = document.data()
                         let image = data["avatarLink"] as! String
+                        let displayName = data["username"] as! String
+                        displayNames[userId] = displayName
                         let cloudFileRef = storage.reference(withPath: "user-photoes/"+image)
                         cloudFileRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
                             if let error = error {
@@ -222,9 +224,8 @@ class ChatViewController: MessagesViewController {
         if !isActivity {
             print("_x-41 ")
             for i in recipientName {
-                tmpText += " - " + i.prefix(10)
+                tmpText += i.prefix(10)
             }
-            tmpText += " - "
         }
         titleLabel.text = tmpText
     }
