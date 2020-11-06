@@ -78,18 +78,14 @@ class LocalAuthViewController: UIViewController {
                     }
                     
                 } else {
-                    print("Local Auth 1")
-                    print(error?.localizedDescription ?? "💀Failed to authenticate.")
+                    print("🔐Local Auth 1")
+                    print(error?.localizedDescription ?? "🔐Failed to authenticate.")
                 }
             }
             
         } else {
-            print("Local Auth 2")
-            print(error?.localizedDescription ?? "💀Auth policy cannot be evaluated.")
+            print("🔐Local Auth 2")
+            print(error?.localizedDescription ?? "🔐Auth policy cannot be evaluated.")
         }
     }
-    
-   
-    
-
 }
