@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseUI
+
 
 class ChatsTableViewController: UITableViewController {
     
@@ -28,8 +31,8 @@ class ChatsTableViewController: UITableViewController {
         self.setupSearchController()
         
         
-        
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         // toggle tabbar

@@ -18,6 +18,9 @@ class RecentTableViewCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var unreadCounterLabel: UILabel!
     @IBOutlet weak var unreadCounterBackgroundView: UIView!
+    @IBOutlet weak var cellBackgroundView: UIView!
+    @IBOutlet weak var circleView: UIImageView!
+    @IBOutlet weak var specialCircle: UIImageView!
     
     let db = Firestore.firestore()
     let storage = Storage.storage()
@@ -38,17 +41,25 @@ class RecentTableViewCell: UITableViewCell {
     }
     
     func configure(recent: RecentChat) {
-        var tmpText = ""
+        if recent.isActivity {
+//            cellBackgroundView.backgroundColor = UIColor(named:"activityColor")
+//            circleView.isHidden = false
+            specialCircle.isHidden = false
+        }
     
+
+        var tmpText = ""
+        var index = 0
         if !recent.isActivity {
-            for i in recent.receiverName {
-                tmpText += " - " + i.prefix(10)
+            for id in recent.receiverId {
+                var tittle = displayNames[id] ?? recent.receiverName[0]
+                tmpText += tittle.prefix(10)
+                index += 1
             }
-            tmpText += " - "
         } else {
             tmpText = recent.activityTitle
         }
-        
+                        
         print("_x-2 聊天框标题为", tmpText)
         usernameLabel.text = tmpText
         usernameLabel.adjustsFontSizeToFitWidth = true
@@ -80,10 +91,9 @@ class RecentTableViewCell: UITableViewCell {
     private func setAvatar(avatarLink: String, recent: RecentChat) {
         print("_x-60", avatarLink)
         if avatarLink != "" {
-//             从 Firestore 下载头像，暂时还没写，先用默认头像代替
             loadImage(recent: recent)
         }else{
-            self.avatarImageView.image = UIImage(named: "avatar")
+            self.avatarImageView.image = UIImage(named: "logo2")
         }
     }
     
