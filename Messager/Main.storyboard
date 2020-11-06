@@ -3592,7 +3592,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZPh-L5-sJR" userLabel="Pick Image View">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="299"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ho6-SH-oIV">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ho6-SH-oIV">
                                                         <rect key="frame" x="0.0" y="1" width="374" height="296.5"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.1617074631" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3826,6 +3826,7 @@
                         <outlet property="endDateField" destination="MK2-cW-uVL" id="rUV-r6-ouK"/>
                         <outlet property="locationButton" destination="Znf-lq-8XY" id="ztS-q9-qki"/>
                         <outlet property="locationLabel" destination="Kzp-Fz-cKY" id="k70-AY-EHU"/>
+                        <outlet property="postButton" destination="dnZ-ua-DHB" id="cZN-8c-r4O"/>
                         <outlet property="startDateField" destination="rIY-gX-TPC" id="bxr-OL-9qC"/>
                         <outlet property="titleTextField" destination="UFc-Cl-H1g" id="Yda-ih-Uge"/>
                     </connections>
@@ -3928,16 +3929,16 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-1c-otP">
+                                <rect key="frame" x="0.0" y="70" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="t8H-Ve-LAX">
                                 <rect key="frame" x="0.0" y="126" width="414" height="350"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="e7u-H3-wN8"/>
                                 </constraints>
                             </mapView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="0bj-1c-otP">
-                                <rect key="frame" x="0.0" y="70" width="414" height="56"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LhC-ob-oes"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
