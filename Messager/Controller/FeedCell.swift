@@ -33,6 +33,8 @@ class FeedCell: UITableViewCell {
     let cur_user = Auth.auth().currentUser!.uid
     var joinList = [String]()
     
+    
+    //cellData每一次变更都会出发didSet
     var cellData : FeedData!{
     //monitor, reocrd change
         didSet{
@@ -76,8 +78,6 @@ class FeedCell: UITableViewCell {
             let s: String = "id = '"+cellData.uid!+"' AND user = '"+cellData.user!+"'"
             let predicate = NSPredicate(format: s)
             let likeBtn = realm.objects(LikeBtn.self).filter(predicate).first
-            //print("likeBtn")
-            //print(likeBtn)
             // if query doesn't exist, create one
             if likeBtn == nil{
                 bbb.deselect()
@@ -98,6 +98,7 @@ class FeedCell: UITableViewCell {
                 }
             }
             let joins:[String] = cellData!.join //for get profile array
+            print("joins is \(joins)")
             var cur = 1
 
             for join in joins{
@@ -111,6 +112,7 @@ class FeedCell: UITableViewCell {
                                 let data = doc.data()
                                 //add profile to arr
                                 let pic = data["avatarLink"] as! String
+                                print("\(cur). pic is: \(pic)")
                                 let proRef = self.storage.reference(withPath: "user-photoes/"+pic)
                                 print("user-photoes/"+pic)
                                 switch cur {
@@ -248,42 +250,41 @@ class FeedCell: UITableViewCell {
         }
         else{
             var index = 0
-            for join in joinList {
+            for join in cellData.join {
                 index += 1
                 if join==cur_user {
                     break
                 }
             }
             let remove_index = index - 1
-            while index<=joinList.count + 1 {
-                switch index {
-                case 1:
-                    self.profile1.image = self.profile2.image
-                    index+=1
-                case 2:
-                    self.profile2.image = self.profile3.image
-                    index+=1
-                case 3:
-                    self.profile3.image = self.profile4.image
-                    index+=1
-                case 4:
-                    self.profile4.image = self.profile5.image
-                    index+=1
-                case 5:
-                    self.profile5.image = nil
-                    index+=1
-                default:
-                    index+=1
-                    break
-                }
-            }
-            joinList.remove(at: remove_index)
+//            while index<=joinList.count + 1 {
+//                switch index {
+//                case 1:
+//                    self.profile1.image = self.profile2.image
+//                    index+=1
+//                case 2:
+//                    self.profile2.image = self.profile3.image
+//                    index+=1
+//                case 3:
+//                    self.profile3.image = self.profile4.image
+//                    index+=1
+//                case 4:
+//                    self.profile4.image = self.profile5.image
+//                    index+=1
+//                case 5:
+//                    self.profile5.image = nil
+//                    index+=1
+//                default:
+//                    index+=1
+//                    break
+//                }
+//            }
+            cellData.join.remove(at: remove_index)
         }
         labelMaxUser.text = "People: \(joinList.count)/\(cellData.groupSize!)"
     }
     
     func addUserProfile() {
-        labelMaxUser.text = "People: \(joinList.count+1)/\(cellData.groupSize!)"
         var count = joinList.count + 1
         let docRef = db.collection("User").document(cur_user)
         docRef.getDocument { [self] (document, error) in
@@ -335,6 +336,7 @@ class FeedCell: UITableViewCell {
                     break
                 }
             }
+            labelMaxUser.text = "People: \(joinList.count+1)/\(cellData.groupSize!)"
         }
     }
     
