@@ -1533,7 +1533,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="504.33333333333331"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" id="agC-qv-Q7b">
-                                                        <rect key="frame" x="0.0" y="90" width="414" height="406"/>
+                                                        <rect key="frame" x="0.0" y="35" width="414" height="461"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" id="yXa-Eh-Fbv" userLabel="TableContainer">
@@ -3075,7 +3075,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="494.33333333333331"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" id="CYB-NX-A3A">
-                                                        <rect key="frame" x="0.0" y="90" width="414" height="406"/>
+                                                        <rect key="frame" x="0.0" y="35" width="414" height="461"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" id="zeD-bd-mlo" userLabel="TableContainer">
