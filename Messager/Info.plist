@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>ARRIVED</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -24,10 +24,16 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>[the app wants to photo]</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Use Face ID instead of a password to access your account.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Not gonna happen</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The app want to use your current location</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your microphone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>[the app wants to use your photo]</string>
 	<key>UIApplicationSceneManifest</key>
@@ -63,9 +69,5 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to use your microphone</string>
-	<key>NSFaceIDUsageDescription</key>
-	<string>Use Face ID instead of a password to access your account.</string>
 </dict>
 </plist>
