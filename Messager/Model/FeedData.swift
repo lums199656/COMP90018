@@ -9,13 +9,13 @@ import Foundation
 
 //需要的信息
 struct FeedData {
-    let detail, title, uid, user: String?
-    let image: String?
+    var detail, title, uid, user: String?
+    var image: String?
     var join: [String]!
     // let star: Bool
-    let category: String!
-    let locationString: String!
-    let distance: Int!
-    let groupSize: Int!
-    let endDate: String!
+    var category: String!
+    var locationString: String!
+    var distance: Int!
+    var groupSize: Int!
+    var endDate: String!
 }
