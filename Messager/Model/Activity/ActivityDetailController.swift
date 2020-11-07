@@ -51,6 +51,8 @@ class ActivityDetailController: UIViewController {
     @IBOutlet weak var p3Button: UIButton!
     @IBOutlet weak var p4Button: UIButton!
     @IBOutlet weak var noParticipants: UILabel!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,11 +72,14 @@ class ActivityDetailController: UIViewController {
         p3Button.isHidden = true
         p4Button.isHidden = true
         self.noParticipants.isHidden = false
+        scrollView.contentSize = CGSize(width: 320, height: 1500)
 
 //        loadData()
         //let starterButton = UIButton.init(type: .custom)
         //starterButton.setEnLargeEdge(20,20,414,414)
     }
+    
+    
     
 
     @IBAction func startGroupChat(_ sender: Any) {

@@ -12,6 +12,8 @@ import AVFoundation
 
 public var avatars : [String:UIImage?] = ["1":nil]
 public var displayNames : [String:String] = ["1":"1"]
+public var recentAvatar : [String:UIImage?] = ["1":nil]
+
 
 
 
