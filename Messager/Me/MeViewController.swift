@@ -159,7 +159,7 @@ class MeViewController: UIViewController, UITableViewDataSource,UIScrollViewDele
                         let joinUsers = data["join"] as? [String]
                         let title = data[K.Activity.title] as? String
                         let image = data[K.Activity.image] as? String
-                        let activityID = data[K.Activity.image] as? String
+                        let activityID = doc.documentID as? String
                         let dateLong = data["startDate"] as? Timestamp
                         let date = dateLong?.dateValue() as? Date
                         var dateString = ""

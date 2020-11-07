@@ -26,8 +26,8 @@ class EditActivityController: UIViewController {
     var detail: String = ""
     var locationStr: String = ""
     var coord: CLLocation?
-    var startDate: String = ""
-    var endDate: String = ""
+    var startDate: Date?
+    var endDate: Date?
 
     
     // IBOutlets
@@ -52,13 +52,6 @@ class EditActivityController: UIViewController {
     
     var postActStartDate: Date?
     var postActEndDate: Date?
-    {
-        didSet {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
-            endDateField.text = dateFormatter.string(from: endDatePicker.date)
-        }
-    }
 
     // Override Function
     override func viewDidLoad() {
@@ -67,7 +60,7 @@ class EditActivityController: UIViewController {
         // Setup textView Placeholder stuff
         detailTextView.delegate = self
         detailTextView.text = detail
-        detailTextView.textColor = UIColor.lightGray
+        // detailTextView.textColor = UIColor.lightGray
         locationLabel.text = locationStr
         activityImageView.image = image
         titleTextField.text = titleAct
@@ -101,12 +94,12 @@ class EditActivityController: UIViewController {
         
 //        nowDate = Date().nearestHour().advanced(by: 60*60*2)
         
-        startDateField.text = dateFormatter.string(from: nowDate)
-        postActStartDate = nowDate
+        startDateField.text = dateFormatter.string(from: startDate!)
+        postActStartDate = startDate
         
         nowDate = nowDate.advanced(by: 60*60)
-//        endDateField.text = dateFormatter.string(from: nowDate)
-        postActEndDate = nowDate
+        endDateField.text = dateFormatter.string(from: endDate!)
+        postActEndDate = endDate
 
     }
     
@@ -215,6 +208,13 @@ class EditActivityController: UIViewController {
             if let location = coord {
                 geoPoint = GeoPoint.init(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             }
+            print(titleTextField.text)
+            print(detailTextView.text)
+            print(postActStartDate)
+            print(postActEndDate)
+            print(geoPoint)
+            print(locationLabel.text)
+            print(imageID)
             do {
                 try actRef.updateData([
                     "actTitle": titleTextField.text,

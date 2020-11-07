@@ -17,8 +17,8 @@ class ActivityDetailController: UIViewController {
     var starterUser = ""
     var activityTitleText = ""
     var category = ""
-    var startDate = ""
-    var endDate = ""
+    var startDate:Date?
+    var endDate :Date?
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
@@ -151,6 +151,8 @@ class ActivityDetailController: UIViewController {
         editVC.category = self.category
         editVC.startDate = self.startDate
         editVC.endDate = self.endDate
+        
+        editVC.modalPresentationStyle = .fullScreen
         self.present(editVC, animated: true, completion: nil)
     }
     
@@ -174,7 +176,7 @@ class ActivityDetailController: UIViewController {
                     self.startGroupChatButton.isHidden = false
                 }
                 self.details.text = data!["actDetail"] as? String
-                self.location.text = data!["locationString"] as? String
+                self.location.text = data!["locationString"] as? String ?? "Online"
                 let df = DateFormatter()
                 df.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 let dateLong = data!["startDate"] as! Timestamp
@@ -185,8 +187,8 @@ class ActivityDetailController: UIViewController {
                 self.toDate.text = df.string(from: todate)
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
-                self.startDate = dateFormatter.string(from: date)
-                self.endDate = dateFormatter.string(from: todate)
+                self.startDate = date
+                self.endDate = todate
                 
                 self.category = data!["category"] as! String
 
