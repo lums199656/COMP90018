@@ -28,6 +28,8 @@ class EditActivityController: UIViewController {
     var coord: CLLocation?
     var startDate: Date?
     var endDate: Date?
+    
+    var oldFileRef: StorageReference?
 
     
     // IBOutlets
@@ -234,6 +236,7 @@ class EditActivityController: UIViewController {
         uploadActivity()
         uploadImage(from: image, to: imageID, completion: { () in
             // Segue back to Activity View
+            self.oldFileRef?.delete()
             self.dismiss(animated: true, completion: nil)
         })
         

@@ -16,6 +16,8 @@ class EditTableViewController: UITableViewController {
     let storage = Storage.storage()
     let imagePicker = UIImagePickerController()
     
+    var oldFileRef: StorageReference?
+    
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userLocation: UITextField!
@@ -88,6 +90,7 @@ class EditTableViewController: UITableViewController {
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
                                 uploadImage(from: image, to: imageID, completion: { () in
+                                    oldFileRef?.delete()
                                     self.navigationController?.popViewController(animated: true)
                                 })
 
@@ -135,8 +138,8 @@ class EditTableViewController: UITableViewController {
                                 self.userName.text = name
                                 self.userIntro.text = intro
                                 self.userLocation.text = location
-                                let cloudFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
-                                self.userImage.sd_setImage(with: cloudFileRef)
+                                oldFileRef = Storage.storage().reference(withPath: "user-photoes/"+image)
+                                self.userImage.sd_setImage(with: oldFileRef!)
 
                             }
                         }
