@@ -31,7 +31,11 @@ class EditActivityController: UIViewController {
 
     
     // IBOutlets
-    @IBOutlet weak var activityImageView: UIImageView!
+    @IBOutlet weak var activityImageView: UIImageView! {
+        didSet {
+            activityImageView.contentMode = .scaleAspectFill
+        }
+    }
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var detailTextView: UITextView!
@@ -120,6 +124,7 @@ class EditActivityController: UIViewController {
     
     func setupUI() {
         locationButton.setTitle("", for: [])
+        
     }
 
     // MARK:- Date Picker
@@ -243,15 +248,15 @@ class EditActivityController: UIViewController {
     }
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "toLocation" {
-            let destinationVC = segue.destination as! PostLocationViewController
-            destinationVC.delegate = self
-        }
-        
-    }
 
+    @IBAction func locationBttnTapped(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let locationVC = storyboard.instantiateViewController(withIdentifier: "locationVC") as? PostLocationViewController else {  return }
+        
+        locationVC.delegate = self
+        
+        self.present(locationVC, animated: true, completion: nil)
+    }
     
 }
 

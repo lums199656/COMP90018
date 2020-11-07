@@ -267,18 +267,16 @@ class PostViewController1: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    @IBAction func locationBttnTapped(_ sender: UIButton) {
         
-        if segue.identifier == "toLocation" {
-            let destinationVC = segue.destination as! PostLocationViewController
-            destinationVC.delegate = self
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let locationVC = storyboard.instantiateViewController(withIdentifier: "locationVC") as? PostLocationViewController else {  return }
         
+        locationVC.delegate = self
+        
+        self.present(locationVC, animated: true, completion: nil)
     }
-    
-    
-    @IBAction func locationBttnTapped(_ sender: UIButton) { }
-    
 }
 
 
