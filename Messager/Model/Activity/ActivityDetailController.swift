@@ -152,6 +152,19 @@ class ActivityDetailController: UITableViewController {
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
         }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (indexPath.section == 2){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
+            starterVC.currentUserID = userList[indexPath.row + 1].id
+       
+            print("starterVC.currentUserID: \(starterVC.currentUserID)")
+            self.navigationController?.show(starterVC, sender: self)
+        }
+        else{
+            return super.tableView(tableView, didSelectRowAt: indexPath)
+        }
+    }
     @IBAction func startGroupChat(_ sender: Any) {
         for i in userList {
             print(i.username)
