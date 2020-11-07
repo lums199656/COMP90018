@@ -61,6 +61,9 @@ class ActivityDetailController: UITableViewController {
         self.title = "Detail"
         editButton.isHidden = true
         startGroupChatButton.isHidden = true
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ParticipantCell")
+        self.tableView.tableFooterView = UIView(frame:CGRect.zero)
+        
 //        p1Image.isHidden = true
 //        p2Image.isHidden = true
 //        p3Image.isHidden = true
@@ -83,7 +86,62 @@ class ActivityDetailController: UITableViewController {
     
     
     
-
+    //返回分区数
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
+    }
+ 
+    //返回每个分区中单元格的数量
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
+        -> Int {
+        if section == 3 {
+            return userList.count
+        }
+        if section == 0 {
+            return 2
+        }else{
+            return 1
+        }
+    }
+ 
+    //设置cell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+        -> UITableViewCell {
+        //只有第二个分区是动态的，其它默认
+        if indexPath.section == 3 {
+            //用重用的方式获取标识为wifiCell的cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell",
+                                                     for: indexPath) as! ParticipantCell
+            //cell.textLabel?.text = userList[indexPath.row].id
+            return cell
+        }else{
+            return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+    }
+     
+    //因为第二个分区单元格动态添加，会引起cell高度的变化，所以要重新设置
+    override func tableView(_ tableView: UITableView,
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 3{
+            return 50
+        }else{
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    override func tableView(_ tableView: UITableView,
+                                indentationLevelForRowAt indexPath: IndexPath) -> Int {
+            if indexPath.section == 3{
+                //当执行到日期选择器所在的indexPath就创建一个indexPath然后强插
+                let newIndexPath = IndexPath(row: 0, section: indexPath.section)
+                return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
+            }else{
+                return super.tableView(tableView, indentationLevelForRowAt: indexPath)
+            }
+        }
+         
+        override func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+        }
     @IBAction func startGroupChat(_ sender: Any) {
         for i in userList {
             print(i.username)
