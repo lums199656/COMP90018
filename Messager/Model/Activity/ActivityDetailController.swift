@@ -22,6 +22,7 @@ class ActivityDetailController: UITableViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
+
     
     var imageFileRef: StorageReference?
     
@@ -63,6 +64,10 @@ class ActivityDetailController: UITableViewController {
         startGroupChatButton.isHidden = true
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ParticipantCell")
         self.tableView.tableFooterView = UIView(frame:CGRect.zero)
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
+                    .textColor = UIColor.gray
+        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
+            .font = UIFont.systemFont(ofSize: 13.0, weight: UIFont.Weight.medium)
         
 //        p1Image.isHidden = true
 //        p2Image.isHidden = true
@@ -88,16 +93,19 @@ class ActivityDetailController: UITableViewController {
     
     //返回分区数
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
  
     //返回每个分区中单元格的数量
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
         -> Int {
-        if section == 3 {
+        if (section == 2) {
+            print("HHHH",userList.count)
             return userList.count
+            
+
         }
-        if section == 0 {
+        if (section == 0) {
             return 2
         }else{
             return 1
@@ -108,11 +116,11 @@ class ActivityDetailController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
         //只有第二个分区是动态的，其它默认
-        if indexPath.section == 3 {
+        if (indexPath.section == 2) {
             //用重用的方式获取标识为wifiCell的cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell",
-                                                     for: indexPath) as! ParticipantCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath)
             //cell.textLabel?.text = userList[indexPath.row].id
+            //cell.textLabel?.text = "Happt"
             return cell
         }else{
             return super.tableView(tableView, cellForRowAt: indexPath)
@@ -122,15 +130,15 @@ class ActivityDetailController: UITableViewController {
     //因为第二个分区单元格动态添加，会引起cell高度的变化，所以要重新设置
     override func tableView(_ tableView: UITableView,
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 3{
-            return 50
+        if (indexPath.section == 2){
+            return 80
         }else{
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
     override func tableView(_ tableView: UITableView,
                                 indentationLevelForRowAt indexPath: IndexPath) -> Int {
-            if indexPath.section == 3{
+            if (indexPath.section == 2){
                 //当执行到日期选择器所在的indexPath就创建一个indexPath然后强插
                 let newIndexPath = IndexPath(row: 0, section: indexPath.section)
                 return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
@@ -324,6 +332,7 @@ class ActivityDetailController: UITableViewController {
     
     func loadJoinData() {
         let userNum = userList.count
+        print("OOOO",userNum)
         if userNum > 1 {
             self.p1Name.text = userList[1].username
             let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[1].avatarLink)

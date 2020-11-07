@@ -16,7 +16,7 @@
 		8214C9FD253416D700909AEE /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8214C9F9253416D700909AEE /* MeViewController.swift */; };
 		8223DCF4254186FF00675647 /* ActivityDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8223DCF3254186FF00675647 /* ActivityDetailController.swift */; };
 		825C382C254672C000F8F836 /* EditActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825C382B254672C000F8F836 /* EditActivityController.swift */; };
-		93923A562556A968002AE77C /* ParticipantCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93923A552556A967002AE77C /* ParticipantCellTableViewCell.swift */; };
+		93923A562556A968002AE77C /* ParticipantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93923A552556A967002AE77C /* ParticipantCell.swift */; };
 		9B201B31253EE10E00A30EFE /* ScaleAnimationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */; };
 		9B201B3B253EE8A400A30EFE /* DOFavoriteButtonNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B201B3A253EE8A400A30EFE /* DOFavoriteButtonNew.swift */; };
 		9B28DDE225414E8D00A56C3D /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B28DDE125414E8D00A56C3D /* IncomingMessage.swift */; };
@@ -111,7 +111,7 @@
 		8214C9F9253416D700909AEE /* MeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		8223DCF3254186FF00675647 /* ActivityDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailController.swift; sourceTree = "<group>"; };
 		825C382B254672C000F8F836 /* EditActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivityController.swift; sourceTree = "<group>"; };
-		93923A552556A967002AE77C /* ParticipantCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCellTableViewCell.swift; sourceTree = "<group>"; };
+		93923A552556A967002AE77C /* ParticipantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantCell.swift; sourceTree = "<group>"; };
 		9B201B30253EE10E00A30EFE /* ScaleAnimationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleAnimationButton.swift; sourceTree = "<group>"; };
 		9B201B39253EE88C00A30EFE /* DOFavoriteButtonNew.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DOFavoriteButtonNew.h; sourceTree = "<group>"; };
 		9B201B3A253EE8A400A30EFE /* DOFavoriteButtonNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DOFavoriteButtonNew.swift; sourceTree = "<group>"; };
@@ -379,7 +379,7 @@
 				8214C9F8253416D700909AEE /* UIViewHelper.swift */,
 				A5DFB0D92529F8E200471C1A /* SettingTableViewController.swift */,
 				BBF749B125527E7200CC60AE /* ConfigTableViewController.swift */,
-				93923A552556A967002AE77C /* ParticipantCellTableViewCell.swift */,
+				93923A552556A967002AE77C /* ParticipantCell.swift */,
 			);
 			path = Me;
 			sourceTree = "<group>";
@@ -770,7 +770,7 @@
 				A517F8BF2514E89F00621A26 /* SceneDelegate.swift in Sources */,
 				9B28DDED25414EFA00A56C3D /* MessgaeKitDefaults.swift in Sources */,
 				A50327AA253202C000CEE6E7 /* GlobalFunctions.swift in Sources */,
-				93923A562556A968002AE77C /* ParticipantCellTableViewCell.swift in Sources */,
+				93923A562556A968002AE77C /* ParticipantCell.swift in Sources */,
 				A50327AF2532E15700CEE6E7 /* Extensions.swift in Sources */,
 				9B28DDE225414E8D00A56C3D /* IncomingMessage.swift in Sources */,
 				A5C155BE2541382400A504D6 /* InputBarAccessory.swift in Sources */,

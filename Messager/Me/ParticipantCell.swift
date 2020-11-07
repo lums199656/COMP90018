@@ -13,7 +13,6 @@ import FirebaseUI
 class ParticipantCell: UITableViewCell {
     @IBOutlet var partiImage: UIImageView!
     @IBOutlet var partiName: UILabel!
-    @IBOutlet var partiButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
