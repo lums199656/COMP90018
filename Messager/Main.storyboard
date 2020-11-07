@@ -1540,7 +1540,7 @@
                                                             <rect key="frame" x="0.0" y="40" width="374" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySe-a0-LJT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-xh-cjG">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -1583,7 +1583,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbn-LK-MJr">
-                                                                    <rect key="frame" x="291" y="14.666666666666666" width="83" height="20.666666666666671"/>
+                                                                    <rect key="frame" x="150" y="14.666666666666666" width="224" height="20.666666666666671"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                     </accessibility>
@@ -3381,7 +3381,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="0p7-1e-N7d" userLabel="Start Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="22.333333333333332"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyB-56-rUj">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Starts:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyB-56-rUj">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="22.333333333333332"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="NuG-Z6-ddU"/>
@@ -3401,7 +3401,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="FP4-Cg-VRW" userLabel="End Stack View">
                                                         <rect key="frame" x="0.0" y="30.333333333333371" width="374" height="22.333333333333329"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXl-Yw-HZf">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ends:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PXl-Yw-HZf">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="22.333333333333332"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="50" id="jFc-rs-IzC"/>
@@ -4012,7 +4012,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u6q-nb-Kv9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4061" y="2628"/>
+            <point key="canvasLocation" x="3396" y="2634"/>
         </scene>
     </scenes>
     <designables>
