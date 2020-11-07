@@ -52,11 +52,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
                 let data = document.data()
-//                self.lists[indexPath.row].join = data!["join"] as! [String]
                 self.lists[indexPath.row].category = data![K.Activity.category] as! String
-                                self.lists[indexPath.row].join = data![K.Activity.join] as! [String]
-                                self.lists[indexPath.row].title = data![K.Activity.title] as? String
-                
+                self.lists[indexPath.row].join = data![K.Activity.join] as! [String]
+                self.lists[indexPath.row].title = data![K.Activity.title] as? String
                 cell.cellData = self.lists[indexPath.row]
             }
         }
