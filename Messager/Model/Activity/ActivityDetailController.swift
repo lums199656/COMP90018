@@ -23,6 +23,8 @@ class ActivityDetailController: UIViewController {
     let storage = Storage.storage()
     var userList = [User]()
     
+    var imageFileRef: StorageReference?
+    
     
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var startGroupChatButton: UIButton!
@@ -145,6 +147,7 @@ class ActivityDetailController: UIViewController {
         guard let editVC = storyboard.instantiateViewController(withIdentifier: "editActivity") as? EditActivityController else {  return }
         editVC.activityID = self.activityID
         editVC.image = self.image.image
+        editVC.oldFileRef = self.imageFileRef
         editVC.titleAct = self.activityTitle.text!
         editVC.detail = self.details.text!
         editVC.locationStr = self.location.text!
@@ -250,8 +253,8 @@ class ActivityDetailController: UIViewController {
                 
                 
                 
-                let cloudFileRef = self.storage.reference(withPath: "activity-images/"+image)
-                self.image.sd_setImage(with: cloudFileRef)
+                self.imageFileRef = self.storage.reference(withPath: "activity-images/"+image)
+                self.image.sd_setImage(with: self.imageFileRef!)
                 
                 
                         
