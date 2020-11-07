@@ -15,6 +15,10 @@ import FirebaseFirestore
 
 class PostViewController1: UIViewController {
     
+    // Pop Up View
+    var popup: UIView!
+
+    
     // post activity related data
     var postCategory: String?
     var postImage: UIImage?
@@ -22,20 +26,16 @@ class PostViewController1: UIViewController {
     var postDetail: String?
     var postLocation: CLLocation?
     var postLocationString: String?
-    var postActStartDate: Date?
-
-    var postActEndDate: Date?
-    {
-        didSet {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
-            endDateField.text = dateFormatter.string(from: endDatePicker.date)
-        }
-    }
+    
     
     
     // IBOutlets
-    @IBOutlet weak var activityImageView: UIImageView!
+    @IBOutlet weak var activityImageView: UIImageView! {
+        didSet {
+            activityImageView.contentMode = .scaleAspectFill
+            postImage = activityImageView.image
+        }
+    }
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var detailTextView: UITextView!
@@ -44,10 +44,14 @@ class PostViewController1: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var postButton: UIButton!
     
     
     @IBOutlet weak var startDateField: UITextField!
-    @IBOutlet weak var endDateField: UITextField!
+    @IBOutlet weak var endDateField: UITextField! {
+        didSet {
+        }
+    }
     
     // _
     private let imagePicker = UIImagePickerController()
@@ -56,6 +60,16 @@ class PostViewController1: UIViewController {
     
     var startDatePicker = UIDatePicker()
     var endDatePicker = UIDatePicker()
+    
+    var postActStartDate: Date?
+    var postActEndDate: Date?
+    {
+        didSet {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+            endDateField.text = dateFormatter.string(from: endDatePicker.date)
+        }
+    }
     
     // MARK:- View Lifecycle
     // Override Function
@@ -82,23 +96,26 @@ class PostViewController1: UIViewController {
         startDatePicker.addTarget(self, action: #selector(startDateChanged(datePicker:)), for: .valueChanged)
         endDatePicker.addTarget(self, action: #selector(endDateChanged(datePicker:)), for: .valueChanged)
         
-        // __. init Start time and show on screen
-        var nowDate = Date().advanced(by: 60*60*3)
+        startDatePicker.minuteInterval = 15
+        endDatePicker.minuteInterval = 15
+        
+        // __. Set minimum Date for DatePicker()
+        var nowDate = Date()
+        startDatePicker.minimumDate = nowDate
+        endDatePicker.minimumDate = nowDate.advanced(by: 60*15)
+        
+        // __. Init Start/End time and show on screen
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, d MMM yyyy HH:00"
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
+        
+//        nowDate = Date().nearestHour().advanced(by: 60*60*2)
+        
         startDateField.text = dateFormatter.string(from: nowDate)
         postActStartDate = nowDate
         
         nowDate = nowDate.advanced(by: 60*60)
-        endDateField.text = dateFormatter.string(from: nowDate)
+//        endDateField.text = dateFormatter.string(from: nowDate)
         postActEndDate = nowDate
-        
-        startDatePicker.minimumDate = Date()
-        endDatePicker.minimumDate = nowDate.advanced(by: -60*60)
-        
-        startDatePicker.minuteInterval = 15
-        endDatePicker.minuteInterval = 15
-        
         
 
     }
@@ -120,7 +137,12 @@ class PostViewController1: UIViewController {
         IQKeyboardManager.shared.enable = false
     }
     
-    // MARK:-
+    func setupUI() {
+        locationButton.setTitle("", for: [])
+        postImage = nil
+    }
+    
+    // MARK:- Date Picker
     @objc func startDateChanged(datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "E, d MMM yyyy HH:mm"
@@ -129,8 +151,8 @@ class PostViewController1: UIViewController {
         
         
         // Auto Update End Date if Start > End
-        if startDatePicker.date > endDatePicker.date {
-            endDatePicker.date = startDatePicker.date.advanced(by: 60*15)
+        if datePicker.date > endDatePicker.date {
+            endDatePicker.date = datePicker.date.advanced(by: 60*15)
             endDateField.text = dateFormatter.string(from: endDatePicker.date)
         }
         
@@ -150,18 +172,11 @@ class PostViewController1: UIViewController {
     }
     
     
-    
-    
-    func setupUI() {
-        locationButton.setTitle("", for: [])
-    }
-    
     // MARK:- IBActions
     
     @IBAction func backBttnTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
     
     @IBAction func chooseBttnTapped(_ sender: Any) {
         
@@ -175,12 +190,24 @@ class PostViewController1: UIViewController {
     
     @IBAction func postBttnTapped(_ sender: Any) {
         
-        
-        guard let image = activityImageView.image else { print("no image selected"); return }
+        guard let image = postImage else {
+            self.showAlert("No image selected")
+            return
+        }
         guard let userId = Auth.auth().currentUser?.uid else { return }
-        guard let titleText = titleTextField.text else {return }
+        guard let titleText = titleTextField.text else { return }
+        guard titleText.count > 5 else {
+            print("Title needs to be longer than 5")
+            self.showAlert("Title needs to be more than 5 characters")
+            return
+        }
         guard let detailText = detailTextView.text else {return }
-        
+        guard detailText.count > 30 else {
+            print("Detail needs to be longer than 30")
+            self.showAlert("Detail needs to be more than 30 characters")
+
+            return
+        }
         
         let actRef = db.collection(K.FStore.act).document()  // new Activity Document reference
         let storageRef = storage.reference()
@@ -192,7 +219,7 @@ class PostViewController1: UIViewController {
             
             guard let data = image.jpegData(compressionQuality: 1) else { return }  // data: image to be uploaded
             
-            let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
+            let _ = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else { return }  // if metadata is nil, return
                 
                 print("Success upload image \(cloudName)")
@@ -250,10 +277,7 @@ class PostViewController1: UIViewController {
     }
     
     
-    @IBAction func locationBttnTapped(_ sender: UIButton) {
-        
-    }
-    
+    @IBAction func locationBttnTapped(_ sender: UIButton) { }
     
 }
 
@@ -349,3 +373,59 @@ extension PostViewController1: UITextViewDelegate {
     
     
 }
+
+
+// MARK:-
+extension Date {
+    func nearestHour() -> Date {
+        return Date(timeIntervalSinceReferenceDate:
+                (timeIntervalSinceReferenceDate / 3600.0).rounded(.toNearestOrEven) * 3600.0)
+    }
+}
+
+
+extension PostViewController1 {
+    func showAlert(_ alertText: String) {
+        postButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "ic_close_48px")
+        popIcon.alpha = 0.8
+//        popup.addSubview(popIcon)
+        
+        let popLabel = UILabel(frame: CGRect(x: 10, y: 90, width: 180, height: 100))
+        popLabel.numberOfLines = 0
+        popLabel.text = alertText
+        popLabel.font = UIFont(name: "Futura", size: 15)
+        popLabel.textAlignment = .center
+        popLabel.center = popup.center
+        popup.addSubview(popLabel)
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+
+        popup.layer.shadowColor = UIColor.black.cgColor
+        popup.layer.shadowOpacity = 1
+        popup.layer.shadowOffset = .zero
+        popup.layer.shadowRadius = 200
+        
+        self.view.addSubview(popup)
+        
+        Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(dismissAlert), userInfo: nil, repeats: false)
+        
+    }
+    
+    @objc func dismissAlert() {
+        postButton.isEnabled = true
+
+        if popup != nil {
+            popup.removeFromSuperview()
+        }
+    }
+    
+    
+}
+
