@@ -95,6 +95,7 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
     }
     override func viewWillDisappear(_ animated: Bool) {
           navigationController?.setNavigationBarHidden(false, animated: true)
+          navigationController?.navigationBar.tintColor = UIColor(named:"TabIconColor")
           super.viewWillDisappear(animated)
     }
     
