@@ -22,7 +22,7 @@ class ActivityDetailController: UITableViewController {
     let db = Firestore.firestore()
     let storage = Storage.storage()
     var userList = [User]()
-
+    var userCount = 0
     
     var imageFileRef: StorageReference?
     
@@ -64,10 +64,6 @@ class ActivityDetailController: UITableViewController {
         startGroupChatButton.isHidden = true
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ParticipantCell")
         self.tableView.tableFooterView = UIView(frame:CGRect.zero)
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-                    .textColor = UIColor.gray
-        UILabel.appearance(whenContainedInInstancesOf: [UITableViewHeaderFooterView.self])
-            .font = UIFont.systemFont(ofSize: 13.0, weight: UIFont.Weight.medium)
         
 //        p1Image.isHidden = true
 //        p2Image.isHidden = true
@@ -100,8 +96,13 @@ class ActivityDetailController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
         -> Int {
         if (section == 2) {
-            print("HHHH",userList.count)
-            return userList.count
+            print("HHHH",self.userCount)
+            if (self.userCount == 0){
+                return 0
+            }
+            if (self.userCount > 0){
+                return (self.userCount - 1)
+            }
             
 
         }
@@ -118,9 +119,10 @@ class ActivityDetailController: UITableViewController {
         //只有第二个分区是动态的，其它默认
         if (indexPath.section == 2) {
             //用重用的方式获取标识为wifiCell的cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath)
-            //cell.textLabel?.text = userList[indexPath.row].id
-            //cell.textLabel?.text = "Happt"
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
+            cell.cellData = userList[indexPath.row + 1]
+            print(cell.cellData)
+            //cell.textLabel!.text = "happy"
             return cell
         }else{
             return super.tableView(tableView, cellForRowAt: indexPath)
@@ -309,12 +311,16 @@ class ActivityDetailController: UITableViewController {
                                                         user.status = data["status"] as! String
                                                         userList.append(user)
                                                         loadJoinData()
+                                                        self.userCount = userList.count
+                                                        self.tableView.reloadData()
+                                                        print("YYYY",userList.count)
 
                                                     }
                                                 }
                                     }
                                 }
                         }
+
                 }
                 
                 
@@ -323,10 +329,12 @@ class ActivityDetailController: UITableViewController {
                 self.image.sd_setImage(with: self.imageFileRef!)
                 
                 
+                
                         
             } else {
                 print("Document does not exist")
             }
+            
         }
     }
     
