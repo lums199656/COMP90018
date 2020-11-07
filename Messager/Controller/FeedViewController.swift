@@ -217,7 +217,9 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     //The method that will trigger the event when the sliding drag ends
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        cur_count = tableView.indexPathsForVisibleRows!.last!.row
+        if tableView.indexPathsForVisibleRows!.last?.row != nil{
+            cur_count = tableView.indexPathsForVisibleRows!.last!.row
+        }
         //downside
         if self.lastContentOffset < scrollView.contentOffset.y {
             if self.cur_count >= self.max {
