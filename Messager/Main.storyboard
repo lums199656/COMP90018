@@ -1853,7 +1853,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="  " id="TFk-j9-frv" userLabel="Buttons">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ParticipantCell" rowHeight="110" id="N4c-6Y-Rin" customClass="ParticipantCell" customModule="Messager" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttoncell" rowHeight="110" id="N4c-6Y-Rin" userLabel="Button Cell">
                                         <rect key="frame" x="0.0" y="1360" width="414" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N4c-6Y-Rin" id="LRH-PQ-WsL">

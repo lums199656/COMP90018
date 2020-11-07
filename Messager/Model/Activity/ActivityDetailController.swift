@@ -87,12 +87,11 @@ class ActivityDetailController: UITableViewController {
     
     
     
-    //返回分区数
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 4
     }
  
-    //返回每个分区中单元格的数量
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
         -> Int {
         if (section == 2) {
@@ -116,9 +115,8 @@ class ActivityDetailController: UITableViewController {
     //设置cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-        //只有第二个分区是动态的，其它默认
+    
         if (indexPath.section == 2) {
-            //用重用的方式获取标识为wifiCell的cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
             cell.cellData = userList[indexPath.row + 1]
             print(cell.cellData)
@@ -129,7 +127,7 @@ class ActivityDetailController: UITableViewController {
         }
     }
      
-    //因为第二个分区单元格动态添加，会引起cell高度的变化，所以要重新设置
+
     override func tableView(_ tableView: UITableView,
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
         if (indexPath.section == 2){
@@ -141,7 +139,6 @@ class ActivityDetailController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                                 indentationLevelForRowAt indexPath: IndexPath) -> Int {
             if (indexPath.section == 2){
-                //当执行到日期选择器所在的indexPath就创建一个indexPath然后强插
                 let newIndexPath = IndexPath(row: 0, section: indexPath.section)
                 return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
             }else{
