@@ -223,9 +223,7 @@ class ChatViewController: MessagesViewController {
         var tmpText = ""
         if !isActivity {
             print("_x-41 ")
-            for i in recipientName {
-                tmpText += i.prefix(10)
-            }
+            tmpText = displayNames[reipientId[0]] ?? recipientName[0]
         }
         titleLabel.text = tmpText
     }
