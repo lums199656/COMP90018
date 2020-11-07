@@ -189,9 +189,10 @@ class EditActivityController: UIViewController {
         guard detailText.count > 30 else {
             print("Detail needs to be longer than 30")
             self.showAlert("Detail needs to be more than 30 characters")
-
             return
         }
+        
+        
 
             
         let actRef = db.collection(K.FStore.act).document(activityID)  // Activity Document reference
@@ -238,16 +239,16 @@ class EditActivityController: UIViewController {
             }
         }
         
+//        self.showSavingAlert("Saving...")
+        self.showDino()
+        
         uploadActivity()
         uploadImage(from: image, to: imageID, completion: { () in
             // Segue back to Activity View
             self.oldFileRef?.delete()
+            self.dismissAlert()
             self.dismiss(animated: true, completion: nil)
         })
-        
-        
-        
-        
     }
     
     
@@ -262,7 +263,6 @@ class EditActivityController: UIViewController {
     }
     
 }
-
 
 
 // MARK:- Delegate for Image Picker
@@ -359,39 +359,106 @@ extension EditActivityController: UITextViewDelegate {
 }
 
 
-
+// MARK:-
 extension EditActivityController {
     func showAlert(_ alertText: String) {
         saveButton.isEnabled = false
         
-        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
         popup.cornerRadius = 10
         
         let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
         popIcon.image = UIImage(named: "ic_close_48px")
         popIcon.alpha = 0.8
-        popup.addSubview(popIcon)
         
         let popLabel = UILabel(frame: CGRect(x: 10, y: 90, width: 180, height: 100))
         popLabel.numberOfLines = 0
         popLabel.text = alertText
         popLabel.font = UIFont(name: "Futura", size: 15)
         popLabel.textAlignment = .center
+        popLabel.center = popup.center
         popup.addSubview(popLabel)
         
-        popup.backgroundColor = #colorLiteral(red: 0.9463161846, green: 0.7284850336, blue: 0.6472102874, alpha: 1)
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         popup.center = view.center
 
         popup.layer.shadowColor = UIColor.black.cgColor
-        popup.layer.shadowOpacity = 0.5
+        popup.layer.shadowOpacity = 1
         popup.layer.shadowOffset = .zero
-        popup.layer.shadowRadius = 10
+        popup.layer.shadowRadius = 200
         
         self.view.addSubview(popup)
         
         Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(dismissAlert), userInfo: nil, repeats: false)
         
     }
+    
+    func showSavingAlert(_ alertText: String) {
+        saveButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "ic_close_48px")
+        popIcon.alpha = 0.8
+//        popup.addSubview(popIcon)
+        
+        let popLabel = UILabel(frame: CGRect(x: 10, y: 90, width: 180, height: 100))
+        popLabel.numberOfLines = 0
+        popLabel.text = alertText
+        popLabel.font = UIFont(name: "Futura", size: 15)
+        popLabel.textAlignment = .center
+        popLabel.center = popup.center
+        popup.addSubview(popLabel)
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+
+        popup.layer.shadowColor = UIColor.black.cgColor
+        popup.layer.shadowOpacity = 1
+        popup.layer.shadowOffset = .zero
+        popup.layer.shadowRadius = 200
+        
+        self.view.addSubview(popup)
+    }
+    
+    func showDino() {
+        saveButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "dino3")
+        popup.addSubview(popIcon)
+        
+        var gif_index = 1
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            popIcon.image = UIImage(named: "dino\(gif_index)")
+            gif_index += 1
+            if gif_index > 3 {
+                gif_index = 1
+            }
+        }
+        
+        self.view.addSubview(popup)
+        
+
+    }
+    
+//    @objc func animate() {
+//
+//        popIcon.image = UIImage(named: "dino\(gif_index)")
+//        gif_index += 1
+//        if gif_index > 3 {
+//            gif_index = 1
+//        }
+//    }
     
     @objc func dismissAlert() {
         saveButton.isEnabled = true
@@ -400,7 +467,5 @@ extension EditActivityController {
             popup.removeFromSuperview()
         }
     }
-    
-    
 }
 
