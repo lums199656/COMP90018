@@ -165,11 +165,11 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             }
                             let distance = Int(dis/1000)
                             //two point distance
-                            print("两点间距离是：\(distance)Km")
+                            // print("两点间距离是：\(distance)Km")
                             //print("user id: \(Auth.auth().currentUser!.uid)")
 
                             if flag{
-                                if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size && distance<1000){//not in read_dic, status is awaiting, not reach size, distance<1000
+                                if(read[self.cur_id] != 1 && status==0 && cur_size<size && distance<1000){//not in read_dic, status is awaiting, not reach size, distance<1000
                                     //print("进来了")
                                     page_load+=1
                                     flag_load_page+=1
@@ -181,7 +181,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 }
                             }
                             else{
-                                if(read[Auth.auth().currentUser!.uid] != 1 && status==0 && cur_size<size){//not in read_dic, status is awaiting, not reach size
+                                if(read[self.cur_id] != 1 && status==0 && cur_size<size){//not in read_dic, status is awaiting, not reach size
                                     page_load+=1
                                     let feedData = FeedData(detail: detail, title: title, uid: uid, user: user, image: image, join: join,  category: category, locationString: ls, distance: distance, groupSize: size, endDate: endDate)
                                     //print(feedData)
@@ -192,7 +192,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
                             }
                         }
                     }
-                    print("flag page:\(flag_load_page)")
+                    // print("flag page:\(flag_load_page)")
                     if (flag_load_page == 0 || flag_load_page == 1) && flag{
                         self.getData(flag: false)
                     }
@@ -276,6 +276,10 @@ extension FeedViewController: CLLocationManagerDelegate {
             print("other error:", error.localizedDescription)
         }
     }
+    
+//    func removeReadDict() {
+//        db.collection("cities").document("LA").setData(["":nil])
+//    }
     
 }
 
