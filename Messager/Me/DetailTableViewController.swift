@@ -1,8 +1,8 @@
 //
-//  ActivityDetailController.swift
+//  DetailTableViewController.swift
 //  Messager
 //
-//  Created by 王品 on 2020/10/22.
+//  Created by Hui on 2020/11/7.
 //
 
 import UIKit
@@ -12,7 +12,8 @@ import MapKit
 import FirebaseUI
 import FirebaseFirestore
 
-class ActivityDetailController: UITableViewController {
+
+class DetailTableViewController: UIView {
     var activityID = ""
     var starterUser = ""
     var activityTitleText = ""
@@ -51,7 +52,7 @@ class ActivityDetailController: UITableViewController {
     @IBOutlet weak var p3Button: UIButton!
     @IBOutlet weak var p4Button: UIButton!
     @IBOutlet weak var noParticipants: UILabel!
-//    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     override func viewDidLoad() {
@@ -59,20 +60,20 @@ class ActivityDetailController: UITableViewController {
         self.title = "Detail"
         editButton.isHidden = true
         startGroupChatButton.isHidden = true
-//        p1Image.isHidden = true
-//        p2Image.isHidden = true
-//        p3Image.isHidden = true
-//        p4Image.isHidden = true
-//        p1Name.isHidden = true
-//        p2Name.isHidden = true
-//        p3Name.isHidden = true
-//        p4Name.isHidden = true
-//        p1Button.isHidden = true
-//        p2Button.isHidden = true
-//        p3Button.isHidden = true
-//        p4Button.isHidden = true
-//        self.noParticipants.isHidden = false
-//        scrollView.contentSize = CGSize(width: 320, height: 1200)
+        p1Image.isHidden = true
+        p2Image.isHidden = true
+        p3Image.isHidden = true
+        p4Image.isHidden = true
+        p1Name.isHidden = true
+        p2Name.isHidden = true
+        p3Name.isHidden = true
+        p4Name.isHidden = true
+        p1Button.isHidden = true
+        p2Button.isHidden = true
+        p3Button.isHidden = true
+        p4Button.isHidden = true
+        self.noParticipants.isHidden = false
+        scrollView.contentSize = CGSize(width: 320, height: 1200)
 
 //        loadData()
         //let starterButton = UIButton.init(type: .custom)

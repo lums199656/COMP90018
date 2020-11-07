@@ -1266,10 +1266,10 @@
             </objects>
             <point key="canvasLocation" x="2556.521739130435" y="1974.7767857142856"/>
         </scene>
-        <!--Datail Table View Controller-->
+        <!--Activity Detail-->
         <scene sceneID="BwZ-fK-1Hu">
             <objects>
-                <tableViewController id="Og8-XK-IYP" userLabel="Datail Table View Controller" customClass="Detail" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ActivityDetail" id="Og8-XK-IYP" userLabel="Activity Detail" customClass="ActivityDetailController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="7" sectionFooterHeight="50" id="vZf-Va-fG7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1693,6 +1693,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="jeI-BO-pxO"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="activityTitle" destination="uq0-d4-dpo" id="vwM-nt-Srf"/>
+                        <outlet property="date" destination="qbf-p5-e3k" id="T0O-2q-KJn"/>
+                        <outlet property="details" destination="QSc-3Q-8uh" id="HCR-ao-NPs"/>
+                        <outlet property="editButton" destination="Uq3-iZ-aev" id="10w-Y5-LlX"/>
+                        <outlet property="image" destination="9dm-VV-uv5" id="ffO-9V-bVa"/>
+                        <outlet property="location" destination="RiK-jA-fqU" id="LiY-XA-3Rs"/>
+                        <outlet property="startGroupChatButton" destination="OZU-7y-0Hs" id="Bfr-gb-tzi"/>
+                        <outlet property="toDate" destination="XG9-rE-eAq" id="dLv-1n-XYL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NWS-cb-fOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2771,7 +2781,7 @@
         <!--Activity Detail-->
         <scene sceneID="5fl-6i-kZN">
             <objects>
-                <viewController storyboardIdentifier="ActivityDetail" id="9IL-sf-v63" userLabel="Activity Detail" customClass="ActivityDetailController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9IL-sf-v63" userLabel="Activity Detail" customClass="ActivityDetailController" customModule="Messager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aFK-kr-S2p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2949,7 +2959,7 @@
                                                                 <rect key="frame" x="0.0" y="41" width="374" height="50"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uWF-Vh-iac">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="108" height="50"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gk-tK-Oeg">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2992,7 +3002,7 @@
                                                                         </constraints>
                                                                     </view>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s22-74-iuG">
-                                                                        <rect key="frame" x="150" y="14.666666666666631" width="224" height="20.666666666666671"/>
+                                                                        <rect key="frame" x="291" y="14.666666666666631" width="83" height="20.666666666666671"/>
                                                                         <accessibility key="accessibilityConfiguration">
                                                                             <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                         </accessibility>
