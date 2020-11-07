@@ -84,16 +84,18 @@ class OtherUserViewController: UIViewController, UITableViewDataSource,UIScrollV
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        //navigationController?.navigationBar.tintColor = .red
+        navigationController?.navigationBar.tintColor = .white
         //self.tabBarController?.tabBar.isHidden = true
         super.viewWillAppear(animated)
         self.loadInfo()
         self.createdLists = []
         self.joinedLists = []
         self.getActivities()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
           navigationController?.setNavigationBarHidden(false, animated: true)
+          navigationController?.navigationBar.tintColor = UIColor(named:"TabIconColor")
           super.viewWillDisappear(animated)
     }
     
