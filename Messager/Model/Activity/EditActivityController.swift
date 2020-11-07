@@ -239,7 +239,8 @@ class EditActivityController: UIViewController {
             }
         }
         
-        self.showSavingAlert("Saving...")
+//        self.showSavingAlert("Saving...")
+        self.showDino()
         
         uploadActivity()
         uploadImage(from: image, to: imageID, completion: { () in
@@ -420,8 +421,44 @@ extension EditActivityController {
         popup.layer.shadowRadius = 200
         
         self.view.addSubview(popup)
-        
     }
+    
+    func showDino() {
+        saveButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "dino3")
+        popup.addSubview(popIcon)
+        
+        var gif_index = 1
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            popIcon.image = UIImage(named: "dino\(gif_index)")
+            gif_index += 1
+            if gif_index > 3 {
+                gif_index = 1
+            }
+        }
+        
+        self.view.addSubview(popup)
+        
+
+    }
+    
+//    @objc func animate() {
+//
+//        popIcon.image = UIImage(named: "dino\(gif_index)")
+//        gif_index += 1
+//        if gif_index > 3 {
+//            gif_index = 1
+//        }
+//    }
     
     @objc func dismissAlert() {
         saveButton.isEnabled = true
