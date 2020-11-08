@@ -118,6 +118,8 @@ class FeedCell: UITableViewCell {
                                 switch cur {
                                 case 1:
                                     self.profile1.sd_setImage(with: proRef)
+//                                    self.profile1.layer.borderWidth = 1
+//                                    self.profile1.layer.borderColor = UIColor.black.cgColor
                                     self.profile2.image = nil
                                     self.profile3.image = nil
                                     self.profile4.image = nil
@@ -126,18 +128,26 @@ class FeedCell: UITableViewCell {
                                     break
                                 case 2:
                                     self.profile2.sd_setImage(with: proRef)
+//                                    self.profile2.layer.borderWidth = 1
+//                                    self.profile2.layer.borderColor = UIColor.black.cgColor
                                     cur+=1
                                     break
                                 case 3:
                                     self.profile3.sd_setImage(with: proRef)
+//                                    self.profile3.layer.borderWidth = 1
+//                                    self.profile3.layer.borderColor = UIColor.black.cgColor
                                     cur+=1
                                     break
                                 case 4:
                                     self.profile4.sd_setImage(with: proRef)
+//                                    self.profile4.layer.borderWidth = 1
+//                                    self.profile4.layer.borderColor = UIColor.black.cgColor
                                     cur+=1
                                     break
                                 case 5:
                                     self.profile5.sd_setImage(with: proRef)
+//                                    self.profile5.layer.borderWidth = 1
+//                                    self.profile5.layer.borderColor = UIColor.black.cgColor
                                     cur+=1
                                     break
                                 default:
