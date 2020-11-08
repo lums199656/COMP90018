@@ -2229,7 +2229,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="118" id="gc7-49-Lek" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="118" id="gc7-49-Lek" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="398" height="118"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gc7-49-Lek" id="K3a-zB-bWW">
@@ -2287,7 +2287,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="qWg-DI-Rq9" customClass="CreatedCell" customModule="Messager" customModuleProvider="target">
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="qWg-DI-Rq9" customClass="CreatedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="397" height="118"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qWg-DI-Rq9" id="TYk-tu-R5z">
@@ -3145,7 +3145,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="118" id="abe-6W-hFE" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="JoinedCell" rowHeight="118" id="abe-6W-hFE" customClass="JoinedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="398" height="118"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="abe-6W-hFE" id="Rvo-BS-bxh">
@@ -3203,7 +3203,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <prototypes>
-                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="BE4-jy-Ovk" customClass="CreatedCell" customModule="Messager" customModuleProvider="target">
+                                                                            <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreatedCell" rowHeight="118" id="BE4-jy-Ovk" customClass="CreatedCell" customModule="Messager" customModuleProvider="target">
                                                                                 <rect key="frame" x="0.0" y="28" width="397" height="118"/>
                                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BE4-jy-Ovk" id="enU-D2-fkN">
