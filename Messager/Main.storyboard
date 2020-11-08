@@ -1996,6 +1996,11 @@
                                                 <constraint firstAttribute="height" constant="75" id="9o4-P8-ycS"/>
                                                 <constraint firstAttribute="width" constant="75" id="Ja0-gh-AD1"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="37.5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minshen Lu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bee-5c-ccf">
                                             <rect key="frame" x="116" y="25" width="160" height="22.666666666666671"/>
