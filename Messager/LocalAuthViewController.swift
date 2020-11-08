@@ -24,7 +24,6 @@ var localAuthState: LocalAuthState = .loggedout {
 
 class LocalAuthViewController: UIViewController {
     
-    
     @IBOutlet weak var unlockButton: UIButton!
     
     override func viewDidLoad() {
