@@ -62,21 +62,22 @@ class ActivityDetailController: UITableViewController {
         self.title = "Detail"
         editButton.isHidden = true
         startGroupChatButton.isHidden = true
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ParticipantCell")
-        self.tableView.tableFooterView = UIView(frame:CGRect.zero)
+//        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ParticipantCell")
+//        self.tableView.tableFooterView = UIView(frame:CGRect.zero)
         
-//        p1Image.isHidden = true
-//        p2Image.isHidden = true
-//        p3Image.isHidden = true
-//        p4Image.isHidden = true
-//        p1Name.isHidden = true
-//        p2Name.isHidden = true
-//        p3Name.isHidden = true
-//        p4Name.isHidden = true
-//        p1Button.isHidden = true
-//        p2Button.isHidden = true
-//        p3Button.isHidden = true
-//        p4Button.isHidden = true
+        
+        p1Image.isHidden = true
+        p2Image.isHidden = true
+        p3Image.isHidden = true
+        p4Image.isHidden = true
+        p1Name.isHidden = true
+        p2Name.isHidden = true
+        p3Name.isHidden = true
+        p4Name.isHidden = true
+        p1Button.isHidden = true
+        p2Button.isHidden = true
+        p3Button.isHidden = true
+        p4Button.isHidden = true
 //        self.noParticipants.isHidden = false
 //        scrollView.contentSize = CGSize(width: 320, height: 1200)
 
@@ -87,81 +88,83 @@ class ActivityDetailController: UITableViewController {
     
     
     
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
-    }
- 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
-        -> Int {
-        if (section == 2) {
-            print("HHHH",self.userCount)
-            if (self.userCount == 0){
-                return 0
-            }
-            if (self.userCount > 0){
-                return (self.userCount - 1)
-            }
-            
-
-        }
-        if (section == 0) {
-            return 2
-        }else{
-            return 1
-        }
-    }
- 
-    //设置cell
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
-        -> UITableViewCell {
-    
-        if (indexPath.section == 2) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
-            cell.cellData = userList[indexPath.row + 1]
-            print(cell.cellData)
-            //cell.textLabel!.text = "happy"
-            return cell
-        }else{
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-    }
-     
-
-    override func tableView(_ tableView: UITableView,
-                            heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath.section == 2){
-            return 80
-        }else{
-            return super.tableView(tableView, heightForRowAt: indexPath)
-        }
-    }
-    override func tableView(_ tableView: UITableView,
-                                indentationLevelForRowAt indexPath: IndexPath) -> Int {
-            if (indexPath.section == 2){
-                let newIndexPath = IndexPath(row: 0, section: indexPath.section)
-                return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
-            }else{
-                return super.tableView(tableView, indentationLevelForRowAt: indexPath)
-            }
-        }
-         
-        override func didReceiveMemoryWarning() {
-            super.didReceiveMemoryWarning()
-        }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.section == 2){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
-            starterVC.currentUserID = userList[indexPath.row + 1].id
-       
-            print("starterVC.currentUserID: \(starterVC.currentUserID)")
-            self.navigationController?.show(starterVC, sender: self)
-        }
-        else{
-            return super.tableView(tableView, didSelectRowAt: indexPath)
-        }
-    }
+//    //返回分区数
+//    override func numberOfSections(in tableView: UITableView) -> Int {
+//        return 4
+//    }
+//
+//    //返回每个分区中单元格的数量
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)
+//        -> Int {
+//        if (section == 2) {
+//            print("HHHH",self.userCount)
+//            if (self.userCount == 0){
+//                return 0
+//            }
+//            if (self.userCount > 0){
+//                return (self.userCount - 1)
+//            }
+//
+//
+//        }
+//        if (section == 0) {
+//            return 2
+//        }else{
+//            return 1
+//        }
+//    }
+//
+//    //设置cell
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)
+//        -> UITableViewCell {
+//
+//        if (indexPath.section == 2) {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "ParticipantCell", for: indexPath) as! ParticipantCell
+//            cell.cellData = userList[indexPath.row + 1]
+//            print(cell.cellData)
+//            //cell.textLabel!.text = "happy"
+//            return cell
+//        }else{
+//            return super.tableView(tableView, cellForRowAt: indexPath)
+//        }
+//    }
+//
+//
+//    override func tableView(_ tableView: UITableView,
+//                            heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        if (indexPath.section == 2){
+//            return 80
+//        }else{
+//            return super.tableView(tableView, heightForRowAt: indexPath)
+//        }
+//    }
+//    override func tableView(_ tableView: UITableView,
+//                                indentationLevelForRowAt indexPath: IndexPath) -> Int {
+//            if (indexPath.section == 2){
+//
+//                let newIndexPath = IndexPath(row: 0, section: indexPath.section)
+//                return super.tableView(tableView, indentationLevelForRowAt: newIndexPath)
+//            }else{
+//                return super.tableView(tableView, indentationLevelForRowAt: indexPath)
+//            }
+//        }
+//
+//        override func didReceiveMemoryWarning() {
+//            super.didReceiveMemoryWarning()
+//        }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if (indexPath.section == 2){
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
+//            starterVC.currentUserID = userList[indexPath.row + 1].id
+//
+//            print("starterVC.currentUserID: \(starterVC.currentUserID)")
+//            self.navigationController?.show(starterVC, sender: self)
+//        }
+//        else{
+//            return super.tableView(tableView, didSelectRowAt: indexPath)
+//        }
+//    }
     @IBAction func startGroupChat(_ sender: Any) {
         for i in userList {
             print(i.username)
@@ -341,6 +344,11 @@ class ActivityDetailController: UITableViewController {
                 
                 self.imageFileRef = self.storage.reference(withPath: "activity-images/"+image)
                 self.image.sd_setImage(with: self.imageFileRef!)
+                if self.userCount  <= 1  {
+                    self.p1Name.text = "No participant"
+                    self.p1Name.isHidden = false
+                    print(userList)
+                }
                 
                 
                 
@@ -359,9 +367,9 @@ class ActivityDetailController: UITableViewController {
             self.p1Name.text = userList[1].username
             let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[1].avatarLink)
             self.p1Image.sd_setImage(with: cloudFileRef)
-//            self.p1Name.isHidden = false
-//            self.p1Image.isHidden = false
-//            self.p1Button.isHidden = false
+            self.p1Name.isHidden = false
+            self.p1Image.isHidden = false
+            self.p1Button.isHidden = false
 //            self.noParticipants.isHidden = true
             print(userList)
         }
@@ -369,25 +377,25 @@ class ActivityDetailController: UITableViewController {
             self.p2Name.text = userList[2].username
             let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[2].avatarLink)
             self.p2Image.sd_setImage(with: cloudFileRef)
-//            self.p2Name.isHidden = false
-//            self.p2Image.isHidden = false
-//            self.p2Button.isHidden = false
+            self.p2Name.isHidden = false
+            self.p2Image.isHidden = false
+            self.p2Button.isHidden = false
         }
         if userNum > 3 {
             self.p3Name.text = userList[3].username
             let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[3].avatarLink)
             self.p3Image.sd_setImage(with: cloudFileRef)
-//            self.p3Name.isHidden = false
-//            self.p3Image.isHidden = false
-//            self.p3Button.isHidden = false
+            self.p3Name.isHidden = false
+            self.p3Image.isHidden = false
+            self.p3Button.isHidden = false
         }
         if userNum > 4 {
             self.p4Name.text = userList[4].username
             let cloudFileRef = self.storage.reference(withPath: "user-photoes/"+userList[4].avatarLink)
             self.p4Image.sd_setImage(with: cloudFileRef)
-//            self.p4Name.isHidden = false
-//            self.p4Image.isHidden = false
-//            self.p4Button.isHidden = false
+            self.p4Name.isHidden = false
+            self.p4Image.isHidden = false
+            self.p4Button.isHidden = false
         }
     }
 }
