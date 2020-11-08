@@ -1311,8 +1311,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="330"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XP-cR-wNV" userLabel="details">
-                                                    <rect key="frame" x="20" y="0.0" width="369" height="749"/>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4XP-cR-wNV" userLabel="details">
+                                                    <rect key="frame" x="25" y="0.0" width="369" height="749"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uq0-d4-dpo">
                                                             <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
@@ -1325,9 +1325,8 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="datails" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QSc-3Q-8uh">
-                                                            <rect key="frame" x="0.0" y="38" width="374" height="145"/>
+                                                            <rect key="frame" x="0.0" y="38" width="349" height="145"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="374" id="8G0-x0-516"/>
                                                                 <constraint firstAttribute="height" constant="145" id="lQb-lQ-gew"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
@@ -1444,7 +1443,9 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
+                                                        <constraint firstItem="QSc-3Q-8uh" firstAttribute="leading" secondItem="4XP-cR-wNV" secondAttribute="leading" constant="20" id="0sM-FR-mC9"/>
                                                         <constraint firstItem="QSc-3Q-8uh" firstAttribute="leading" secondItem="4XP-cR-wNV" secondAttribute="leading" id="EGN-DD-OEb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="QSc-3Q-8uh" secondAttribute="trailing" constant="20" id="Q9I-Fg-xRB"/>
                                                         <constraint firstItem="QSc-3Q-8uh" firstAttribute="top" secondItem="uq0-d4-dpo" secondAttribute="bottom" constant="8" id="QOc-Gh-0K5"/>
                                                         <constraint firstItem="uq0-d4-dpo" firstAttribute="top" secondItem="4XP-cR-wNV" secondAttribute="top" id="eM9-7s-06O"/>
                                                         <constraint firstItem="Xel-ua-bce" firstAttribute="leading" secondItem="4XP-cR-wNV" secondAttribute="leading" id="iMI-YC-v8B"/>
@@ -1501,7 +1502,7 @@
                                                             <rect key="frame" x="0.0" y="40" width="374" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySe-a0-LJT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-xh-cjG">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -1544,7 +1545,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbn-LK-MJr">
-                                                                    <rect key="frame" x="150" y="14.666666666666666" width="224" height="20.666666666666671"/>
+                                                                    <rect key="frame" x="291" y="14.666666666666666" width="83" height="20.666666666666671"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                     </accessibility>
