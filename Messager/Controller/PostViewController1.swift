@@ -208,7 +208,7 @@ class PostViewController1: UIViewController {
     }
     
     @IBAction func postBttnTapped(_ sender: Any) {
-        
+        self.view.endEditing(true)
         guard let image = postImage else {
             self.showAlert("No image selected")
             return
