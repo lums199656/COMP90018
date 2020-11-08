@@ -1492,7 +1492,7 @@
                                                             <rect key="frame" x="0.0" y="40" width="374" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySe-a0-LJT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-xh-cjG">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -1535,7 +1535,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbn-LK-MJr">
-                                                                    <rect key="frame" x="150" y="14.666666666666666" width="224" height="20.666666666666671"/>
+                                                                    <rect key="frame" x="291" y="14.666666666666666" width="83" height="20.666666666666671"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                     </accessibility>
@@ -2033,21 +2033,8 @@
                                             <color key="textColor" name="typingIndicatorDot"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle2" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nhm-2f-ThC">
-                                            <rect key="frame" x="16" y="16" width="75" height="75"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="75" id="6Xn-He-D9k"/>
-                                                <constraint firstAttribute="width" constant="75" id="77S-gN-5S4"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="37.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
-                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fly" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5mH-YF-DjG">
-                                            <rect key="frame" x="-16" y="-20" width="124" height="113"/>
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="circle3" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5mH-YF-DjG">
+                                            <rect key="frame" x="-5" y="0.0" width="113" height="116"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <userDefinedRuntimeAttributes>
@@ -2058,10 +2045,8 @@
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Nhm-2f-ThC" firstAttribute="leading" secondItem="1d4-es-1Fv" secondAttribute="leading" constant="16" id="0rc-o6-oFW"/>
                                         <constraint firstItem="Mq0-CN-ehV" firstAttribute="top" secondItem="1d4-es-1Fv" secondAttribute="top" constant="15" id="3ZZ-nn-exV"/>
                                         <constraint firstItem="bee-5c-ccf" firstAttribute="top" secondItem="1d4-es-1Fv" secondAttribute="top" constant="25" id="7eg-is-SqP"/>
-                                        <constraint firstItem="Nhm-2f-ThC" firstAttribute="top" secondItem="1d4-es-1Fv" secondAttribute="top" constant="16" id="81o-Wd-WS7"/>
                                         <constraint firstItem="wfi-eU-xwH" firstAttribute="leading" secondItem="1d4-es-1Fv" secondAttribute="leading" constant="16" id="KqN-e0-btA"/>
                                         <constraint firstItem="wfi-eU-xwH" firstAttribute="centerY" secondItem="1d4-es-1Fv" secondAttribute="centerY" id="PPJ-Us-JPC"/>
                                         <constraint firstItem="NOZ-5a-Gh4" firstAttribute="bottom" secondItem="1d4-es-1Fv" secondAttribute="bottomMargin" id="R0f-GQ-5oH"/>
@@ -2075,7 +2060,6 @@
                                 <connections>
                                     <outlet property="avatarImageView" destination="wfi-eU-xwH" id="Fa3-bT-PaW"/>
                                     <outlet property="cellBackgroundView" destination="1d4-es-1Fv" id="SpZ-Lp-p0T"/>
-                                    <outlet property="circleView" destination="Nhm-2f-ThC" id="Hkx-Yp-JLA"/>
                                     <outlet property="dateLabel" destination="Mq0-CN-ehV" id="pHT-fN-kHO"/>
                                     <outlet property="lastMessageLabel" destination="Xeu-jT-BQu" id="6F3-H0-zZ3"/>
                                     <outlet property="specialCircle" destination="5mH-YF-DjG" id="UwM-z7-OtL"/>
@@ -4089,9 +4073,8 @@
         <image name="avatar" width="1744" height="1516"/>
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="bubble.right.fill" catalog="system" width="128" height="110"/>
-        <image name="circle2" width="1668" height="1672"/>
+        <image name="circle3" width="640" height="640"/>
         <image name="clock" catalog="system" width="128" height="121"/>
-        <image name="fly" width="1596" height="1430"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="heart" width="128" height="128"/>
         <image name="highlighter" catalog="system" width="128" height="119"/>
