@@ -72,7 +72,7 @@ class ActivityDetailController: UIViewController {
         p3Button.isHidden = true
         p4Button.isHidden = true
         self.noParticipants.isHidden = false
-        scrollView.contentSize = CGSize(width: 320, height: 1200)
+        scrollView.contentSize = CGSize(width: 300, height: 1200)
 
 //        loadData()
         //let starterButton = UIButton.init(type: .custom)
@@ -118,7 +118,11 @@ class ActivityDetailController: UIViewController {
 //        print(userList[0].id)
 //        self.navigationController!.show(starterVC, sender: self)
 //    }
+    @IBAction func clickStarter(_ sender: Any) {
+        print("_x-90")
+    }
     @IBAction func toParticipater(_ sender: Any) {
+        print("_x-90")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let starterVC = storyboard.instantiateViewController(identifier: "OtherUserVC") as OtherUserViewController
         if (sender as! NSObject) == self.starterButton{

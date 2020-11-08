@@ -16,44 +16,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="watermelon" translatesAutoresizingMaskIntoConstraints="NO" id="7XV-1L-YA7">
-                                <rect key="frame" x="292" y="762" width="100" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="7XV-1L-YA7" secondAttribute="height" multiplier="1:1" id="DNU-j5-xge"/>
-                                    <constraint firstAttribute="width" constant="100" id="JQe-88-OTe"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PLAY TOGETHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvl-5q-qaL">
+                                <rect key="frame" x="108" y="433" width="198" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="23"/>
+                                <color key="textColor" name="TabBarColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo6" translatesAutoresizingMaskIntoConstraints="NO" id="EVn-FU-Kxe">
+                                <rect key="frame" x="157" y="311" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SquadUp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvl-5q-qaL">
-                                <rect key="frame" x="139.5" y="430" width="135" height="36"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
-                                <color key="textColor" name="SquadUp-watermelon"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A Uni Hatch Company" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6W-p8-w8T">
-                                <rect key="frame" x="120" y="474" width="174.5" height="21.5"/>
-                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="17"/>
-                                <color key="textColor" name="SquadUp-watermelon"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's share a melon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lIb-1F-x7A">
-                                <rect key="frame" x="66" y="842" width="195" height="20"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" name="SquadUp-watermelon"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="SquadUp-wildWatermelon-fade"/>
-                        <constraints>
-                            <constraint firstItem="dvl-5q-qaL" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3aB-Hd-8oH"/>
-                            <constraint firstItem="7XV-1L-YA7" firstAttribute="bottom" secondItem="lIb-1F-x7A" secondAttribute="bottom" id="3rX-Tt-Z73"/>
-                            <constraint firstAttribute="trailing" secondItem="7XV-1L-YA7" secondAttribute="trailing" constant="22" id="4on-AY-8Zp"/>
-                            <constraint firstItem="U6W-p8-w8T" firstAttribute="top" secondItem="dvl-5q-qaL" secondAttribute="bottom" constant="8" id="6Ik-fE-My3"/>
-                            <constraint firstItem="7XV-1L-YA7" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7dT-8B-jGd"/>
-                            <constraint firstItem="U6W-p8-w8T" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XQK-it-ycf"/>
-                            <constraint firstItem="dvl-5q-qaL" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fN9-wk-Khx"/>
-                            <constraint firstItem="lIb-1F-x7A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="kjs-mW-rhG"/>
-                        </constraints>
+                        <color key="backgroundColor" red="0.89867037530000005" green="0.50347155330000004" blue="0.42955631020000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -62,12 +38,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="watermelon" width="270" height="271"/>
-        <namedColor name="SquadUp-watermelon">
-            <color red="0.99599999189376831" green="0.44299998879432678" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="SquadUp-wildWatermelon-fade">
-            <color red="0.9570000171661377" green="0.85100001096725464" blue="0.77600002288818359" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="logo6" width="580" height="580"/>
+        <namedColor name="TabBarColor">
+            <color red="0.92500001192092896" green="0.94599997997283936" blue="0.93900001049041748" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

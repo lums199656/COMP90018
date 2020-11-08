@@ -115,6 +115,7 @@ class ChatViewController: MessagesViewController {
                             } else {
                                 let avatar = UIImage(data: data!)
                                 avatars[userId] = avatar
+                                titleLabel.text = displayNames[reipientId[0]] ?? recipientName[0]
                                 loadChats()
                             }
                         }
