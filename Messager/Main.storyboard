@@ -769,6 +769,11 @@
                                                 <constraint firstAttribute="width" constant="65" id="26d-Zj-Drj"/>
                                                 <constraint firstAttribute="height" constant="65" id="Xbh-ay-NE5"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="32.5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments xxxxxxxxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYt-oN-yui">
                                             <rect key="frame" x="106" y="89.666666666666671" width="150" height="19.333333333333329"/>
