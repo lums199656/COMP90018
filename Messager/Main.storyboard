@@ -1492,7 +1492,7 @@
                                                             <rect key="frame" x="0.0" y="40" width="374" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ySe-a0-LJT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="108" height="50"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0f-xh-cjG">
                                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -1535,7 +1535,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbn-LK-MJr">
-                                                                    <rect key="frame" x="291" y="14.666666666666666" width="83" height="20.666666666666671"/>
+                                                                    <rect key="frame" x="150" y="14.666666666666666" width="224" height="20.666666666666671"/>
                                                                     <accessibility key="accessibilityConfiguration">
                                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                                     </accessibility>
