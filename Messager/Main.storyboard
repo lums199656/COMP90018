@@ -2262,7 +2262,6 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                     </subviews>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </tableViewCellContentView>
                                                                                 <accessibility key="accessibilityConfiguration" identifier="JoinedCell"/>
                                                                                 <gestureRecognizers/>
@@ -2331,7 +2330,6 @@
                                                                                             </userDefinedRuntimeAttributes>
                                                                                         </label>
                                                                                     </subviews>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </tableViewCellContentView>
                                                                                 <accessibility key="accessibilityConfiguration" identifier="CreatedCell"/>
                                                                                 <gestureRecognizers/>
@@ -2428,6 +2426,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iMM-eD-MQO"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gZF-jV-HQ6" firstAttribute="leading" secondItem="HGg-2g-lnN" secondAttribute="leading" constant="19" id="0Hh-jw-c2S"/>
                             <constraint firstItem="gHf-yz-9hx" firstAttribute="top" secondItem="OP7-Hd-GK9" secondAttribute="bottom" constant="50" id="28z-PY-9v7"/>
@@ -3179,7 +3178,6 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                     </subviews>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </tableViewCellContentView>
                                                                                 <accessibility key="accessibilityConfiguration" identifier="JoinedCell"/>
                                                                                 <gestureRecognizers/>
@@ -3248,7 +3246,6 @@
                                                                                             </userDefinedRuntimeAttributes>
                                                                                         </imageView>
                                                                                     </subviews>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 </tableViewCellContentView>
                                                                                 <accessibility key="accessibilityConfiguration" identifier="CreatedCell"/>
                                                                                 <gestureRecognizers/>
@@ -3324,6 +3321,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1NZ-hJ-uyA"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="OD1-Ym-KNq" firstAttribute="top" secondItem="sE4-53-HBh" secondAttribute="bottom" constant="50" id="753-dl-JBw"/>
                             <constraint firstAttribute="trailing" secondItem="sE4-53-HBh" secondAttribute="trailing" id="Gzz-Aj-yQS"/>
