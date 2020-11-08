@@ -93,9 +93,48 @@ class ChatsTableViewController: UITableViewController {
         }
     }
     
+    private func refreshRecentInfo() {
+        print("_x-80 重新加载消息信息")
+        var index = 0
+        let db = Firestore.firestore()
+        for recent in allRecents {
+            if !recent.isActivity {
+                let userInfo = db.collection("User")
+                let userId = recent.receiverId[0]
+                let query = userInfo.whereField("id", isEqualTo: userId)
+                query.getDocuments { [self] (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        let storage = Storage.storage()
+                        for document in querySnapshot!.documents {
+                            let data = document.data()
+                            let image = data["avatarLink"] as! String
+                            let displayName = data["username"] as! String
+                            displayNames[userId] = displayName
+                            let cloudFileRef = storage.reference(withPath: "user-photoes/"+image)
+                            cloudFileRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
+                                if let error = error {
+                                    avatars[userId] = nil
+                                } else {
+                                    
+                                    let avatar = UIImage(data: data!)
+                                    avatars[userId] = avatar
+                                    self.allRecents[index].activityTitle = displayName
+                                    self.allRecents[index].avatarLink = image
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     private func downloadRecentChats() {
         FirebaseRecentListener.shared.downloadRecentChatFromFireStore { (allChats) in
             self.allRecents = allChats
+            self.refreshRecentInfo()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
