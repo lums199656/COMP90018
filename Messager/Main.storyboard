@@ -2748,6 +2748,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="saveButton" destination="lDX-Tp-869" id="Ga4-SZ-ZeS"/>
                         <outlet property="userImage" destination="9ri-8u-h3c" id="8jA-O9-yCR"/>
                         <outlet property="userIntro" destination="Ssr-Q9-cyI" id="5Mj-hw-8eV"/>
                         <outlet property="userLocation" destination="glO-4c-DD4" id="FU2-8G-oef"/>

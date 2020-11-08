@@ -12,12 +12,17 @@ import IQKeyboardManagerSwift
 
 
 class EditTableViewController: UITableViewController {
+    
+    // Pop Up View
+    var popup: UIView!
+    
     let db = Firestore.firestore()
     let storage = Storage.storage()
     let imagePicker = UIImagePickerController()
     
     var oldFileRef: StorageReference?
     
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userLocation: UITextField!
@@ -89,6 +94,7 @@ class EditTableViewController: UITableViewController {
                                 print("Error adding document: \(err)")
                             } else {
                                 print("Document added with ID: \(infoRef.documentID)")
+                                showDino()
                                 uploadImage(from: image, to: imageID, completion: { () in
                                     oldFileRef?.delete()
                                     self.navigationController?.popViewController(animated: true)
@@ -106,13 +112,14 @@ class EditTableViewController: UITableViewController {
         
             let uploadTask = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else {return }
+                
+                self.dismissAlert()
                 completion()
             }
         }
 
         // uploadInfo()
         // uploadImage(from: image, to: infoDocID)
-        
         
         // Segue back to Activity View
         
@@ -169,3 +176,46 @@ extension EditTableViewController: UINavigationControllerDelegate {
     
 }
 
+
+// MARK:- Pop up
+// MARK:-
+extension EditTableViewController {
+   
+    
+    func showDino() {
+        saveButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "dino3")
+        popup.addSubview(popIcon)
+        
+        var gif_index = 1
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            popIcon.image = UIImage(named: "dino\(gif_index)")
+            gif_index += 1
+            if gif_index > 3 {
+                gif_index = 1
+            }
+        }
+        
+        self.view.addSubview(popup)
+        
+
+    }
+
+    
+    @objc func dismissAlert() {
+        saveButton.isEnabled = true
+
+        if popup != nil {
+            popup.removeFromSuperview()
+        }
+    }
+}
