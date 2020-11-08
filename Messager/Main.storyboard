@@ -76,7 +76,7 @@
                                                 <rect key="frame" x="165.66666666666666" y="0.0" width="82.666666666666657" height="80"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aZo-eO-wdp">
-                                                        <rect key="frame" x="16.333333333333343" y="10.333333333333336" width="50" height="49.666666666666671"/>
+                                                        <rect key="frame" x="16.333333333333343" y="10.333333333333332" width="50" height="49.333333333333343"/>
                                                         <color key="backgroundColor" name="SquadUp-watermelon"/>
                                                         <color key="tintColor" name="TabIconColor"/>
                                                         <constraints>
@@ -86,7 +86,7 @@
                                                         <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VpU-4M-vmN">
-                                                        <rect key="frame" x="16.333333333333343" y="10.333333333333336" width="50" height="49.666666666666671"/>
+                                                        <rect key="frame" x="16.333333333333343" y="10.333333333333332" width="50" height="49.333333333333343"/>
                                                         <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="50" id="ZJ2-tC-V8t"/>
