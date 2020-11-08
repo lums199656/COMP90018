@@ -58,22 +58,22 @@ class PostLocationViewController: UIViewController {
     
     // MARK:-
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        locationManager.delegate = self
-        
-        suggestionController = SuggestionsTableViewController(style: .grouped)
-        suggestionController.tableView.delegate = self
-        
-        searchController = UISearchController(searchResultsController: suggestionController)
-        searchController.searchResultsUpdater = suggestionController
-        
-        let name = UIApplication.willEnterForegroundNotification
-        foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [unowned self] (_) in
-            // Get a new location when returning from Settings to enable location services.
-            self.requestLocation()
-        })
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//        locationManager.delegate = self
+//        
+//        suggestionController = SuggestionsTableViewController(style: .grouped)
+//        suggestionController.tableView.delegate = self
+//        
+//        searchController = UISearchController(searchResultsController: suggestionController)
+//        searchController.searchResultsUpdater = suggestionController
+//        
+//        let name = UIApplication.willEnterForegroundNotification
+//        foregroundRestorationObserver = NotificationCenter.default.addObserver(forName: name, object: nil, queue: nil, using: { [unowned self] (_) in
+//            // Get a new location when returning from Settings to enable location services.
+//            self.requestLocation()
+//        })
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

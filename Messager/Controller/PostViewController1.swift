@@ -27,6 +27,8 @@ class PostViewController1: UIViewController {
     var postLocation: CLLocation?
     var postLocationString: String?
     
+    var currentImageId: String?
+    
     
     
     // IBOutlets
@@ -118,6 +120,23 @@ class PostViewController1: UIViewController {
         postActEndDate = nowDate
         
 
+        // For pass in Current Activity Information
+        if let postLocationString = postLocationString{
+            self.locationLabel.text = postLocationString
+        }
+        if let postTitle = postTitle {
+            self.titleTextField.text = postTitle
+        }
+        if let postDetail = postDetail {
+            self.detailTextView.text = postDetail
+        }
+        if let currentImageId = currentImageId {
+            self.activityImageView.image = UIImage(named: currentImageId)
+        }
+        if let postCat = postCategory {
+            self.categoryLabel.text = postCat
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
