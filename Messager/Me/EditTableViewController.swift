@@ -63,6 +63,7 @@ class EditTableViewController: UITableViewController {
     
     // save -> update userInfo
     @IBAction func updateUserInfo(_ sender: Any) {
+        self.view.endEditing(true)
         guard let image = userImage.image else { print("no image selected"); return }
         guard let id = Auth.auth().currentUser?.uid else { return }
         guard let name = userName.text else { return }
