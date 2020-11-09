@@ -18,6 +18,9 @@ import FirebaseUI
 class ChatViewController: MessagesViewController {
     
     
+    // pop up
+    var popup: UIView!
+    
     //MARK: - Views
     let leftBarButtonView: UIView = {
         return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -200,7 +203,7 @@ class ChatViewController: MessagesViewController {
     }
     
 
-    
+    // MARK:-
     // 下拉加载操作
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if refreshController.isRefreshing {
@@ -432,10 +435,12 @@ class ChatViewController: MessagesViewController {
     @objc func recordAudio() {
         switch longPressGesture.state {
         case .began:
+            showDino()
             audioDuration = Date()
             audioFileName = Date().stringDate()
             AudioRecorder.shared.startRecording(fileName: audioFileName)
         case .ended:
+            dismissAlert()
             AudioRecorder.shared.finishRecording()
             
             if fileExistsAtPath(path: audioFileName + ".m4a") {
@@ -483,4 +488,42 @@ extension ChatViewController: ActivityManagerDelegate {
     }
 
 
+}
+
+
+// MARK:- PopUp
+extension ChatViewController {
+    
+    func showDino() {
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "mic1")
+        popup.addSubview(popIcon)
+        
+        var gif_index = 1
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            popIcon.image = UIImage(named: "mic\(gif_index)")
+            gif_index += 1
+            if gif_index > 3 {
+                gif_index = 1
+            }
+        }
+        
+        self.view.addSubview(popup)
+        
+    }
+    
+    @objc func dismissAlert() {
+
+        if popup != nil {
+            popup.removeFromSuperview()
+        }
+    }
+    
 }
