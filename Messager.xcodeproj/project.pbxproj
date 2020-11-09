@@ -71,7 +71,7 @@
 		BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */; };
 		BB5175192534554C0078F78B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5175182534554C0078F78B /* Main.storyboard */; };
 		BB51764425347FFD0078F78B /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB51764325347FFD0078F78B /* TabViewController.swift */; };
-		BB93CC7B254BBC3900C7F59A /* PostViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC7A254BBC3900C7F59A /* PostViewController1.swift */; };
+		BB93CC7B254BBC3900C7F59A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC7A254BBC3900C7F59A /* PostViewController.swift */; };
 		BB93CC80254BBC7300C7F59A /* PostLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */; };
 		BB93CC85254BBC7A00C7F59A /* PostDateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */; };
 		BB93CC8A254BBD0C00C7F59A /* SuggestionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */; };
@@ -175,7 +175,7 @@
 		BB1C1E6425344D4000DCF2D5 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		BB5175182534554C0078F78B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BB51764325347FFD0078F78B /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
-		BB93CC7A254BBC3900C7F59A /* PostViewController1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController1.swift; sourceTree = "<group>"; };
+		BB93CC7A254BBC3900C7F59A /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLocationViewController.swift; sourceTree = "<group>"; };
 		BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateViewController.swift; sourceTree = "<group>"; };
 		BB93CC89254BBD0C00C7F59A /* SuggestionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionsTableViewController.swift; sourceTree = "<group>"; };
@@ -450,7 +450,7 @@
 				BBD17F352532FB9600C182D4 /* ActivityTabViewController.swift */,
 				BBD17F3B2533080C00C182D4 /* ActivityTableViewController.swift */,
 				BB1C1D1125340C4700DCF2D5 /* FeedCell.swift */,
-				BB93CC7A254BBC3900C7F59A /* PostViewController1.swift */,
+				BB93CC7A254BBC3900C7F59A /* PostViewController.swift */,
 				BBF8100F25388755004C61B2 /* PostViewController2.swift */,
 				BB93CC7F254BBC7300C7F59A /* PostLocationViewController.swift */,
 				BB93CC84254BBC7A00C7F59A /* PostDateViewController.swift */,
@@ -730,7 +730,7 @@
 				A59E1825254E85D200FC5C61 /* AudioMessage.swift in Sources */,
 				BB1C1E6525344D4100DCF2D5 /* UserTableViewCell.swift in Sources */,
 				A517F8C12514E89F00621A26 /* LoginViewController.swift in Sources */,
-				BB93CC7B254BBC3900C7F59A /* PostViewController1.swift in Sources */,
+				BB93CC7B254BBC3900C7F59A /* PostViewController.swift in Sources */,
 				9B28DDEB25414ECE00A56C3D /* LocalMessage.swift in Sources */,
 				BBEE4367252DEAB900D3B305 /* DBSeeding.swift in Sources */,
 				A5DAAEF6254D0CC200F15718 /* Channel.swift in Sources */,

@@ -44,12 +44,12 @@ class PostViewController2: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "tableToPost" {
-            let destinationVC = segue.destination as! PostViewController1
+            let destinationVC = segue.destination as! PostViewController
             let sd = sender as! ActivityTabelViewCell
             destinationVC.postCategory = sd.category.name
         }
         if segue.identifier == "collectionToPost" {
-            let destinationVC = segue.destination as! PostViewController1
+            let destinationVC = segue.destination as! PostViewController
             let sd = sender as! CategoryCollectionViewCell
 
             destinationVC.postLocationString = sd.location

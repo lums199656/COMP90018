@@ -13,7 +13,7 @@ import IQKeyboardManagerSwift
 import FirebaseFirestore
 
 
-class PostViewController1: UIViewController {
+class PostViewController: UIViewController {
     
     // Pop Up View
     var popup: UIView!
@@ -208,6 +208,7 @@ class PostViewController1: UIViewController {
     }
     
     @IBAction func postBttnTapped(_ sender: Any) {
+        
         self.view.endEditing(true)
         guard let image = postImage else {
             self.showAlert("No image selected")
@@ -227,6 +228,7 @@ class PostViewController1: UIViewController {
 
             return
         }
+        self.showDino()
         
         let actRef = db.collection(K.FStore.act).document()  // new Activity Document reference
         let storageRef = storage.reference()
@@ -241,10 +243,14 @@ class PostViewController1: UIViewController {
             let _ = cloudFileRef.putData(data, metadata: nil) { metadata, error in
                 guard let _ = metadata else { return }  // if metadata is nil, return
                 
+                self.dismissAlert()
+                // Segue back to Activity View
+                self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+                self.dismiss(animated: true, completion: nil)
+                
                 print("Success upload image \(cloudName)")
             }
         }
-        
         
         func uploadActivity() {
             
@@ -279,11 +285,6 @@ class PostViewController1: UIViewController {
         uploadImage(from: image, to: actRef.documentID)
         
         
-        // Segue back to Activity View
-        self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
-        self.dismiss(animated: true, completion: nil)
-        
-        
     }
     
     
@@ -300,7 +301,7 @@ class PostViewController1: UIViewController {
 
 
 // MARK:- Delegate for Image Picker
-extension PostViewController1:  UIImagePickerControllerDelegate {
+extension PostViewController:  UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
@@ -319,7 +320,7 @@ extension PostViewController1:  UIImagePickerControllerDelegate {
 }
 
 // MARK:- Select Location Delegate
-extension PostViewController1: PostLocationDelegate {
+extension PostViewController: PostLocationDelegate {
     func updateLocation(location: CLLocation?, locString: String?) {
         print("!!!! Update Location Called")
         
@@ -334,13 +335,13 @@ extension PostViewController1: PostLocationDelegate {
 }
 
 // MARK:- Navigation Controller Delegate
-extension PostViewController1: UINavigationControllerDelegate {
+extension PostViewController: UINavigationControllerDelegate {
     
 }
 
 
 // MARK:-
-extension PostViewController1: UITextViewDelegate {
+extension PostViewController: UITextViewDelegate {
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -401,7 +402,7 @@ extension Date {
 }
 
 
-extension PostViewController1 {
+extension PostViewController {
     func showAlert(_ alertText: String) {
         postButton.isEnabled = false
         
@@ -433,6 +434,34 @@ extension PostViewController1 {
         
         Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(dismissAlert), userInfo: nil, repeats: false)
         
+    }
+    
+    func showDino() {
+        postButton.isEnabled = false
+        
+        popup = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
+        popup.cornerRadius = 10
+        
+        let popIcon = UIImageView(frame: CGRect(x: 50, y: 20, width: 100, height: 100))
+        popIcon.image = UIImage(named: "dino3")
+        popup.addSubview(popIcon)
+        
+        var gif_index = 1
+        
+        popup.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        popup.center = view.center
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (timer) in
+            popIcon.image = UIImage(named: "dino\(gif_index)")
+            gif_index += 1
+            if gif_index > 3 {
+                gif_index = 1
+            }
+        }
+        
+        self.view.addSubview(popup)
+        
+
     }
     
     @objc func dismissAlert() {

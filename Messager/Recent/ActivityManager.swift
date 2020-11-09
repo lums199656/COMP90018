@@ -98,7 +98,6 @@ class ActivityManager: NSObject {
             self.delegate?.activityManager(self, didCheckInUser: false, distanceToActivityLocation: Int(distance))
         }
     }
-
 }
 
 // MARK:- Location Manager
