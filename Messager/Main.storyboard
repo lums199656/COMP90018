@@ -2228,15 +2228,15 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qzn-Tq-fJY" userLabel="ActivitiesBorder">
                                         <rect key="frame" x="0.0" y="151.66666666666671" width="414" height="504.33333333333326"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-Ok-9MU" userLabel="Activities">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="504.33333333333331"/>
+                                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W1Q-Ok-9MU" userLabel="Activities">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="492"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" id="agC-qv-Q7b">
-                                                        <rect key="frame" x="0.0" y="35" width="414" height="461"/>
+                                                        <rect key="frame" x="0.0" y="33" width="414" height="345"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" id="yXa-Eh-Fbv" userLabel="TableContainer">
-                                                                <rect key="frame" x="0.0" y="8" width="828" height="398"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="828" height="345"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="118" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="acq-Lq-NMV" userLabel="Second View">
@@ -2371,7 +2371,7 @@
                                                         </subviews>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                                                <size key="value" width="828" height="600"/>
+                                                                <size key="value" width="828" height="0.0"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
@@ -3148,11 +3148,11 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="494.33333333333331"/>
                                                 <subviews>
                                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" id="CYB-NX-A3A">
-                                                        <rect key="frame" x="0.0" y="35" width="414" height="461"/>
+                                                        <rect key="frame" x="0.0" y="33" width="414" height="345"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" id="zeD-bd-mlo" userLabel="TableContainer">
-                                                                <rect key="frame" x="0.0" y="8" width="828" height="398"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="828" height="345"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <subviews>
                                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" bounces="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="118" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0Po-sr-SMe" userLabel="Second View">
@@ -3287,7 +3287,7 @@
                                                         </subviews>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
-                                                                <size key="value" width="828" height="600"/>
+                                                                <size key="value" width="828" height="0.0"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
